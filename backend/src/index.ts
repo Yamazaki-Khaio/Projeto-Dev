@@ -20,7 +20,7 @@ class App {
       res.send('Index');
     });
 
-    this.app.use('/api', ContaRouters);
+    this.app.use('/Conta', ContaRouters);
   }
 
   // utilizado para iniciar o servidor
