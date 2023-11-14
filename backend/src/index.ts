@@ -1,6 +1,7 @@
 import express, { Application, Request, Response } from 'express';
 import sequelize from './server/config/sequelize';
 import ContaRouters from './server/services/conta/contaRouters';
+import ClienteRouters from './server/services/cliente/clienteRouters';
 
 class App {
   private app: Application;
@@ -21,6 +22,7 @@ class App {
     });
 
     this.app.use('/Conta', ContaRouters);
+    this.app.use('/Cliente', ClienteRouters);
   }
 
   // utilizado para iniciar o servidor
