@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import Cliente from './clienteModels';
+import Cliente from './enderecoModels';
 import sequelize from '../../config/sequelize';
 
 //cliente tem que ter nome, indeficao. 

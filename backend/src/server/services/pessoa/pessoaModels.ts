@@ -29,19 +29,19 @@ Pessoa.init(
         },
         nome_fantasia: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         nome_mae: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         inscricao_municipal: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         inscricao_estadual: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
     },
     {
@@ -50,36 +50,6 @@ Pessoa.init(
     }
 );
 
-const options = { tableName: 'pessoas', sequelize };
 
-
-
-
-/** nome
-Texto
-Não
-Nome do cliente.
-identificacao
-Texto
-Não
-Número de identificação do cliente.(CNPJ/CPF)
-nome_fantasia
-Texto
-Sim
-Nome fantasia da empresa.
-nome_mae
-Texto
-Sim
-Nome da mãe do cliente
-inscrição_municipal
-Texto
-Sim
-Inscrição municipal da empresa.
-inscrição_estadual
-Texto
-Sim
-Inscrição estadual da empresa.
-
- */
 
 

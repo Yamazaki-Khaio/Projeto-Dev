@@ -1,7 +1,7 @@
 import express from 'express';
-import { clienteControllers } from './clienteControllers';
+import clienteControllers from './clienteControllers';
 
-export default router = express.Router();
+const router = express.Router();
 
 // Rota para criar um novo cliente
 router.post('/', clienteControllers.createClient);
@@ -18,3 +18,4 @@ router.put('/:id', clienteControllers.updateClient);
 // Rota para excluir um cliente pelo ID
 router.delete('/:id', clienteControllers.deleteClient);
 
+export default router;
