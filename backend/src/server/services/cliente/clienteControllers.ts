@@ -3,161 +3,88 @@ import Cliente from './clienteModels';
 import Pessoa from '../pessoa/pessoaModels';
 
 
-//cliente tem que ter nome, indeficao. 
-//caso identificação === cpnj o nome fantasia é obritatorio, 
-//caso identificação === cpf o nome da mãe é obrigatorio
-//cnpj/cpf unicos por cliente
-//indetificação não pode ser editado
-//é possivel edição de cliente
-//ident = cnpj deve-se permitir informar a inscrição estadual
-//ident = cnpj deve-se permitir informar a inscrição municipal
 
+// Defina o controlador para o modelo 'Cliente'
+class ClienteController {
+    public async create(req: Request, res: Response): Promise<Response> {
+        try {
+            // Verifica se a Pessoa já existe pelo identificador (identificacao)
+            const identificacao = req.body.identificacao;
+            let pessoa = await Pessoa.findOne({ where: { identificacao } });
+            // Se a Pessoa não existe, cria uma nova
+            if (!pessoa) {
+                pessoa = await Pessoa.create(req.body);
+            }
+            // Agora, cria o Cliente associado à Pessoa
+            const cliente = await Cliente.create({ id_pessoa: pessoa.id });
 
-const clienteControllers = {
-    createClient,
-    getAllClients,
-    getClientById,
-    updateClient,
-    deleteClient,
-};
+            return res.status(201).json(cliente);
+        } catch (error) {
+            return res.status(400).json({ error: error });
+        }
+    }
 
+    public async list(req: Request, res: Response): Promise<Response> {
+        try {
+            const clientes = await Cliente.findAll({ include: Pessoa });
+            return res.status(200).json(clientes.map((cliente) => {
+                const { id, Pessoa: { nome, identificacao } } = cliente.toJSON();
+                return { id, nome, identificacao };
+            }));
+        } catch (error: any) {
+            return res.status(500).json({ error: 'Erro interno do servidor' });
+        }
+    }
 
+    public async getById(req: Request, res: Response): Promise<Response> {
+        const { id } = req.params;
 
-// Verificar se o cliente já existe
-async function verifyClientExists(identificacao: string, res: Response) {
-    if (await Pessoa.findOne({ where: { identificacao }})) {
-        return res.status(400).json({ error: 'Cliente já existe' });
+        try {
+            const cliente = await Cliente.findByPk(id);
+
+            if (!cliente) {
+                return res.status(404).json({ error: 'Cliente não encontrado' });
+            }
+
+            return res.status(200).json(cliente);
+        } catch (error: any) {
+            return res.status(500).json({ error: 'Erro interno do servidor' });
+        }
+    }
+
+    public async update(req: Request, res: Response): Promise<Response> {
+        const { id } = req.params;
+
+        try {
+            const [updatedRows] = await Cliente.update(req.body, { where: { id } });
+
+            if (updatedRows === 0) {
+                return res.status(404).json({ error: 'Cliente não encontrado' });
+            }
+
+            const cliente = await Cliente.findByPk(id);
+
+            return res.status(200).json(cliente);
+        } catch (error: any) {
+            return res.status(500).json({ error: 'Erro interno do servidor' });
+        }
+    }
+
+    public async delete(req: Request, res: Response): Promise<Response> {
+        const { id } = req.params;
+
+        try {
+            const deletedRows = await Cliente.destroy({ where: { id } });
+
+            if (deletedRows === 0) {
+                return res.status(404).json({ error: 'Cliente não encontrado' });
+            }
+
+            return res.status(204).send();
+        } catch (error: any) {
+            return res.status(500).json({ error: 'Erro interno do servidor' });
+        }
     }
 }
 
-// Verificar se a identificação é válidas
-function validateIdentification(identificacao: string, res: Response) {
-    const cpf: boolean = identificacao.length === 11;
-    const cnpj: boolean = identificacao.length === 14;
-
-    if (!cpf && !cnpj) {
-        return res.status(400).json({ error: 'Identificação inválida' });
-    }
-}
-
-// Verificar se os campos obrigatórios foram informados
-function checkRequiredFields(fields: Record<string, any>, requiredFields: string[], res: Response) {
-    const missingFields = requiredFields.filter(key => !fields[key]);
-    if (missingFields.length > 0) {
-        return res.status(400).json({ error: 'Campo obrigatório não informado' });
-    }
-}
-
-
-
-//criar cliente
-export async function createClient(req: Request, res: Response) {
-    const { name, identificacao, nomeFantasia, nomeMae, inscricaoEstadual, inscricaoMunicipal } = req.body;
-
-    // Verificar se o cliente já existe
-    await verifyClientExists(identificacao, res);
-
-    // Verificar se a identificação é válida
-    validateIdentification(identificacao, res);
-
-    // Verificar campos obrigatórios
-    const requiredFields = ['name', 'identificacao'];
-    if (identificacao.length === 11) {
-        requiredFields.push('nomeMae');
-    } else if (identificacao.length === 14) {
-        requiredFields.push('nomeFantasia');
-    }
-    checkRequiredFields(req.body, requiredFields, res);
-
-     // Buscar ou criar a pessoa associada ao cliente
-     let pessoa = await Pessoa.findOne({ where: { identificacao } });
-
-     if (!pessoa) {
-         const pessoaPayload = {
-             nome: name,
-             identificacao,
-             nomeFantasia: identificacao.length === 14 ? nomeFantasia : null,
-             nomeMae: identificacao.length === 11 ? nomeMae : null,
-             inscricaoEstadual: identificacao.length === 14 ? inscricaoEstadual : null,
-             inscricaoMunicipal: identificacao.length === 14 ? inscricaoMunicipal : null,
-         };
- 
-         pessoa = await Pessoa.create(pessoaPayload);
-     }
- 
-     // Criar o cliente associado à pessoa
-     const clientePayload = {
-         pessoaId: pessoa.id,
-     };
- 
-     const cliente = await Cliente.create(clientePayload);
- 
-     res.json(cliente);
- }
-
-// Função para listar todos os clientes
-export async function getAllClients(req: Request, res: Response) {
-    const clientes = await Cliente.findAll();
-    res.json(clientes);
-}
-
-// Função para listar um cliente por ID
-export async function getClientById(req: Request, res: Response) {
-    const { id } = req.params;
-    const cliente = await Cliente.findByPk(id);
-    if (!cliente) {
-        return res.status(404).json({ error: 'Cliente não encontrado' });
-    }
-    res.json(cliente);
-}
-
-// Função para atualizar um cliente por ID
-export async function updateClient(req: Request, res: Response) {
-/**   const { id } = req.params;
-    const { name, identificacao, tel, end, city, state, cep, nomeFantasia, nomeMae, inscricaoEstadual, inscricaoMunicipal } = req.body;
-
-    const cliente = await Cliente.findByPk(id);
-    if (!cliente) {
-        return res.status(404).json({ error: 'Cliente não encontrado' });
-    }
-
-    if (cliente.identificacao !== req.body.identificacao) {
-        return res.status(400).json({ error: 'A identificação não pode ser alterada' });
-    }
-
-    if (await Cliente.findOne({ where: { identify: req.body.identify, id: { [sequelize.Op.not]: id } } })) {
-        return res.status(400).json({ error: 'Já existe um cliente com essa identificação' });
-    }
-
-    cliente.name = name;
-    cliente.mail = mail;
-    cliente.tel = tel;
-    cliente.end = end;
-    cliente.city = city;
-    cliente.state = state;
-    cliente.cep = cep;
-    cliente.nomeFantasia = nomeFantasia;
-    cliente.nomeMae = nomeMae;
-    cliente.inscricaoEstadual = cliente.identify === 'cnpj' ? inscricaoEstadual : null;
-    cliente.inscricaoMunicipal = cliente.identify === 'cnpj' ? inscricaoMunicipal : null;
-
-    await cliente.save();
-
-    res.json(cliente);
-    */ 
-}
-
-// Função para deletar um cliente por ID
-export async function deleteClient(req: Request, res: Response) {
-    const { id } = req.params;
-    const cliente = await Cliente.findByPk(id);
-    if (!cliente) {
-        return res.status(404).json({ error: 'Cliente não encontrado' });
-    }
-    await cliente.destroy();
-    res.json({ message: 'Cliente deletado com sucesso' });
-}
-
-export default clienteControllers;
-
-
+export default new ClienteController();

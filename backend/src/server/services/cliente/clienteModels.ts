@@ -1,54 +1,50 @@
 import { Model, DataTypes } from 'sequelize';
-import sequelize from '../../config/sequelize';
 import Pessoa from '../pessoa/pessoaModels';
+import sequelize from '../../config/sequelize';
 
+
+// Defina o modelo para a tabela 'Cliente'
 class Cliente extends Model {
-  public pessoaId!: number;
+  public id!: number;
+  public id_pessoa!: number;
+  public data_cadastro!: Date;
   public situacao!: string;
-  public readonly createdAt!: Date;
-
-  public readonly pessoa?: Pessoa;
-
-  public static initialize() {
-    this.init(
-      {
-        id: {
-          type: DataTypes.INTEGER,
-          autoIncrement: true,
-          primaryKey: true,
-        },
-        pessoaId: {
-          type: DataTypes.INTEGER.UNSIGNED,
-          allowNull: false,
-          references: {
-            model: 'pessoas',
-            key: 'id',
-          },
-        },
-        situacao: {
-          type: DataTypes.STRING(20),
-          allowNull: false,
-          defaultValue: 'ativo',
-        },
-      },
-      {
-        sequelize,
-        tableName: 'clientes',
-        timestamps: true,
-        createdAt: true,
-        updatedAt: false,
-      }
-    );
-  }
-
-  public static associate() {
-    this.belongsTo(Pessoa, { foreignKey: 'pessoaId', as: 'pessoas' });
-  }
-
 }
 
+Cliente.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    id_pessoa: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: true,
+      references: {
+        model: Pessoa,
+        key: 'id',
+      },
+    },
+    data_cadastro: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
+    situacao: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'Ativo',
+    },
+  },
+  {
+    sequelize,
+    modelName: 'Cliente',
+  }
+);
 
-
-Cliente.initialize();
+// Defina as relações entre os modelos
+Cliente.belongsTo(Pessoa, { foreignKey: 'id_pessoa' });
 
 export default Cliente;

@@ -1,116 +1,133 @@
 import { Request, Response } from 'express';
-import Cliente from './enderecoModels';
-import sequelize from '../../config/sequelize';
+import Endereco from './enderecoModels';
 
-//cliente tem que ter nome, indeficao. 
-//caso identificação === cpnj o nome fantasia é obritatorio, 
-//caso identificação === cpf o nome da mãe é obrigatorio
-//cnpj/cpf unicos por cliente
-//indetificação não pode ser editado
-//é possivel edição de cliente
-//ident = cnpj deve-se permitir informar a inscrição estadual
-//ident = cnpj deve-se permitir informar a inscrição municipal
-
-//criar cliente
-export async function createClient(req: Request, res: Response) {
-    const { name, identify, mail, tel, end, city, state, cep, nomeFantasia, nomeMae, inscricaoEstadual, inscricaoMunicipal } = req.body;
-    
-    //verificar se o cliente já existe
-    if (await Cliente.findOne({ where: { identify } })) {
-        return res.status(400).json({ error: 'Cliente já existe' });
-    }
-
-    switch (identify) {
-        case 'cpf':
-            if (!name || !nomeMae) {
-                return res.status(400).json({ error: 'Nome e nome da mãe são obrigatórios' });
-            }
-            break;
-        case 'cnpj':
-            if (!name || !nomeFantasia) {
-                return res.status(400).json({ error: 'Nome e nome fantasia são obrigatórios' });
-            }
-            break;
-        default:
-            return res.status(400).json({ error: 'Identificação inválida' });
-    }
-
-    const cliente = await Cliente.create({
-        name,
-        identify,
-        mail,
-        tel,
-        end,
-        city,
-        state,
-        cep,
-        nomeFantasia,
-        nomeMae,
-        inscricaoEstadual: identify === 'cnpj' ? inscricaoEstadual : null,
-        inscricaoMunicipal: identify === 'cnpj' ? inscricaoMunicipal : null
+export function getEnderecos(req: Request, res: Response): Promise<void> {
+    return new Promise<void>(async (resolve, reject) => {
+        try {
+            const enderecos = await Endereco.findAll();
+            res.status(200).json(enderecos);
+            resolve();
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Erro ao buscar endereços.' });
+            reject(error);
+        }
     });
-
-    res.json(cliente);
 }
 
-// Função para listar todos os clientes
-export async function getAllClientes(req: Request, res: Response) {
-    const clientes = await Cliente.findAll();
-    res.json(clientes);
+export function getEnderecoById(req: Request, res: Response): Promise<void> {
+    return new Promise<void>(async (resolve, reject) => {
+        const { id } = req.params;
+        try {
+            const endereco = await Endereco.findByPk(id);
+            if (!endereco) {
+                res.status(404).json({ message: 'Endereço não encontrado.' });
+                resolve();
+                return;
+            }
+            res.status(200).json(endereco);
+            resolve();
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Erro ao buscar endereço.' });
+            reject(error);
+        }
+    });
 }
 
-// Função para listar um cliente por ID
-export async function getClienteById(req: Request, res: Response) {
-    const { id } = req.params;
-    const cliente = await Cliente.findByPk(id);
-    if (!cliente) {
-        return res.status(404).json({ error: 'Cliente não encontrado' });
-    }
-    res.json(cliente);
+export function createEndereco(req: Request, res: Response): Promise<void> {
+    return new Promise<void>(async (resolve, reject) => {
+        const {
+            cep,
+            logradouro,
+            numero,
+            complemento,
+            bairro,
+            cidade,
+            estado,
+            is_principal,
+            id_pessoa,
+        } = req.body;
+        try {
+            const endereco = await Endereco.create({
+                cep,
+                logradouro,
+                numero,
+                complemento,
+                bairro,
+                cidade,
+                estado,
+                is_principal,
+                id_pessoa,
+            });
+            res.status(201).json(endereco);
+            resolve();
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Erro ao criar endereço.' });
+            reject(error);
+        }
+    });
 }
 
-// Função para atualizar um cliente por ID
-export async function updateClient(req: Request, res: Response) {
-    const { id } = req.params;
-    const { name, mail, tel, end, city, state, cep, nomeFantasia, nomeMae, inscricaoEstadual, inscricaoMunicipal } = req.body;
-
-    const cliente = await Cliente.findByPk(id);
-    if (!cliente) {
-        return res.status(404).json({ error: 'Cliente não encontrado' });
-    }
-
-    if (cliente.identify !== req.body.identify) {
-        return res.status(400).json({ error: 'A identificação não pode ser alterada' });
-    }
-
-    if (await Cliente.findOne({ where: { identify: req.body.identify, id: { [sequelize.Op.not]: id } } })) {
-        return res.status(400).json({ error: 'Já existe um cliente com essa identificação' });
-    }
-
-    cliente.name = name;
-    cliente.mail = mail;
-    cliente.tel = tel;
-    cliente.end = end;
-    cliente.city = city;
-    cliente.state = state;
-    cliente.cep = cep;
-    cliente.nomeFantasia = nomeFantasia;
-    cliente.nomeMae = nomeMae;
-    cliente.inscricaoEstadual = cliente.identify === 'cnpj' ? inscricaoEstadual : null;
-    cliente.inscricaoMunicipal = cliente.identify === 'cnpj' ? inscricaoMunicipal : null;
-
-    await cliente.save();
-
-    res.json(cliente);
+export function updateEndereco(req: Request, res: Response): Promise<void> {
+    return new Promise<void>(async (resolve, reject) => {
+        const { id } = req.params;
+        const {
+            cep,
+            logradouro,
+            numero,
+            complemento,
+            bairro,
+            cidade,
+            estado,
+            is_principal,
+            id_pessoa,
+        } = req.body;
+        try {
+            const endereco = await Endereco.findByPk(id);
+            if (!endereco) {
+                res.status(404).json({ message: 'Endereço não encontrado.' });
+                resolve();
+                return;
+            }
+            endereco.cep = cep;
+            endereco.logradouro = logradouro;
+            endereco.numero = numero;
+            endereco.complemento = complemento;
+            endereco.bairro = bairro;
+            endereco.cidade = cidade;
+            endereco.estado = estado;
+            endereco.is_principal = is_principal;
+            endereco.id_pessoa = id_pessoa;
+            await endereco.save();
+            res.status(200).json(endereco);
+            resolve();
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Erro ao atualizar endereço.' });
+            reject(error);
+        }
+    });
 }
 
-// Função para deletar um cliente por ID
-export async function deleteClient(req: Request, res: Response) {
-    const { id } = req.params;
-    const cliente = await Cliente.findByPk(id);
-    if (!cliente) {
-        return res.status(404).json({ error: 'Cliente não encontrado' });
-    }
-    await cliente.destroy();
-    res.json({ message: 'Cliente deletado com sucesso' });
+export function deleteEndereco(req: Request, res: Response): Promise<void> {
+    return new Promise<void>(async (resolve, reject) => {
+        const { id } = req.params;
+        try {
+            const endereco = await Endereco.findByPk(id);
+            if (!endereco) {
+                res.status(404).json({ message: 'Endereço não encontrado.' });
+                resolve();
+                return;
+            }
+            await endereco.destroy();
+            res.status(204).send();
+            resolve();
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Erro ao deletar endereço.' });
+            reject(error);
+        }
+    });
 }

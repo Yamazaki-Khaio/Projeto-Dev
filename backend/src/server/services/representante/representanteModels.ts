@@ -1,37 +1,41 @@
-
-import { Model, DataTypes } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import sequelize from '../../config/sequelize';
+import Cliente from '../cliente/clienteModels';
+import Pessoa from '../pessoa/pessoaModels';
 
+// Defina o modelo para a tabela 'Representante'
 class Representante extends Model {
   public id!: number;
-  public nome!: string;
-  public cnpj_cpf!: string;
-
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
+  public id_pessoa!: number;
+  public id_cliente!: number;
 }
 
 Representante.init(
   {
     id: {
-      type: DataTypes.INTEGER.UNSIGNED,
-      autoIncrement: true,
+      type: DataTypes.INTEGER,
       primaryKey: true,
     },
-    nome: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-    },
-    cnpj_cpf: {
-      type: DataTypes.STRING(14),
+    id_pessoa: {
+      type: DataTypes.INTEGER,
       allowNull: false,
       unique: true,
+    },
+    id_cliente: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
   },
   {
     sequelize,
-    tableName: 'representantes',
+    modelName: 'Representante',
   }
 );
+
+Representante.belongsTo(Pessoa, { foreignKey: 'id_pessoa' });
+Representante.belongsTo(Cliente, { foreignKey: 'id_cliente' });
+
+
+
 
 export default Representante;
