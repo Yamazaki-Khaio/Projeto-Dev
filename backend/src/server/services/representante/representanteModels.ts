@@ -32,8 +32,8 @@ Representante.init(
   }
 );
 
-Representante.belongsTo(Pessoa, { foreignKey: 'id_pessoa' });
-Representante.belongsTo(Cliente, { foreignKey: 'id_cliente' });
+//Representante.belongsTo(Pessoa, { foreignKey: 'id_pessoa' });
+//Representante.belongsTo(Cliente, { foreignKey: 'id_cliente' });
 
 
 

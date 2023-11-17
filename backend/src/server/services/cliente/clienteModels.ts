@@ -45,6 +45,6 @@ Cliente.init(
 );
 
 // Defina as relações entre os modelos
-Cliente.belongsTo(Pessoa, { foreignKey: 'id_pessoa' });
+//Cliente.belongsTo(Pessoa, { foreignKey: 'id_pessoa' });
 
 export default Cliente;

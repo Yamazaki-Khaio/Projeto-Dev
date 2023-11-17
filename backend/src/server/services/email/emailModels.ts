@@ -36,6 +36,6 @@ Email.init(
   }
 );
 
-Email.belongsTo(Pessoa, { foreignKey: 'id_pessoa' });
+//Email.belongsTo(Pessoa, { foreignKey: 'id_pessoa' });
 
 export default Email;

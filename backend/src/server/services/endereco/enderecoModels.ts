@@ -72,5 +72,5 @@ Endereco.init(
 );
 
 // Defina as relações entre os modelos
-Endereco.belongsTo(Pessoa);
+//Endereco.belongsTo(Pessoa);
 export default Endereco;
