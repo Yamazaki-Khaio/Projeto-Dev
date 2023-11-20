@@ -1,6 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../../config/sequelize';
-
+import Cliente from '../cliente/clienteModels';
+import Representante from './../representante/representanteModels';
 
 
 //modelo para a tabela 'Pessoa'
@@ -82,11 +83,5 @@ Pessoa.init(
     modelName: 'Pessoa',
   }
 );
-//Defina as relações entre os modelos
-
-//Pessoa.hasMany(Telefone, { foreignKey: 'id_pessoa' });
-//Pessoa.hasMany(Email, { foreignKey: 'id_pessoa' });
-//Pessoa.hasOne(Cliente, { foreignKey: 'id_pessoa' });
-//Pessoa.hasOne(Representante, { foreignKey: 'id_pessoa' });
 
 export default Pessoa;

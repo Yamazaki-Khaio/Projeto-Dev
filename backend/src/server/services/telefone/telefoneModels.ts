@@ -36,6 +36,5 @@ Telefone.init(
     }
 );
 
-//Telefone.belongsTo(Pessoa, { foreignKey: 'id_pessoa' });
 
 export default Telefone;

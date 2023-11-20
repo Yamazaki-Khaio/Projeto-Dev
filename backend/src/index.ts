@@ -1,7 +1,7 @@
 import express, { Application, Request, Response } from 'express';
 import sequelize from './server/config/sequelize';
-import ContaRouters from './server/services/conta/contaRouters';
-import ClienteRouters from './server/services/cliente/clienteRouters';
+import router from './server/services/routers';
+
 
 class App {
   private app: Application;
@@ -21,23 +21,25 @@ class App {
       res.send('Index');
     });
 
-    this.app.use('/Conta', ContaRouters);
-    this.app.use('/Cliente', ClienteRouters);
+    this.app.use('', router)
+
   }
 
   // utilizado para iniciar o servidor
   public async startServer(): Promise<void> {
     try {
-      await sequelize.authenticate();
+      sequelize;
       console.log('Sequelize has been authenticated successfully');
-      await this.app.listen(3000);
+      this.app.listen(3000);
       console.log('Server is running on port 3000');
     } catch (error) {
       console.error('Error:', error);
       sequelize.close();
+      
     }
   }
 }
+
 
 const app = new App();
 app.startServer();

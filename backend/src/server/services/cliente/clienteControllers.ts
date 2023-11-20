@@ -1,8 +1,7 @@
 import { Request, Response } from 'express';
 import Cliente from './clienteModels';
 import Pessoa from '../pessoa/pessoaModels';
-
-
+import cli from '@angular/cli';
 
 // Defina o controlador para o modelo 'Cliente'
 class ClienteController {
@@ -24,17 +23,26 @@ class ClienteController {
         }
     }
 
-    public async list(req: Request, res: Response): Promise<Response> {
+
+    public async getAll(req: Request, res: Response): Promise<Response> {
         try {
-            const clientes = await Cliente.findAll({ include: Pessoa });
-            return res.status(200).json(clientes.map((cliente) => {
-                const { id, Pessoa: { nome, identificacao } } = cliente.toJSON();
-                return { id, nome, identificacao };
-            }));
+            const clientes = await Cliente.findAll();
+            const clientesPessoa = await Pessoa.findAll();
+            clientes.forEach(cliente => {
+                clientesPessoa.forEach(pessoa => {
+                    if (cliente.id_pessoa == pessoa.id) {
+                        cliente.dataValues.nome = pessoa.nome;
+                        cliente.dataValues.identificacao = pessoa.identificacao;
+                    }
+                });
+            });
+            return res.status(200).json(clientes);
         } catch (error: any) {
             return res.status(500).json({ error: 'Erro interno do servidor' });
         }
     }
+
+    
 
     public async getById(req: Request, res: Response): Promise<Response> {
         const { id } = req.params;
@@ -62,7 +70,7 @@ class ClienteController {
                 return res.status(404).json({ error: 'Cliente não encontrado' });
             }
 
-            const cliente = await Cliente.findByPk(id);
+            const cliente = await Cliente.findByPk(id, { include: Pessoa });
 
             return res.status(200).json(cliente);
         } catch (error: any) {

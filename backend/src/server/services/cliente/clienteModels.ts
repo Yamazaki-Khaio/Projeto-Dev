@@ -1,6 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 import Pessoa from '../pessoa/pessoaModels';
 import sequelize from '../../config/sequelize';
+import Representante from '../representante/representanteModels';
 
 
 // Defina o modelo para a tabela 'Cliente'
@@ -9,6 +10,7 @@ class Cliente extends Model {
   public id_pessoa!: number;
   public data_cadastro!: Date;
   public situacao!: string;
+
 }
 
 Cliente.init(
@@ -22,10 +24,7 @@ Cliente.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       unique: true,
-      references: {
-        model: Pessoa,
-        key: 'id',
-      },
+
     },
     data_cadastro: {
       type: DataTypes.DATE,
@@ -39,12 +38,11 @@ Cliente.init(
     },
   },
   {
-    sequelize,
     modelName: 'Cliente',
+    schema: 'public',
+    sequelize,
   }
 );
 
-// Defina as relações entre os modelos
-//Cliente.belongsTo(Pessoa, { foreignKey: 'id_pessoa' });
 
 export default Cliente;

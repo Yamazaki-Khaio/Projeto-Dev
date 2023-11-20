@@ -131,3 +131,13 @@ export function deleteEndereco(req: Request, res: Response): Promise<void> {
         }
     });
 }
+
+const enderecoControllers = {
+    getEnderecos,
+    getEnderecoById,
+    createEndereco,
+    updateEndereco,
+    deleteEndereco,
+};
+
+export default enderecoControllers;

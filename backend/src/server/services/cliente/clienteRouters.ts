@@ -7,7 +7,7 @@ const router = express.Router();
 router.post('/', clienteControllers.create);
 
 // Rota para buscar todos os clientes
-router.get('/', clienteControllers.list);
+router.get('/', clienteControllers.getAll);
 
 // Rota para buscar um cliente pelo ID
 router.get('/:id', clienteControllers.getById);

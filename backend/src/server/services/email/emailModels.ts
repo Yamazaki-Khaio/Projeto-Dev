@@ -1,6 +1,5 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../../config/sequelize';
-import Pessoa from '../pessoa/pessoaModels';
 
 
 // modelo para a tabela 'Email'

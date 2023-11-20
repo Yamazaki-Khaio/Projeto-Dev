@@ -30,7 +30,8 @@ Conta.init(
         },
     },
     {
-        tableName: 'contas',
+        schema: 'public',
+        modelName: 'Conta',
         sequelize,
     }
 );
