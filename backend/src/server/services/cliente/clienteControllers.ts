@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import Cliente from './clienteModels';
 import Pessoa from '../pessoa/pessoaModels';
-import cli from '@angular/cli';
 
 // Defina o controlador para o modelo 'Cliente'
 class ClienteController {
