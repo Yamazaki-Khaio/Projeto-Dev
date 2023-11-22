@@ -30,8 +30,10 @@ Email.init(
     },
   },
   {
-    sequelize,
     modelName: 'Email',
+    sequelize,
+
+
   }
 );
 

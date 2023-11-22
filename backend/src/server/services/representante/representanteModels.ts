@@ -1,7 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../../config/sequelize';
-import Cliente from '../cliente/clienteModels';
-import Pessoa from '../pessoa/pessoaModels';
 
 // Defina o modelo para a tabela 'Representante'
 class Representante extends Model {
@@ -20,15 +18,18 @@ Representante.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       unique: true,
+      primaryKey: true,
     },
     id_cliente: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      primaryKey: true,
     },
   },
   {
-    sequelize,
     modelName: 'Representante',
+    sequelize,
+
   }
 );
 

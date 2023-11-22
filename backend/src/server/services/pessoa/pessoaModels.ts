@@ -79,8 +79,9 @@ Pessoa.init(
     },
   },
   {
-    sequelize,
     modelName: 'Pessoa',
+    sequelize,
+
   }
 );
 

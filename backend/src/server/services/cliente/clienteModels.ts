@@ -39,7 +39,6 @@ Cliente.init(
   },
   {
     modelName: 'Cliente',
-    schema: 'public',
     sequelize,
   }
 );

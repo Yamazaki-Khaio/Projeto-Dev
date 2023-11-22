@@ -19,6 +19,10 @@ Conta.init(
         email: {
             type: DataTypes.STRING,
             allowNull: false,
+            primaryKey: true,
+            validate: {
+                isEmail: true,
+            },
         },
         nome: {
             type: DataTypes.STRING,
@@ -30,7 +34,6 @@ Conta.init(
         },
     },
     {
-        schema: 'public',
         modelName: 'Conta',
         sequelize,
     }

@@ -5,7 +5,7 @@ import enderecoControllers from './enderecoControllers';
 const router = express.Router();
 
 // Rota para criar um novo cliente
-router.post('/', enderecoControllers.createEndereco);
+router.post('/:id_pessoa', enderecoControllers.createEndereco);
 
 // Rota para buscar todos os clientes
 router.get('/', enderecoControllers.getEnderecos);
