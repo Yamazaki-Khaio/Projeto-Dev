@@ -1,7 +1,8 @@
 // FILEPATH: /c:/Users/kaio.fonseca/Documents/projeto-dev/Projeto-Dev/frontend/src/app/features/users/user.service.ts
 
 import { Injectable } from '@angular/core';
-import { ApiService } from '../../core/services/data.service';
+import { Observable } from 'rxjs';
+import { ApiService } from '../../core/services/api.service';
 import { Users } from './users';
 
 @Injectable({
@@ -13,34 +14,63 @@ export class UserService {
   constructor(private apiService: ApiService) {}
 
   // Obtém todos os usuários
-  getUsers(): Promise<Users[]> {
+  getUsers(): Observable<Users[]> {
     const endpoint = this.baseUrl;
-    return this.apiService.request<Users[]>('GET', endpoint);
+    return this.apiService.get<Users[]>(endpoint);
   }
 
   // Obtém um usuário pelo ID
-  getUser(id: string): Promise<Users> {
+  getUser(id: string): Observable<Users> {
     const endpoint = `${this.baseUrl}/${id}`;
-    return this.apiService.request<Users>('GET', endpoint);
+    return this.apiService.get<Users>(endpoint);
   }
 
   // Cria um novo usuário
-  createUser(user: Users): Promise<Users> {
+  createUser(user: Users): Observable<Users> {
     const endpoint = this.baseUrl;
-    return this.apiService.request<Users>('POST', endpoint, user);
+    return this.apiService.post<Users>(endpoint, user);
   }
 
   // Atualiza um usuário existente
-  updateUser(id: string, user: Users): Promise<Users> {
+  updateUser(id: string, user: Users): Observable<Users> {
     const endpoint = `${this.baseUrl}/${id}`;
-    return this.apiService.request<Users>('PUT', endpoint, user);
+    return this.apiService.put<Users>(endpoint, user);
   }
 
   // Remove um usuário pelo ID
-  deleteUser(id: string): Promise<void> {
+  deleteUser(id: string): Observable<void> {
     const endpoint = `${this.baseUrl}/${id}`;
-    return this.apiService.request<void>('DELETE', endpoint);
+    return this.apiService.delete<void>(endpoint);
   }
 
-  // Adicione outros métodos conforme necessário para a feature de usuários
+    // Efetua login do usuário
+    login(email: string, password: string): Observable<any> {
+      const endpoint = `${this.baseUrl}/login`;
+      const body = { email, senha: password };
+      return this.apiService.post<any>(endpoint, body);
+
+    }
+
+    // Adicione outros métodos relacionados à autenticação, como logout, verificação de autenticação, etc.
+
+    // Efetua logout do usuário
+    logout() {
+      localStorage.removeItem('token')
+    }
+
+    // Obtém o token do usuário
+    getToken() {
+      return localStorage.getItem('token')
+    }
+
+    // Verifica se o usuário está autenticado
+    isAuteh(): boolean {
+      if (this.getToken() !== null) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+
 }

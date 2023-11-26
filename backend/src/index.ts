@@ -1,4 +1,5 @@
 import express, { Application, Request, Response } from 'express';
+import cors from 'cors';
 import sequelize from './server/config/sequelize';
 import router from './server/services/routers';
 
@@ -11,11 +12,12 @@ class App {
     this.configureServer();
     this.routes();
   }
-// utilizado para configurar o servidor express para receber requisições JSON
+
   private configureServer(): void {
     this.app.use(express.json());
+    this.app.use(cors()); // Adicionando o CORS
   }
-// utilizado para configurar as rotas da aplicação
+
   private routes(): void {
     this.app.get('/', (req: Request, res: Response) => {
       res.send('Index');
@@ -25,7 +27,6 @@ class App {
 
   }
 
-  // utilizado para iniciar o servidor
   public async startServer(): Promise<void> {
     try {
       sequelize;

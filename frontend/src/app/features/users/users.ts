@@ -1,8 +1,7 @@
 export interface Users {
-    id: number;
-    name: string;
+    nome: string;
     email: string;
-    password: string;
+    senha: string;
     createdAt: Date;
     updatedAt: Date;
 

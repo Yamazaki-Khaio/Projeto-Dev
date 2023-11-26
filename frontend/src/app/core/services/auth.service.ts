@@ -1,42 +1,37 @@
 import { Injectable } from '@angular/core';
-import  axios  from 'axios';
-
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl: string = 'http://localhost:3000/api/v1/auth';
+  private apiUrl: string = 'http://localhost:3000/';
 
-  constructor() { }
-  async login(email: string, password: string): Promise<any> {
-    try {
-      const response = await axios.post(`${this.apiUrl}/login`, {
-        email,
-        password
-      });
-      return response.data;
-    }
-    catch (error) {
-      console.log(error);
+  constructor(private http: HttpClient) { }
 
-    }
+  login(email: string, password: string): Observable<any> {
+    const url = `${this.apiUrl}/conta/login`;
+    const body = { email, senha: password };
 
-    function logout() {
-      localStorage.removeItem('token')
-    }
-
-    function getToken() {
-      return localStorage.getItem('token')
-    }
-
-    function isAuteh(): boolean{
-      if(getToken() !== null){
-        return true;
-      }else{
-        return false;
-    }
-    }
+    return this.http.post(url, body);
+  }
 }
+
+function logout() {
+  localStorage.removeItem('token')
 }
+
+function getToken() {
+  return localStorage.getItem('token')
+}
+
+function isAuteh(): boolean {
+  if (getToken() !== null) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 
