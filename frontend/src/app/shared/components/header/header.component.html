@@ -1,42 +1,18 @@
-
-<!-- Include Bootstrap CSS  -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-
-<!-- Header -->
+<!-- header.component.html -->
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" routerLink="/"> </a>
+  <!-- Avatar -->
+  <div class="avatar" (click)="toggleDropdown()">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 0C7.16344 0 0 7.16344 0 16C0 24.8366 7.16344 32 16 32C24.8366 32 32 24.8366 32 16C32 7.16344 24.8366 0 16 0ZM16 4.57143C18.8571 4.57143 21.1429 6.85714 21.1429 9.71429C21.1429 12.5714 18.8571 14.8571 16 14.8571C13.1429 14.8571 10.8571 12.5714 10.8571 9.71429C10.8571 6.85714 13.1429 4.57143 16 4.57143ZM16 27.4286C11.4286 27.4286 7.42857 25.1429 5.14286 21.7143C5.28571 18.2857 10.2857 17.1429 16 17.1429C21.7143 17.1429 26.7143 18.2857 26.8571 21.7143C24.5714 25.1429 20.5714 27.4286 16 27.4286Z" fill="#0069B3"/>
 
+    </svg>
+  </div>
 
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav" *ngIf="isLogged">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="users/profile">Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="orders">Orders</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="products">Products</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="customers">Customers</a>
-          </li>
-        </ul>
-
-        <form class="d-flex align-items-center p-md-5">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success ms-2" type="submit">Search</button>
-        </form>
-
-
-        <div class="text-end ">
-          <p *ngIf="!isLogged">Please login to access</p>
-          <button type="button" class="btn btn-light text-dark me-2" routerLink="users/login" *ngIf="!isLogged">Login</button>
-          <button type="button" class="btn btn-primary" routerLink="users/register" *ngIf="!isLogged">Sign-up</button>
-        </div>
-      </div>
-    </div>
-  </nav>
-</header>
+  <!-- Opções do Avatar -->
+  <div *ngIf="isDropdownOpen" class="dropdown-content">
+    <ul>
+      <li (click)="editProfile()">Editar Perfil</li>
+      <li (click)="logout()">Logout</li>
+    </ul>
+  </div>
+<head>

@@ -28,7 +28,7 @@ export const ContaController = {
 
 
       // Crie a conta se tudo estiver correto
-      const novaConta = await Conta.create({ email, nome, senha: hashedSenha });
+      const novaConta = await Conta.create({ email: email.toLowerCase(), nome, senha: hashedSenha });
       return res.status(201).json(novaConta);
     } catch (error) {
       console.error(error);
@@ -40,7 +40,7 @@ export const ContaController = {
 
     try {
       // Buscar o usuário no banco de dados com base no email
-      const conta = await Conta.findOne({ where: { email } });
+      const conta = await Conta.findOne({ where: { email: email.toLowerCase() } });
 
       if (!conta) {
         return res.status(404).json({ message: 'E-mail inserido incorreto. Tente novamente' });

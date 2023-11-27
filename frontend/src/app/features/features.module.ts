@@ -12,5 +12,7 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     FeaturesRoutingModule
   ]
+  
+
 })
 export class FeaturesModule { }

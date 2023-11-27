@@ -11,7 +11,7 @@ import { Users } from './users';
 export class UserService {
   private readonly baseUrl = 'conta'; // Rota base correspondente no backend
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService) { }
 
   // Obtém todos os usuários
   getUsers(): Observable<Users[]> {
@@ -43,34 +43,32 @@ export class UserService {
     return this.apiService.delete<void>(endpoint);
   }
 
-    // Efetua login do usuário
-    login(email: string, password: string): Observable<any> {
-      const endpoint = `${this.baseUrl}/login`;
-      const body = { email, senha: password };
-      return this.apiService.post<any>(endpoint, body);
+  // Efetua login do usuário
+  login(email: string, password: string): Observable<any> {
+    const endpoint = `${this.baseUrl}/login`;
+    const body = { email, senha: password };
+    return this.apiService.post<any>(endpoint, body);
 
-    }
+  }
 
-    // Adicione outros métodos relacionados à autenticação, como logout, verificação de autenticação, etc.
+  // Adicione outros métodos relacionados à autenticação, como logout, verificação de autenticação, etc.
 
-    // Efetua logout do usuário
-    logout() {
-      localStorage.removeItem('token')
-    }
+  // Efetua logout do usuário
+  logout() {
+    localStorage.removeItem('token')
+  }
 
-    // Obtém o token do usuário
-    getToken() {
-      return localStorage.getItem('token')
-    }
+  // Obtém o token do usuário
+  getToken() {
+    return localStorage.getItem('token')
+  }
 
-    // Verifica se o usuário está autenticado
-    isAuteh(): boolean {
-      if (this.getToken() !== null) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-
+  // Verifica se o usuário está autenticado
+  isAuth(): boolean {
+    return this.getToken() !== null;
+  }
 
 }
+
+
+

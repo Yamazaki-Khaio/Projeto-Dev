@@ -1,32 +1,56 @@
-// Estilo para o app-header
-app-header
-  background-color: #3498db
-  color: #fff
-  pad: 10px
-
 // Estilo para a classe containerMain
 .containerMain
   max-width: 960px
   margin: 0 auto
   padding: 20px
+  display: flex
+  flex-direction: column
+  min-height: 100vh
+
+
+  @media (max-width: 1920px) // Define estilos para telas em full HD
+    max-width: 100% // Ocupa toda a largura disponível
+
+  @media (max-width: 768px) // Define estilos para telas em mobile HD
+    max-width: 100% // Ocupa toda a largura disponível
+    padding: 10px
+
+  @media (max-width: 576px) // Define estilos para telas em mobile
+    max-width: 100% // Ocupa toda a largura disponível
+    padding: 10px
+
+  .containerMain__title
+    font-size: 1.5rem
+    font-weight: 700
+    margin-bottom: 20px
+
+  .containerMain__content
+    display: flex
+    flex-direction: column
+    flex: 1
+
+  .containerMain__content--center
+    align-items: center
 
 
 // Estilo para o router-outlet dentro da classe containerMain
 .containerMain router-outlet
-  border: 1px solid #fdfbfb
+  width: 100%
   padding: 10px
-  margin-top: 10px
+  flex: 1
+  line-height: 1.5
+
+
+
 
 
 // Estilo para o app-footer
 app-footer
-  background-color: #c8baba
+  background-color: #4e4a4a
   display: flex
   justify-content: center
   align-items: center
-  color: black
+  color: white
   padding: 10px
   bottom: 0
-  width: 100%
-
-
+  max-width: 100rem

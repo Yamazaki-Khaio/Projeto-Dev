@@ -1,74 +1,51 @@
+// FILEPATH: /c:/Users/kaio.fonseca/Documents/projeto-dev/Projeto-Dev/frontend/src/app/shared/components/header/header.component.sass
 
-// Header styles
-header
-  nav
-    background-color: dark
-    .navbar-brand
-      color: white
-      font-size: 1.5rem
-      font-weight: bold
+.header
+  display: flex
+  align-items: center
+  justify-content: flex-end
+  padding: 10px
+  background-color: #4e4a4a
+
+  .avatar
+    cursor: pointer
+    margin-right: 10px
+
+    svg
+      width: 32px
+      height: 32px
+      max-width: 100%
+      height: auto
+      fill: #fff
+
+
+
+  .dropdown-content
+    position: absolute
+    top: 100%
+    right: 0
+    display: none
+    background-color: white
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
+    border: 1px solid #ddd
+    z-index: 1
+
+    ul
+      list-style: none
+      padding: 0
+      margin: 0
+
+
+    li
+      padding: 10px
+      cursor: pointer
+
       &:hover
-        color: white
+        background-color: #f5f5f5
 
 
-    .navbar-toggler
-      border-color: white
-      &:hover
-        background-color: white
-
-      .navbar-toggler-icon
-        background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='%23white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
 
 
-    .nav-link
-      color: white
-      &:hover
-        color: white
-        text-decoration: underline
-
-      &.active
-        color: white
-        font-weight: bold
-
-
-    .form-control
-      background-color: dark
-      border-color: white
-      color: black
-      &::placeholder
-        color: white
-        opacity: 0.5
-
-
-    .btn-outline-success
-      color: white
-      border-color: white
-      background-image: linear-gradient(to bottom, #28a745, #28a745)
-      &:hover
-        background-image: none
-        background-color: #28a745
-        color: white
-
-    .btn-light
-      background-color: white
-      color: dark
-      border-color: white
-      &:hover
-        background-color: dark
-        color: white
-
-
-    .btn-primary
-      background-color: primary
-      border-color: primary
-      &:hover
-        background-image: linear-gradient(to bottom, primary)
-        border-color: primary
-
-
-    p
-      color: white
-      opacity: 0.5
-
-
+  &.is-logged .dropdown-content
+    display: flex
 

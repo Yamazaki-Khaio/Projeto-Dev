@@ -1,0 +1,13 @@
+body{
+  background: var(--grayscale-0, #FFF);
+  color: var(--grayscale-9, #000);
+  background-color: #333;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: white; // BEGIN: Added color property
+}

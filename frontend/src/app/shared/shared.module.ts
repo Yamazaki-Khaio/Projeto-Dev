@@ -6,6 +6,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ShowHidePasswordDirective } from './directives/show-hide-password.directive';
 import { PasswordMatchDirective } from './directives/password-match.directive';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { PasswordMatchDirective } from './directives/password-match.directive';
     HeaderComponent,
     FooterComponent,
     ShowHidePasswordDirective,
-    PasswordMatchDirective
+    PasswordMatchDirective,
+    SidebarComponent
 
   ],
   imports: [
@@ -24,7 +26,8 @@ import { PasswordMatchDirective } from './directives/password-match.directive';
     HeaderComponent,
     FooterComponent,
     ShowHidePasswordDirective,
-    PasswordMatchDirective
+    PasswordMatchDirective,
+    SidebarComponent
   ]
 
 })

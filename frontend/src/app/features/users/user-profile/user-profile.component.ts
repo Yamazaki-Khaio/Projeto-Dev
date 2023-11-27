@@ -19,12 +19,7 @@ export class UserProfileComponent implements OnInit {
     this.fetchUserProfileData();
   }
 
-  logout() {
-    // Remova o token de autenticação do armazenamento local
-    localStorage.removeItem('token');
-    //Redirecione para a página de login
-    this.router.navigate(['users/login']);
-  }
+ 
   fetchUserProfileData(): void {
     // Chame o serviço para obter os dados do perfil do usuário
     this.userService.getUsers().subscribe(
