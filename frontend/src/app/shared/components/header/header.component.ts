@@ -22,6 +22,7 @@ export class HeaderComponent {
     console.log('Editar Perfil');
     // Feche o dropdown após a ação
     this.isDropdownOpen = false;
+    
   }
 
   logout() {

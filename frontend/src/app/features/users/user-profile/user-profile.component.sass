@@ -1,0 +1,45 @@
+.main-container
+  display: flex
+  flex-direction: column
+  height: 100vh
+
+  .app-header
+    background-color: #4e4a4a
+    color: #fff
+    padding: 10px
+
+  .content-container
+    display: flex
+    flex: 1
+
+    .app-sidebar
+      width: 200px
+      background-color: #333
+      color: #fff
+      padding: 16px
+      border-right: 2px solid #555
+
+    .ng-container
+      flex: 1
+      padding: 16px
+      background-color: #f0f0f0
+
+  // Responsividade para HD (1366px)
+  @media (max-width: 1366px)
+    .app-sidebar
+      width: 160px
+
+  // Responsividade para Full HD (1920px)
+  @media (max-width: 1920px)
+    .app-sidebar
+      width: 180px
+
+  // Responsividade para Mobile (767px)
+  @media (max-width: 767px)
+    .content-container
+      flex-direction: column
+
+      .app-sidebar
+        width: 100%
+        margin-bottom: 16px
+        border-right: none

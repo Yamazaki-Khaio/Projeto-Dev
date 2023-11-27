@@ -1,14 +1,14 @@
-<!-- user-profiles.component.html -->
-
-<div class="dashboard-container">
+<div class="main-container">
   <!-- Header -->
   <app-header></app-header>
-  <!-- Sidebar -->
-  <app-sidebar></app-sidebar>
 
-  <!-- Conteúdo Principal -->
-  <div class="main-content">
-    <!-- Conteúdo da Página (pode ser dinâmico) -->
-    <router-outlet></router-outlet>
+  <div class="content-container">
+    <!-- Sidebar -->
+    <app-sidebar></app-sidebar>
+
+    <!-- Conteúdo Principal -->
+    <ng-container>
+      <router-outlet></router-outlet>
+    </ng-container>
   </div>
 </div>

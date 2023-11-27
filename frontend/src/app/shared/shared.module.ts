@@ -1,3 +1,4 @@
+//src/app/shared/shared.module.ts
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -15,7 +16,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     FooterComponent,
     ShowHidePasswordDirective,
     PasswordMatchDirective,
-    SidebarComponent
+    SidebarComponent,
+
 
   ],
   imports: [
@@ -27,7 +29,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     FooterComponent,
     ShowHidePasswordDirective,
     PasswordMatchDirective,
-    SidebarComponent
+    SidebarComponent,
+    
   ]
 
 })

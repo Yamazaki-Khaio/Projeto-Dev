@@ -6,22 +6,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UsersModule } from "./features/users/users.module";
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    SharedModule,
-    HttpClientModule,
-    BrowserAnimationsModule // Adicione o HttpClientModule aqui
-
-
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        SharedModule,
+        HttpClientModule,
+        BrowserAnimationsModule // Adicione o HttpClientModule aqui
+        ,
+        UsersModule
+    ]
 })
 export class AppModule { }
