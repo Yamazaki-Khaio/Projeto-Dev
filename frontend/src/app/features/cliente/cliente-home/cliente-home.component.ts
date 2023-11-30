@@ -10,9 +10,7 @@ import { Observable, Subscription } from 'rxjs';
   styleUrls: ['./cliente-home.component.scss']
 })
 export class ClienteHomeComponent implements OnDestroy {
-editarCliente() {
-  this.router.navigate(['/profile/cliente/editar/{{cliente.id}}']);
-}
+
   clientes$: Observable<Cliente[]>;
   private clientesSubscription: Subscription = new Subscription();
 
@@ -27,6 +25,10 @@ editarCliente() {
   adicionarCliente() {
     // Navegar para a rota de criação de cliente
     this.router.navigate(['/profile/cliente/cadastro']);
+  }
+
+  editarCliente() {
+    this.router.navigate(['/profile/cliente/editar/{{cliente.id.toString()}']);
   }
 
   deleteClient(cliente: Cliente) {

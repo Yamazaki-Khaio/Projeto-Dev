@@ -8,7 +8,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ShowHidePasswordDirective } from './directives/show-hide-password.directive';
 import { PasswordMatchDirective } from './directives/password-match.directive';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-
+import { IdentificadorValidatorDirective } from './directives/identificador-validator.directive';
 
 @NgModule({
   declarations: [
@@ -17,8 +17,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     ShowHidePasswordDirective,
     PasswordMatchDirective,
     SidebarComponent,
-    
-
+    IdentificadorValidatorDirective,
 
   ],
   imports: [
@@ -31,7 +30,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     ShowHidePasswordDirective,
     PasswordMatchDirective,
     SidebarComponent,
-
+    IdentificadorValidatorDirective,
   ]
 
 })

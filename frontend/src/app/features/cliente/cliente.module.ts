@@ -5,7 +5,7 @@ import { ClienteRoutingModule } from './cliente-routing.module';
 import { ClienteHomeComponent } from './cliente-home/cliente-home.component';
 import { ClienteCadastroComponent } from './cliente-cadastro/cliente-cadastro.component';
 import { ClienteEditarComponent } from './cliente-editar/cliente-editar.component';
-
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +16,7 @@ import { ClienteEditarComponent } from './cliente-editar/cliente-editar.componen
   imports: [
     CommonModule,
     ClienteRoutingModule,
+    SharedModule
 
   ],
   exports: [

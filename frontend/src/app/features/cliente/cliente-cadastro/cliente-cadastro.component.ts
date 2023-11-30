@@ -2,38 +2,39 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClienteService } from '../cliente.service';
 import { Router } from '@angular/router';
-import { Cliente } from '../cliente';
 
 @Component({
   selector: 'app-cliente-cadastro',
   templateUrl: './cliente-cadastro.component.html',
-  styleUrls: ['./cliente-cadastro.component.scss']
+  styleUrls: ['./cliente-cadastro.component.scss'],
 })
 export class ClienteCadastroComponent implements OnInit {
+
   clienteForm: FormGroup = new FormGroup({});
 
-  constructor(private formBuilder: FormBuilder, private clienteService: ClienteService, private router: Router) {}
+  constructor(private fb: FormBuilder, private clienteService: ClienteService, private router: Router) { }
 
-  ngOnInit() {
-    this.clienteForm = this.formBuilder.group({
-      nome: ['', Validators.required],
-      identificador: ['', Validators.required],
-      nome_mae: ['', Validators.required],
-      nome_fantasia: ['', Validators.required],
-      inscricao_municipal: [''],
-      inscricao_estadual: [''],
-      // Adicione outros campos conforme necessário
+  ngOnInit(): void {
+    this.clienteForm = this.fb.group({
+      nome: ['', [Validators.required]],
+      identificacao: ['', [Validators.required]],
+      nome_fantasia: ['', [Validators.required]], // ou nome_mae caso seja pessoa física 
+      incricao_municipal: [''],
+      incricao_estadual: ['']
     });
   }
 
   submitForm() {
     if (this.clienteForm.valid) {
-      this.clienteService.createCliente(this.clienteForm.value).subscribe(
-        (response: Cliente) => {
-          console.log('Cliente cadastrado com sucesso:', response.id);
-          this.router.navigate(['users/profile/cliente/']);
+      const dadosUsuario = this.clienteForm.value;
+      console.log('Dados do cliente:', dadosUsuario);
+      this.clienteService.createCliente(dadosUsuario).subscribe(
+        (response) => {
+          console.error('Cliente cadastrado com sucesso:', dadosUsuario.id);
+          console.log('Cliente cadastrado com sucesso:', response.nome);
 
-          // Adicione a lógica desejada após o cadastro bem-sucedido
+          // Redirecionar para a tela de edição do cliente
+          this.router.navigate(['users/profile/cliente/editar/', response.id]);
         },
         (error) => {
           console.error('Erro ao cadastrar cliente:', error);
@@ -41,9 +42,13 @@ export class ClienteCadastroComponent implements OnInit {
         }
       );
     } else {
-      Object.values(this.clienteForm.controls).forEach(control => {
+      Object.values(this.clienteForm.controls).forEach((control) => {
         control.markAsTouched();
       });
     }
+  }
+
+  voltar() {
+    this.router.navigate(['users/profile/cliente/']);
   }
 }

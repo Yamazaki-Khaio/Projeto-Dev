@@ -1,45 +1,33 @@
-<form>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputIdentificador" style="color: #CED4DA; font-size: 14px; font-family: Inter; font-weight: 400; line-height: 20px; word-wrap: break-word;">CNPJ/CPF*</label>
-      <input type="text" class="form-control" id="inputIdentificador" placeholder="CNPJ/CPF" onblur="formatarIdentificador()" required>
+<!-- Seu template Angular ajustado com classes do Bootstrap -->
+<div class="container clienteForm" (ngSubmit)="submitForm()">
+  <div class="row">
+    <div class="col-md-6">
+      <label for="inputIdentificador">CNPJ/CPF*</label>
+      <input type="text" class="form-control" id="inputIdentificador" formControlName="identificacao"
+        placeholder="CNPJ/CPF" appIdentificadorValidator required/>
     </div>
-    <div class="form-group col-md-6">
-      <label for="inputNome" style="color: #CED4DA; font-size: 14px; font-family: Inter; font-weight: 400; line-height: 20px; word-wrap: break-word;">Nome*</label>
-      <input type="text" class="form-control" id="inputNome" placeholder="Nome" required>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputNomeFantasia" style="color: #CED4DA; font-size: 14px; font-family: Inter; font-weight: 400; line-height: 20px; word-wrap: break-word;">Nome Fantasia*</label>
-    <input type="text" class="form-control" id="inputNomeFantasia" placeholder="Nome Fantasia">
-  </div>
-  <div class="form-group">
-    <label for="inputNomeMae" style="color: #CED4DA; font-size: 14px; font-family: Inter; font-weight: 400; line-height: 20px; word-wrap: break-word;">Nome Mãe*</label>
-    <input type="text" class="form-control" id="inputNomeMae" placeholder="Nome Mãe" >
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputInscricaoEstadual" style="color: #CED4DA; font-size: 14px; font-family: Inter; font-weight: 400; line-height: 20px; word-wrap: break-word;">Inscrição Estadual</label>
-      <input type="text" class="form-control" id="inputInscricaoEstadual">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="inputInscricaoMunicipal" style="color: #CED4DA; font-size: 14px; font-family: Inter; font-weight: 400; line-height: 20px; word-wrap: break-word;">Inscrição Municipal</label>
-      <select id="inputInscricaoMunicipal" class="form-control">
-        <option selected>Escolher...</option>
-        <option>...</option>
-      </select>
-    </div>
-    <div class="form-group col-md-2">
-      <label for="inputCep" style="color: #CED4DA; font-size: 14px; font-family: Inter; font-weight: 400; line-height: 20px; word-wrap: break-word;">CEP</label>
-      <input type="text" class="form-control" id="inputCep">
+    <div class="col-md-6">
+      <label for="inputNome">Nome*</label>
+      <input type="text" class="form-control" id="inputNome" formControlName="nome" placeholder="Nome" required/>
     </div>
   </div>
-  <div class="form-group">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="gridCheck">
-      <label class="form-check-label" for="gridCheck" style="color: #6C757D; font-size: 14px; font-family: Inter; font-weight: 400; line-height: 20px; word-wrap: break-word;">Clique em mim</label>
+    <div class="col-md-6">
+      <label for="inputNomeFantasia"></label>
+      <input type="text" class="form-control" id="inputNomeFantasia" formControlName="nome_fantasia"
+        placeholder="Nome Fantasia" />
+    </div>
+    <div class="col-md-6">
+      <label for="inputNomeMae">Nome Mãe*</label>
+      <input type="text" class="form-control" id="inputNomeMae" formControlName="nome_mae" placeholder="Nome Mãe"/>
     </div>
   </div>
-  <button type="submit" class="btn btn-primary" style="color: white; font-size: 14px; font-family: Inter; font-weight: 400; line-height: 20px; word-wrap: break-word;">Cadastrar</button>
-  <button type="button" class="btn btn-secondary" style="color: #6C757D; font-size: 14px; font-family: Inter; font-weight: 400; line-height: 20px; word-wrap: break-word;">Voltar</button>
-</form>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="buttons mt-3">
+        <button type="submit" class="btn btn-primary">Criar Usuário</button>
+        <a href="http://localhost:4200/profile/cliente" class="btn btn-secondary">Cancelar</a>
+        <button type="reset" class="btn btn-danger">Limpar</button>
+      </div>
+    </div>
+  </div>
+</div>

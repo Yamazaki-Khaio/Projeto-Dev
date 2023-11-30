@@ -4,7 +4,8 @@ export interface Cliente {
   idenficado: number;
   nome_mae?: string;
   nome_fantasia?: string;
-  situacao: string;
-  data_cadastro: Date;
+  situacao?: string;
+  data_cadastro?: Date;
 
 }
+
