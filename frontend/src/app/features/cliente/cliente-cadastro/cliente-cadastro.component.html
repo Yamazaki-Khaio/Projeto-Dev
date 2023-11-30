@@ -1,33 +1,18 @@
-<!-- Seu template Angular ajustado com classes do Bootstrap -->
-<div class="container clienteForm" (ngSubmit)="submitForm()">
-  <div class="row">
-    <div class="col-md-6">
-      <label for="inputIdentificador">CNPJ/CPF*</label>
-      <input type="text" class="form-control" id="inputIdentificador" formControlName="identificacao"
-        placeholder="CNPJ/CPF" appIdentificadorValidator required/>
+<form>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>Nome*</label>
+      <input type="text" class="form-control" id="inputNome" placeholder="Nome Completo" required>
     </div>
-    <div class="col-md-6">
-      <label for="inputNome">Nome*</label>
-      <input type="text" class="form-control" id="inputNome" formControlName="nome" placeholder="Nome" required/>
+    <div class="form-group col-md-6">
+      <label>CNPJ/CPF*</label>
+      <input type="text" class="form-control" id="inputIdentificacao" placeholder="Identificação" appIdentificadorValidator required>
     </div>
   </div>
-    <div class="col-md-6">
-      <label for="inputNomeFantasia"></label>
-      <input type="text" class="form-control" id="inputNomeFantasia" formControlName="nome_fantasia"
-        placeholder="Nome Fantasia" />
-    </div>
-    <div class="col-md-6">
-      <label for="inputNomeMae">Nome Mãe*</label>
-      <input type="text" class="form-control" id="inputNomeMae" formControlName="nome_mae" placeholder="Nome Mãe"/>
-    </div>
+  <div class="form-group">
+    <label>Nome da Mãe ou Nome Fantasia</label>
+    <input type="text" class="form-control" id="inputNomeMaeFantasia" placeholder="Nome da Mãe ou Nome Fantasia" required>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="buttons mt-3">
-        <button type="submit" class="btn btn-primary">Criar Usuário</button>
-        <a href="http://localhost:4200/profile/cliente" class="btn btn-secondary">Cancelar</a>
-        <button type="reset" class="btn btn-danger">Limpar</button>
-      </div>
-    </div>
-  </div>
-</div>
+  <button type="submit" class="btn btn-primary" disabled>Entrar</button>
+  <button type="button" class="btn btn-secondary" (click)="voltar()">Voltar</button>
+</form>
