@@ -1,5 +1,45 @@
-<label for="identificador">CPF/CNPJ:</label>
-<input type="text" id="identificador" formControlName="identificador" [value]="clienteForm.get('identificador').value | cpfCnpjFormatAndValidate">
-<div>{{ clienteForm?.get('identificador').value | cpfCnpjFormatAndValidate }}</div>
-  CPF/CNPJ inválido.
-</div>
+<form>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputIdentificador" style="color: #CED4DA; font-size: 14px; font-family: Inter; font-weight: 400; line-height: 20px; word-wrap: break-word;">CNPJ/CPF*</label>
+      <input type="text" class="form-control" id="inputIdentificador" placeholder="CNPJ/CPF" onblur="formatarIdentificador()" required>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputNome" style="color: #CED4DA; font-size: 14px; font-family: Inter; font-weight: 400; line-height: 20px; word-wrap: break-word;">Nome*</label>
+      <input type="text" class="form-control" id="inputNome" placeholder="Nome" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputNomeFantasia" style="color: #CED4DA; font-size: 14px; font-family: Inter; font-weight: 400; line-height: 20px; word-wrap: break-word;">Nome Fantasia*</label>
+    <input type="text" class="form-control" id="inputNomeFantasia" placeholder="Nome Fantasia">
+  </div>
+  <div class="form-group">
+    <label for="inputNomeMae" style="color: #CED4DA; font-size: 14px; font-family: Inter; font-weight: 400; line-height: 20px; word-wrap: break-word;">Nome Mãe*</label>
+    <input type="text" class="form-control" id="inputNomeMae" placeholder="Nome Mãe" >
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputInscricaoEstadual" style="color: #CED4DA; font-size: 14px; font-family: Inter; font-weight: 400; line-height: 20px; word-wrap: break-word;">Inscrição Estadual</label>
+      <input type="text" class="form-control" id="inputInscricaoEstadual">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputInscricaoMunicipal" style="color: #CED4DA; font-size: 14px; font-family: Inter; font-weight: 400; line-height: 20px; word-wrap: break-word;">Inscrição Municipal</label>
+      <select id="inputInscricaoMunicipal" class="form-control">
+        <option selected>Escolher...</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputCep" style="color: #CED4DA; font-size: 14px; font-family: Inter; font-weight: 400; line-height: 20px; word-wrap: break-word;">CEP</label>
+      <input type="text" class="form-control" id="inputCep">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gridCheck">
+      <label class="form-check-label" for="gridCheck" style="color: #6C757D; font-size: 14px; font-family: Inter; font-weight: 400; line-height: 20px; word-wrap: break-word;">Clique em mim</label>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" style="color: white; font-size: 14px; font-family: Inter; font-weight: 400; line-height: 20px; word-wrap: break-word;">Cadastrar</button>
+  <button type="button" class="btn btn-secondary" style="color: #6C757D; font-size: 14px; font-family: Inter; font-weight: 400; line-height: 20px; word-wrap: break-word;">Voltar</button>
+</form>

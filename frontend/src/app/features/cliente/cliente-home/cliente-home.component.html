@@ -9,7 +9,7 @@
       <h2>{{ client.nome }}</h2>
       <p>Situação: {{ client.situacao }}</p>
       <p>Data de Cadastro: {{ client.data_cadastro | date }}</p>
-      <button routerLink="/editar-cliente/{{ client.id }}">Editar</button>
+      <button (click)="editarCliente()">Editar</button>
       <button (click)="deleteClient(client)">Excluir</button>
     </div>
 

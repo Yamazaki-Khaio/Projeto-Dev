@@ -8,7 +8,7 @@ import { Users } from './users';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class  UserService {
   private readonly baseUrl = 'conta'; // Rota base correspondente no backend
 
   constructor(private apiService: ApiService) { }

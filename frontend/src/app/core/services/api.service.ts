@@ -1,54 +1,64 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { AuthService } from './auth.service'; // Importe o serviço de autenticação aqui
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  private readonly baseURL = 'http://localhost:3000/';
+  private baseURL = 'http://localhost:3000/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
-  // Realiza uma requisição GET
   get<T>(url: string): Observable<T> {
-    return this.http.get<T>(this.baseURL + url).pipe(
+    const headers = this.addTokenToHeaders();
+    return this.http.get<T>(this.baseURL + url, { headers }).pipe(
       catchError(this.handleError)
     );
   }
 
-  // Realiza uma requisição POST
   post<T>(url: string, data: any): Observable<T> {
-    return this.http.post<T>(this.baseURL + url, data).pipe(
+    const headers = this.addTokenToHeaders();
+    return this.http.post<T>(this.baseURL + url, data, { headers }).pipe(
       catchError(this.handleError)
     );
   }
 
-  // Realiza uma requisição PUT
   put<T>(url: string, data: any): Observable<T> {
-    return this.http.put<T>(this.baseURL + url, data).pipe(
+    const headers = this.addTokenToHeaders();
+    return this.http.put<T>(this.baseURL + url, data, { headers }).pipe(
       catchError(this.handleError)
     );
   }
 
-  // Realiza uma requisição DELETE
   delete<T>(url: string): Observable<T> {
-    return this.http.delete<T>(this.baseURL + url).pipe(
+    const headers = this.addTokenToHeaders();
+    return this.http.delete<T>(this.baseURL + url, { headers }).pipe(
       catchError(this.handleError)
     );
   }
 
-  // Método genérico para realizar requisições HTTP
   private handleError(error: HttpErrorResponse): Observable<never> {
     console.error('Erro na requisição:', error);
 
-    // Se a resposta da API contiver uma mensagem de erro, retorne-a
     if (error.error && error.error.message) {
       return throwError(() => error.error.message);
     }
 
-    // Mensagem padrão para outros erros
     return throwError(() => 'Ocorreu um erro na requisição. Tente novamente mais tarde.');
+  }
+
+  private addTokenToHeaders(): HttpHeaders {
+    const token = this.authService.getToken();
+
+    if (token) {
+      return new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+    }
+
+    return new HttpHeaders();
   }
 }

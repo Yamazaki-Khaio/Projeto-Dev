@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/internal/Observable';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/internal/Observable';
 export class AuthService {
   private apiUrl: string = 'http://localhost:3000/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   login(email: string, password: string): Observable<any> {
     const url = `${this.apiUrl}/conta/login`;
@@ -16,22 +16,16 @@ export class AuthService {
 
     return this.http.post(url, body);
   }
-}
 
-function logout() {
-  localStorage.removeItem('token')
-}
+  logout(): void {
+    localStorage.removeItem('token');
+  }
 
-function getToken() {
-  return localStorage.getItem('token')
-}
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
 
-function isAuteh(): boolean {
-  if (getToken() !== null) {
-    return true;
-  } else {
-    return false;
+  isAuth(): boolean {
+    return this.getToken() !== null;
   }
 }
-
-

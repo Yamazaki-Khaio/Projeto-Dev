@@ -19,18 +19,9 @@ export class UserProfileComponent implements OnInit {
     this.fetchUserProfileData();
   }
 
- 
+
   fetchUserProfileData(): void {
     // Chame o serviço para obter os dados do perfil do usuário
-    this.userService.getUsers().subscribe(
-      (profileData) => {
-        // Atualize os dados do perfil
-        console.log('Dados do perfil:', profileData);
-      },
-      (error) => {
-        console.error('Erro ao obter dados do perfil:', error);
-        // Lide com o erro conforme necessário, como redirecionar para a página de login se não estiver autenticado.
-      }
-    );
+
   }
 }

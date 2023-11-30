@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClienteService } from '../cliente.service';
+import { Router } from '@angular/router';
+import { Cliente } from '../cliente';
 
 @Component({
   selector: 'app-cliente-cadastro',
@@ -10,39 +12,35 @@ import { ClienteService } from '../cliente.service';
 export class ClienteCadastroComponent implements OnInit {
   clienteForm: FormGroup = new FormGroup({});
 
-  constructor(private formBuilder: FormBuilder, private clienteService: ClienteService) {}
+  constructor(private formBuilder: FormBuilder, private clienteService: ClienteService, private router: Router) {}
 
   ngOnInit() {
     this.clienteForm = this.formBuilder.group({
       nome: ['', Validators.required],
       identificador: ['', Validators.required],
-      nome_mae: [''],
-      nome_fantasia: [''],
-      inscricao_municipal: [''], // Adicionado campo inscricao_municipal
-      inscricao_estadual: [''], // Adicionado campo inscricao_estadual
+      nome_mae: ['', Validators.required],
+      nome_fantasia: ['', Validators.required],
+      inscricao_municipal: [''],
+      inscricao_estadual: [''],
       // Adicione outros campos conforme necessário
-
-      // Exemplo adicional:
-      // email: ['', [Validators.required, Validators.email]],
     });
   }
 
   submitForm() {
     if (this.clienteForm.valid) {
-      // Aqui você pode chamar o serviço para enviar os dados para o backend
-      // Exemplo:
       this.clienteService.createCliente(this.clienteForm.value).subscribe(
-         (response) => {
-           console.log('Cliente cadastrado com sucesso:', response);
-      //     // Adicione a lógica desejada após o cadastro bem-sucedido
-         },
-         (error) => {
-           console.error('Erro ao cadastrar cliente:', error);
-           // Adicione a lógica desejada em caso de erro
-         }
-       );
+        (response: Cliente) => {
+          console.log('Cliente cadastrado com sucesso:', response.id);
+          this.router.navigate(['users/profile/cliente/']);
+
+          // Adicione a lógica desejada após o cadastro bem-sucedido
+        },
+        (error) => {
+          console.error('Erro ao cadastrar cliente:', error);
+          // Adicione a lógica desejada em caso de erro
+        }
+      );
     } else {
-      // Marque os campos como tocados para exibir mensagens de erro
       Object.values(this.clienteForm.controls).forEach(control => {
         control.markAsTouched();
       });
