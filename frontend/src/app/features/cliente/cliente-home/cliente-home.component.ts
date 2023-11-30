@@ -23,7 +23,7 @@ export class ClienteHomeComponent implements OnDestroy {
 
   adicionarCliente() {
     // Navegar para a rota de criação de cliente
-    this.router.navigate(['/clientes/novo']);
+    this.router.navigate(['/profile/cliente/cadastro']);
   }
 
   deleteClient(cliente: Cliente) {

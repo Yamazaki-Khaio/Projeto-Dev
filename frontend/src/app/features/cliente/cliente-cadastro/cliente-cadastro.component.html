@@ -1,0 +1,5 @@
+<label for="identificador">CPF/CNPJ:</label>
+<input type="text" id="identificador" formControlName="identificador" [value]="clienteForm.get('identificador').value | cpfCnpjFormatAndValidate">
+<div>{{ clienteForm?.get('identificador').value | cpfCnpjFormatAndValidate }}</div>
+  CPF/CNPJ inválido.
+</div>

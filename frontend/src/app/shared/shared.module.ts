@@ -17,6 +17,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     ShowHidePasswordDirective,
     PasswordMatchDirective,
     SidebarComponent,
+    
 
 
   ],
@@ -30,7 +31,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     ShowHidePasswordDirective,
     PasswordMatchDirective,
     SidebarComponent,
-    
+
   ]
 
 })
