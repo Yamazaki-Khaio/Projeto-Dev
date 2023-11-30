@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClienteService } from '../cliente.service';
 import { Cliente } from '../cliente';
@@ -9,24 +9,12 @@ import { Observable, Subscription } from 'rxjs';
   templateUrl: './cliente-home.component.html',
   styleUrls: ['./cliente-home.component.scss']
 })
-export class ClienteHomeComponent implements OnInit, OnDestroy {
+export class ClienteHomeComponent implements OnDestroy {
   clientes$: Observable<Cliente[]>;
-  clientesSubscription: Subscription = new Subscription;
+  private clientesSubscription: Subscription = new Subscription();
 
   constructor(private clienteService: ClienteService, private router: Router) {
     this.clientes$ = this.clienteService.getClientes();
-  }
-
-  ngOnInit(): void {
-    this.clientesSubscription = this.clientes$.subscribe(
-      (clientes) => {
-        // Lógica para lidar com os dados dos clientes atualizados em tempo real
-      },
-      (error) => {
-        console.error('Erro ao obter clientes:', error);
-        // Adicione lógica para lidar com erros, como exibir uma mensagem ao usuário.
-      }
-    );
   }
 
   ngOnDestroy(): void {

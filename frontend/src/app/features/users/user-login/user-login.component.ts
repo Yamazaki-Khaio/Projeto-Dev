@@ -43,7 +43,7 @@ export class UserLoginComponent implements OnInit {
             localStorage.setItem('token', response.token);
           }
           // Redirecione para a página desejada após o login
-          this.router.navigate(['users/profile']);
+          this.router.navigate(['users/profile/home']);
 
         },
         (error) => {

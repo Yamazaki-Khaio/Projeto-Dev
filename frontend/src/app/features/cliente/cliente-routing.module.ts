@@ -4,7 +4,7 @@ import { ClienteHomeComponent } from './/cliente-home/cliente-home.component';
 
 const routes: Routes = [
   { path: '', component: ClienteHomeComponent},
-  { path: 'home', component: ClienteHomeComponent}, ];
+  { path: 'home', component: ClienteHomeComponent }, ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
