@@ -1,5 +1,12 @@
-<div *ngFor="let cliente of clientes$ | async">
-  <p>{{ cliente.nome }}</p>
-  <p>{{ cliente.idenficado }}</p>
-  <p>{{ cliente.nome }}</p>
+<div class="client-list">
+  <div class="client-card" *ngFor="let client of clientes$ | async">
+    <h2>{{ client.nome }}</h2>
+    <p>Situação: {{ client.situacao }}</p>
+    <p>Data de Cadastro: {{ client.data_cadastro | date }}</p>
+    <button routerLink="/editar-cliente/{{ client.id }}">Editar</button>
+    <button (click)="deleteClient(client)">Excluir</button>
+  </div>
+
+  <!-- Exibe a imagem apenas se a lista estiver vazia -->
+  <img *ngIf="(clientes$ | async)?.length === 0" src="./assets/projeto-cliente-1.png" alt="Lista vazia">
 </div>

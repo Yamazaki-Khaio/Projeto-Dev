@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UsersHomeComponent } from './users-home/users-home.component';
 import { AuthGuard } from './auth.guard';
 
 
@@ -15,6 +16,8 @@ const routes: Routes = [
       path: 'cliente',
       loadChildren: () => import('../cliente/cliente.module').then(m => m.ClienteModule),
     },
+    { path: 'home', component: UsersHomeComponent, canActivate: [AuthGuard]},
+
   ]},
 ];
 

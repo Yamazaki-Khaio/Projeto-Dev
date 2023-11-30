@@ -1,45 +1,51 @@
+// app-layout.scss
+
+// Estilos para o componente principal
 .main-container
   display: flex
-  flex-direction: column
   height: 100vh
+  position: relative
 
-  .app-header
-    background-color: #4e4a4a
-    color: #fff
-    padding: 10px
 
-  .content-container
-    display: flex
-    flex: 1
+// Estilos para o header
+app-header
+  flex: 0 0 auto
 
-    .app-sidebar
-      width: 200px
-      background-color: #333
-      color: #fff
-      padding: 16px
-      border-right: 2px solid #555
 
-    .ng-container
-      flex: 1
-      padding: 16px
-      background-color: #f0f0f0
+// Estilos para o sidebar
+app-sidebar
+  flex: 0 0 250px // Largura do sidebar
+  background-color: #333
+  color: white
+  padding: 10px
 
-  // Responsividade para HD (1366px)
-  @media (max-width: 1366px)
-    .app-sidebar
-      width: 160px
 
-  // Responsividade para Full HD (1920px)
-  @media (max-width: 1920px)
-    .app-sidebar
-      width: 180px
+// Estilos para o conteúdo principal
+ng-container
+  position: absolute
+  right: 0
+  bottom: 0
+  height: 100rem
+  width: 100rem
 
-  // Responsividade para Mobile (767px)
-  @media (max-width: 767px)
-    .content-container
-      flex-direction: column
+// Estilos responsivos
+@media (max-width: 1200px)
+  app-sidebar
+    display: none
 
-      .app-sidebar
-        width: 100%
-        margin-bottom: 16px
-        border-right: none
+
+  ng-container
+    padding: 20px
+
+
+
+@media (max-width: 767px)
+  app-header
+    position: fixed
+    width: 100%
+
+
+  app-sidebar
+    width: 100%
+
+

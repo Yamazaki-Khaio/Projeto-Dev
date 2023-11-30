@@ -7,11 +7,13 @@ import { UserRegistrationComponent } from './user-registration/user-registration
 import { UserLoginComponent } from './user-login/user-login.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { UsersHomeComponent } from './users-home/users-home.component';
 @NgModule({
   declarations: [
     UserRegistrationComponent,
     UserLoginComponent,
     UserProfileComponent,
+    UsersHomeComponent,
 
 
   ],
