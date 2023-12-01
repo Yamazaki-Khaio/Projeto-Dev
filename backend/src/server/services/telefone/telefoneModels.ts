@@ -1,5 +1,4 @@
 import { Model, DataTypes } from 'sequelize';
-import Pessoa from '../pessoa/pessoaModels';
 import sequelize from '../../config/sequelize';
 
 
@@ -16,19 +15,24 @@ Telefone.init(
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
+            allowNull: false,
+            autoIncrement: true,
         },
         tel: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true,
         },
         is_principal: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: true,
+
         },
         id_pessoa: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            
         },
     },
     {

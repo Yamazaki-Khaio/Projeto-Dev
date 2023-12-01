@@ -11,7 +11,7 @@ const router = express.Router();
 //router.get('/:id', representanteController.getRepresentanteById);
 
 // Rota para criar um novo representante
-router.post('/', representanteController.create);
+router.post('/:id_cliente', representanteController.create);
 
 // Rota para atualizar um representante existente
 //router.put('/:id', representanteController.updateRepresentante);

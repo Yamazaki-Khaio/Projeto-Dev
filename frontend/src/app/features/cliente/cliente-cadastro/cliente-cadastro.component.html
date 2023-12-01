@@ -1,18 +1,33 @@
-<form>
+<form formGroup="clienteForm" (ngSubmit)="OnSubmit()">
   <div class="form-row">
-    <div class="form-group col-md-6">
-      <label>Nome*</label>
-      <input type="text" class="form-control" id="inputNome" placeholder="Nome Completo" required>
+    <div class="form-group ">
+      <label for="inputNome">Nome*</label>
+      <input type="text" class="form-control" id="inputNome" placeholder="Nome Completo" formControlName="nome" required>
     </div>
+
     <div class="form-group col-md-6">
-      <label>CNPJ/CPF*</label>
-      <input type="text" class="form-control" id="inputIdentificacao" placeholder="Identificação" appIdentificadorValidator required>
+      <label for="inputIdentificacao">CNPJ/CPF*</label>
+      <input type="text" class="form-control" id="inputIdentificacao" placeholder="CPF/CNPJ" formControlName="identificacao" appIdentificadorValidator required>
     </div>
   </div>
+
   <div class="form-group">
-    <label>Nome da Mãe ou Nome Fantasia</label>
-    <input type="text" class="form-control" id="inputNomeMaeFantasia" placeholder="Nome da Mãe ou Nome Fantasia" required>
-  </div>
-  <button type="submit" class="btn btn-primary" disabled>Entrar</button>
+    <label>Nome Fantasia / Nome da Mãe</label>
+    <input type="text" class="form-control" id="inputRef" placeholder="Nome da Mãe ou Razão Social" formControlName="nome_ref" appIdentificadorValidator identificadorLabel required>
+    </div>
+
+    <div class="form-group">
+      <label for="inputRazaoSocial">Inscrição Municipal</label>
+      <input type="text" class="form-control" id="inputInscricaoMunicipal" placeholder="Inscrição Estadual" formControlName="inscricao_estadual">
+    </div>
+
+    <div class="form-group">
+      <label for="inputInscricaoEstadual">Inscrição Estadual</label>
+      <input type="text" class="form-control" id="inputInscricaoEstadual" placeholder="Inscrição Estadual" formControlName="inscricao_estadual">
+    </div>
+
+
+
+  <button type="submit"  class="btn btn-primary">Adiconar cliente</button>
   <button type="button" class="btn btn-secondary" (click)="voltar()">Voltar</button>
 </form>

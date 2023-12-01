@@ -1,18 +1,93 @@
 import Telefone from "./telefoneModels";
-import { Response, Request } from "express";
+import e, { Response, Request } from "express";
 
 
 class TelefoneController {
     //create
     async create(req: Request, res: Response): Promise<Response> {
         try {
-            const { id, numero, is_principal, id_pessoa } = req.body;
-            const telefone = await Telefone.create({ id, numero, is_principal, id_pessoa });
+            const { id } = req.params;
+
+            const { tel, is_principal } = req.body;
+            console.log(req.body);
+            console.log(req.params);
+
+
+            // Verificar se já existe um telefone principal
+            if (is_principal) {
+                const principalTelefone = await Telefone.findOne({ where: { id_pessoa: id, is_principal: true } });
+                if (principalTelefone) {
+                    principalTelefone.is_principal = false;
+                    await principalTelefone.save();
+                }
+            }
+            const telefone = await Telefone.create({ tel, is_principal, id_pessoa:id });
+            console.error(telefone);
             return res.status(201).json(telefone);
+
         } catch (error) {
-            return res.status(500).json({ error: 'Erro ao criar o telefone.' });
+            console.error(error);
+            return res.status(500).json({ error: error });
         }
     }
+
+    //update
+    async update(req: Request, res: Response): Promise<Response> {
+        const { id } = req.params;
+
+        try {
+            const telefone = await Telefone.findByPk(id);
+
+            if (!telefone) {
+                return res.status(404).json({ error: 'Telefone não encontrado' });
+            }
+
+            const { is_principal } = req.body;
+
+            // Verificar se o telefone sendo editado é o principal
+            if (is_principal) {
+                const principalTelefone = await Telefone.findOne({ where: { id_pessoa: telefone.id_pessoa, is_principal: true } });
+                if (principalTelefone && principalTelefone.id !== telefone.id) {
+                    principalTelefone.is_principal = false;
+                    await principalTelefone.save();
+                }
+            }
+
+            await telefone.update(req.body);
+
+            return res.status(200).json(telefone);
+        } catch (error: any) {
+            return res.status(500).json({ error: 'Erro interno do servidor' });
+        }
+    }
+
+    //delete
+    async delete(req: Request, res: Response): Promise<Response> {
+        try {
+            const { id } = req.params;
+            const telefone = await Telefone.findOne({ where: { id } });
+
+            if (!telefone) {
+                return res.status(404).json({ error: 'Telefone não encontrado.' });
+            }
+
+            // Verificar se o telefone sendo excluído é o principal
+            if (telefone.is_principal) {
+                const otherTelefone = await Telefone.findOne({ where: { id_pessoa: telefone.id_pessoa, is_principal: false } });
+                if (otherTelefone) {
+                    otherTelefone.is_principal = true;
+                    await otherTelefone.save();
+                }
+            }
+
+            await telefone.destroy();
+            return res.status(200).json({ message: 'Telefone excluído com sucesso.' });
+        } catch (error) {
+            return res.status(500).json({ error: 'Erro ao excluir o telefone.' });
+        }
+    }
+
+
 
     //read
     async getAll(req: Request, res: Response): Promise<Response> {
@@ -42,41 +117,9 @@ class TelefoneController {
         }
     }
 
-    //update
-    async update(req: Request, res: Response): Promise<Response> {
 
-        const { id } = req.params;
 
-        try {
-            const [updatedRows] = await Telefone.update(req.body, { where: { id } });
 
-            if (updatedRows === 0) {
-                return res.status(404).json({ error: 'Telefone não encontrado' });
-            }
-
-            const telefone = await Telefone.findByPk(id);
-
-            return res.status(200).json(telefone);
-        } catch (error: any) {
-            return res.status(500).json({ error: 'Erro interno do servidor' });
-        }
-    }
-
-    //delete
-    async delete(req: Request, res: Response): Promise<Response> {
-        try {
-            const { id } = req.params;
-            const telefone = await Telefone.findOne({ where: { id } });
-            if (!telefone) {
-                return res.status(404).json({ error: 'Telefone não encontrado.' });
-            }
-
-            await telefone.destroy();
-            return res.status(200).json({ message: 'Telefone excluído com sucesso.' });
-        } catch (error) {
-            return res.status(500).json({ error: 'Erro ao excluir o telefone.' });
-        }
-    }
 }
 
 export default new TelefoneController();

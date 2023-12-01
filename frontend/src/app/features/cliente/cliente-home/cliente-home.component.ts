@@ -32,15 +32,7 @@ export class ClienteHomeComponent implements OnDestroy {
   }
 
   deleteClient(cliente: Cliente) {
-    // Chamar o serviço para remover o cliente
-    this.clienteService.deleteCliente(cliente.id.toString()).subscribe(
-      () => {
-        // Nenhuma ação necessária aqui, pois a lista é automaticamente atualizada pelo Observable.
-      },
-      (error) => {
-        console.error('Erro ao excluir cliente:', error);
-        // Adicione lógica para lidar com erros, como exibir uma mensagem ao usuário.
-      }
-    );
+    // Chama o método deleteCliente() do serviço de clientes
+
   }
 }

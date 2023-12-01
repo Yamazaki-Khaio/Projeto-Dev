@@ -46,7 +46,7 @@ class ClienteController {
             // Atualiza o Cliente
             await Cliente.update(req.body, { where: { id } });
 
-            return res.status(200).json(cliente);
+            return res.status(204).json(cliente);
         } catch (error: any) {
             return res.status(500).json({ error: 'Erro interno do servidor' });
         }

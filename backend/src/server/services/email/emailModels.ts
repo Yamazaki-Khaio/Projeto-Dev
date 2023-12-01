@@ -15,18 +15,24 @@ Email.init(
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
+      allowNull: false,
+      autoIncrement: true,
+      
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
     is_principal: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      defaultValue: true,
     },
     id_pessoa: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      
     },
   },
   {

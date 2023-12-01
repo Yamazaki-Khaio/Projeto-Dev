@@ -45,7 +45,9 @@ class EmailController {
         return res.status(400).json({ error: 'E-mail já cadastrado para esta pessoa' });
       }
 
-      await Email.update({ is_principal: false }, { where: { id_pessoa, is_principal: true } });
+      if (is_principal) {
+        await Email.update({ is_principal: false }, { where: { id_pessoa } });
+      }
 
       const novoEmail = await Email.create({ email, is_principal, id_pessoa });
 
@@ -72,7 +74,7 @@ class EmailController {
       }
 
       if (is_principal && !emailInstance.is_principal) {
-        await Email.update({ is_principal: false }, { where: { id_pessoa: emailInstance.id_pessoa, is_principal: true } });
+        await Email.update({ is_principal: false }, { where: { id_pessoa: emailInstance.id_pessoa } });
       }
 
       await emailInstance.update({ email, is_principal });

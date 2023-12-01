@@ -15,6 +15,8 @@ export class IdentificadorValidatorDirective {
 
     if (identificador.length === 11) {
       this.el.nativeElement.value = identificador.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+
+
     } else if (identificador.length === 14) {
       this.el.nativeElement.value = identificador.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
     }
