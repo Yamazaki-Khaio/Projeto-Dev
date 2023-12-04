@@ -9,7 +9,11 @@ class ClienteController {
         try {
             // Verifica se a Pessoa já existe pelo identificador (identificacao)
             const identificacao = req.body.identificacao;
-            let pessoa = await Pessoa.findOne({ where: { identificacao } });
+            const identificacaoNumerica = identificacao.replace(/\D/g, '');
+            if (identificacaoNumerica.length != 11 && identificacaoNumerica.length != 14) {
+                return res.status(400).json({ error: 'Identificação inválida' });
+            }
+            let pessoa = await Pessoa.findOne({ where: { identificacao: identificacaoNumerica } });
             // Se a Pessoa não existe, cria uma nova
             if (!pessoa) {
                 pessoa = await Pessoa.create(req.body);
@@ -35,7 +39,8 @@ class ClienteController {
 
             // Verifica se a Pessoa já existe pelo identificador (identificacao)
             const identificacao = req.body.identificacao;
-            let pessoa = await Pessoa.findOne({ where: { identificacao } });
+            const identificacaoNumerica = identificacao.replace(/\D/g, '');
+            let pessoa = await Pessoa.findOne({ where: { identificacao: identificacaoNumerica } });
             // Se a Pessoa não existe, retorna erro 404
             if (!pessoa) {
                 return res.status(404).json({ error: 'Cliente não exite' });

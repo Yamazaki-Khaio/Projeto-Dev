@@ -32,7 +32,6 @@ export class ClienteService {
   }
 
 
-
   // Atualiza um cliente existente
   updateCliente(id: string, cliente: Cliente): Observable<Cliente> {
     const endpoint = `${this.baseUrl}/${id}`;
@@ -45,5 +44,5 @@ export class ClienteService {
     return this.apiService.delete<void>(endpoint);
   }
 
-  // Adicione outros métodos específicos para a feature cliente, se necessário.
+  // Adicionar outros métodos específicos para a feature cliente, se necessário.
 }

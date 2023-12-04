@@ -1,51 +1,19 @@
-// app-layout.scss
-
-// Estilos para o componente principal
 .main-container
   display: flex
-  height: 100vh
-  position: relative
+  flex-direction: row
+  height: 100%
+  width: 100%
+  justify-content: center
 
 
-// Estilos para o header
-app-header
-  flex: 0 0 auto
+.row
+  flex: 1
 
-
-// Estilos para o sidebar
-app-sidebar
-  flex: 0 0 250px // Largura do sidebar
-  background-color: #333
-  color: white
-  padding: 10px
-
-
-// Estilos para o conteúdo principal
-ng-container
-  position: absolute
-  right: 0
-  bottom: 0
-  height: 100rem
-  width: 100rem
-
-// Estilos responsivos
-@media (max-width: 1200px)
-  app-sidebar
-    display: none
-
-
-  ng-container
-    padding: 20px
-
-
-
-@media (max-width: 767px)
-  app-header
-    position: fixed
-    width: 100%
-
-
-  app-sidebar
-    width: 100%
-
+.main-frame
+  display: flex
+  flex: 3
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  padding: 12px
 

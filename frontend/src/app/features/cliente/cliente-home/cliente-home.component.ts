@@ -17,7 +17,21 @@ export class ClienteHomeComponent implements OnDestroy {
   constructor(private clienteService: ClienteService, private router: Router) {
     this.clientes$ = this.clienteService.getClientes();
   }
+ /** ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.clientesSubscription = this.clienteService.getClientes().subscribe(
+      (data) => {
+        console.error('Clientes carregados com sucesso. Dados: ', data);
+      },
+      (error) => {
+        console.error('Erro ao carregar clientes. Erro: ' + error);
+        alert('Erro ao carregar clientes. Erro: ' + error);
+      }
+    );
+  }
 
+  */
   ngOnDestroy(): void {
     this.clientesSubscription.unsubscribe();
   }
@@ -28,7 +42,7 @@ export class ClienteHomeComponent implements OnDestroy {
   }
 
   editarCliente() {
-    this.router.navigate(['/profile/cliente/editar/{{cliente.id.toString()}']);
+    this.router.navigate(['/profile/cliente/editar/{{cliente.id}']);
   }
 
   deleteClient(cliente: Cliente) {

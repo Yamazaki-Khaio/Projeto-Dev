@@ -1,4 +1,4 @@
-import e, { Request, Response } from 'express';
+import { Request, Response } from 'express';
 import Pessoa from '../pessoa/pessoaModels';
 import Email from './emailModels';
 
@@ -35,7 +35,7 @@ class EmailController {
       const { id_pessoa } = req.params;
       const { email, is_principal} = req.body;
       const pessoa = await Pessoa.findOne({ where: { id: id_pessoa } });
-      const emailExists = await Email.findOne({ where: { email: email, id_pessoa: id_pessoa } });
+      const emailExists = await Email.findOne({ where: { email: email.toLowerCase(), id_pessoa: id_pessoa } });
 
       if (emailExists) {
         return res.status(400).json({ error: 'E-mail já cadastrado para esta pessoa' });
@@ -52,7 +52,7 @@ class EmailController {
       }
 
 
-      const novoEmail = await Email.create({ email, is_principal, id_pessoa });
+      const novoEmail = await Email.create({ email: email.toLowerCase(), is_principal, id_pessoa });
 
       return res.status(201).json(novoEmail);
     } catch (error: any) {
@@ -73,7 +73,7 @@ class EmailController {
         return res.status(404).json({ error: 'E-mail não encontrado' });
       }
 
-      const emailExists = await Email.findOne({ where: { email, id_pessoa: emailInstance.id_pessoa } });
+      const emailExists = await Email.findOne({ where: { email: email.toLowerCase(), id_pessoa: emailInstance.id_pessoa } });
 
       if (emailExists && emailExists.id !== emailInstance.id) {
         return res.status(400).json({ error: 'E-mail já cadastrado para esta pessoa' });
@@ -83,7 +83,7 @@ class EmailController {
         await Email.update({ is_principal: false }, { where: { id_pessoa: emailInstance.id_pessoa } });
       }
 
-      await emailInstance.update({ email, is_principal });
+      await emailInstance.update({ email: email.toLowerCase(), is_principal });
 
       return res.status(200).json(emailInstance);
     } catch (error: any) {

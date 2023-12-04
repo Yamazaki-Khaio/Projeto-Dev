@@ -1,51 +1,61 @@
-// FILEPATH: /c:/Users/kaio.fonseca/Documents/projeto-dev/Projeto-Dev/frontend/src/app/shared/components/header/header.component.sass
-
-.header
-  display: flex
-  align-items: center
+.navbar
+  padding-top: 12px
+  padding-bottom: 12px
+  padding-left: 1239px
+  padding-right: 12px
+  background: #212529
   justify-content: flex-end
-  padding: 10px
-  background-color: #4e4a4a
+  align-items: center
 
-  .avatar
-    cursor: pointer
-    margin-right: 10px
+.avatar
+  cursor: pointer
+  transition: all 0.3s ease-in-out
+  justify-items: end
+  align-items: center
+  align-items: center
+  padding-left: 8px
+  padding-right: 8px
+  padding-top: 12px
+  padding-bottom: 12px
+  border-radius: 500px
+  border: 1px #084191 solid
+  justify-content: center
+  display: flex
+  &:hover
+    transform: scale(1.1)
+    transition: all 0.3s ease-in-out
 
-    svg
-      width: 32px
-      height: 32px
-      max-width: 100%
-      height: auto
-      fill: #fff
-
-
-
-  .dropdown-content
-    position: absolute
-    top: 100%
-    right: 0
-    display: none
-    background-color: white
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
-    border: 1px solid #ddd
-    z-index: 1
-
-    ul
-      list-style: none
-      padding: 0
-      margin: 0
-
-
-    li
-      padding: 10px
-      cursor: pointer
-
-      &:hover
-        background-color: #f5f5f5
+.dropdown-content
+  background-color: #f1f1f1
+  color: black
+  padding: 12px 16px
+  border-radius: 4px
+  transition: all 0.3s ease-in-out
+  p:hover
+    background-color: #48484888
+  &:active
+    background-color: #084191
+    color: white
+@media (max-width: 1920px)
+  .navbar
+    padding-left: 12px
+    padding-right: 12px
 
 
+@media (max-width: 1280px)
+  .navbar
+    padding-left: 12px
+    padding-right: 12px
 
 
-  &.is-logged .dropdown-content
-    display: flex
+@media (max-width: 768px)
+  .navbar
+    padding-left: 12px
+    padding-right: 12px
+
+
+@media (max-width: 480px)
+  .navbar
+    padding-left: 12px
+    padding-right: 12px
 

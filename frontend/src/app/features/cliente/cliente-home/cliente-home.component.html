@@ -1,19 +1,43 @@
-<div class="main-content">
-  <div class="header">
-    <h1>Clientes</h1>
-    <button (click)="adicionarCliente()">Adicionar Cliente</button>
-  </div>
-
-  <div class="client-list">
-    <div class="client-card" *ngFor="let client of clientes$ | async">
-      <h2>{{ client.nome }}</h2>
-      <p>Situação: {{ client.situacao }}</p>
-      <p>Data de Cadastro: {{ client.data_cadastro | date }}</p>
-      <button (click)="editarCliente()">Editar</button>
-      <button (click)="deleteClient(client)">Excluir</button>
+<div class="container">
+  <div class="row">
+    <div class="col-8">Clientes </div>
+    <div class="col-4">
+      <button class="btn btn-primary" (click)="adicionarCliente()">Novo Cliente</button>
     </div>
-
-    <!-- Exibe a imagem apenas se a lista estiver vazia -->
-    <img *ngIf="(clientes$ | async)?.length === 0" src="./assets/projeto-cliente-1.png" alt="Lista vazia">
   </div>
+
+
+
+<div class="client-list">
+  <ng-container *ngIf="clientes$ | async as clientes; else emptyList">
+    <div class="table-responsive overflow-auto">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>CPF/CNPJ</th>
+            <th>Situação</th>
+            <th>Data do Cadastro</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let client of clientes">
+            <td>{{ client.nome }}</td>
+            <td>{{ client.identificacao }}</td>
+            <td><span class="badge badge-primary">{{ client.situacao }}</span></td>
+            <td>{{ client.data_cadastro | date }}</td>
+            <td>
+              <button class="btn btn-secondary" (click)="editarCliente()">Editar</button>
+              <button class="btn btn-danger" (click)="deleteClient(client)">Excluir</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-container>
+
+  <ng-template #emptyList>
+    <img src="./assets/projeto-cliente-1.png" alt="Lista vazia">
+  </ng-template>
 </div>

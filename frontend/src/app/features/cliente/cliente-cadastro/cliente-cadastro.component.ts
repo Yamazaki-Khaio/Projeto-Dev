@@ -28,6 +28,12 @@ export class ClienteCadastroComponent implements OnInit {
 
 
   }
+  ngOnChanges(changes: SimpleChanges): void {
+    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    //Add '${implements OnChanges}' to the class.
+
+    
+  }
 
 
 
@@ -51,7 +57,7 @@ export class ClienteCadastroComponent implements OnInit {
     this.clienteService.createCliente(cliente).subscribe(
       (data) => {
         console.error('Cliente criado com sucesso. Dados: ', data);
-        this.router.navigate(['users/profile/cliente/home']);
+        this.router.navigate(['users/profile/cliente/editar/' + data['id']]);
       },
       (error) => {
         console.error('Erro ao criar cliente. Erro: ' + error);

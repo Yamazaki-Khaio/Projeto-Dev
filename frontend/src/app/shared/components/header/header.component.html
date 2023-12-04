@@ -1,18 +1,16 @@
 <!-- header.component.html -->
-<header>
+<header class="navbar">
   <!-- Avatar -->
-  <div class="avatar" (click)="toggleDropdown()">
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M16 0C7.16344 0 0 7.16344 0 16C0 24.8366 7.16344 32 16 32C24.8366 32 32 24.8366 32 16C32 7.16344 24.8366 0 16 0ZM16 4.57143C18.8571 4.57143 21.1429 6.85714 21.1429 9.71429C21.1429 12.5714 18.8571 14.8571 16 14.8571C13.1429 14.8571 10.8571 12.5714 10.8571 9.71429C10.8571 6.85714 13.1429 4.57143 16 4.57143ZM16 27.4286C11.4286 27.4286 7.42857 25.1429 5.14286 21.7143C5.28571 18.2857 10.2857 17.1429 16 17.1429C21.7143 17.1429 26.7143 18.2857 26.8571 21.7143C24.5714 25.1429 20.5714 27.4286 16 27.4286Z" fill="#0069B3"/>
-
+  <i class="avatar" >
+    <svg (click)="toggleDropdown()" xmlns="http://www.w3.org/2000/svg" width="64px" height="64px" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+      <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
     </svg>
-  </div>
+  </i>
 
   <!-- Opções do Avatar -->
-  <div *ngIf="isDropdownOpen" class="dropdown-content">
-    <ul>
-      <li (click)="editProfile()">Editar Perfil</li>
-      <li (click)="logout()">Logout</li>
-    </ul>
+  <div *ngIf="isDropdownOpen" class="dropdown-content" >
+      <p (click)="editProfile()">Perfil</p>
+      <p (click)="logout()">Logout</p>
   </div>
-<head>
+</header>
