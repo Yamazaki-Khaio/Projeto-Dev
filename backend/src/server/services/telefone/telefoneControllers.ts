@@ -1,27 +1,23 @@
 import Telefone from "./telefoneModels";
-import e, { Response, Request } from "express";
+import { Response, Request } from "express";
 
 
 class TelefoneController {
     //create
     async create(req: Request, res: Response): Promise<Response> {
         try {
-            const { id } = req.params;
+            const { id_pessoa } = req.params;
 
             const { tel, is_principal } = req.body;
-            console.log(req.body);
-            console.log(req.params);
-
-
             // Verificar se já existe um telefone principal
             if (is_principal) {
-                const principalTelefone = await Telefone.findOne({ where: { id_pessoa: id, is_principal: true } });
+                const principalTelefone = await Telefone.findOne({ where: { id_pessoa, is_principal: true } });
                 if (principalTelefone) {
                     principalTelefone.is_principal = false;
                     await principalTelefone.save();
                 }
             }
-            const telefone = await Telefone.create({ tel, is_principal, id_pessoa:id });
+            const telefone = await Telefone.create({ tel, is_principal, id_pessoa});
             console.error(telefone);
             return res.status(201).json(telefone);
 

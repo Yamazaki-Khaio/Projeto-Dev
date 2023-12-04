@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import e, { Request, Response } from 'express';
 import Pessoa from '../pessoa/pessoaModels';
 import Email from './emailModels';
 
@@ -32,22 +32,25 @@ class EmailController {
 
   public async create(req: Request, res: Response): Promise<Response> {
     try {
-      const { email, is_principal, id_pessoa } = req.body;
+      const { id_pessoa } = req.params;
+      const { email, is_principal} = req.body;
       const pessoa = await Pessoa.findOne({ where: { id: id_pessoa } });
-
-      if (!pessoa) {
-        return res.status(404).json({ error: 'Pessoa não encontrada' });
-      }
-
-      const emailExists = await Email.findOne({ where: { email, id_pessoa } });
+      const emailExists = await Email.findOne({ where: { email: email, id_pessoa: id_pessoa } });
 
       if (emailExists) {
         return res.status(400).json({ error: 'E-mail já cadastrado para esta pessoa' });
       }
-
-      if (is_principal) {
-        await Email.update({ is_principal: false }, { where: { id_pessoa } });
+      else if (!pessoa) {
+        return res.status(404).json({ error: 'Pessoa não encontrada' });
       }
+      else if (is_principal) {
+        const principalEmail = await Email.findOne({ where: { id_pessoa: id_pessoa, is_principal: true } });
+        if (principalEmail) {
+          principalEmail.is_principal = false;
+          await principalEmail.save();
+        }
+      }
+
 
       const novoEmail = await Email.create({ email, is_principal, id_pessoa });
 
@@ -56,6 +59,9 @@ class EmailController {
       return res.status(400).json({ error: error.message });
     }
   }
+
+
+
   public async update(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
 

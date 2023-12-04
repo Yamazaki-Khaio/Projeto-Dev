@@ -59,8 +59,12 @@ class ClienteController {
             clientes.forEach(cliente => {
                 clientesPessoa.forEach(pessoa => {
                     if (cliente.id_pessoa == pessoa.id) {
-                        cliente.dataValues.nome = pessoa.nome;
                         cliente.dataValues.identificacao = pessoa.identificacao;
+                        cliente.dataValues.nome = pessoa.nome;
+                        cliente.dataValues.nomeFantasia = pessoa.nome_fantasia;
+                        cliente.dataValues.nomeMae = pessoa.nome_mae;
+                        cliente.dataValues.incricaoMunicipal = pessoa.inscricao_municipal;
+                        cliente.dataValues.incricaoEstadual = pessoa.inscricao_estadual;
                     }
                 });
             });
@@ -79,10 +83,23 @@ class ClienteController {
             if (!cliente) {
                 return res.status(404).json({ error: 'Cliente não encontrado' });
             }
+            
+            const pessoa = await Pessoa.findByPk(cliente.id_pessoa);
+
+            if (!pessoa) {
+                return res.status(404).json({ error: 'Pessoa não encontrada' });
+            }
+
+            cliente.dataValues.identificacao = pessoa.identificacao;
+            cliente.dataValues.nome = pessoa.nome;
+            cliente.dataValues.nomeFantasia = pessoa.nome_fantasia;
+            cliente.dataValues.nomeMae = pessoa.nome_mae;
+            cliente.dataValues.incricaoMunicipal = pessoa.inscricao_municipal;
+            cliente.dataValues.incricaoEstadual = pessoa.inscricao_estadual;
 
             return res.status(200).json(cliente);
         } catch (error: any) {
-            return res.status(500).json({ error: 'Erro interno do servidor' });
+            return res.status(500).json({ error: error.message });
         }
     }
 

@@ -3,7 +3,7 @@ import emailControllers from './emailControllers';
 const router = express.Router();
 
 // Rota para criar um novo email
-router.post('/', emailControllers.create);
+router.post('/:id_pessoa', emailControllers.create);
 
 // Rota para buscar todos os emails
 router.get('/', emailControllers.getAll);

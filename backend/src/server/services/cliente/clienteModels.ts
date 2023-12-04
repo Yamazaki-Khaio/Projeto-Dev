@@ -1,7 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../../config/sequelize';
 
-
 // Defina o modelo para a tabela 'Cliente'
 class Cliente extends Model {
   public id!: number;
@@ -38,8 +37,11 @@ Cliente.init(
   {
     modelName: 'Cliente',
     sequelize,
+    
   }
 );
 
 
 export default Cliente;
+
+sequelize;
