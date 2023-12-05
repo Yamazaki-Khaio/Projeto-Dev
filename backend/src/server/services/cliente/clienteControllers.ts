@@ -3,27 +3,46 @@ import Cliente from './clienteModels';
 import Pessoa from '../pessoa/pessoaModels';
 import Representante from '../representante/representanteModels';
 
+
+
+
+
+
+
+
 // Defina o controlador para o modelo 'Cliente'
 class ClienteController {
     public async create(req: Request, res: Response): Promise<Response> {
         try {
             // Verifica se a Pessoa já existe pelo identificador (identificacao)
-            const identificacao = req.body.identificacao;
-            const identificacaoNumerica = identificacao.replace(/\D/g, '');
-            if (identificacaoNumerica.length != 11 && identificacaoNumerica.length != 14) {
+            const identificacao = req.body.identificacao.replace(/\D/g, '');
+            // Remove todos os caracteres não numéricos
+            // Exemplo: '123.456.789-01' -> '12345678901);
+            // Se o tamanho da identificação for diferente de 11 ou 14, retorna erro 400
+            if (identificacao.length !== 11 && identificacao.length !== 14) {
                 return res.status(400).json({ error: 'Identificação inválida' });
             }
-            let pessoa = await Pessoa.findOne({ where: { identificacao: identificacaoNumerica } });
+            let pessoa = await Pessoa.findOne({ where: { identificacao: identificacao } });
             // Se a Pessoa não existe, cria uma nova
             if (!pessoa) {
-                pessoa = await Pessoa.create(req.body);
-            }
-            // Agora, cria o Cliente associado à Pessoa
-            const cliente = await Cliente.create({ id_pessoa: pessoa.id });
+                const { nome, nome_ref, incricao_municipal, incricao_estadual } = req.body;
 
-            return res.status(201).json(cliente);
-        } catch (error) {
-            return res.status(400).json({ error: error });
+                switch (identificacao.length) {
+                    case 11:
+                        pessoa = await Pessoa.create({ nome: nome, identificacao: identificacao, nome_mae: nome_ref });
+                        break;
+                    case 14:
+                        pessoa = await Pessoa.create({ nome, identificacao: identificacao, nome_fantasia: nome_ref, inscricao_municipal: incricao_municipal, inscricao_estadual: incricao_estadual });
+                        break;
+                    default:
+                        return res.status(400).json({ error: 'Identificação inválida' });
+                }
+            }   
+
+            const cliente = await Cliente.create({ id_pessoa: pessoa!.id });
+            return res.status(200).json(cliente);
+        } catch (error: any) {
+            return res.status(400).json({ error: error.message });
         }
     }
 
@@ -38,15 +57,14 @@ class ClienteController {
             }
 
             // Verifica se a Pessoa já existe pelo identificador (identificacao)
-            const identificacao = req.body.identificacao;
-            const identificacaoNumerica = identificacao.replace(/\D/g, '');
-            let pessoa = await Pessoa.findOne({ where: { identificacao: identificacaoNumerica } });
+            const identificacao = req.body.identificacao.replace(/\D/g, '');
+            let pessoa = await Pessoa.findOne({ where: { identificacao: identificacao } });
             // Se a Pessoa não existe, retorna erro 404
             if (!pessoa) {
-                return res.status(404).json({ error: 'Cliente não exite' });
-            }else{
+                return res.status(404).json({ error: 'Cliente não existe' });
+            } else {
                 // Atualiza a Pessoa
-                await Pessoa.update(req.body, { where: { id: pessoa.id } });
+                await Pessoa.update(req.body, { where: { id: pessoa!.id } });
             }
             // Atualiza o Cliente
             await Cliente.update(req.body, { where: { id } });
@@ -95,14 +113,17 @@ class ClienteController {
                 return res.status(404).json({ error: 'Pessoa não encontrada' });
             }
 
-            cliente.dataValues.identificacao = pessoa.identificacao;
-            cliente.dataValues.nome = pessoa.nome;
-            cliente.dataValues.nomeFantasia = pessoa.nome_fantasia;
-            cliente.dataValues.nomeMae = pessoa.nome_mae;
-            cliente.dataValues.incricaoMunicipal = pessoa.inscricao_municipal;
-            cliente.dataValues.incricaoEstadual = pessoa.inscricao_estadual;
+            const clienteData = {
+                id: cliente.id,
+                identificacao: pessoa.identificacao,
+                nome: pessoa.nome,
+                nomeFantasia: pessoa.nome_fantasia,
+                nomeMae: pessoa.nome_mae,
+                incricaoMunicipal: pessoa.inscricao_municipal,
+                incricaoEstadual: pessoa.inscricao_estadual
+            };
 
-            return res.status(200).json(cliente);
+            return res.status(200).json(clienteData);
         } catch (error: any) {
             return res.status(500).json({ error: error.message });
         }
@@ -136,3 +157,4 @@ class ClienteController {
 }
 
 export default new ClienteController();
+

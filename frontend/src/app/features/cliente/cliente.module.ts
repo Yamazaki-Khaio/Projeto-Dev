@@ -6,6 +6,7 @@ import { ClienteHomeComponent } from './cliente-home/cliente-home.component';
 import { ClienteCadastroComponent } from './cliente-cadastro/cliente-cadastro.component';
 import { ClienteEditarComponent } from './cliente-editar/cliente-editar.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,8 +17,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     ClienteRoutingModule,
-    SharedModule
-
+    SharedModule,
+    ReactiveFormsModule
   ],
   exports: [
     ClienteHomeComponent,

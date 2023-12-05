@@ -34,4 +34,5 @@ import { IdentificadorValidatorDirective } from './directives/identificador-vali
   ]
 
 })
+
 export class SharedModule { }

@@ -1,33 +1,38 @@
-<form formGroup="clienteForm" (ngSubmit)="OnSubmit()">
+<form [formGroup]="clienteForm" (ngSubmit)="OnSubmit()">
   <div class="form-row">
-    <div class="form-group ">
+    <div class="form-group">
       <label for="inputNome">Nome*</label>
-      <input type="text" class="form-control" id="inputNome" placeholder="Nome Completo" formControlName="nome" required>
+      <input type="text" class="form-control" id="inputNome" name="inputNome" placeholder="Nome Completo"
+        formControlName="inputNome" required>
     </div>
 
     <div class="form-group col-md-6">
       <label for="inputIdentificacao">CNPJ/CPF*</label>
-      <input type="text" class="form-control" id="inputIdentificacao" placeholder="CPF/CNPJ" formControlName="identificacao" appIdentificadorValidator required>
+      <input type="text" class="form-control" id="inputIdentificacao" name="inputIdentificacao"
+        placeholder="CPF/CNPJ"
+        formControlName="inputIdentificacao" appIdentificadorValidator required>
     </div>
   </div>
 
-  <div class="form-group">
-    <label>Nome Fantasia</label>
-    <input type="text" class="form-control" id="inputRef" placeholder="Nome da Mãe ou Razão Social" formControlName="nome_ref" appIdentificadorValidator identificadorLabel required>
-    </div>
+<div class="form-group">
+  <label for="inputRef">Razão Social</label>
+  <input type="text" class="form-control" id="inputRef" name="inputRef"
+    placeholder="Razão Social"
+    formControlName="inputRef" required="identificacao">
+</div>
 
-    <div class="form-group">
-      <label for="inputRazaoSocial">Inscrição Municipal</label>
-      <input type="text" class="form-control" id="inputInscricaoMunicipal" placeholder="Inscrição Estadual" formControlName="inscricao_estadual">
-    </div>
+<div class="form-group">
+  <label for="inputInscricaoMunicipal">Inscrição Municipal</label>
+  <input type="text" class="form-control" id="inputInscricaoMunicipal" name="inputInscricaoMunicipal"
+    placeholder="Inscrição Municipal" formControlName="inputInscricaoMunicipal">
+</div>
 
-    <div class="form-group">
-      <label for="inputInscricaoEstadual">Inscrição Estadual</label>
-      <input type="text" class="form-control" id="inputInscricaoEstadual" placeholder="Inscrição Estadual" formControlName="inscricao_estadual">
-    </div>
+<div class="form-group">
+  <label for="inputInscricaoEstadual">Inscrição Estadual</label>
+  <input type="text" class="form-control" id="inputInscricaoEstadual" name="inputInscricaoEstadual"
+    placeholder="Inscrição Estadual" formControlName="inputInscricaoEstadual">
+</div>
 
-
-
-  <button type="submit"  class="btn btn-primary">Adiconar cliente</button>
-  <button type="button" class="btn btn-secondary" (click)="voltar()">Voltar</button>
+<button type="submit" (click)="OnSubmit()" [disabled]="!clienteForm.valid" class="btn btn-primary">Adicionar cliente</button>
+<button type="button" class="btn btn-secondary" (click)="voltar()">Voltar</button>
 </form>

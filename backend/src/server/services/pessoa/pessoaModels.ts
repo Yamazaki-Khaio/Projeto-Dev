@@ -1,7 +1,5 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../../config/sequelize';
-import Cliente from '../cliente/clienteModels';
-import Representante from './../representante/representanteModels';
 
 
 //modelo para a tabela 'Pessoa'
