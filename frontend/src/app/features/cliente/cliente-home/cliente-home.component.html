@@ -28,7 +28,7 @@
             <td><span class="badge badge-primary">{{ client.situacao }}</span></td>
             <td>{{ client.data_cadastro | date }}</td>
             <td>
-              <button class="btn btn-secondary" (click)="editarCliente()">Editar</button>
+              <button class="btn btn-secondary" (click)="editarCliente(client)">Editar</button>
               <button class="btn btn-danger" (click)="deleteClient(client)">Excluir</button>
             </td>
           </tr>

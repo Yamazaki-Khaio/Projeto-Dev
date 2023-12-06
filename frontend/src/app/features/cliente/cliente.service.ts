@@ -33,8 +33,8 @@ export class ClienteService {
 
 
   // Atualiza um cliente existente
-  updateCliente(id: string, cliente: Cliente): Observable<Cliente> {
-    const endpoint = `${this.baseUrl}/${id}`;
+  updateCliente(cliente: Cliente): Observable<Cliente> {
+    const endpoint = `${this.baseUrl}/${cliente.id}`;
     return this.apiService.put<Cliente>(endpoint, cliente);
   }
 

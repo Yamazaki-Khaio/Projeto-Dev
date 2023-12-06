@@ -10,28 +10,13 @@ import { Observable, Subscription } from 'rxjs';
   styleUrls: ['./cliente-home.component.scss']
 })
 export class ClienteHomeComponent implements OnDestroy {
-
   clientes$: Observable<Cliente[]>;
   private clientesSubscription: Subscription = new Subscription();
 
   constructor(private clienteService: ClienteService, private router: Router) {
     this.clientes$ = this.clienteService.getClientes();
   }
- /** ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    this.clientesSubscription = this.clienteService.getClientes().subscribe(
-      (data) => {
-        console.error('Clientes carregados com sucesso. Dados: ', data);
-      },
-      (error) => {
-        console.error('Erro ao carregar clientes. Erro: ' + error);
-        alert('Erro ao carregar clientes. Erro: ' + error);
-      }
-    );
-  }
 
-  */
   ngOnDestroy(): void {
     this.clientesSubscription.unsubscribe();
   }
@@ -41,12 +26,38 @@ export class ClienteHomeComponent implements OnDestroy {
     this.router.navigate(['/profile/cliente/cadastro']);
   }
 
-  editarCliente() {
-    this.router.navigate(['/profile/cliente/editar/{{cliente.id}']);
+  editarCliente(cliente: Cliente) {
+    this.router.navigate([`/profile/cliente/editar/${cliente.id}`]);
   }
 
   deleteClient(cliente: Cliente) {
-    // Chama o método deleteCliente() do serviço de clientes
+    const clienteId = cliente.id?.toString();
+    if (clienteId) {
+      this.clienteService.deleteCliente(clienteId).subscribe(
+        () => {
+          console.log('Cliente excluído com sucesso.');
+          // Recarrega a lista de clientes após a exclusão
+          this.reloadClientes();
+        },
+        (error) => {
+          console.error('Erro ao excluir cliente. Erro: ', error);
+          // Adicione tratamento de erro aqui, se necessário
+        }
+      );
+    }
+  }
 
+  private reloadClientes() {
+    this.clientesSubscription.unsubscribe();
+    this.clientes$ = this.clienteService.getClientes();
+    this.clientesSubscription = this.clientes$.subscribe(
+      (data) => {
+        console.log('Clientes carregados com sucesso. Dados: ', data);
+      },
+      (error) => {
+        console.error('Erro ao carregar clientes. Erro: ' + error);
+        alert('Erro ao carregar clientes. Erro: ' + error);
+      }
+    );
   }
 }

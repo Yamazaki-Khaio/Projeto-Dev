@@ -44,7 +44,7 @@ export class ClienteCadastroComponent implements OnInit {
     this.clienteService.createCliente(cliente).subscribe(
       (data: Cliente) => {
         console.log(data);
-        this.router.navigate(['users/profile/cliente/' + data.id]);
+        this.router.navigate(['/profile/cliente/editar/' + data.id]);
       },
       (error: any) => {
         console.log(cliente);
