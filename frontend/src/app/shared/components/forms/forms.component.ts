@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./forms.component.sass']
 })
 export class FormsComponent {
+
 //refatoração futura
 }

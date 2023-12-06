@@ -1,0 +1,35 @@
+<form class="form-control">
+  <div class="form-row">
+    <div class="form-group">
+      <label for="inputNome">Nome*</label>
+      <input type="text" class="form-control" id="inputNome" name="inputNome" placeholder="Nome Completo"
+        formControlName="inputNome" required>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="inputIdentificacao">CNPJ/CPF*</label>
+      <input type="text" class="form-control" id="inputIdentificacao" name="inputIdentificacao"
+        placeholder="CPF/CNPJ"
+        formControlName="inputIdentificacao" appIdentificadorValidator required>
+    </div>
+  </div>
+
+<div class="form-group">
+  <label for="inputRef">Razão Social</label>
+  <input type="text" class="form-control" id="inputRef" name="inputRef"
+    placeholder="Razão Social"
+    formControlName="inputRef" required="identificacao">
+</div>
+
+<div class="form-group">
+  <label for="inputInscricaoMunicipal">Inscrição Municipal</label>
+  <input type="text" class="form-control" id="inputInscricaoMunicipal" name="inputInscricaoMunicipal"
+    placeholder="Inscrição Municipal" formControlName="inputInscricaoMunicipal">
+</div>
+
+<div class="form-group">
+  <label for="inputInscricaoEstadual">Inscrição Estadual</label>
+  <input type="text" class="form-control" id="inputInscricaoEstadual" name="inputInscricaoEstadual"
+    placeholder="Inscrição Estadual" formControlName="inputInscricaoEstadual">
+</div>
+</form>

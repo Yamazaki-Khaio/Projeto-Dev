@@ -9,6 +9,8 @@ import { ShowHidePasswordDirective } from './directives/show-hide-password.direc
 import { PasswordMatchDirective } from './directives/password-match.directive';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { IdentificadorValidatorDirective } from './directives/identificador-validator.directive';
+import { FormsComponent } from './components/forms/forms.component';
+
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { IdentificadorValidatorDirective } from './directives/identificador-vali
     PasswordMatchDirective,
     SidebarComponent,
     IdentificadorValidatorDirective,
+    FormsComponent
+
 
   ],
   imports: [
@@ -31,6 +35,7 @@ import { IdentificadorValidatorDirective } from './directives/identificador-vali
     PasswordMatchDirective,
     SidebarComponent,
     IdentificadorValidatorDirective,
+    FormsComponent
   ]
 
 })

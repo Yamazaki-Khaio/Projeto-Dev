@@ -4,6 +4,7 @@
     <li class="breadcrumb-item active" aria-current="page">Editar Cliente</li>
   </ol>
 </nav>
+
 <div class="container">
   <div class="row">
     <div class="col-8">
@@ -11,38 +12,23 @@
     </div>
     <div class="col-4">
       <div class="btn-group">
-        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" [ngClass]="{
+
+          'btn-success': clienteEditForm.get('situacao')?.value === 'Ativo',
+          'btn-warning': clienteEditForm.get('situacao')?.value === 'Inativo',
+          'btn-danger': clienteEditForm.get('situacao')?.value === 'Negativado'
+        }">
           Situação
         </button>
-        <ul class="dropdown-menu">
+        <ul class="dropdown-menu" [class.show]="clienteEditForm.get('situacao')?.touched">
           <li><a class="dropdown-item" (click)="setSituacao('Ativo')">Ativo</a></li>
           <li><a class="dropdown-item" (click)="setSituacao('Inativo')">Inativo</a></li>
+          <li><a class="dropdown-item" (click)="setSituacao('Negativado')">Negativado</a></li>
         </ul>
       </div>
     </div>
   </div>
 
-  <form [formGroup]="clienteForm">
-    <div>
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" formControlName="nome">
-    </div>
-
-    <div>
-      <label for="email">Email:</label>
-      <input type="email" id="email" formControlName="email">
-    </div>
-
-    <div>
-      <label for="telefone">Telefone:</label>
-      <input type="text" id="telefone" formControlName="telefone">
-    </div>
-
-    <div>
-      <label for="endereco">Endereço:</label>
-      <input type="text" id="endereco" formControlName="endereco">
-    </div>
-
-    <button type="submit">Salvar</button>
-  </form>
-</div>
+<form [formGroup]="clienteEditForm">
+  
+</form>
