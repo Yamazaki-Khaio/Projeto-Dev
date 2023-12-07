@@ -10,11 +10,20 @@ import { ClienteService } from '../cliente.service';
   styleUrls: ['./cliente-editar.component.scss']
 })
 export class ClienteEditarComponent implements OnInit {
-setSituacao(arg0: string) {
+closeAlert() {
 throw new Error('Method not implemented.');
 }
+getColorForSituacao(): any {
+throw new Error('Method not implemented.');
+}
+submitForm() {
+throw new Error('Method not implemented.');
+}
+
   clienteEditForm!: FormGroup;
   clienteId!: number;
+  alertMessage?: string;
+
 
   constructor(
     private fb: FormBuilder,

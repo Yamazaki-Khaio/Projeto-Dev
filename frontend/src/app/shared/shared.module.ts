@@ -10,7 +10,8 @@ import { PasswordMatchDirective } from './directives/password-match.directive';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { IdentificadorValidatorDirective } from './directives/identificador-validator.directive';
 import { FormsComponent } from './components/forms/forms.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ListLinkComponent } from './components/list-link/list-link.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +21,8 @@ import { FormsComponent } from './components/forms/forms.component';
     PasswordMatchDirective,
     SidebarComponent,
     IdentificadorValidatorDirective,
-    FormsComponent
-
+    FormsComponent,
+    ListLinkComponent
 
   ],
   imports: [
@@ -35,7 +36,8 @@ import { FormsComponent } from './components/forms/forms.component';
     PasswordMatchDirective,
     SidebarComponent,
     IdentificadorValidatorDirective,
-    FormsComponent
+    FormsComponent,
+    ListLinkComponent,
   ]
 
 })

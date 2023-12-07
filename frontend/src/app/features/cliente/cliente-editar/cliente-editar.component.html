@@ -1,4 +1,6 @@
-<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+<!-- cliente-editar.component.html -->
+
+<nav class="mx-auto" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/profile/cliente">Cliente</a></li>
     <li class="breadcrumb-item active" aria-current="page">Editar Cliente</li>
@@ -6,29 +8,90 @@
 </nav>
 
 <div class="container">
-  <div class="row">
-    <div class="col-8">
-      <h1>Editar Cliente</h1>
-    </div>
-    <div class="col-4">
-      <div class="btn-group">
-        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" [ngClass]="{
+  <h1 class="text-center mt-5">Dados cadastrais</h1>
 
-          'btn-success': clienteEditForm.get('situacao')?.value === 'Ativo',
-          'btn-warning': clienteEditForm.get('situacao')?.value === 'Inativo',
-          'btn-danger': clienteEditForm.get('situacao')?.value === 'Negativado'
-        }">
-          Situação
-        </button>
-        <ul class="dropdown-menu" [class.show]="clienteEditForm.get('situacao')?.touched">
-          <li><a class="dropdown-item" (click)="setSituacao('Ativo')">Ativo</a></li>
-          <li><a class="dropdown-item" (click)="setSituacao('Inativo')">Inativo</a></li>
-          <li><a class="dropdown-item" (click)="setSituacao('Negativado')">Negativado</a></li>
-        </ul>
-      </div>
-    </div>
+  <!-- Alerta Bootstrap para exibir mensagens -->
+  <div *ngIf="alertMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ alertMessage }}
+    <button type="button" class="btn-close" (click)="closeAlert()" aria-label="Close"></button>
   </div>
 
-<form [formGroup]="clienteEditForm">
-  
-</form>
+      <!-- Campo de Situação com cores diferentes -->
+      <div class="col-md-6">
+        <div class="form-floating mb-3">
+          <select class="form-select" id="situacao" aria-label="Situação" formControlName="situacao"
+                  [ngStyle]="{'color': getColorForSituacao()}">
+            <!-- Opções do select -->
+            <option value="ativo" class="confirmed" >Ativo</option>
+            <option value="inativo" class="alert">Inativo</option>
+            <option value="negativado" class="danger">Negativado</option>
+          </select>
+          <label for="situacao">Situação</label>
+        </div>
+      </div>
+
+  <form [formGroup]="clienteEditForm" class="mt-5">
+    <div class="row">
+      <!-- Campo de CPF/CNPJ readonly e desativado -->
+      <div class="col-md-6">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="identificador" placeholder="CPF/CNPJ"
+                 formControlName="identificador" [readonly]="true" [disabled]="true">
+          <label for="identificador">CPF/CNPJ</label>
+        </div>
+      </div>
+
+      <!-- Campo de Data de Cadastro readonly -->
+      <div class="col-md-6">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="data" placeholder="Data de Cadastro"
+                 formControlName="data" [readonly]="true">
+          <label for="data">Data de Cadastro</label>
+        </div>
+      </div>
+
+
+      <!-- Campo de Nome -->
+      <div class="col-md-6">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="nome" placeholder="Nome"
+                 formControlName="nome">
+          <label for="nome">Nome</label>
+        </div>
+      </div>
+
+      <!-- Campo de Nome Referência -->
+      <div class="col-md-6">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="nome_ref" placeholder="Nome da mãe ou Fantasia"
+                 formControlName="nome_ref">
+          <label for="nome_ref">Nome Referência</label>
+        </div>
+      </div>
+
+      <!-- Campo de Inscrição Estadual -->
+      <div class="col-md-6">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="inscricao_estadual" placeholder="Inscrição Estadual"
+                 formControlName="inscricao_estadual">
+          <label for="inscricao_estadual">Inscrição Estadual</label>
+        </div>
+      </div>
+
+      <!-- Campo de Inscrição Municipal -->
+      <div class="col-md-6">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="inscricao_municipal" placeholder="Inscrição Municipal"
+                 formControlName="inscricao_municipal">
+          <label for="inscricao_municipal">Inscrição Municipal</label>
+        </div>
+      </div>
+
+      <!-- Botão de envio -->
+      <div class="col-md-12 text-center mt-3">
+        <button type="submit" class="btn btn-primary" (click)="submitForm()">Salvar</button>
+        <button type="button" class="btn btn-secondary" (click)="voltar()">Voltar</button>
+      </div>
+    </div>
+  </form>
+</div>
