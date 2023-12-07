@@ -35,7 +35,7 @@
   <!-- Formulário de edição de cliente -->
 
 
-  <form [formGroup]="clienteEditForm" class="mt-5">
+  <form [formGroup]="clienteEditForm" class="mt-5 responsive" (ngSubmit)="onSubmit" >
     <div class="row">
       <!-- Campo de CPF/CNPJ readonly e desativado -->
       <div class="col-md-6">
@@ -50,7 +50,7 @@
       <div class="col-md-6">
         <div class="form-floating mb-3">
           <input type="text" class="form-control" id="data" placeholder="Data de Cadastro"
-                 formControlName="data" [readonly]="true">
+                 formControlName="data_cadastro" [readonly]="true">
           <label for="data">Data de Cadastro</label>
         </div>
       </div>
@@ -94,7 +94,7 @@
 
       <!-- Botão de envio -->
       <div class="col-md-12 text-center mt-3">
-        <button type="submit" class="btn btn-primary" (click)="submitForm()">Salvar</button>
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Salvar</button>
         <button type="button" class="btn btn-secondary" (click)="voltar()">Voltar</button>
       </div>
     </div>

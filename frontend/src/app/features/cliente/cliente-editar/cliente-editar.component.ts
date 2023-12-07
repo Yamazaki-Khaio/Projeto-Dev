@@ -26,12 +26,13 @@ export class ClienteEditarComponent implements OnInit {
     this.clienteService.getCliente(this.clienteId.toString()).subscribe(
       (cliente: Cliente) => {
         this.clienteEditForm = this.fb.group({
-          inputNome: [cliente.nome, [Validators.required]],
-          inputIdentificacao: [cliente.identificacao],
-          inputRef: [cliente.nome_ref, [Validators.required]],
-          inputInscricaoMunicipal: [cliente.inscricao_municipal],
-          inputInscricaoEstadual: [cliente.inscricao_estadual],
-          inputSituacao: [cliente.situacao], // Adicionando o campo de Situação
+          nome: [cliente.nome, [Validators.required]],
+          identificador: [cliente.identificacao],
+          nome_ref: [cliente.nome_ref, [Validators.required]],
+          inscricao_municipal: [cliente.inscricao_municipal],
+          inscricao_estadual: [cliente.inscricao_estadual],
+          situacao: [cliente.situacao],
+          data_cadastro: [cliente.data_cadastro] // Adicionando o campo de Situação
         });
       },
       (error: any) => {
@@ -43,12 +44,12 @@ export class ClienteEditarComponent implements OnInit {
   onSubmit(): void {
     const cliente: Cliente = {
       id: this.clienteId,
-      nome: this.clienteEditForm.value.inputNome,
-      identificacao: this.clienteEditForm.value.inputIdentificacao,
-      nome_ref: this.clienteEditForm.value.inputRef,
-      inscricao_municipal: this.clienteEditForm.value.inputInscricaoMunicipal,
-      inscricao_estadual: this.clienteEditForm.value.inputInscricaoEstadual,
-      situacao: this.clienteEditForm.value.inputSituacao, // Incluindo o valor da Situação
+      identificacao: this.clienteEditForm.value.identificador,
+      nome: this.clienteEditForm.value.nome,
+      nome_ref: this.clienteEditForm.value.nome_ref,
+      inscricao_municipal: this.clienteEditForm.value.inscricao_municipal,
+      inscricao_estadual: this.clienteEditForm.value.inscricao_estadual,
+      situacao: this.clienteEditForm.value.situacao,
     };
 
     this.clienteService.updateCliente(cliente).subscribe(
@@ -87,11 +88,4 @@ export class ClienteEditarComponent implements OnInit {
         return '';
     }
   }
-
-    // Adicione a função submitForm
-    submitForm(): void {
-      // Lógica do formulário, se necessário
-    }
 }
-
-
