@@ -10,20 +10,9 @@ import { ClienteService } from '../cliente.service';
   styleUrls: ['./cliente-editar.component.scss']
 })
 export class ClienteEditarComponent implements OnInit {
-closeAlert() {
-throw new Error('Method not implemented.');
-}
-getColorForSituacao(): any {
-throw new Error('Method not implemented.');
-}
-submitForm() {
-throw new Error('Method not implemented.');
-}
-
   clienteEditForm!: FormGroup;
   clienteId!: number;
   alertMessage?: string;
-
 
   constructor(
     private fb: FormBuilder,
@@ -42,6 +31,7 @@ throw new Error('Method not implemented.');
           inputRef: [cliente.nome_ref, [Validators.required]],
           inputInscricaoMunicipal: [cliente.inscricao_municipal],
           inputInscricaoEstadual: [cliente.inscricao_estadual],
+          inputSituacao: [cliente.situacao], // Adicionando o campo de Situação
         });
       },
       (error: any) => {
@@ -58,6 +48,7 @@ throw new Error('Method not implemented.');
       nome_ref: this.clienteEditForm.value.inputRef,
       inscricao_municipal: this.clienteEditForm.value.inputInscricaoMunicipal,
       inscricao_estadual: this.clienteEditForm.value.inputInscricaoEstadual,
+      situacao: this.clienteEditForm.value.inputSituacao, // Incluindo o valor da Situação
     };
 
     this.clienteService.updateCliente(cliente).subscribe(
@@ -75,4 +66,32 @@ throw new Error('Method not implemented.');
   voltar() {
     this.router.navigate(['/profile/cliente']);
   }
+
+  // Adicionando a lógica para fechar o alerta
+  closeAlert(): void {
+    this.alertMessage = undefined;
+  }
+
+  // Adicionando a lógica para obter a cor da Situação
+  getColorForSituacao(): string {
+    const situacao = this.clienteEditForm.get('inputSituacao')?.value;
+
+    switch (situacao) {
+      case 'Ativo':
+        return 'green';
+      case 'Inativo':
+        return 'yellow';
+      case 'Negativado':
+        return 'red';
+      default:
+        return '';
+    }
+  }
+
+    // Adicione a função submitForm
+    submitForm(): void {
+      // Lógica do formulário, se necessário
+    }
 }
+
+
