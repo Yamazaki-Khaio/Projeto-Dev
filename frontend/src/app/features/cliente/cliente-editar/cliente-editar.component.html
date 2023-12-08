@@ -1,11 +1,6 @@
 <!-- cliente-editar.component.html -->
 
-<nav class="mx-auto" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/profile/cliente">Cliente</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Editar Cliente</li>
-  </ol>
-</nav>
+<app-breadcrumb></app-breadcrumb>
 
 <div class="container">
   <h1 class="text-center mt-5">Dados cadastrais</h1>
@@ -15,6 +10,10 @@
     {{ alertMessage }}
     <button type="button" class="btn-close" (click)="closeAlert()" aria-label="Close"></button>
   </div>
+
+<app-list-link></app-list-link>
+
+  <form [formGroup]="clienteEditForm" class="mt-5 responsive" (ngSubmit)="onSubmit" >
 
       <!-- Campo de Situação com cores diferentes -->
       <div class="col-md-6">
@@ -30,12 +29,6 @@
         </div>
       </div>
 
-
-      <app-list-link></app-list-link>
-  <!-- Formulário de edição de cliente -->
-
-
-  <form [formGroup]="clienteEditForm" class="mt-5 responsive" (ngSubmit)="onSubmit" >
     <div class="row">
       <!-- Campo de CPF/CNPJ readonly e desativado -->
       <div class="col-md-6">
@@ -93,9 +86,9 @@
       </div>
 
       <!-- Botão de envio -->
-      <div class="col-md-12 text-center mt-3">
-        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Salvar</button>
-        <button type="button" class="btn btn-secondary" (click)="voltar()">Voltar</button>
+      <div class="col-md-12 text-center mt-3 mr-6 mx-12">
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Salvar Alteração</button>
+        <button type="button" class="btn btn-secondary" (click)="voltar()">Cancelar</button>
       </div>
     </div>
   </form>

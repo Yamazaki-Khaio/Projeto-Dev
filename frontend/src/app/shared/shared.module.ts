@@ -12,6 +12,7 @@ import { IdentificadorValidatorDirective } from './directives/identificador-vali
 import { FormsComponent } from './components/forms/forms.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListLinkComponent } from './components/list-link/list-link.component';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ListLinkComponent } from './components/list-link/list-link.component';
     SidebarComponent,
     IdentificadorValidatorDirective,
     FormsComponent,
-    ListLinkComponent
+    ListLinkComponent,
+    BreadcrumbComponent
 
   ],
   imports: [
@@ -38,6 +40,7 @@ import { ListLinkComponent } from './components/list-link/list-link.component';
     IdentificadorValidatorDirective,
     FormsComponent,
     ListLinkComponent,
+    BreadcrumbComponent,  
   ]
 
 })

@@ -9,30 +9,19 @@ const routes: Routes = [
   { path: '', component: ClienteHomeComponent },
   { path: 'home', component: ClienteHomeComponent },
   {
-    path: 'cadastro', component: ClienteCadastroComponent, children: [
-      {
-        path: 'localizador',
-        loadChildren: () => import('../localizador/localizador.module').then(m => m.LocalizadorModule)
-      },
-      {
-        path: 'representante',
-        loadChildren: () => import('../representante/representante.module').then(m => m.RepresentanteModule)
-      },
-
-    ]
+    path: 'cadastro', component: ClienteCadastroComponent
   },
   {
-    path: 'editar/:id', component: ClienteEditarComponent, children: [
-      {
-        path: 'localizador',
-        loadChildren: () => import('../localizador/localizador.module').then(m => m.LocalizadorModule)
-      },
-      {
-        path: 'representante',
-        loadChildren: () => import('../representante/representante.module').then(m => m.RepresentanteModule)
-      }]
+    path: 'editar/:id', component: ClienteEditarComponent,
   },
-
+  {
+    path: 'localizador/:id',
+    loadChildren: () => import('../localizador/localizador.module').then(m => m.LocalizadorModule)
+  },
+  {
+    path: 'representante/:id',
+    loadChildren: () => import('../representante/representante.module').then(m => m.RepresentanteModule)
+  }
 ];
 
 @NgModule({

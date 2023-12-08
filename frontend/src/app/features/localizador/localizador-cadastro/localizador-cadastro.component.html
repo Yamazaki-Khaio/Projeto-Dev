@@ -1,0 +1,96 @@
+<!-- FILEPATH: /c:/Users/kaio.fonseca/Documents/projeto-dev/Projeto-Dev/frontend/src/app/features/localizador/localizador-cadastro/localizador-cadastro.component.html -->
+<div class="container mx-auto">
+
+  <div class="row">
+    <app-breadcrumb></app-breadcrumb>
+    <app-list-link></app-list-link>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="section1">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1"
+        aria-expanded="false" aria-controls="collapse1">
+        <div class="d-flex align-items-center gap-2">
+          <div
+            style="color: #CED4DA; font-size: 14px; font-family: Inter; font-weight: 600; line-height: 20px; word-wrap: break-word">
+            Adicionar Endereço</div>
+          <div class="flex-grow-1 border border-2"></div>
+        </div>
+      </button>
+    </h2>
+    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="section1"
+      data-bs-parent="#clienteAccordion">
+      <div class="accordion-body">
+        <!-- Conteúdo para Adicionar Endereço -->
+        <!-- Adicione seus campos e lógica para adicionar endereço aqui -->
+        <!-- Exemplo de chamada de método no componente para abrir o modal -->
+        <!-- <button type="button" class="btn btn-primary" (click)="openEnderecoModal()">Adicionar Endereço</button> -->
+        <a href="#" class="btn btn-primary" (click)="openEnderecoModal()">Adicionar Endereço</a>
+        <div class="col">
+          <a href="#" class="btn btn-primary" (click)="openEnderecoModal()">Adicionar Endereço</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Seção 3: Adicionar Telefone -->
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="section3">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3"
+        aria-expanded="false" aria-controls="collapse3">
+        <div class="d-flex align-items-center gap-2">
+          <div
+            style="color: #CED4DA; font-size: 14px; font-family: Inter; font-weight: 600; line-height: 20px; word-wrap: break-word">
+            Adicionar Telefone</div>
+          <div class="flex-grow-1 border border-2"></div>
+        </div>
+      </button>
+    </h2>
+    <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="section3"
+      data-bs-parent="#clienteAccordion">
+      <div class="accordion-body">
+        <!-- Conteúdo para Adicionar Telefone -->
+        <!-- Adicione seus campos e lógica para adicionar telefone aqui -->
+        <!-- Exemplo de chamada de método no componente para abrir o modal -->
+        <!-- <button type="button" class="btn btn-primary" (click)="openTelefoneModal()">Adicionar Telefone</button> -->
+        <a href="#" class="btn btn-primary" (click)="openTelefoneModal()">Adicionar Telefone</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Seção 4: Adicionar E-mail -->
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="section4">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4"
+        aria-expanded="false" aria-controls="collapse4">
+        <div class="d-flex align-items-center gap-2">
+          <div
+            style="color: #CED4DA; font-size: 14px; font-family: Inter; font-weight: 600; line-height: 20px; word-wrap: break-word">
+            Adicionar E-mail</div>
+          <div class="flex-grow-1 border border-2"></div>
+        </div>
+      </button>
+    </h2>
+    <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="section4"
+      data-bs-parent="#clienteAccordion">
+      <div class="accordion-body">
+        <!-- Conteúdo para Adicionar E-mail -->
+        <!-- Adicione seus campos e lógica para adicionar e-mail aqui -->
+        <!-- Exemplo de chamada de método no componente para abrir o modal -->
+        <!-- <button type="button" class="btn btn-primary" (click)="openEmailModal()">Adicionar E-mail</button> -->
+        <a href="#" class="btn btn-primary" (click)="openEmailModal()">Adicionar E-mail</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Links para adicionar endereço, telefone e email -->
+  <div class="row mt-4">
+
+    <div class="col">
+      <a href="#" class="btn btn-primary" (click)="openTelefoneModal()">Adicionar Telefone</a>
+    </div>
+    <div class="col">
+      <a href="#" class="btn btn-primary" (click)="openEmailModal()">Adicionar E-mail</a>
+    </div>
+  </div>
+</div>
