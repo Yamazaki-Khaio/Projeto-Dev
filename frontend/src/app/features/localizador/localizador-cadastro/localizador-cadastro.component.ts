@@ -6,18 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./localizador-cadastro.component.scss']
 })
 export class LocalizadorCadastroComponent {
-submitForm() {
-throw new Error('Method not implemented.');
-}
-openEnderecoModal() {
-throw new Error('Method not implemented.');
-}
-openTelefoneModal() {
-throw new Error('Method not implemented.');
-}
-openEmailModal() {
-throw new Error('Method not implemented.');
-}
-clienteEditForm: any;
+  showTelefoneInput: boolean = false;
+  showEnderecoModal: boolean = false;
 
+  openEnderecoModal(): void {
+    this.showEnderecoModal = true;
+    this.openBootstrapModal(); // Implemente a lógica para abrir o modal do Bootstrap aqui
+  }
+
+  openTelefoneInput(): void {
+    this.showTelefoneInput = true;
+  }
+
+  openBootstrapModal(): void {
+    // Implemente a lógica para abrir o modal do Bootstrap aqui
+  }
 }

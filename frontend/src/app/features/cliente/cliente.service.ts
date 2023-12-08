@@ -44,5 +44,5 @@ export class ClienteService {
     return this.apiService.delete<void>(endpoint);
   }
 
-  // Adicionar outros métodos específicos para a feature cliente, se necessário.
+
 }
