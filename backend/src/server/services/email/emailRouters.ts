@@ -9,7 +9,7 @@ router.post('/:id_pessoa', emailControllers.create);
 router.get('/', emailControllers.getAll);
 
 // Rota para buscar um email pelo ID
-router.get('/:id', emailControllers.getById);
+router.get('/:id_pessoa', emailControllers.getById);
 
 // Rota para atualizar um email pelo ID
 router.put('/:id', emailControllers.update);

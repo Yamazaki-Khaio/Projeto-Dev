@@ -14,10 +14,10 @@ class EmailController {
   }
 
   public async getById(req: Request, res: Response): Promise<Response> {
-    const { id } = req.params;
+    const { id_pessoa } = req.params;
 
     try {
-      const email = await Email.findByPk(id);
+      const email = await Email.findAll({ where: { id_pessoa } });
 
       if (!email) {
         return res.status(404).json({ error: 'E-mail não encontrado' });

@@ -98,10 +98,10 @@ class TelefoneController {
     }
 
     async getById(req: Request, res: Response): Promise<Response> {
-        const { id } = req.params;
+        const { id_pessoa } = req.params;
 
         try {
-            const telefone = await Telefone.findByPk(id);
+            const telefone = await Telefone.findAll({ where: { id_pessoa} });
 
             if (!telefone) {
                 return res.status(404).json({ error: 'Telefone não encontrado' });

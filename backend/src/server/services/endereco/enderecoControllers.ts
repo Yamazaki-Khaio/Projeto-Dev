@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import e, { Request, Response } from 'express';
 import Endereco from './enderecoModels';
 import Pessoa from '../pessoa/pessoaModels';
 
@@ -13,17 +13,13 @@ export async function getEnderecos(req: Request, res: Response): Promise<void> {
 }
 
 export async function getEnderecoById(req: Request, res: Response): Promise<void> {
-    const { id } = req.params;
+    const { id_pessoa } = req.params;
     try {
-        const endereco = await Endereco.findByPk(id);
-        if (!endereco) {
-            res.status(404).json({ message: 'Endereço não encontrado.' });
-            return;
-        }
-        res.status(200).json(endereco);
+        const enderecos = await Endereco.findAll({ where: { id_pessoa } });
+        res.status(200).json(enderecos);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Erro ao buscar endereço.' });
+        res.status(500).json({ message: 'Erro ao buscar endereços.' });
     }
 }
 

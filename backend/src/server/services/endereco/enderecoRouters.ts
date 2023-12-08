@@ -11,7 +11,7 @@ router.post('/:id_pessoa', enderecoControllers.createEndereco);
 router.get('/', enderecoControllers.getEnderecos);
 
 // Rota para buscar um cliente pelo ID
-router.get('/:id', enderecoControllers.getEnderecoById);
+router.get('/:id_pessoa', enderecoControllers.getEnderecoById);
 
 // Rota para atualizar um cliente pelo ID
 router.put('/:id', enderecoControllers.updateEndereco);

@@ -1,11 +1,9 @@
 import express from 'express';
 import clienteControllers from './clienteControllers';
-import { authMiddleware } from '../../middleware/authMiddleware';
 
 const router = express.Router();
 
 // Aplica o middleware de autenticação em todas as rotas
-router.use((req, res, next) => authMiddleware(req as any, res, next));
 // Rota para criar um novo cliente
 router.post('/', clienteControllers.create);
 
