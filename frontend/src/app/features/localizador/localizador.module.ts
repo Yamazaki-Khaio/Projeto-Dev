@@ -7,6 +7,7 @@ import { SharedModule } from "../../shared/shared.module";
 import { EnderecoViewComponent } from './endereco-view/endereco-view.component';
 import { TelefoneViewComponent } from './telefone-view/telefone-view.component';
 import { EmailViewComponent } from './email-view/email-view.component';
+import { LocalizadorConstrucaoComponent } from './localizador-construcao/localizador-construcao.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { EmailViewComponent } from './email-view/email-view.component';
         LocalizadorCadastroComponent,
         EnderecoViewComponent,
         TelefoneViewComponent,
-        EmailViewComponent
+        EmailViewComponent,
+        LocalizadorConstrucaoComponent
     ],
     imports: [
         CommonModule,

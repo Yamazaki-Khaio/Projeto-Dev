@@ -31,3 +31,6 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 1. Navegue até o diretório da aplicação: `cd raiz-do-projeto`
 2. Execute a o comando: `npm start`
 
+## Testes
+
+Todos os testes para o backend foram feitos via postman.s
