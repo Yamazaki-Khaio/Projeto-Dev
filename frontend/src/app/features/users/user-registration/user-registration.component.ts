@@ -18,6 +18,8 @@ export class UserRegistrationComponent implements OnInit {
 
   registrationForm: FormGroup = new FormGroup({});
   isPasswordVisible: boolean = false;
+  isConfirmPasswordVisible: boolean = false;
+
 
 
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) { }
@@ -35,6 +37,10 @@ export class UserRegistrationComponent implements OnInit {
 
   togglePasswordVisibility(): void {
     this.isPasswordVisible = !this.isPasswordVisible;
+  }
+
+  toggleConfirmPasswordVisibility(): void {
+    this.isConfirmPasswordVisible = !this.isConfirmPasswordVisible;
   }
 
   onSubmit(): void {
