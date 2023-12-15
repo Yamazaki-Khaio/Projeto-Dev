@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 export class UserRegistrationComponent implements OnInit {
 
   registrationForm: FormGroup = new FormGroup({});
+  isPasswordVisible: boolean = false;
 
 
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) { }
@@ -30,6 +31,10 @@ export class UserRegistrationComponent implements OnInit {
       confirmPassword: ['', Validators.required],
     });
 
+  }
+
+  togglePasswordVisibility(): void {
+    this.isPasswordVisible = !this.isPasswordVisible;
   }
 
   onSubmit(): void {

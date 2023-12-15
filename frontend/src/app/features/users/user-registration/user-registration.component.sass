@@ -1,60 +1,115 @@
+$primary-color: #0069B3
+$secondary-color: #2F3337
+$accent-color: #0D6CF2
+$background-color: #F5F7FA
+$text-color: #CED4DA
+$placeholder-color: #6C757D
 
-.user-registration
+.content
+  width: 100%
+  height: 100%
   display: flex
-  justify-content: center
+  flex-direction: column
+  justify-content: flex-start
   align-items: center
-  height: 100vh
-
-  form
-    max-width: 600px
-    width: 90%
-    padding: 20px
-    background-color: #f2f2f2
-    border-radius: 5px
-
-    @media (max-width: 1440px)
-      max-width: 500px
+  gap: 32
 
 
-    @media (max-width: 768px)
-      max-width: 400px
+.header
+  margin-top: 32px
+  display: flex
+  flex-direction: column
+  align-items: center
+  gap: 16
 
+  svg
+    width: 40
+    height: 49
+    fill: $primary-color
+    margin-bottom: 16px
 
-    @media (max-width: 480px)
-      max-width: 300px
+  h2
+    font-size: 28px
+    font-family: 'Inter'
+    font-weight: 900
+    line-height: 36px
+    letter-spacing: 0.50px
+    word-wrap: break-word
 
+  p
+    font-size: 14px
+    font-family: 'Inter'
+    font-weight: 400
+    line-height: 20px
+    word-wrap: break-word
+    color: $placeholder-color
+    margin-bottom: 32px
 
-    // BEGIN: Form Inputs
-    .form-input
-      margin-bottom: 20px
+form
+  display: flex
+  flex-direction: column
+  align-items: center
+  gap: 16px
 
-      label
-        display: block
-        margin-bottom: 5px
-        font-weight: bold
+  .form-group
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    gap: 4px
 
+    label
+      color: $text-color
+      font-size: 14px
+      font-family: 'Inter'
+      font-weight: 400
+      line-height: 20px
+      word-wrap: break-word
 
-      input
-        width: 100%
-        padding: 10px
-        border: 1px solid #ccc
-        border-radius: 3px
+    input
+      height: 36px
+      padding: 8px
+      background: $secondary-color
+      border-radius: 4px
+      border: 1px solid $text-color
+      color: $text-color
+      font-size: 14px
+      font-family: 'Inter'
+      font-weight: 400
+      line-height: 20px
+      word-wrap: break-word
 
+  .btn
+    height: 36px
+    padding: 8px
+    background: $primary-color
+    border-radius: 8px
+    color: $text-color
+    font-size: 14px
+    font-family: 'Inter'
+    font-weight: 400
+    line-height: 20px
+    word-wrap: break-word
 
-    // END: Form Inputs
+  p
+    font-size: 14px
+    font-family: 'Inter'
+    font-weight: 400
+    line-height: 20px
+    word-wrap: break-word
 
-    // BEGIN: Submit Button
-    .submit-button
-      display: flex
-      justify-content: center
+  .login-link
+    display: flex
+    align-items: center
+    gap: 4px
 
-      button
-        padding: 10px 20px
-        background-color: #007bff
-        color: #fff
-        border: none
-        border-radius: 3px
-        cursor: pointer
+    a
+      color: $text-color
+      font-size: 14px
+      font-family: 'Inter'
+      font-weight: 400
+      line-height: 20px
+      word-wrap: break-word
 
-        &:hover
-          background-color: #0056b3
+      &:last-child
+        color: $accent-color
+        text-decoration: underline
