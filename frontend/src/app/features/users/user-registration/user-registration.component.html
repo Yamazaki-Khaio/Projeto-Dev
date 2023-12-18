@@ -6,24 +6,24 @@
         fill="#0069B3" />
     </svg>
     <h1>Criar Conta</h1 >
-    <p>Crie sua conta e desfrute de todo o sistema</p>
+    <p>Crie sua conta e desfrute de todo o sistema!</p>
   </div>
 
   <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="name">Nome*</label>
+      <label for="name">Nome *</label>
       <input type="text" id="name" name="name" class="form-control" required formControlName="name"
         placeholder="Digite seu nome" style="color: white;">
     </div>
 
     <div class="form-group">
-      <label for="email">E-mail*</label>
+      <label for="email">E-mail *</label>
       <input type="email" id="email" name="email" class="form-control" required formControlName="email"
             placeholder="Digite seu e-mail" style="font-style: italic; color: white;">
     </div>
 
     <div class="form-group">
-      <label for="password">Senha*</label>
+      <label for="password">Senha *</label>
       <div class="input-group">
         <input type="{{ isPasswordVisible ? 'text' : 'password' }}" id="senha" name="senha"
         class="form-control" required formControlName="password"
@@ -41,7 +41,7 @@
     </div>
 
     <div class="form-group">
-      <label for="confirm-password">Confirmar Senha*</label>
+      <label for="confirm-password">Confirmar senha *</label>
       <div class="input-group">
         <input type="{{ isConfirmPasswordVisible ? 'text' : 'password' }}"
                id="confirm-password" name="confirm-password" class="form-control" required
@@ -59,7 +59,7 @@
         </div>
       </div>
 
-      <ng-container *ngIf="registrationForm.get('confirmPassword')?.touched &&
+      <ng-container  *ngIf="registrationForm.get('confirmPassword')?.touched &&
                            registrationForm.get('confirmPassword')?.invalid">
         <div class="alert alert-danger" role="alert">
           As senhas não coincidem.
@@ -67,16 +67,16 @@
       </ng-container>
 
       <!-- Verificação para garantir que registrationForm.get('confirmPassword') não seja null -->
-      <ng-container *ngIf="registrationForm.get('confirmPassword')?.touched
+      <ng-container  *ngIf="registrationForm.get('confirmPassword')?.touched
                             && registrationForm.get('confirmPassword')?.valid">
         <!-- Adicione qualquer lógica adicional aqui, se necessário -->
       </ng-container>
     </div>
 
     <button type="submit" class="form-group btn btn-primary" [disabled]="!registrationForm.valid" (click)="onSubmit()">Criar Conta</button>
-    <p>* campos obrigatórios</p>
+    <p> * campos obrigatórios</p>
     <div class="login-link">
-      <a>Já possui cadastro? </a><a [routerLink]="['/users/login']">Faça login</a>
+      <a>Já possui cadastro? </a><a [routerLink]="['/users/login']">Faça log in</a>
     </div>
   </form>
 </div>

@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
-  styleUrls: ['./user-login.component.sass'],
+  styleUrls: ['./user-login.component.scss'],
 })
 export class UserLoginComponent implements OnInit {
 changeTextColor(arg0: string) {
@@ -50,14 +50,19 @@ throw new Error('Method not implemented.');
 
         },
         (error) => {
+          if (error === 'E-mail inserido incorreto. Tente novamente') {
+            this.emailError = true;
+            this.passwordError = false;
+          } else if (error === 'Senha inserida incorreta. Tente novamente') {
+            this.emailError = false;
+            this.passwordError = true;
+          } else {
+            this.emailError = false;
+            this.passwordError = false;
+          }
           this.apiErrorMessage = error;
 
-           // Verifique o tipo de erro e defina as variáveis de erro correspondentes
-           this.emailError = this.apiErrorMessage.includes('E-mail inserido incorreto');
-           this.passwordError = this.apiErrorMessage.includes('Senha inserida incorreta');
-
-        //  console.log('Erro ao fazer login:', error);
-
+          console.log('Erro ao fazer login:', error);
         }
       );
     } else {

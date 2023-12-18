@@ -23,13 +23,18 @@ export const ContaController = {
     try {
       const conta = await Conta.findOne({ where: { email: email.toLowerCase() } });
 
-      if (!conta || !(await bcrypt.compare(senha, conta.senha))) {
-        return res.status(401).json({ message: 'E-mail ou senha incorretos. Tente novamente' });
+      if (!conta) {
+        return res.status(401).json({ message: 'E-mail inserido incorreto. Tente novamente' });
+      }
+
+      const senhaCorreta = await bcrypt.compare(senha, conta.senha);
+
+      if (!senhaCorreta) {
+        return res.status(401).json({ message: 'Senha inserida incorreta. Tente novamente' });
       }
 
       const token = jwt.sign({ id: conta.id }, 'secret', {
         expiresIn: '1h',
-        
       });
 
       return res.json({ token });
