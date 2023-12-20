@@ -1,13 +1,11 @@
-<app-header></app-header>
-
-<!-- FILEPATH: /c:/Users/kaio_/job/projeto-cliente/Projeto-Dev/frontend/src/app/features/users/user-profile/user-profile.component.html -->
-<div class="main-container">
-
+<div main class="containerMain">
     <app-sidebar></app-sidebar>
-
-
-  <main class="main-frame">
-        <router-outlet></router-outlet>
-  </main>
-
+    <div class="container">
+      <app-header></app-header>
+      <div class="container__content">
+          <router-outlet></router-outlet>
+      </div>
+      <app-footer></app-footer>
+    </div>
 </div>
+
