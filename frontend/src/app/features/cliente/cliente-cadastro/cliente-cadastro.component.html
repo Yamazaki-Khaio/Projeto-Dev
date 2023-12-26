@@ -1,16 +1,46 @@
 <div class="main">
   <div class="container">
-    <app-breadcrumb style="margin-bottom: 20px;" [clienteItem]="'Cliente'" [currentPage]="'Adicionar cliente'"></app-breadcrumb>
+    <app-breadcrumb [clienteItem]="'Cliente'" [currentPage]="'Adicionar cliente'"></app-breadcrumb>
     <div class="container__header">
       <h3>Dados cadastrais</h3>
       <hr class="line">
       <a>* Campos obrigatórios</a>
     </div>
   </div>
+
+  <div class="content_main">
+    <form [formGroup]="clienteForm" (ngSubmit)="OnSubmit()">
+      <div class="form-group">
+        <label for="inputIdentificacao">CPF/CNPJ *</label>
+        <input type="text" class="form-control" id="inputIdentificacao" name="inputIdentificacao"
+                formControlName="inputIdentificacao" required appIdentificadorValidator placeholder="00.000.000/0000-00">
+        <div *ngIf="clienteForm.get('inputIdentificacao')?.hasError('required')" class="error-message">
+          Digite um CNPJ/CPF válido
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group">
+          <label for="inputNome">Nome *</label>
+          <input type="text" class="form-control" id="inputNome" name="inputNome" formControlName="inputNome" required>
+        </div>
+        <div class="form-group" *ngIf="clienteForm.get('inputIdentificacao')?.value.length === 14 || clienteForm.get('inputIdentificacao')?.value.length === 18" >
+          <label for="inputRef">
+            {{
+              clienteForm.get('inputIdentificacao')?.value.length === 14
+                ? 'Nome fantasia'
+                : 'Nome completo'
+            }} *
+          </label>
+          <input type="text" class="form-control" id="inputRef" name="inputRef" formControlName="inputRef" required style="margin-top: 20px;" >
+          <div *ngIf="clienteForm.get('inputRef')?.hasError('required')" class="error-message">
+            Insira um nome para seu cliente
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
   <div class="content__footer">
     <button class="btn btn-secondary" (click)="voltar()">Cancelar</button>
-    <button class="btn btn-primary" (click)="OnSubmit()">Salvar cliente</button>
-
+    <button class="btn btn-primary" [disabled]="!clienteForm.valid" type="submit">Salvar cliente</button>
   </div>
-
 </div>

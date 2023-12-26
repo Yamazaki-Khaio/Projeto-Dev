@@ -1,7 +1,7 @@
 $primary-color: #0069B3;
 $secondary-color: #2F3337;
 $accent-color: #0D6CF2;
-$text-color: #ffffff;
+$text-color: #CED4DA;
 $placeholder-color: #6C757D;
 
 
@@ -33,96 +33,51 @@ $placeholder-color: #6C757D;
     margin-bottom: 20px;
   }
 
-  form {
-    align-items: center;
-    min-width: 380px;
 
-    .form-control {
-      border-radius: 8px;
-      border: 1px solid $placeholder-color;
-      background-color: #212529;
-      color: #ffffff;
-      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-      &:focus {
-        outline: none;
-        box-shadow: 0 0 0 0.2rem rgba(13, 108, 242, 0.25);
-      }
+  .input-group-text {
+    background-color: transparent !important; // Cor de fundo do conteúdo
+    border: 1px solid $placeholder-color;
+    color: #ffffff;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    cursor: pointer;
 
-      &.is-invalid {
-        border-color: #dc3545 !important;
-      }
+    &:hover {
+      background-color: #2F3337 !important; // Cor de fundo do conteúdo
+    }
+    &:focus {
+      outline: none;
+      // remova o border-color do focus para evitar sobrescrever o estilo de erro
+      box-shadow: 0 0 0 0.2rem rgba(13, 108, 242, 0.25);
     }
 
-    .form-group {
-      margin-bottom: 20px;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      display: justify-center;
-      width: 100%;
-      max-width: 400px;
-      margin-top: 32px;
-
-      &:label {
-        color: $placeholder-color !important;
-        font-size: 14px;
-        font-family: 'Inter';
-        font-weight: 400;
-        line-height: 20px;
-        word-wrap: break-word;
-        margin-bottom: 8px;
-      }
+    &.is-invalid {
+      border-color: #dc3545 !important;
+      /* Cor vermelha para indicar erro */
     }
 
-
-    .input-group-text {
-      background-color: transparent !important; // Cor de fundo do conteúdo
-      border: 1px solid $placeholder-color;
-      color: #ffffff;
-      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-      cursor: pointer;
-
-      &:hover {
-        background-color: #2F3337 !important; // Cor de fundo do conteúdo
-      }
-      &:focus {
-        outline: none;
-        // remova o border-color do focus para evitar sobrescrever o estilo de erro
-        box-shadow: 0 0 0 0.2rem rgba(13, 108, 242, 0.25);
-      }
-
-      &.is-invalid {
-        border-color: #dc3545 !important;
-        /* Cor vermelha para indicar erro */
-      }
-
-    }
-
-
-    .input-group {
-      position: relative;
-
-    }
-
-    .error-message {
-      color: #dc3545;
-      margin-top: 5px;
-      font-size: 12px;
-    }
-
-    .form-check {
-      margin-bottom: 20px;
-      border-radius: 8px;
-    }
-
-    .btn-primary {
-      width: 100%;
-      font-size: 16px;
-      font-weight: 700;
-      padding: 10px;
-      border-radius: 8px;
-    }
   }
+
+
+  .input-group {
+    position: relative;
+
+  }
+
+
+
+  .form-check {
+    margin-bottom: 20px;
+    border-radius: 8px;
+  }
+
+  .btn-primary {
+    width: 100%;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 10px;
+    border-radius: 8px;
+  }
+
 
   .registration-link {
     margin-top: 20px;

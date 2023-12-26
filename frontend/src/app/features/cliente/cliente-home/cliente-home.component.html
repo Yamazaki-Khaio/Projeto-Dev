@@ -5,7 +5,7 @@
   </div>
 
   <div class="client-list">
-    <ng-container *ngIf="clientes$ | async as clientes; else emptyList">
+    <ng-container *ngIf="(clientes$ | async) && (clientes$ | async)!.length > 0; else emptyList">
       <div class="table-responsive overflow-auto">
         <table class="table table-bordered">
           <thead>
@@ -18,7 +18,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let client of clientes">
+            <tr *ngFor="let client of clientes$ | async">
               <td>{{ client.nome }}</td>
               <td>{{ client.identificacao }}</td>
               <td><span class="badge badge-primary">{{ client.situacao }}</span></td>
