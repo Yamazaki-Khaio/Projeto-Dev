@@ -1,18 +1,8 @@
-body{
-  width: 100%;
-  height: 100%;
-  background-color: #212529;
-  font-family: "Inter", sans-serif !important;
-  font-size: 16px !important;
-  line-height: 1.5 !important;
-  font-weight: 400 !important;
-  color: white; // BEGIN: Added color property
-}
-
-
-
-
-
+$primary-color: #0069B3;
+$secondary-color: #2F3337;
+$accent-color: #0D6CF2;
+$text-color: #ffffff;
+$placeholder-color: #6C757D;
 $zindex-dropdown:                   1000;
 $zindex-sticky:                     1020;
 $zindex-fixed:                      1030;
@@ -30,3 +20,64 @@ $grid-breakpoints: (
   xxl: 1400px
 );
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap");
+
+
+.btn
+{
+  border-radius: 8px;
+}
+
+
+.form-group {
+
+  &:label {
+    color: $placeholder-color !important;
+    font-size: 14px;
+    font-family: 'Inter';
+    font-weight: 400;
+    line-height: 20px;
+    word-wrap: break-word;
+    margin-bottom: 8px;
+  }
+}
+
+body{
+  width: 100%;
+  height: 100%;
+  background-color: #212529;
+  font-family: "Inter", sans-serif !important;
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  font-weight: 400 !important;
+  color: white; // BEGIN: Added color property
+}
+
+.main
+{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content:center;
+  align-items: center;
+
+}
+
+h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.container
+{
+  margin-top: 70px;
+  display: flex;
+  padding-left: 90px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  align-content: center;
+  min-width: 100vw;
+}
+

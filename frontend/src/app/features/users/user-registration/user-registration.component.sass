@@ -1,16 +1,13 @@
 $primary-color: #0069B3
-$secondary-color: #2F3337
+$secondary-color: #6C757D
 $accent-color: #0D6CF2
 $background-color: #2F3337
 $text-color: #ffffff
-$placeholder-color: #6C757D
-$text-backgroun-color: #2F3337
 
 
 .content
   width: 100%
   height: 100%
-  padding: 16px
   display: center
   background: $background-color
   justify-content: center
@@ -23,25 +20,31 @@ $text-backgroun-color: #2F3337
 
 
 .content__header
+  margin-top: 32px
   flex-direction: column
   justify-content: flex-start
   align-items: center
-  gap: 16px
   display: inline-flex
+  padding: 8px
+
   svg
     width: 40px
     height: 49px
     fill: $primary-color
+    margin-bottom: 16px
 
-  h1
+  h2
     align-self: stretch
     background: rgba(255, 255, 255, 0)
     flex-direction: column
     justify-content: flex-start
     align-items: center
     display: flex
+    font-size: 28px
+    color: #D8E8FD
+
   p
-    color: #6C757D
+    color: $secondary-color
     font-size: 14px
     font-family: Inter
     font-weight: 400
@@ -54,37 +57,32 @@ $text-backgroun-color: #2F3337
   flex-direction: column
   display: justify-center
   width: 100%
-  max-width: 400px
-  margin-top: 32px
+  width: 380px
 
 
   label
-    color: $text-color
+    color: #CED4DA
     font-size: 14px
     font-family: 'Inter'
     font-weight: 400
     line-height: 20px
     word-wrap: break-word
-    margin-bottom: 8px
 
 .form-control
   border-radius: 4px
-  border: 1px solid $text-color
+  border: 1px solid $secondary-color
   font-size: 14px
   font-family: 'Inter'
   font-weight: 400
   line-height: 20px
   word-wrap: break-word
   background-color: $background-color
+  color: $text-color
   &:active
     border: 1px solid $accent-color
-    color-text: $text-color
   &:focus
     border: 1px solid $accent-color
   &:disabled
-    background-color: $background-color
-    border: 1px solid $text-color
-    color: $text-color
     cursor: not-allowed
 
 
@@ -93,11 +91,9 @@ $text-backgroun-color: #2F3337
   border-left: none !important
 
   &:hover
-    border: 1px solid $accent-color !important
     color: $text-color !important
     background-color: $background-color !important
   &:active
-    border: 1px solid $accent-color !important
     color: $text-color !important
     background-color: $background-color !important
 
@@ -106,7 +102,7 @@ $text-backgroun-color: #2F3337
 .input-group-text
   background: $secondary-color
   border-radius: 4px
-  border: 1px solid $text-color
+  border: 1px solid $secondary-color
   color: $text-color
   padding: 8px
   cursor: pointer

@@ -1,0 +1,23 @@
+.breadcrumb
+{
+  display: flex !important;
+  align-content: start !important;
+  background-color: #212529;
+  color: #212529;
+  align-items: start !important;
+  justify-content: start !important;
+  padding: 0px !important;
+  margin: 0px !important;
+  .breadcrumb-item {
+    padding: none !important;
+    margin: none !important;
+
+    }
+
+
+
+  a {
+    text-decoration: underline;
+    color: #fff;
+  }
+}

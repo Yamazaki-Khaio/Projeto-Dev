@@ -1,7 +1,4 @@
-
-<nav class="mx-auto" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/profile/cliente">Cliente</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Editar Cliente</li>
-  </ol>
-</nav>
+<ol class="breadcrumb d-flex justify-content-start">
+  <li class="breadcrumb-item"><a routerLink="/profile/cliente">{{ clienteItem }}</a></li>
+  <li class="breadcrumb-item active" aria-current="page">{{ currentPage }}</li>
+</ol>
