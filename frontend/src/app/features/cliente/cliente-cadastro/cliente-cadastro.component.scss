@@ -1,15 +1,6 @@
+@import '../../../../styles.scss';
 .main {
-justify-content: space-between;
-
-}
-
-
-.container {
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-
-
+padding-right: calc($sidebar-width + 20px);
 }
 
 
@@ -55,14 +46,11 @@ a {
 }
 
 .content__footer{
-  flex-direction: row;
-  align-self: flex-end;
-  justify-content: space-between;
-  padding: 20px 42px 42px 42px;
-
-  > * {
-    margin-right: 20px;
-  }
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 20px;
+  padding-bottom: 20px;
 }
 
 .form-row {

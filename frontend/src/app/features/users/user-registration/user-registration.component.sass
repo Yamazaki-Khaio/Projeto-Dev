@@ -4,20 +4,15 @@ $accent-color: #0D6CF2
 $background-color: #2F3337
 $text-color: #ffffff
 
-
 .content
   width: 100%
-  height: 100%
-  display: center
+  height: 100vh
   background: $background-color
   justify-content: center
   align-items: center
   flex-direction: column
   display: flex
   font-family: Inter
-
-
-
 
 .content__header
   margin-top: 32px
@@ -50,7 +45,6 @@ $text-color: #ffffff
     font-weight: 400
     line-height: 20px
 
-
 .form-group
   justify-content: center
   align-items: center
@@ -58,7 +52,6 @@ $text-color: #ffffff
   display: justify-center
   width: 100%
   width: 380px
-
 
   label
     color: #CED4DA
@@ -85,7 +78,6 @@ $text-color: #ffffff
   &:disabled
     cursor: not-allowed
 
-
 .input-group-append
   cursor: pointer !important
   border-left: none !important
@@ -96,8 +88,6 @@ $text-color: #ffffff
   &:active
     color: $text-color !important
     background-color: $background-color !important
-
-
 
 .input-group-text
   background: $secondary-color
@@ -118,8 +108,6 @@ $text-color: #ffffff
       stroke-linecap: round
       stroke-linejoin: round
 
-
-
 .alert
   margin-top: 8px
   font-size: 14px
@@ -131,8 +119,6 @@ $text-color: #ffffff
   border: 1px solid #f5c6cb // Customize the border color
   border-radius: 4px
   padding: 8px
-
-
 
 .btn
   height: 36px
@@ -150,16 +136,15 @@ $text-color: #ffffff
   transition: all 0.2s ease-in-out
   &:hover
     &:active
-    background-color: $accent-color
-    border: 1px solid $accent-color
-    color: $text-color
+      background-color: $accent-color
+      border: 1px solid $accent-color
+      color: $text-color
 
   &:disabled
     background-color: white
     border: 1px solid $text-color
     color: black
     cursor: not-allowed
-
 
   p
     font-size: 14px
@@ -168,7 +153,6 @@ $text-color: #ffffff
     line-height: 20px
     word-wrap: break-word
     margin-top: 8px
-
 
 .login-link
   display: flex
@@ -186,8 +170,3 @@ $text-color: #ffffff
     &:last-child
       color: $accent-color
       text-decoration: underline
-
-
-
-
-
