@@ -1,3 +1,4 @@
+<div class="Main">
 <div class="content">
   <div class="content__header">
     <svg width="40" height="49" viewBox="0 0 40 49" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -13,13 +14,13 @@
     <div class="form-group">
       <label for="name">Nome *</label>
       <input type="text" id="name" name="name" class="form-control" required formControlName="name"
-        placeholder="Digite seu nome;">
+        placeholder="Insira seu nome">
     </div>
 
     <div class="form-group">
       <label for="email">E-mail *</label>
       <input type="email" id="email" name="email" class="form-control" required formControlName="email"
-            placeholder="Digite seu e-mail">
+            placeholder="Insira seu e-mail">
     </div>
 
     <div class="form-group">
@@ -27,7 +28,7 @@
       <div class="input-group">
         <input type="{{ isPasswordVisible ? 'text' : 'password' }}" id="senha" name="senha"
         class="form-control" required formControlName="password"
-        placeholder="Digite sua senha" appShowHidePassword style="color: white; border-right: none;">
+        placeholder="Insira a nova senha" appShowHidePassword style="color: white; border-right: none;">
         <div class="input-group-append">
           <span class="input-group-text" (click)="togglePasswordVisibility()">
             <svg (click)="togglePasswordVisibility" width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,7 +47,7 @@
         <input type="{{ isConfirmPasswordVisible ? 'text' : 'password' }}"
                id="confirm-password" name="confirm-password" class="form-control" required
                formControlName="confirmPassword" appPasswordMatch="password"
-               placeholder="Confirme sua senha" passwordMismatch="onPasswordMismatch($event)"
+               placeholder="Repita a senha inserida" passwordMismatch="onPasswordMismatch($event)"
                appShowHidePassword style="color: white; border-right: none;">
         <div class="input-group-append" style="border-left: transparent;">
           <i class="input-group-text" (click)="toggleConfirmPasswordVisibility()">
@@ -75,8 +76,9 @@
 
     <button type="submit" class="form-group btn btn-primary" [disabled]="!registrationForm.valid" (click)="onSubmit()">Criar Conta</button>
     <p> * campos obrigatórios</p>
-    <div class="login-link">
-      <a>Já possui cadastro? </a><a [routerLink]="['/users/login']">Faça log in</a>
-    </div>
   </form>
+  <div class="login-link">
+    <a>Já possui cadastro? </a><a [routerLink]="['/users/login']">Faça log in</a>
+  </div>
+</div>
 </div>

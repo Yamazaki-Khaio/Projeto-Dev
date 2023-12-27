@@ -13,6 +13,7 @@ export class ClienteCadastroComponent implements OnInit {
 
   clienteForm: FormGroup = new FormGroup({});
   emailError: string = 'Digite um CNPJ/CPF válido';
+  nome_ref: string = 'Nome referência' || 'Nome da mãe';
 
   constructor(
     private fb: FormBuilder,
@@ -50,12 +51,6 @@ export class ClienteCadastroComponent implements OnInit {
     } else {
       console.log('Erro no formulário. Verifique os campos.');
     }
-  }
-
-  isCpfCnpjValid(): boolean {
-    const cpfCnpj = this.clienteForm.value.inputIdentificacao.replace(/\D/g, '');
-
-    return cpfCnpj.length === 14 || cpfCnpj.length === 18;
   }
 
   voltar() {
