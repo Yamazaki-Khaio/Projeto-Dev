@@ -13,7 +13,7 @@
       <div class="form-group">
         <label for="inputIdentificacao">CPF/CNPJ *</label>
         <input type="text" class="form-control" id="inputIdentificacao" name="inputIdentificacao"
-                formControlName="inputIdentificacao" required appIdentificadorValidator placeholder="00.000.000/0000-00">
+          formControlName="inputIdentificacao" required appIdentificadorValidator placeholder="00.000.000/0000-00">
         <div *ngIf="clienteForm.get('inputIdentificacao')?.hasError('required')" class="error-message">
           Digite um CNPJ/CPF válido
         </div>
@@ -23,15 +23,17 @@
           <label for="inputNome">Nome *</label>
           <input type="text" class="form-control" id="inputNome" name="inputNome" formControlName="inputNome" required>
         </div>
-        <div class="form-group" *ngIf="clienteForm.get('inputIdentificacao')?.value.length === 14 || clienteForm.get('inputIdentificacao')?.value.length === 18" >
+        <div class="form-group"
+          *ngIf="clienteForm.get('inputIdentificacao')?.valid && clienteForm.get('inputNome')?.valid">
           <label for="inputRef">
             {{
-              clienteForm.get('inputIdentificacao')?.value.length === 14
-                ? 'Nome fantasia'
-                : 'Nome completo'
+            clienteForm.get('inputIdentificacao')?.value.length === 14
+            ? 'Nome fantasia'
+            : 'Nome completo'
             }} *
           </label>
-          <input type="text" class="form-control" id="inputRef" name="inputRef" formControlName="inputRef" required style="margin-top: 20px;" >
+          <input type="text" class="form-control" id="inputRef" name="inputRef" formControlName="inputRef" required
+            style="margin-top: 20px;">
           <div *ngIf="clienteForm.get('inputRef')?.hasError('required')" class="error-message">
             Insira um nome para seu cliente
           </div>
