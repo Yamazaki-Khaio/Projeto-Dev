@@ -13,7 +13,11 @@ export class ClienteCadastroComponent implements OnInit {
 
   clienteForm: FormGroup = new FormGroup({});
   emailError: string = 'Digite um CNPJ/CPF válido';
-  nome_ref: string = 'Nome referência' || 'Nome da mãe';
+  nome_ref: string = '';
+  nomeError: string = 'Insira um nome para seu cliente';
+  placeholder: string = '';
+  mostrarDivInputRef: boolean = false;
+
 
   constructor(
     private fb: FormBuilder,
@@ -23,11 +27,34 @@ export class ClienteCadastroComponent implements OnInit {
 
   ngOnInit(): void {
     this.clienteForm = this.fb.group({
-      inputIdentificacao: ['', [Validators.required, Validators.pattern(/^\d{14}$|^\d{18}$/)]],
+      inputIdentificacao: ['', [Validators.required]],
       inputNome: ['', [Validators.required]],
       inputRef: ['', [Validators.required]],
     });
 
+    this.clienteForm.get('inputIdentificacao')!.valueChanges.subscribe(value => {
+      this.atualizarNomeRef(value);
+    });
+
+  }
+  atualizarNomeRef(valor: string) {
+    const valorSemPontos = valor.replace(/\./g, '');
+    this.mostrarDivInputRef = valorSemPontos.length >= 11;
+
+    switch (valorSemPontos.length) {
+      case 11:
+        this.nome_ref = 'Nome da mãe';
+        this.placeholder = 'Insira o nome da mãe do cliente';
+        break;
+      case 14:
+        this.nome_ref = 'Nome fantasia';
+        this.placeholder = 'Insira o nome fantasia do CNPJ';
+        break;
+      default:
+        this.nome_ref = '';
+        this.placeholder = '';
+        break;
+    }
   }
 
   OnSubmit(): void {
