@@ -39,8 +39,7 @@ export class ClienteCadastroComponent implements OnInit {
   }
   atualizarNomeRef(valor: string) {
     const valorSemPontos = valor.replace(/\./g, '');
-    this.mostrarDivInputRef = valorSemPontos.length >= 11;
-
+    this.mostrarDivInputRef = valorSemPontos.length === 11 || valorSemPontos.length === 14;
     switch (valorSemPontos.length) {
       case 11:
         this.nome_ref = 'Nome da mãe';
