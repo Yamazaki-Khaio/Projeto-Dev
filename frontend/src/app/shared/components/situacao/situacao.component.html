@@ -1,0 +1,16 @@
+<!-- situacao.component.html -->
+<div class="Situacao dropdown">
+  <div class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" [ngClass]="getButtonClass()" (click)="toggleDropdown()" data-bs-auto-close="outside">
+    <label>Situação:</label> {{situacaoFromForm}}
+  <ul class="dropdown-menu" *ngIf="isDropdownOpen">
+    <li *ngIf="situacaoFromForm !== 'Ativo'">
+      <a class="dropdown-item" [ngClass]="{'active': situacaoFromForm === 'Ativo', 'text': situacaoFromForm === 'Ativo'}" (click)="onOptionSelect('Ativo');">Ativo</a>
+    </li>
+    <li *ngIf="situacaoFromForm !== 'Inativo'">
+      <a class="dropdown-item" [ngClass]="{'active': situacaoFromForm === 'Inativo', 'text': situacaoFromForm === 'Inativo'}" (click)="onOptionSelect('Inativo');">Inativo</a>
+    </li>
+    <li *ngIf="situacaoFromForm !== 'Negativado'">
+      <a class="dropdown-item" [ngClass]="{'active': situacaoFromForm === 'Negativado', 'text': situacaoFromForm === 'Negativado'}" (click)="onOptionSelect('Negativado');">Negativado</a>
+    </li>
+  </ul>
+</div>

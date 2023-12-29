@@ -1,3 +1,6 @@
+
+
+
 $primary-color: #0D6CF2;
 $secondary-color: #2F3337;
 $accent-color: #0D6CF2;
@@ -33,6 +36,59 @@ $header-heigth: 60px;
 ::placeholder {
   font-style: italic;
 }
+.main {
+  padding-right: calc($sidebar-width + 20px);
+  }
+
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    margin-bottom: 20px;
+  }
+
+  .container__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .line {
+    flex-grow: 1;
+    border-top: 1px solid #2f3337;
+    align-items: center;
+    justify-content: space-between;
+    margin: 8px;
+  }
+
+
+  .content_main {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 90vw;
+    margin-left: 40px;
+
+
+  }
+
+  .content__footer{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 20px;
+    padding-bottom: 20px;
+  }
+
+  .col-md-20 {
+    flex: 0 0 100%;
+    max-width: 40%;
+  }
+
 
 
 

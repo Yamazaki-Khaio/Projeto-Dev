@@ -1,0 +1,38 @@
+// situacao.component.scss
+.dropdown-toggle {
+  width: 183px;
+  height: 36px;
+
+
+}
+
+.dropdown-menu {
+  width: 100%;
+
+  background: #2F3337;
+  box-shadow: 0px 4px 4px rgba(42.83, 47.81, 52.79, 0.24);
+  border-radius: 4px;
+  border: 1px #6C757D solid;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  gap: 8px;
+  color: #CED4DA;
+  cursor: pointer;
+  align-items: flex-start;
+
+  .dropdown-item {
+
+
+    &:hover {
+      background: #212529;
+      color: #0d6cf2;
+    }
+
+    &.active {
+      background: #212529;
+      color: #0d6cf2;
+
+    }
+  }
+}

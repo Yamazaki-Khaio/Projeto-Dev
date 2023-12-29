@@ -1,94 +1,21 @@
-
-<app-breadcrumb></app-breadcrumb>
-
-<div class="container">
-  <h1 class="text-center mt-5">Dados cadastrais</h1>
-
-  <!-- Alerta Bootstrap para exibir mensagens -->
-  <div *ngIf="alertMessage" class="alert alert-success alert-dismissible fade show" role="alert">
-    {{ alertMessage }}
-    <button type="button" class="btn-close" (click)="closeAlert()" aria-label="Close"></button>
-  </div>
-
-<app-list-link></app-list-link>
-
-  <form [formGroup]="clienteEditForm" class="mt-5 responsive" (ngSubmit)="onSubmit" >
-
-      <!-- Campo de Situação com cores diferentes -->
-      <div class="col-md-6">
-        <div class="form-floating mb-3">
-          <select class="form-select" id="situacao" aria-label="Situação" formControlName="situacao"
-                  [ngStyle]="{'color': getColorForSituacao()}">
-            <!-- Opções do select -->
-            <option value="ativo" class="confirmed" >Ativo</option>
-            <option value="inativo" class="alert">Inativo</option>
-            <option value="negativado" class="danger">Negativado</option>
-          </select>
-          <label for="situacao">Situação</label>
+<div class="d-flex flex-column h-100">
+  <div class="row gx-5">
+    <div class="col-10">
+      <div class="row">
+        <div class="col">
+          <app-breadcrumb [clienteItem]="'Cliente'" [currentPage]="'Editar cliente'"></app-breadcrumb>
         </div>
       </div>
-
-    <div class="row">
-      <!-- Campo de CPF/CNPJ readonly e desativado -->
-      <div class="col-md-6">
-        <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="identificador" placeholder="CPF/CNPJ"
-                 formControlName="identificador" [readonly]="true" [disabled]="true">
-          <label for="identificador">CPF/CNPJ</label>
+      <div class="container__header">
+        <h3>Dados cadastrais</h3>
+        <hr class="line">
+        <div class="row mx-8">
+          obrigatórios <app-situacao></app-situacao>
         </div>
-      </div>
-
-      <!-- Campo de Data de Cadastro readonly -->
-      <div class="col-md-6">
-        <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="data" placeholder="Data de Cadastro"
-                 formControlName="data_cadastro" [readonly]="true">
-          <label for="data">Data de Cadastro</label>
-        </div>
-      </div>
-
-
-      <!-- Campo de Nome -->
-      <div class="col-md-6">
-        <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="nome" placeholder="Nome"
-                 formControlName="nome">
-          <label for="nome">Nome</label>
-        </div>
-      </div>
-
-      <!-- Campo de Nome Referência -->
-      <div class="col-md-6">
-        <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="nome_ref" placeholder="Nome da mãe ou Fantasia"
-                 formControlName="nome_ref">
-          <label for="nome_ref">Nome Referência</label>
-        </div>
-      </div>
-
-      <!-- Campo de Inscrição Estadual -->
-      <div class="col-md-6">
-        <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="inscricao_estadual" placeholder="Inscrição Estadual"
-                 formControlName="inscricao_estadual">
-          <label for="inscricao_estadual">Inscrição Estadual</label>
-        </div>
-      </div>
-
-      <!-- Campo de Inscrição Municipal -->
-      <div class="col-md-6">
-        <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="inscricao_municipal" placeholder="Inscrição Municipal"
-                 formControlName="inscricao_municipal">
-          <label for="inscricao_municipal">Inscrição Municipal</label>
-        </div>
-      </div>
-
-      <!-- Botão de envio -->
-      <div class="col-md-12 text-center mt-3 mr-6 mx-12">
-        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Salvar Alteração</button>
-        <button type="button" class="btn btn-secondary" (click)="voltar()">Cancelar</button>
       </div>
     </div>
-  </form>
+    <div class="col-2">
+      <app-list-link></app-list-link>
+    </div>
+  </div>
 </div>

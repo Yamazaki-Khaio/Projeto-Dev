@@ -13,6 +13,8 @@ export class ClienteEditarComponent implements OnInit {
   clienteEditForm!: FormGroup;
   clienteId!: number;
   alertMessage?: string;
+emailError: any;
+nomeError: any;
 
   constructor(
     private fb: FormBuilder,
@@ -32,7 +34,7 @@ export class ClienteEditarComponent implements OnInit {
           inscricao_municipal: [cliente.inscricao_municipal],
           inscricao_estadual: [cliente.inscricao_estadual],
           situacao: [cliente.situacao],
-          data_cadastro: [cliente.data_cadastro] // Adicionando o campo de Situação
+          data_cadastro: [cliente.data_cadastro] 
         });
       },
       (error: any) => {
@@ -73,19 +75,5 @@ export class ClienteEditarComponent implements OnInit {
     this.alertMessage = undefined;
   }
 
-  // Adicionando a lógica para obter a cor da Situação
-  getColorForSituacao(): string {
-    const situacao = this.clienteEditForm.get('inputSituacao')?.value;
 
-    switch (situacao) {
-      case 'Ativo':
-        return 'green';
-      case 'Inativo':
-        return 'yellow';
-      case 'Negativado':
-        return 'red';
-      default:
-        return '';
-    }
-  }
 }

@@ -13,6 +13,7 @@ import { FormsComponent } from './components/forms/forms.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListLinkComponent } from './components/list-link/list-link.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { SituacaoComponent } from './components/situacao/situacao.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
     IdentificadorValidatorDirective,
     FormsComponent,
     ListLinkComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    SituacaoComponent
 
   ],
   imports: [
@@ -40,7 +42,8 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
     IdentificadorValidatorDirective,
     FormsComponent,
     ListLinkComponent,
-    BreadcrumbComponent,  
+    BreadcrumbComponent,
+    SituacaoComponent,
   ]
 
 })
