@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./sidebar.component.sass']
 })
 export class SidebarComponent {
-
+  constructor(private route: ActivatedRoute) {}
 }

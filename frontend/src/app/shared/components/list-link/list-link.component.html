@@ -1,10 +1,19 @@
-
-      <!-- Links para dados cadastrais, localização e representante -->
-      <div class="col-md-12">
-        <ul class="list-group">
-          <li class="list-group-item"><a routerLinkActive="" routerLink="/profile/cliente/editar/{{clienteId}}">Dados Cadastrais</a></li>
-          <li class="list-group-item"><a routerLink="/profile/cliente/localizador/{{clienteId}}">Localização</a></li>
-          <li class="list-group-item"><a routerLink="/profile/representante/{{clienteId}}">Representante</a></li>
-        </ul>
-      </div>
-  <!-- Formulário de edição de cliente -->
+<div class="ListLink">
+  <div class="Links">
+    <div class="Link selected" routerLink="/profile/cliente/editar/{{ clienteId }}" linkType="DadosCadastrais">
+      <a>
+        <div class="Label">Dados Cadastrais</div>
+      </a>
+    </div>
+    <div class="Link" routerLink="/profile/cliente/localizador/{{ clienteId }}" linkType="Localizacao">
+      <a>
+        <div class="Label">Localização</div>
+      </a>
+    </div>
+    <div class="Link" routerLink="/profile/cliente/representante/{{ clienteId }}" linkType="Representantes">
+      <a>
+        <div class="Label">Representantes</div>
+      </a>
+    </div>
+  </div>
+</div>

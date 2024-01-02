@@ -14,6 +14,8 @@ export class ListLinkComponent implements OnInit {
 
   ngOnInit() {
     this.clienteId = this.route.snapshot.params['id'];
+
+
   }
 
 }

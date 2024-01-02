@@ -12,6 +12,7 @@ export class SituacaoComponent {
 
   onOptionSelect(option: string): void {
     this.situacaoFromForm = option;
+    this.toggleDropdown();
   }
 
   toggleDropdown(): void {
