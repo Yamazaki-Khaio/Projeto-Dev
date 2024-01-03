@@ -11,16 +11,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-login.component.scss'],
 })
 export class UserLoginComponent implements OnInit {
-changeTextColor(arg0: string) {
-throw new Error('Method not implemented.');
-}
+  changeTextColor(arg0: string) {
+    throw new Error('Method not implemented.');
+  }
+
   isPasswordVisible: boolean = false;
   loginForm: FormGroup = new FormGroup({});
   apiErrorMessage: string = '';
   emailError: boolean = false;
   passwordError: boolean = false;
 
-  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {}
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({

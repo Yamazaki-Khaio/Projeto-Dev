@@ -1,8 +1,11 @@
 <!-- situacao.component.html -->
 <div class="Situacao dropdown" (click)="toggleDropdown()">
   <div class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
-    [ngClass]="getButtonClass()"  data-bs-auto-close="outside">
-    <label>Situação: </label> <a [ngClass]="{'selected': isDropdownOpen}"> {{ situacaoFromForm }} </a>
+    [ngClass]="getButtonClass()" data-bs-auto-close="outside">
+    <label>Situação: </label>
+    <a [ngClass]="{'selected': isDropdownOpen}"> {{ situacaoFromForm }} </a>
+    <img *ngIf="isDropdownOpen" [src]="openedIconUrl" alt="Opened Icon">
+    <img *ngIf="!isDropdownOpen" [src]="closedIconUrl" alt="Closed Icon">
   </div>
   <ul class="dropdown-menu" *ngIf="isDropdownOpen">
     <li *ngIf="situacaoFromForm !== 'Ativo'">

@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListLinkComponent } from './components/list-link/list-link.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { SituacaoComponent } from './components/situacao/situacao.component';
+import { IconsService } from './util/icons.service';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,9 @@ import { SituacaoComponent } from './components/situacao/situacao.component';
     BreadcrumbComponent,
     SituacaoComponent
 
+  ],
+  providers: [
+    IconsService
   ],
   imports: [
     CommonModule,
@@ -44,6 +48,7 @@ import { SituacaoComponent } from './components/situacao/situacao.component';
     ListLinkComponent,
     BreadcrumbComponent,
     SituacaoComponent,
+
   ]
 
 })

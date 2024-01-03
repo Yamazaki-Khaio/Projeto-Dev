@@ -255,3 +255,14 @@ body{
 
 
 
+.dropdown-toggle::after {
+  content:inherit;
+}
+.form-row{
+  justify-content: space-between;
+  margin-right: 296px;
+}
+
+.lg-input{
+  min-width: 40vw
+}

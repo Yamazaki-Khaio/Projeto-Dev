@@ -3,30 +3,37 @@
   import { ActivatedRoute, Router } from '@angular/router';
   import { Cliente } from '../cliente';
   import { ClienteService } from '../cliente.service';
+  import { IconsService } from '../../../shared/util/icons.service';
+
 
   @Component({
     selector: 'app-cliente-editar',
     templateUrl: './cliente-editar.component.html',
-    styleUrls: ['./cliente-editar.component.scss']
+    styleUrls: ['./cliente-editar.component.scss'],
+    providers: [IconsService]
+
   })
   export class ClienteEditarComponent implements OnInit {
     clienteEditForm!: FormGroup;
     clienteId!: number;
     alertMessage?: string;
-    emailError: any;
-    nomeError: any;
-
+    situacao!: string;
+    openedIconUrl: string = '';
     constructor(
       private fb: FormBuilder,
       private clienteService: ClienteService,
       private router: Router,
-      private route: ActivatedRoute
+      private route: ActivatedRoute,
+      private iconsService: IconsService
     ) { }
 
     ngOnInit(): void {
+      this.openedIconUrl = this.iconsService.getIconUrl("icon-obrigatorio");
       this.clienteId = this.route.snapshot.params['id'];
       this.clienteService.getCliente(this.clienteId.toString()).subscribe(
         (cliente: Cliente) => {
+          this.situacao = cliente.situacao!;
+
           this.clienteEditForm = this.fb.group({
             nome: [cliente.nome, [Validators.required]],
             identificador: [cliente.identificacao],
@@ -34,14 +41,16 @@
             inscricao_municipal: [cliente.inscricao_municipal],
             inscricao_estadual: [cliente.inscricao_estadual],
             situacao: [cliente.situacao],
-            data_cadastro: [cliente.data_cadastro]
+            data_cadastro: [cliente.data_cadastro],
           });
         },
         (error: any) => {
           console.error(error);
         }
       );
+
     }
+
 
     onSubmit(): void {
       const cliente: Cliente = {
@@ -71,7 +80,7 @@
 
     // Adicionando a lógica para fechar o alerta
     closeAlert(): void {
-      this.alertMessage = undefined;
+      this.alertMessage = "alertOff";
     }
 
 
