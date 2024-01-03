@@ -1,3 +1,5 @@
+<!-- cliente-editar -->
+
 <div class="d-flex flex-column h-100">
   <div class="row gx-5">
     <div class="col-10">
@@ -9,10 +11,63 @@
       <div class="header row">
         <h3>Dados cadastrais</h3>
         <hr class="line">
-        <div class="row">
-          <img [src]="openedIconUrl">
-          <a>Campos obrigatórios</a><app-situacao [situacaoFromForm]="situacao"> </app-situacao>
+        <img [src]="openedIconUrl">
+        <a>Campos obrigatórios</a>
+        <app-situacao [situacaoFromForm]="situacao">
+        </app-situacao>
+      </div>
+      <form [formGroup]="clienteEditForm" (ngSubmit)="onSubmit()">
+        <!-- First Row -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="identificador">CNPJ/CPF</label><img [src]="openedIconUrl">
+            <input type="text" class="form-control" placeholder="09.096.703/0001-30" id="identificador" formControlName="identificador" readonly>
+          </div>
+
+          <div class="form-group sm-input">
+            <label for="data_cadastro">Data de cadastro</label>
+            <input type="date" class="form-control" id="data_cadastro" formControlName="data_cadastro" [value]="clienteEditForm.get('data_cadastro')!.value | date:'dd/MM/yyyy'">
+          </div>
         </div>
+
+        <!-- Second Row -->
+        <div class="form-row">
+          <div class="form-group md-input">
+            <label for="nome">Nome</label> <img [src]="openedIconUrl">
+            <input type="text" class="form-control" id="nome" formControlName="nome" required>
+            <div *ngIf="clienteEditForm.get('nome')?.hasError('required')" class="error-message">
+              Nome é obrigatório.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="nome_ref lg-input">Nome de referência</label> <img [src]="openedIconUrl">
+            <input type="text" class="form-control" id="nome_ref" formControlName="nome_ref" required>
+            <div *ngIf="clienteEditForm.get('nome_ref')?.hasError('required')" class="error-message">
+              Nome de referência é obrigatório.
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional Fields -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="inscricao_municipal">Inscrição Municipal</label>
+            <input type="text" class="form-control" id="inscricao_municipal" formControlName="inscricao_municipal">
+          </div>
+          <div class="form-group">
+            <label for="inscricao_estadual">Inscrição Estadual</label>
+            <input type="text" class="form-control" id="inscricao_estadual" formControlName="inscricao_estadual">
+          </div>
+
+        </div>
+
+
+      </form>
+      <!-- Buttons -->
+      <div class="content__footer">
+        <button type="button" class="btn btn-secondary" (click)="voltar()">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Salvar alterações</button>
       </div>
     </div>
     <div class="col-2">

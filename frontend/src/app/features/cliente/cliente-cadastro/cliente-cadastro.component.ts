@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClienteService } from '../cliente.service';
 import { Router } from '@angular/router';
 import { Cliente } from '../cliente';
+import { IconsService } from '../../../shared/util/icons.service';
 
 @Component({
   selector: 'app-cliente-cadastro',
@@ -17,15 +18,18 @@ export class ClienteCadastroComponent implements OnInit {
   nomeError: string = 'Insira um nome para seu cliente';
   placeholder: string = '';
   mostrarDivInputRef: boolean = false;
+  openIconUrl: string = '';
 
 
   constructor(
     private fb: FormBuilder,
     private clienteService: ClienteService,
-    private router: Router
+    private router: Router,
+    private IconsService: IconsService
   ) {}
 
   ngOnInit(): void {
+    this.openIconUrl = this.IconsService.getIconUrl('icon-obrigatorio');
     this.clienteForm = this.fb.group({
       inputIdentificacao: ['', [Validators.required]],
       inputNome: ['', [Validators.required]],

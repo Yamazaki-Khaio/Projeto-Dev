@@ -1,8 +1,18 @@
+@import '../../../../styles.scss';
+
 .header{
   align-content: center;
   align-items: center;
   display: inline-flex;
   justify-content: center;
-  gap: 16px;
+  gap: 8px;
   width: 100%;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  align-self: center;
+  justify-items: center;
+  padding-left: 12px; // 20px - gap=8px
 }
+
+
