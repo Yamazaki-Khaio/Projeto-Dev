@@ -171,14 +171,13 @@ form {
 }
 
 .form-group {
-  margin-bottom: 20px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   display: justify-center;
-  width: 100%;
+  width: 100vw;
   max-width: 400px;
-  margin-top: 32px;
+  margin-right: 20px;
 
   &:label {
     color: $placeholder-color !important;
@@ -222,8 +221,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .form-row {
-  justify-content: space-between;
-  margin-right: 296px;
+  margin-right: 100px;
 }
 
 .lg-input {
@@ -231,5 +229,5 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 img
 {
-  padding: 4px;
+  padding-left: 4px;
 }
