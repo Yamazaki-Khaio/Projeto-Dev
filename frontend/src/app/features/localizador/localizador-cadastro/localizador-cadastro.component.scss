@@ -34,15 +34,10 @@
 }
 
 
-.line-md{
-  border: 2px solid #CED4DA;
-  width: 100%;
-  border-radius: 2px;
 
-}
 .accordion-item-header
 {
-  width: 100vh;
+  width: 100%;
   gap: 8px;
   display: flex;
   justify-content: space-between;
@@ -50,15 +45,23 @@
   align-items: center;
   cursor: pointer;
 
-
   h5{
-    display: inline;
     font-weight: 600;
     font-size: 14px;
     line-height: 17px;
     color: #CED4DA;
+
   }
+
+  .line-md{
+    border: 2px solid #CED4DA;
+    width: 90%;
+    border-radius: 2px;
+
+  }
+
 }
+
 
 .link{
   font-weight: bold;
@@ -82,8 +85,7 @@
   align-items: flex-start;
   justify-self: flex-start;
   align-self: flex-start;
-  .line{
-    margin-top: 15px;
-  }
+
+
 }
 
