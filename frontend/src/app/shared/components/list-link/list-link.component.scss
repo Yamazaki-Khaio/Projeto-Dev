@@ -4,10 +4,8 @@
   padding-top: 20px;
   padding-bottom: 20px;
   border-left: 1px #2F3337 solid;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
+  min-height: 100vh;
+
 
   .Links {
     align-self: stretch;
@@ -16,6 +14,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     display: flex;
+    cursor: pointer;
 
     .Link {
       align-self: stretch;

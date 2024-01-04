@@ -20,6 +20,7 @@ export class ClienteEditarComponent implements OnInit {
   situacao!: string;
   openedIconUrl: string = '';
 
+
   constructor(
     private fb: FormBuilder,
     private clienteService: ClienteService,

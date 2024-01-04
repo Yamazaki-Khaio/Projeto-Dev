@@ -1,7 +1,5 @@
-//component em construção
-
-
 import { Component } from '@angular/core';
+import { IconsService } from '../../../shared/util/icons.service';
 
 @Component({
   selector: 'app-localizador-cadastro',
@@ -12,6 +10,16 @@ export class LocalizadorCadastroComponent {
   alertMessage: string | null = null;
   exibirInputTelefone: boolean = false;
   exibirModalEndereco: boolean = false;
+  openedIconUrl: string = '';
+  upIconUrl: string = '';
+
+  constructor(private IconsService: IconsService) {}
+
+  ngOnInit(): void {
+    this.openedIconUrl = this.IconsService.getIconUrl('icon-obrigatorio');
+    this.upIconUrl = this.IconsService.getIconUrl("down");
+
+  }
 
   fecharAlerta() {
     this.alertMessage = null;

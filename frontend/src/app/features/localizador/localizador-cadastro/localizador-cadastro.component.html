@@ -1,46 +1,56 @@
-<div class="container">
-  <h1 class="text-center mt-5">Dados Cadastrais</h1>
-
-  <!-- Alerta Bootstrap para exibir mensagens -->
-  <div *ngIf="alertMessage" class="alert alert-success alert-dismissible fade show" role="alert">
-    {{ alertMessage }}
-    <button type="button" class="btn-close" (click)="fecharAlerta()" aria-label="Fechar"></button>
-  </div>
-
-  <div class="row mx-auto">
-    <app-breadcrumb></app-breadcrumb>
-    <app-list-link></app-list-link>
-  </div>
-
-  <div class="accordion">
-    <div class="accordion-item">
-      <div class="accordion-header" (click)="alternarAccordion(1)">
-        Endereço
+<!-- localizador-cadastro -->
+<div class="d-flex flex-column h-100">
+  <div class="row col-12">
+    <div class="col-10">
+      <div class="row">
+        <div class="col">
+          <app-breadcrumb [clienteItem]="'Cliente'" [currentPage]="'Editar cliente'"></app-breadcrumb>
+        </div>
       </div>
-      <div class="accordion-content" *ngIf="estaAccordionAberto(1)">
-        <app-endereco-view></app-endereco-view>
-        <button (click)="adicionarEndereco()">Adicionar Endereço</button>
+      <div class="header row">
+        <h3>Localização</h3>
+        <hr class="line">
+        <img [src]="openedIconUrl">
+        <a>Campos obrigatórios</a>
+      </div>
+      <div class="accordion col-12">
+        <div class="accordion-item">
+          <div class="accordion-item-header">
+            <h5>Endereço</h5>
+            <hr class="line-md">
+            <img [src]="upIconUrl">
+          </div>
+          <div class="accordion-item-content col-10">
+            <div class="link">+ Adicionar endereço </div>
+            <!-- <app-endereco-view></app-endereco-view> -->
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-item-header">
+            <h5>Telefone</h5>
+            <hr class="line-md">
+            <img [src]="upIconUrl">
+          </div>
+          <div class="accordion-item-content col-10">
+            <div class="link">+ Adicionar contato </div>
+            <!-- <app-telefone-view></app-telefone-view> -->
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-item-header">
+            <h6>E-mail</h6>
+            <hr class="line-md">
+            <img [src]="upIconUrl">
+          </div>
+          <div class="accordion-item-content col-10">
+            <div data-bs-toggle="modal" data-bs-target="" class="link">+ Adicionar e-mail </div>
+            <!-- <app-email-view></app-email-view> -->
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="accordion-item">
-      <div class="accordion-header" (click)="alternarAccordion(2)">
-        Telefone
-      </div>
-      <div class="accordion-content" *ngIf="estaAccordionAberto(2)">
-        <app-telefone-view></app-telefone-view>
-        <button (click)="adicionarTelefone()">Adicionar Telefone</button>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <div class="accordion-header" (click)="alternarAccordion(3)">
-        Email
-      </div>
-      <div class="accordion-content" *ngIf="estaAccordionAberto(3)">
-        <app-email-view></app-email-view>
-        <button (click)="adicionarEmail()">Adicionar Email</button>
-      </div>
+    <div class="col-2">
+      <app-list-link></app-list-link>
     </div>
   </div>
 </div>
