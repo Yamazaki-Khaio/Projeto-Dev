@@ -16,7 +16,7 @@
         <label for="inputIdentificacao">CPF/CNPJ</label><img [src]="openIconUrl">
         <input type="text" class="form-control" id="inputIdentificacao" name="inputIdentificacao"
           formControlName="inputIdentificacao" required appIdentificadorValidator placeholder="00.000.000/0000-00">
-        <div *ngIf="clienteForm.get('inputIdentificacao')?.hasError('required')" class="error-message">
+        <div *ngIf="clienteForm.get('inputIdentificacao')?.hasError('required')" class="error-message" >
           {{emailError}}
         </div>
       </div>
@@ -29,10 +29,10 @@
           </div>
         </div>
 
-        <div class="form-group" *ngIf="mostrarDivInputRef">
-          <label for="inputRef">{{nome_ref}} </label> <img [src]="openIconUrl">
+        <div class="form-group" *ngIf="nomeRefService.mostrarDivInputRef">
+          <label for="inputRef">{{nomeRefService.nome_ref}} </label> <img [src]="openIconUrl">
           <input type="text" class="form-control" id="inputRef" name="inputRef"
-            formControlName="inputRef" placeholder="{{ placeholder }}" required>
+            formControlName="inputRef" [placeholder]="nomeRefService.placeholder" required>
         </div>
       </div>
     </form>

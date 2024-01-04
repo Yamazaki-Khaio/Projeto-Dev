@@ -1,4 +1,6 @@
 export interface Cliente {
+  nome_mae?: string;
+  nome_fantasia?: string;
   id?: number; // O ID é opcional, pois será atribuído pelo backend
   nome: string;
   identificacao: string;

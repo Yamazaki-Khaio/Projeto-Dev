@@ -4,6 +4,7 @@ import { ClienteService } from '../cliente.service';
 import { Router } from '@angular/router';
 import { Cliente } from '../cliente';
 import { IconsService } from '../../../shared/util/icons.service';
+import { NomeRefService } from '../../../shared/util/att-nome-ref.service'; // Importe o serviço
 
 @Component({
   selector: 'app-cliente-cadastro',
@@ -14,18 +15,15 @@ export class ClienteCadastroComponent implements OnInit {
 
   clienteForm: FormGroup = new FormGroup({});
   emailError: string = 'Digite um CNPJ/CPF válido';
-  nome_ref: string = '';
   nomeError: string = 'Insira um nome para seu cliente';
-  placeholder: string = '';
-  mostrarDivInputRef: boolean = false;
   openIconUrl: string = '';
-
 
   constructor(
     private fb: FormBuilder,
     private clienteService: ClienteService,
     private router: Router,
-    private IconsService: IconsService
+    private IconsService: IconsService,
+    public nomeRefService: NomeRefService
   ) {}
 
   ngOnInit(): void {
@@ -41,24 +39,31 @@ export class ClienteCadastroComponent implements OnInit {
     });
 
   }
-  atualizarNomeRef(valor: string) {
-    const valorSemPontos = valor.replace(/\./g, '');
-    this.mostrarDivInputRef = valorSemPontos.length === 11 || valorSemPontos.length === 14;
-    switch (valorSemPontos.length) {
-      case 11:
-        this.nome_ref = 'Nome da mãe';
-        this.placeholder = 'Insira o nome da mãe do cliente';
-        break;
-      case 14:
-        this.nome_ref = 'Nome fantasia';
-        this.placeholder = 'Insira o nome fantasia do CNPJ';
-        break;
-      default:
-        this.nome_ref = '';
-        this.placeholder = '';
-        break;
-    }
+
+  private atualizarNomeRef(valor: string) {
+    this.nomeRefService.atualizarNomeRef(valor);
   }
+
+
+
+  // atualizarNomeRef(valor: string) {
+  //   const valorSemPontos = valor.replace(/\./g, '');
+  //   this.mostrarDivInputRef = valorSemPontos.length === 11 || valorSemPontos.length === 14;
+  //   switch (valorSemPontos.length) {
+  //     case 11:
+  //       this.nome_ref = 'Nome da mãe';
+  //       this.placeholder = 'Insira o nome da mãe do cliente';
+  //       break;
+  //     case 14:
+  //       this.nome_ref = 'Nome fantasia';
+  //       this.placeholder = 'Insira o nome fantasia do CNPJ';
+  //       break;
+  //     default:
+  //       this.nome_ref = '';
+  //       this.placeholder = '';
+  //       break;
+  //   }
+
 
   OnSubmit(): void {
     if (this.clienteForm.valid) {

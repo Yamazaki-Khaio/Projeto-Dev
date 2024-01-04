@@ -1,7 +1,6 @@
 <!-- cliente-editar -->
-
 <div class="d-flex flex-column h-100">
-  <div class="row gx-5">
+  <div class="row">
     <div class="col-10">
       <div class="row">
         <div class="col">
@@ -19,12 +18,12 @@
       <form [formGroup]="clienteEditForm" (ngSubmit)="onSubmit()">
         <!-- First Row -->
         <div class="form-row">
-          <div class="form-group col-6">
+          <div class="form-group col-4">
             <label for="identificador">CNPJ/CPF</label><img [src]="openedIconUrl">
-            <input type="text" class="form-control" placeholder="09.096.703/0001-30" id="identificador" formControlName="identificador" readonly>
+            <input type="text" class="form-control" placeholder="00.000.000/0000-00" id="identificador" appIdentificadorValidator formControlName="identificador" isdisabled readonly>
           </div>
 
-          <div class="form-group col-4">
+          <div class="form-group col-2">
             <label for="data_cadastro">Data de cadastro</label>
             <input type="date" class="form-control" id="data_cadastro" formControlName="data_cadastro" [value]="clienteEditForm.get('data_cadastro')!.value | date:'dd/MM/yyyy'">
           </div>
@@ -32,7 +31,7 @@
 
         <!-- Second Row -->
         <div class="form-row">
-          <div class="form-group md-input">
+          <div class="form-group">
             <label for="nome">Nome</label> <img [src]="openedIconUrl">
             <input type="text" class="form-control" id="nome" formControlName="nome" required>
             <div *ngIf="clienteEditForm.get('nome')?.hasError('required')" class="error-message">
@@ -41,8 +40,8 @@
           </div>
 
           <div class="form-group md-input">
-            <label for="nome_ref">Nome de referência</label> <img [src]="openedIconUrl">
-            <input type="text" class="form-control" id="nome_ref" formControlName="nome_ref" required>
+            <label for="nome_ref"> {{nomeRefService.nome_ref}} </label> <img [src]="openedIconUrl">
+            <input type="text" class="form-control" id="nome_ref" formControlName="nome_ref" [placeholder]="nomeRefService.placeholder" required>
             <div *ngIf="clienteEditForm.get('nome_ref')?.hasError('required')" class="error-message">
               Nome de referência é obrigatório.
             </div>
@@ -65,7 +64,7 @@
 
       </form>
       <!-- Buttons -->
-      <div class="content__footer h-100vh">
+      <div class="content__footer">
         <button type="button" class="btn btn-secondary" (click)="voltar()">Cancelar</button>
         <button type="submit" class="btn btn-primary">Salvar alterações</button>
       </div>
