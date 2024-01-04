@@ -43,7 +43,7 @@ export class ClienteEditarComponent implements OnInit {
           inscricao_estadual: [cliente.inscricao_estadual],
           data_cadastro: [cliente.data_cadastro],
         });
-        // this.nomeRefService.atualizarNomeRef(cliente.identificacao!);
+        this.nomeRefService.atualizarNomeRef(cliente.identificacao!);
 
       },
       (error: any) => {
