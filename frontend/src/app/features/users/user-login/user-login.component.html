@@ -12,7 +12,7 @@
     <div class="form-group" [class.has-error]="emailError">
       <label for="email">E-mail *</label>
       <input type="email" id="email" name="email" class="form-control" required formControlName="email"
-      placeholder="Insira seu e-mail!" (input)="changeTextColor('email')"
+      placeholder="Insira seu e-mail!"
       [ngClass]="{ 'is-invalid': emailError }">
       <div *ngIf="emailError" class="error-message">
         {{ apiErrorMessage }}
@@ -22,16 +22,15 @@
     <div class="form-group">
       <label for="password">Senha *</label>
       <div class="input-group">
-        <input type="{{ isPasswordVisible ? 'text' : 'password' }}" style="border-right: none !important; border-radius: 8px 0 0 8px;"
+        <input type="{{ isPasswordVisible ? 'text' : 'password' }}" style="border-right: none !important;"
         id="password" name="password" class="form-control" required formControlName="password"
-        placeholder="Insira sua senha!" (input)="changeTextColor('password')"  [ngClass]="{ 'is-invalid': passwordError }">
-        <div class="input-group-append" style="border-left:none !important; border-radius: 8px 0 0 8px;" >
-          <span class="input-group-text" (input)="changeTextColor('password')"  [ngClass]="{ 'is-invalid': passwordError }" (click)="togglePasswordVisibility()">
+        placeholder="Insira sua senha!"  [ngClass]="{ 'is-invalid': passwordError }">
+        <div class="input-group-append">
+          <span class="input-group-text"  [ngClass]="{ 'is-invalid': passwordError }">
             <svg (click)="togglePasswordVisibility" width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M8 4.5C3.33333 4.5 2 8.5 2 8.5C2 8.5 3.33333 12.5 8 12.5C12.6667 12.5 14 8.5 14 8.5C14 8.5 12.6667 4.5 8 4.5Z" stroke="#6C757D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M10 8.5C10 7.39543 9.10457 6.5 8 6.5C6.89543 6.5 6 7.39543 6 8.5C6 9.60457 6.89543 10.5 8 10.5C9.10457 10.5 10 9.60457 10 8.5Z" stroke="#6C757D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <i class="bi" [ngClass]="{'bi-eye': !isPasswordVisible, 'bi-eye-slash': isPasswordVisible}"></i>
           </span>
         </div>
       </div>

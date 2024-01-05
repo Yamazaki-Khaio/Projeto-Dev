@@ -34,21 +34,21 @@ body {
 //   margin-bottom: 20px;
 // }
 
-// .container__header {
-//   display: flex;
-//   flex-direction: row;
-//   align-items: center;
-//   justify-content: space-between;
-//   width: 100%;
-// }
+.container__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
 
-// .line {
-//   flex-grow: 1;
-//   border-top: 1px solid #2f3337;
-//   align-items: center;
-//   justify-content: space-between;
-//   margin: 8px;
-// }
+.line {
+  flex-grow: 1;
+  border-top: 1px solid #2f3337;
+  align-items: center;
+  justify-content: space-between;
+  margin: 8px;
+}
 
 // .content_main {
 //   flex-direction: column;
@@ -208,4 +208,28 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 img
 {
   padding-left: 4px;
+}
+
+.input-group-text {
+  background-color: transparent !important; // Cor de fundo do conteúdo
+  border-left: none !important;
+  border-color: $placeholder-color;
+  color: #CED4DA;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #2F3337 !important; // Cor de fundo do conteúdo
+  }
+  &:focus {
+    outline: none;
+    // remova o border-color do focus para evitar sobrescrever o estilo de erro
+    box-shadow: 0 0 0 0.2rem rgba(13, 108, 242, 0.25);
+  }
+
+  &.is-invalid {
+    border-color: #dc3545 !important;
+    /* Cor vermelha para indicar erro */
+  }
+
 }

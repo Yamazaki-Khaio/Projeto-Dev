@@ -5,6 +5,7 @@ $text-color: #CED4DA;
 $placeholder-color: #6C757D;
 
 
+
 .login-container {
   display: flex;
   flex-direction: column;
@@ -34,28 +35,7 @@ $placeholder-color: #6C757D;
   }
 
 
-  .input-group-text {
-    background-color: transparent !important; // Cor de fundo do conteúdo
-    border: 1px solid $placeholder-color;
-    color: #ffffff;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    cursor: pointer;
 
-    &:hover {
-      background-color: #2F3337 !important; // Cor de fundo do conteúdo
-    }
-    &:focus {
-      outline: none;
-      // remova o border-color do focus para evitar sobrescrever o estilo de erro
-      box-shadow: 0 0 0 0.2rem rgba(13, 108, 242, 0.25);
-    }
-
-    &.is-invalid {
-      border-color: #dc3545 !important;
-      /* Cor vermelha para indicar erro */
-    }
-
-  }
 
 
   .input-group {

@@ -8,20 +8,21 @@ import { EnderecoViewComponent } from './endereco-view/endereco-view.component';
 import { TelefoneViewComponent } from './telefone-view/telefone-view.component';
 import { EmailViewComponent } from './email-view/email-view.component';
 import { LocalizadorConstrucaoComponent } from './localizador-construcao/localizador-construcao.component';
-
-
+import { EnderecoCadastroComponent } from './endereco-cadastro/endereco-cadastro.component';
 @NgModule({
     declarations: [
         LocalizadorCadastroComponent,
         EnderecoViewComponent,
         TelefoneViewComponent,
         EmailViewComponent,
-        LocalizadorConstrucaoComponent
+        LocalizadorConstrucaoComponent,
+        LocalizadorCadastroComponent,
+        EnderecoCadastroComponent
     ],
     imports: [
         CommonModule,
         LocalizadorRoutingModule,
-        SharedModule
+        SharedModule,
     ]
 })
 export class LocalizadorModule { }
