@@ -1,3 +1,4 @@
 {
-    "CodeGPT.query.language": "Portuguese"
+    "CodeGPT.query.language": "Portuguese",
+    "npm-scripts.showStartNotification": false
 }

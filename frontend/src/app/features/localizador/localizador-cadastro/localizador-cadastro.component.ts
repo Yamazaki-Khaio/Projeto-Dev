@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IconsService } from '../../../shared/util/icons.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-localizador-cadastro',
   templateUrl: './localizador-cadastro.component.html',
@@ -13,7 +13,10 @@ export class LocalizadorCadastroComponent {
   openedIconUrl: string = '';
   upIconUrl: string = '';
 
-  constructor(private IconsService: IconsService) {}
+  constructor(
+    private IconsService: IconsService,
+    private router: Router
+    ) {}
 
   ngOnInit(): void {
     this.openedIconUrl = this.IconsService.getIconUrl('icon-obrigatorio');
@@ -68,4 +71,13 @@ export class LocalizadorCadastroComponent {
     // Implemente a lógica para abrir o modal do Bootstrap
     console.log('Modal do Bootstrap Aberto');
   }
+
+  voltar() {
+    this.router.navigate(['users/profile/cliente/']);
+  }
+
+  OnSubmit() {
+    this.router.navigate(['users/profile/cliente/']);
+  }
+  
 }

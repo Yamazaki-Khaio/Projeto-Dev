@@ -1,6 +1,6 @@
 <!-- localizador-cadastro -->
-<div class="d-flex flex-column h-100">
-  <div class="row col-12">
+<div class="localizador">
+  <div class="container__localizador">
     <div class="col-10">
       <div class="row">
         <div class="col">
@@ -13,12 +13,12 @@
         <img [src]="openedIconUrl">
         <a>Campos obrigatórios</a>
       </div>
-      <div class="accordion col-12">
+      <div class="accordion col-10">
         <div class="accordion-item">
           <div class="accordion-item-header">
             <h5>Endereço</h5>
             <hr class="line-md">
-            <img [src]="upIconUrl">
+            <img [src]="upIconUrl" class="img-fluid">
           </div>
           <div class="accordion-item-content col-10">
             <div class="link">+ Adicionar endereço </div>
@@ -29,7 +29,7 @@
           <div class="accordion-item-header">
             <h5>Telefone</h5>
             <hr class="line-md">
-            <img [src]="upIconUrl">
+            <img [src]="upIconUrl" class="img-fluid">
           </div>
           <div class="accordion-item-content col-10">
             <div class="link">+ Adicionar contato </div>
@@ -40,7 +40,7 @@
           <div class="accordion-item-header">
             <h5>E-mail</h5>
             <hr class="line-md">
-            <img [src]="upIconUrl">
+            <img [src]="upIconUrl" class="img-fluid">
           </div>
           <div class="accordion-item-content col-10">
             <div data-bs-toggle="modal" data-bs-target="" class="link">+ Adicionar e-mail </div>
@@ -48,9 +48,15 @@
           </div>
         </div>
       </div>
+      <div class="content__footer">
+        <button class="btn btn-secondary" (click)="voltar()">Cancelar</button>
+        <button class="btn btn-primary" (click)="OnSubmit()" [disabled]="true" type="submit">Salvar cliente</button>
+      </div>
     </div>
-    <div class="col-2">
+
+    <div class="">
       <app-list-link></app-list-link>
     </div>
   </div>
+
 </div>
