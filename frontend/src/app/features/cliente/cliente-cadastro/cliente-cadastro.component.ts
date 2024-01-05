@@ -4,7 +4,7 @@ import { ClienteService } from '../cliente.service';
 import { Router } from '@angular/router';
 import { Cliente } from '../cliente';
 import { IconsService } from '../../../shared/util/icons.service';
-import { NomeRefService } from '../../../shared/util/att-nome-ref.service'; // Importe o serviço
+import { NomeRefService } from '../../../shared/util/att-nome-ref.service';
 
 @Component({
   selector: 'app-cliente-cadastro',

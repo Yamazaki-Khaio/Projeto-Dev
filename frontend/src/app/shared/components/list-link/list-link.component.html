@@ -1,16 +1,16 @@
 <div class="ListLink">
   <div class="Links">
-    <div class="Link selected" routerLink="/profile/cliente/editar/{{ clienteId }}" linkType="DadosCadastrais">
+    <div class="Link" [routerLink]="['/profile/cliente/editar', clienteId]" linkType="DadosCadastrais" routerLinkActive="selected">
       <a>
         <div class="Label">Dados Cadastrais</div>
       </a>
     </div>
-    <div class="Link" routerLink="/profile/cliente/localizador/{{ clienteId }}" linkType="Localizacao">
+    <div class="Link" [routerLink]="['/profile/cliente/localizador', clienteId]" linkType="Localizacao" routerLinkActive="selected">
       <a>
         <div class="Label">Localização</div>
       </a>
     </div>
-    <div class="Link" routerLink="/profile/cliente/representante/{{ clienteId }}" linkType="Representantes">
+    <div class="Link" [routerLink]="['/profile/cliente/representante', clienteId]" linkType="Representantes" routerLinkActive="selected">
       <a>
         <div class="Label">Representantes</div>
       </a>

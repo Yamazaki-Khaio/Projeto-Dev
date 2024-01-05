@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-link',
@@ -10,13 +9,11 @@ import { ActivatedRoute } from '@angular/router';
 export class ListLinkComponent implements OnInit {
   clienteId!: number;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.clienteId = this.route.snapshot.params['id'];
-
-
   }
 
+  
 }
-
