@@ -1,4 +1,8 @@
 // @import '../../../../styles.scss';
+.form-row{
+  margin-top: 20px;
+  gap:20px !important;
+}
 
 .header{
   align-content: center !important;
@@ -12,7 +16,6 @@
   justify-self: center !important;
   align-self: center !important;
   justify-items: center !important;
-  padding-left: 12px !important; // 20px - gap=8px
 }
 
 .content__footer{

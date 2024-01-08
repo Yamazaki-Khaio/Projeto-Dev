@@ -18,20 +18,19 @@
       <form [formGroup]="clienteEditForm" (ngSubmit)="onSubmit()">
         <!-- First Row -->
         <div class="form-row">
-          <div class="form-group-lg col-4">
+          <div class="form-group-md col-4">
             <label for="identificador">CNPJ/CPF</label><img [src]="openedIconUrl">
             <input type="text" class="form-control" placeholder="00.000.000/0000-00" id="identificador" appIdentificadorValidator formControlName="identificador" isdisabled readonly>
           </div>
 
-          <div class="form-group-sm col-2">
+          <div class="form-group-sm">
             <label for="data_cadastro">Data de cadastro</label>
             <input type="date" class="form-control" id="data_cadastro" formControlName="data_cadastro" [value]="clienteEditForm.get('data_cadastro')!.value | date:'dd/MM/yyyy'">
           </div>
         </div>
-
         <!-- Second Row -->
         <div class="form-row">
-          <div class="form-group">
+          <div class="form-group-lg col-5">
             <label for="nome">Nome</label> <img [src]="openedIconUrl">
             <input type="text" class="form-control" id="nome" formControlName="nome" required>
             <div *ngIf="clienteEditForm.get('nome')?.hasError('required')" class="error-message">
@@ -39,7 +38,7 @@
             </div>
           </div>
 
-          <div class="form-group md-input">
+          <div class="form-group">
             <label for="nome_ref"> {{nomeRefService.nome_ref}} </label> <img [src]="openedIconUrl">
             <input type="text" class="form-control" id="nome_ref" formControlName="nome_ref" [placeholder]="nomeRefService.placeholder" required>
             <div *ngIf="clienteEditForm.get('nome_ref')?.hasError('required')" class="error-message">
@@ -50,7 +49,7 @@
 
         <!-- Additional Fields -->
         <div class="form-row">
-          <div class="form-group">
+          <div class="form-group-lg col-5">
             <label for="inscricao_municipal">Inscrição Municipal</label>
             <input type="text" class="form-control" id="inscricao_municipal" formControlName="inscricao_municipal">
           </div>
@@ -60,7 +59,6 @@
           </div>
 
         </div>
-
 
       </form>
       <!-- Buttons -->

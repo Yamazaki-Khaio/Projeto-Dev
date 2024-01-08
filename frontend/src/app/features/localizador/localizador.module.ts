@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 import { LocalizadorRoutingModule } from './localizador-routing.module';
 import { LocalizadorCadastroComponent } from './localizador-cadastro/localizador-cadastro.component';
@@ -17,12 +19,14 @@ import { EnderecoCadastroComponent } from './endereco-cadastro/endereco-cadastro
         EmailViewComponent,
         LocalizadorConstrucaoComponent,
         LocalizadorCadastroComponent,
-        EnderecoCadastroComponent
+        EnderecoCadastroComponent,
+
     ],
     imports: [
         CommonModule,
         LocalizadorRoutingModule,
         SharedModule,
+        ReactiveFormsModule,
     ]
 })
 export class LocalizadorModule { }
