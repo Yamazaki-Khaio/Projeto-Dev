@@ -1,1 +1,35 @@
-/*# sourceMappingURL=user-registration.component.css.map */
+.main {
+  width: 100wh;
+  height: 100vh;
+  display: flex;
+}
+
+.content {
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin: auto;
+}
+
+.content__header {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  display: inline-flex;
+}
+.content__header svg {
+  margin: 20px 0 16px 0;
+}
+.content__header h2 {
+  font-size: 28px;
+  font-weight: 900;
+  color: #D8E8FD;
+}
+.content__header p {
+  font-size: 14px;
+  font-weight: 400;
+  color: #6C757D;
+}/*# sourceMappingURL=user-registration.component.css.map */

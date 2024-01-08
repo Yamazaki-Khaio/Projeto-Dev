@@ -1,13 +1,16 @@
+@import 'bootstrap/scss/bootstrap';
+
 .breadcrumb{
   background-color: transparent !important;
-  padding: 0px;
-  margin: 0px;
+  align-items: flex-start;
+  gap: 8px;
 
   .breadcrumb-item{
     cursor: pointer;
   }
   a{
-    font-size: 12px;
+    font-weight: bolder;
+    font-size: 14px;
     color: #D8E8FD !important;
     font-weight: 400;
     line-height: 20px;

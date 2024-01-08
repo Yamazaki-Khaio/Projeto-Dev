@@ -7,7 +7,7 @@
           <app-breadcrumb [clienteItem]="'Cliente'" [currentPage]="'Editar cliente'"></app-breadcrumb>
         </div>
       </div>
-      <div class="header row">
+      <div class="header">
         <h3>Localização</h3>
         <hr class="line">
         <img [src]="openedIconUrl">
@@ -22,9 +22,6 @@
           </div>
           <div class="accordion-item-content col-10">
             <div (click)="abrirModalBootstrap()" class="link">+ Adicionar endereço </div>
-              <div *ngIf="abrirModalBootstrap()">
-                <!-- <app-endereco-cadastro></app-endereco-cadastro> -->
-              </div>
           </div>
         </div>
         <div class="accordion-item">
@@ -35,8 +32,7 @@
           </div>
           <div class="accordion-item-content col-10">
             <div class="link">+ Adicionar contato </div>
-            
-              <app-endereco-cadastro></app-endereco-cadastro>
+            <!-- <app-endereco-cadastro></app-endereco-cadastro> -->
             <!-- <app-telefone-view></app-telefone-view> -->
           </div>
         </div>
@@ -58,7 +54,7 @@
       </div>
     </div>
 
-    <div class="">
+    <div class="col-2">
       <app-list-link></app-list-link>
     </div>
   </div>

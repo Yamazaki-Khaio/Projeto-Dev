@@ -7,7 +7,7 @@
           <app-breadcrumb [clienteItem]="'Cliente'" [currentPage]="'Editar cliente'"></app-breadcrumb>
         </div>
       </div>
-      <div class="header row">
+      <div class="header">
         <h3>Dados cadastrais</h3>
         <hr class="line">
         <img [src]="openedIconUrl">
@@ -18,12 +18,12 @@
       <form [formGroup]="clienteEditForm" (ngSubmit)="onSubmit()">
         <!-- First Row -->
         <div class="form-row">
-          <div class="form-group col-4">
+          <div class="form-group-lg col-4">
             <label for="identificador">CNPJ/CPF</label><img [src]="openedIconUrl">
             <input type="text" class="form-control" placeholder="00.000.000/0000-00" id="identificador" appIdentificadorValidator formControlName="identificador" isdisabled readonly>
           </div>
 
-          <div class="form-group col-2">
+          <div class="form-group-sm col-2">
             <label for="data_cadastro">Data de cadastro</label>
             <input type="date" class="form-control" id="data_cadastro" formControlName="data_cadastro" [value]="clienteEditForm.get('data_cadastro')!.value | date:'dd/MM/yyyy'">
           </div>

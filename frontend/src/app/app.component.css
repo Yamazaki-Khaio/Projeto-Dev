@@ -1,1 +1,56 @@
-/*# sourceMappingURL=app.component.css.map */
+.containerMain {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+@media (max-width: 1920px) {
+  .containerMain {
+    max-width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .containerMain {
+    max-width: 100%;
+    padding: 10px;
+  }
+}
+@media (max-width: 576px) {
+  .containerMain {
+    max-width: 100%;
+    padding: 10px;
+  }
+}
+.containerMain .containerMain__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.containerMain .containerMain__content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.containerMain .containerMain__content--center {
+  align-items: center;
+}
+
+.containerMain router-outlet {
+  width: 100%;
+  padding: 10px;
+  flex: 1;
+  line-height: 1.5;
+}
+
+app-footer {
+  background-color: #4e4a4a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 10px;
+  bottom: 0;
+  max-width: 100rem;
+}/*# sourceMappingURL=app.component.css.map */

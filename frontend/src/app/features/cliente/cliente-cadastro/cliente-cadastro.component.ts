@@ -40,6 +40,7 @@ export class ClienteCadastroComponent implements OnInit {
 
   }
 
+
   private atualizarNomeRef(valor: string) {
     this.nomeRefService.atualizarNomeRef(valor);
   }
@@ -76,6 +77,7 @@ export class ClienteCadastroComponent implements OnInit {
       this.clienteService.createCliente(cliente).subscribe(
         (data: Cliente) => {
           console.log(data);
+          this.clienteForm.reset();
           this.router.navigate(['/profile/cliente/editar/' + data.id]);
         },
         (error: any) => {

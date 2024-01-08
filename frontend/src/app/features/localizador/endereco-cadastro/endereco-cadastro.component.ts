@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-endereco-cadastro',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./endereco-cadastro.component.scss']
 })
 export class EnderecoCadastroComponent {
+  constructor(private modalService: NgbModal) { }
 
 }

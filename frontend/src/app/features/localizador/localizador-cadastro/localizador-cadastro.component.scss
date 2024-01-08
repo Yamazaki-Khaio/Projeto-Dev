@@ -1,39 +1,51 @@
+// @IMPORT '../../../../../SRC/STYLES.SCSS';
+
+
 .localizador{
-  display: flex;
-  width: 100%;
-  height: 85vh;
-  // background-color: red;
+  display: flex !important;
+  width: 100% !important;
+  height: 85vh  !important;
+  background-color: transparent !important;
 
 }
 
 .container__localizador {
   // background-color: green;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 100%;
-  gap: 20px;
+  display: flex  !important;
+  flex-direction: row  !important;
+  width: 100% !important;
+  height: 100% !important;
+  gap: 20px !important;
 
 }
 
 .accordion {
-  gap: 20px;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: space-between;
-  padding: 0px;
-}
-
-.accordion-item {
+  gap: 20px !important;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 0px !important;
+  overflow-y: auto !important;
+  // max-height: 80vh;
   width: 100%;
-  justify-self: flex-start;
+  margin-bottom: 20px !important;
+}
+
+.accordion-item {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  justify-self: flex-start !important;
+  background-color: transparent !important;
+  border: none !important;
+
 }
 
 .header {
-  padding-left: 15px;
+  display: flex !important;
+  flex-direction: row !important;
+  width: 100% !important;
   padding-top: 20px;
 
 
@@ -52,13 +64,13 @@
 }
 
 .accordion-item-header {
-  gap: 8px;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  align-items: center;
-  cursor: pointer;
-  flex-direction: row;
+  gap: 8px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  flex-direction: row !important;
 
   h5 {
     font-weight: 600;
@@ -69,9 +81,10 @@
   }
 
   .line-md {
-    border: 2px solid #CED4DA;
-    width: 90%;
-    border-radius: 2px;
+    border: 2px solid #CED4DA !important;
+    width: 90% !important;
+    border-radius: 2px !important;
+    color: #CED4DA !important;
 
   }
 
@@ -89,13 +102,13 @@
 }
 
 .accordion-item-content {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 0px;
-  overflow-y: auto;
-  // max-height: 80vh;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+  padding: 0px !important;
+  overflow-y: auto !important;
+  max-height: 80vh;
   width: 100%;
-  height: 100vh;
-  margin-bottom: 20px;
+  margin-bottom: 20px !important;
+
 }

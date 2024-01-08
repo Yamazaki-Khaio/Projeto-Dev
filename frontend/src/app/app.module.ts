@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UsersModule } from "./features/users/users.module";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { UsersModule } from "./features/users/users.module";
         HttpClientModule,
         BrowserAnimationsModule // Adicione o HttpClientModule aqui
         ,
-        UsersModule
+        UsersModule,
+        NgbModule
     ]
 })
 export class AppModule { }

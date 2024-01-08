@@ -1,0 +1,79 @@
+.localizador {
+  display: flex;
+  width: 100%;
+  height: 85vh;
+}
+
+.container__localizador {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  gap: 20px;
+}
+
+.accordion {
+  gap: 20px;
+  padding: 0px;
+}
+
+.accordion-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  justify-self: flex-start;
+}
+
+.header {
+  padding-left: 15px;
+  padding-top: 20px;
+}
+.header img {
+  padding-bottom: 9px;
+  padding-right: 9px;
+}
+.header .line {
+  margin-top: 15px;
+}
+
+.accordion-item-header {
+  gap: 8px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  flex-direction: row;
+}
+.accordion-item-header h5 {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  color: #CED4DA;
+}
+.accordion-item-header .line-md {
+  border: 2px solid #CED4DA;
+  width: 90%;
+  border-radius: 2px;
+}
+
+.link {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #0D6CF2;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.accordion-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0px;
+  overflow-y: auto;
+  width: 100%;
+  height: 100vh;
+  margin-bottom: 20px;
+}/*# sourceMappingURL=localizador-cadastro.component.css.map */

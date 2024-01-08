@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { IconsService } from '../../../shared/util/icons.service';
 import { Router } from '@angular/router';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { EnderecoCadastroComponent } from '../endereco-cadastro/endereco-cadastro.component';
+import e from 'express';
+
 
 
 @Component({
@@ -17,7 +21,8 @@ export class LocalizadorCadastroComponent {
 
   constructor(
     private IconsService: IconsService,
-    private router: Router
+    private router: Router,
+    private modalService: NgbModal,
     ) {}
 
   ngOnInit(): void {
@@ -58,6 +63,7 @@ export class LocalizadorCadastroComponent {
   }
 
   abrirModalEndereco(): void {
+
     this.exibirModalEndereco = true;
     // Implemente a lógica para abrir o modal de endereço
     console.log('Modal de Endereço Aberto');
@@ -71,8 +77,10 @@ export class LocalizadorCadastroComponent {
 
   abrirModalBootstrap(): void {
     // Implemente a lógica para abrir o modal do Bootstrap
-
-    console.log('Modal do Bootstrap Aberto');
+    const modalRef = this.modalService.open(EnderecoCadastroComponent);
+    modalRef.shown.subscribe(() => {
+      console.log('Modal do Bootstrap Aberto');
+    });
   }
 
 

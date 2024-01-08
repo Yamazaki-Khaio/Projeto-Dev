@@ -1,18 +1,18 @@
-@import '../../../../styles.scss';
+// @import '../../../../styles.scss';
 
 .header{
-  align-content: center;
-  align-items: center;
-  display: inline-flex;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  justify-self: center;
-  align-self: center;
-  justify-items: center;
-  padding-left: 12px; // 20px - gap=8px
+  align-content: center !important;
+  align-items: center !important;
+  display: inline-flex !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  justify-content: center !important;
+  align-items: center !important;
+  justify-self: center !important;
+  align-self: center !important;
+  justify-items: center !important;
+  padding-left: 12px !important; // 20px - gap=8px
 }
 
 .content__footer{
