@@ -1,0 +1,54 @@
+<!-- representante-cadastro -->
+<div class="representante">
+  <div class="container__representante">
+    <div class="col-10">
+      <div class="row">
+        <div class="col">
+          <app-breadcrumb [clienteItem]="'Cliente'" [currentPage]="'Adicionar cliente'"></app-breadcrumb>
+        </div>
+      </div>
+      <div class="header">
+        <h3>Dados cadastrais</h3>
+        <hr class="line">
+        <img [src]="openIconUrl">
+        <a>Campos obrigatórios</a>
+      </div>
+      <form [formGroup]="RepresentanteForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+        <!-- First Row -->
+        <div class="form-row">
+          <div class="form-group-md col-4">
+            <label for="identificador" [ngClass]="{'required-field': RepresentanteForm.get('identificador')?.invalid && RepresentanteForm.get('identificador')?.touched}">
+              CNPJ/CPF
+            </label>
+            <img [src]="openIconUrl">
+            <input type="text" class="form-control" placeholder="00.000.000/0000-00" id="identificador" appIdentificadorValidator formControlName="identificador"
+            [ngClass]="{ 'is-invalid': RepresentanteForm.get('identificador')?.hasError('required') }">
+            <div *ngIf="RepresentanteForm.get('identificador')?.hasError('required')" class="error-message">
+              Digite um CNPJ/CPF válido
+            </div>
+          </div>
+
+          <div class="form-group-lg col-5">
+            <label for="nome" [ngClass]="{'required-field': RepresentanteForm.get('nome')?.invalid && RepresentanteForm.get('nome')?.touched}">
+              Nome
+            </label>
+            <img [src]="openIconUrl">
+            <input type="text" class="form-control" id="nome" formControlName="nome" required placeholder="Insira o nome do representante"
+            [ngClass]="{ 'is-invalid': RepresentanteForm.get('nome')?.hasError('required') }">
+            <div *ngIf="RepresentanteForm.get('nome')?.hasError('required')" class="error-message">
+              Insira um nome para seu cliente
+            </div>
+          </div>
+        </div>
+      </form>
+      <!-- Buttons -->
+      <div class="content__footer">
+        <button type="button" class="btn btn-secondary" (click)="voltar()">Cancelar</button>
+        <button type="submit" (click)="onSubmit()" class="btn btn-primary">Salvar alterações</button>
+      </div>
+    </div>
+    <div class="col-2">
+      <app-list-link></app-list-link>
+    </div>
+  </div>
+</div>

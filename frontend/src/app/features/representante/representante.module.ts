@@ -1,14 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { RepresentanteRoutingModule } from './representante-routing.module';
+import { RepresentanteCadastroComponent } from './representante-cadastro/representante-cadastro.component';
+import { SharedModule } from "../../shared/shared.module";
+import { RepresentanteHomeComponent } from './representante-home/representante-home.component';
 
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    RepresentanteRoutingModule
-  ]
+    declarations: [
+        RepresentanteCadastroComponent,
+        RepresentanteHomeComponent,
+
+    ],
+    imports: [
+        CommonModule,
+        RepresentanteRoutingModule,
+        SharedModule,
+        ReactiveFormsModule
+    ]
 })
 export class RepresentanteModule { }

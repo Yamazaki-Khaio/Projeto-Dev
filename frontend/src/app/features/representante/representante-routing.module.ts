@@ -1,7 +1,12 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RepresentanteCadastroComponent } from './representante-cadastro/representante-cadastro.component';
+import { RepresentanteHomeComponent } from './representante-home/representante-home.component';
+const routes: Routes = [
+  {'path': '', 'component': RepresentanteHomeComponent},
+  {'path': 'cadastro', 'component': RepresentanteCadastroComponent},
 
-const routes: Routes = [];
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
