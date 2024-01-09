@@ -17,7 +17,7 @@ export class LocalizadorCadastroComponent {
   exibirModalEndereco: boolean = false;
   openedIconUrl: string = '';
   upIconUrl: string = '';
-  pessoaId: number;
+  pessoaId: number = 0;
 
   constructor(
     private IconsService: IconsService,
