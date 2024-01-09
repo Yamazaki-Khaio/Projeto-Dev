@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IconsService } from '../../../shared/util/icons.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-endereco-cadastro',
@@ -17,6 +18,7 @@ export class EnderecoCadastroComponent {
   constructor(
     private fb: FormBuilder,
     private IconsService: IconsService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
@@ -27,23 +29,23 @@ export class EnderecoCadastroComponent {
     this.openedIconUrl = this.IconsService.getIconUrl('icon-obrigatorio')
     this.iconClose = this.IconsService.getIconUrl('iconclose')
     this.enderecoAddForm = this.fb.group({
-      inputCep: ['', [Validators.required]],
-      inputLogradouro: ['', [Validators.required]],
-      inputNumero: ['', [Validators.required]],
-      inputComplemento: [''],
-      inputBairro: ['', [Validators.required]],
-      inputCidade: ['', [Validators.required]],
-      inputEstado: ['', [Validators.required]],
+      cep: ['', [Validators.required]],
+      logradouro: ['', [Validators.required]],
+      numero: ['', [Validators.required]],
+      complemento: [''],
+      bairro: ['', [Validators.required]],
+      cidade: ['', [Validators.required]],
+      estado: ['', [Validators.required]],
     });
+
+  }
+  voltar() {
+    this.modalService.dismissAll('endereco-cadastro');
   }
 
-  voltar() {
+
+  onSubmit() {
     throw new Error('Method not implemented.');
     }
-
-    onSubmit() {
-      throw new Error('Method not implemented.');
-      }
-
 
 }

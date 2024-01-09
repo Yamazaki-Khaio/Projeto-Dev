@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IconsService } from '../../../shared/util/icons.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EnderecoCadastroComponent } from '../endereco-cadastro/endereco-cadastro.component';
 
@@ -17,14 +17,17 @@ export class LocalizadorCadastroComponent {
   exibirModalEndereco: boolean = false;
   openedIconUrl: string = '';
   upIconUrl: string = '';
+  pessoaId: number;
 
   constructor(
     private IconsService: IconsService,
     private router: Router,
     private modalService: NgbModal,
+    private route: ActivatedRoute
     ) {}
 
   ngOnInit(): void {
+    this.pessoaId = this.route.snapshot.params['id_pessoa'];
     this.openedIconUrl = this.IconsService.getIconUrl('icon-obrigatorio');
     this.upIconUrl = this.IconsService.getIconUrl("down");
 

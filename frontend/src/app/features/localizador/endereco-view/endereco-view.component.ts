@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Endereco } from '../endereco';
@@ -11,8 +11,15 @@ import { EnderecoService } from '../endereco.service';
   styleUrls: ['./endereco-view.component.scss']
 })
 export class EnderecoViewComponent implements OnInit {
+removerEndereco(arg0: any) {
+throw new Error('Method not implemented.');
+}
+abrirModalBootstrap() {
+throw new Error('Method not implemented.');
+}
+  @Input() pessoaId!: number;
   endereco$: Observable<Endereco>;
-  pessoaId!: number;
+
 
   constructor(
     private enderecoService: EnderecoService,
@@ -23,7 +30,9 @@ export class EnderecoViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.enderecoService.getEndereco(this.pessoaId.toString()).subscribe();
+    if (this.pessoaId) {
+      this.endereco$ = this.enderecoService.getEndereco(this.pessoaId.toString());
+    }
   }
 }
 
