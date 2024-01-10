@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClienteService } from '../cliente.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Cliente } from '../cliente';
 import { IconsService } from '../../../shared/util/icons.service';
 import { NomeRefService } from '../../../shared/util/att-nome-ref.service';
 import { NgbAlertConfig } from '@ng-bootstrap/ng-bootstrap';
-import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
   selector: 'app-cliente-cadastro',
   templateUrl: './cliente-cadastro.component.html',
   styleUrls: ['./cliente-cadastro.component.scss'],
+  providers: [NgbAlertConfig] // add NgbAlertConfig to the component providers
 })
 export class ClienteCadastroComponent implements OnInit {
 
@@ -20,6 +20,9 @@ export class ClienteCadastroComponent implements OnInit {
   emailError: string = 'Digite um CNPJ/CPF válido';
   nomeError: string = 'Insira um nome para seu cliente';
   openIconUrl: string = '';
+  alertType: string = 'info';
+  alertMessage: string = '';
+
 
   constructor(
     private fb: FormBuilder,
@@ -27,7 +30,9 @@ export class ClienteCadastroComponent implements OnInit {
     private router: Router,
     private IconsService: IconsService,
     public nomeRefService: NomeRefService,
-    private ngbAlert: NgbAlert
+    private alertConfig: NgbAlertConfig,
+    private activatedRoute: ActivatedRoute,
+
   ) {}
 
   ngOnInit(): void {
@@ -50,26 +55,6 @@ export class ClienteCadastroComponent implements OnInit {
   }
 
 
-
-  // atualizarNomeRef(valor: string) {
-  //   const valorSemPontos = valor.replace(/\./g, '');
-  //   this.mostrarDivInputRef = valorSemPontos.length === 11 || valorSemPontos.length === 14;
-  //   switch (valorSemPontos.length) {
-  //     case 11:
-  //       this.nome_ref = 'Nome da mãe';
-  //       this.placeholder = 'Insira o nome da mãe do cliente';
-  //       break;
-  //     case 14:
-  //       this.nome_ref = 'Nome fantasia';
-  //       this.placeholder = 'Insira o nome fantasia do CNPJ';
-  //       break;
-  //     default:
-  //       this.nome_ref = '';
-  //       this.placeholder = '';
-  //       break;
-  //   }
-
-
   OnSubmit(): void {
     if (this.clienteForm.valid) {
       const cliente: Cliente = {
@@ -83,23 +68,23 @@ export class ClienteCadastroComponent implements OnInit {
           console.log(data);
           this.clienteForm.reset();
           this.router.navigate(['/profile/cliente/editar/' + data.id]);
-
-          // Aciona o alerta usando a API do NgBootstrap
-          this.ngbAlert.close(); // Fecha o alerta se estiver aberto
-          this.ngbAlert.type = 'success';
-          this.ngbAlert.dismissible = true;
-          // this.ngbAlert.open('Cliente adicionado com sucesso!');
-
+          this.alertConfig.dismissible = true;
+          this.alertConfig.type = 'success';
+          this.alertMessage = 'Cliente adicionado com sucesso.';
+          alertMessage: 'Cliente adicionado com sucesso.';
         },
         (error: any) => {
           console.log(cliente);
           console.log(error);
+          this.alertConfig.dismissible = true;
+          this.alertConfig.type = 'danger';
+          this.alertMessage = 'Erro ao adicionar cliente. Erro: ' + error;
           // Aciona o alerta usando a API do NgBootstrap
-          this.ngbAlert.close(); // Fecha o alerta se estiver aberto
-          this.ngbAlert.type = 'danger';
-          this.ngbAlert.dismissible = true;
+          // this.ngbAlert.close(); // Fecha o alerta se estiver aberto
+          // this.ngbAlert.type = 'danger';
+          // this.ngbAlert.dismissible = true;
           // this.ngbAlert.open('Erro ao adicionar cliente. Erro: ' + error);
-          
+
         }
       );
     } else {

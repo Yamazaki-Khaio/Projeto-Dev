@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class UserProfileComponent implements OnInit {
 
+
   alertMessage: string | null = null;
   alertType: string = '';  // Inicializa como uma string vazia
 
@@ -23,7 +24,7 @@ export class UserProfileComponent implements OnInit {
     this.fetchUserProfileData();
   }
 
-  clearAlert() {
+ clearAlert() {
     this.alertMessage = null;
     this.alertType = '';
   }

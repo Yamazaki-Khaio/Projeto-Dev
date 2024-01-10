@@ -10,11 +10,12 @@ import { PasswordMatchDirective } from './directives/password-match.directive';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { IdentificadorValidatorDirective } from './directives/identificador-validator.directive';
 import { FormsComponent } from './components/forms/forms.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListLinkComponent } from './components/list-link/list-link.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { SituacaoComponent } from './components/situacao/situacao.component';
 import { IconsService } from './util/icons.service';
+import { AlertComponent } from './components/alert/alert.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import { IconsService } from './util/icons.service';
     FormsComponent,
     ListLinkComponent,
     BreadcrumbComponent,
-    SituacaoComponent
+    SituacaoComponent,
+    AlertComponent,
+
 
   ],
   providers: [
@@ -35,7 +38,11 @@ import { IconsService } from './util/icons.service';
   ],
   imports: [
     CommonModule,
-    SharedRoutingModule
+    SharedRoutingModule,
+    NgbModule,
+    
+
+
   ],
   exports: [
     HeaderComponent,
@@ -48,6 +55,9 @@ import { IconsService } from './util/icons.service';
     ListLinkComponent,
     BreadcrumbComponent,
     SituacaoComponent,
+    AlertComponent,
+
+
 
   ]
 

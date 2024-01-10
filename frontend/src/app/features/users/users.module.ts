@@ -22,7 +22,6 @@ import { UsersHomeComponent } from './users-home/users-home.component';
     UsersRoutingModule,
     ReactiveFormsModule,
     SharedModule,
-    NgbModule,
 
 
   ],
