@@ -25,7 +25,7 @@ export class AlertComponent {
   private configureAlerts() {
     this.alertConfig.dismissible = true;
     this.alertConfig.type = 'info';
-    this.alertMessage = 'An example alert with an icon';
+    this.alertMessage = 'A simple alert—check it out!';
   }
 
   closeAlert() {
