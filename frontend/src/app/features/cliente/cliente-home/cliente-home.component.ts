@@ -13,6 +13,10 @@ export class ClienteHomeComponent implements OnDestroy {
   clientes$: Observable<Cliente[]>;
   private clientesSubscription: Subscription = new Subscription();
 
+  ngOnInit(): void {
+    this.reloadClientes();
+  }
+
   constructor(private clienteService: ClienteService, private router: Router) {
     this.clientes$ = this.clienteService.getClientes();
   }

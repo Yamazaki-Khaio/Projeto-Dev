@@ -3,6 +3,7 @@
   <div class="main-content">
     <app-header></app-header>
     <div class="user-profile__content">
+      <ngb-alert *ngIf="alertMessage" [type]="alertType" (close)="clearAlert()">{{ alertMessage }}</ngb-alert>
       <router-outlet></router-outlet>
     </div>
     <app-footer></app-footer>

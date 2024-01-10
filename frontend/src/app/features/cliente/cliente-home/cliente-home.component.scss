@@ -3,10 +3,61 @@
 .client-list
 {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 20px 0px 20px 0px;
+  flex-direction: column;
   align-items: center;
-  align-content: center;
-  height: calc(90vh - $header-heigth);
+  gap: 16px;
+  height: 100%;
+  overflow-y: auto !important;
+  align-content: center !important;
 }
+
+
+.list-empty{
+  margin-top: 20px;
+  width: 100%;
+  height: 100%;
+  justify-content: center !important;
+  align-items: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+
+  h4{
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    color: #ffffff;
+  }
+
+  img{
+    justify-content: center;
+  }
+
+}
+
+
+.table{
+
+  margin-top: 20px  !important;
+  width: 100% !important;
+  height: 100% !important;
+  align-items: flex-start !important;
+  align-content: flex-start !important;
+  justify-content: flex-start !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  gap: 20px !important;
+  background-color: red;
+}
+
+.table-dark{
+  border-top: transparent !important;
+  border-left: transparent !important;
+  border-right: transparent !important;
+  border-bottom: #6C757D !important;
+  gap: 16px !important;
+  width: 100% !important;
+  justify-content: space-between !important;
+
+  color: var(--Grayscale-200, #E4EBF2) !important;
+  }

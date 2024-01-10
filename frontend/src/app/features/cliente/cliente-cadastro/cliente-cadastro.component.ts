@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 import { Cliente } from '../cliente';
 import { IconsService } from '../../../shared/util/icons.service';
 import { NomeRefService } from '../../../shared/util/att-nome-ref.service';
+import { NgbAlertConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-cliente-cadastro',
@@ -23,7 +26,8 @@ export class ClienteCadastroComponent implements OnInit {
     private clienteService: ClienteService,
     private router: Router,
     private IconsService: IconsService,
-    public nomeRefService: NomeRefService
+    public nomeRefService: NomeRefService,
+    private ngbAlert: NgbAlert
   ) {}
 
   ngOnInit(): void {
@@ -79,10 +83,23 @@ export class ClienteCadastroComponent implements OnInit {
           console.log(data);
           this.clienteForm.reset();
           this.router.navigate(['/profile/cliente/editar/' + data.id]);
+
+          // Aciona o alerta usando a API do NgBootstrap
+          this.ngbAlert.close(); // Fecha o alerta se estiver aberto
+          this.ngbAlert.type = 'success';
+          this.ngbAlert.dismissible = true;
+          // this.ngbAlert.open('Cliente adicionado com sucesso!');
+
         },
         (error: any) => {
           console.log(cliente);
           console.log(error);
+          // Aciona o alerta usando a API do NgBootstrap
+          this.ngbAlert.close(); // Fecha o alerta se estiver aberto
+          this.ngbAlert.type = 'danger';
+          this.ngbAlert.dismissible = true;
+          // this.ngbAlert.open('Erro ao adicionar cliente. Erro: ' + error);
+          
         }
       );
     } else {

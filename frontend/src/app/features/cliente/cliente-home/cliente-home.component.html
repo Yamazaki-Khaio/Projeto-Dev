@@ -5,9 +5,9 @@
   </div>
 
   <div class="client-list">
-    <ng-container *ngIf="(clientes$ | async) && (clientes$ | async)!.length > 0; else emptyList">
-      <div class="table-responsive overflow-auto">
-        <table class="table table-bordered">
+    <div class="table" *ngIf="(clientes$ | async) && (clientes$ | async)!.length > 0; else emptyList">
+      <div class="table-resposive overflow-auto">
+        <table class="table-dark table-hover">
           <thead>
             <tr>
               <th>Nome - CPF/CNPJ</th>
@@ -17,11 +17,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let client of clientes$ | async">
-              <td>{{ client.nome }}</td>
-              <td>{{ client.identificacao }}</td>
+            <tr  *ngFor="let client of clientes$ | async">
+              <td class="col-8"> <div>{{ client.nome }}</div>
+                <div>{{ client.identificacao }}</div></td>
               <td><span class="badge badge-primary">{{ client.situacao }}</span></td>
-              <td>{{ client.data_cadastro | date }}</td>
+              <td>{{ client.data_cadastro | date:'dd/MM/yyyy' }}</td>
               <td>
                 <button class="btn btn-secondary icon" (click)="editarCliente(client)">Editar</button>
                 <button class="btn btn-danger icon" (click)="deleteClient(client)">Excluir</button>
@@ -30,10 +30,12 @@
           </tbody>
         </table>
       </div>
-    </ng-container>
+    </div>
 
     <ng-template #emptyList>
-      <img src="./assets/projeto-cliente-1.png" alt="Lista vazia">
+      <div class="list-empty">
+        <img src="./assets/projeto-cliente-1.png" alt="Lista vazia">
+      </div>
     </ng-template>
   </div>
 </div>
