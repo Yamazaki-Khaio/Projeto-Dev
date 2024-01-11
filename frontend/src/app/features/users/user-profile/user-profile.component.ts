@@ -11,24 +11,12 @@ import { Router } from '@angular/router';
 })
 export class UserProfileComponent implements OnInit {
 
-
-  alertMessage: string | null = null;
-  alertType: string = '';  // Inicializa como uma string vazia
-
-
-
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     // Obtenha os dados do perfil do usuário quando o componente for inicializado
     this.fetchUserProfileData();
   }
-
- clearAlert() {
-    this.alertMessage = null;
-    this.alertType = '';
-  }
-
 
   fetchUserProfileData(): void {
     // Chame o serviço para obter os dados do perfil do usuário

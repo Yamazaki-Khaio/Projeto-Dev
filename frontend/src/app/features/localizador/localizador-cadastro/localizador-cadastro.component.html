@@ -32,7 +32,8 @@
             <img [src]="upIconUrl" class="img-fluid">
           </div>
           <div class="accordion-item-content col-10">
-            <div class="link">+ Adicionar contato </div>
+            <div class="link" (click)="exibirTelefone = true">+ Adicionar telefone </div>
+            <app-telefone-cadastro *ngIf="exibirTelefone"></app-telefone-cadastro>
             <!-- <app-endereco-cadastro></app-endereco-cadastro> -->
             <!-- <app-telefone-view></app-telefone-view> -->
           </div>

@@ -9,7 +9,7 @@ export class AlertComponent {
   alertMessage: string | null = null;
 
   @Input() message: string = '';
-  @Input() alertType: string = 'success';
+  @Input() alertType: string = 'danger';
 
   constructor(private alertConfig: NgbAlertConfig) {
 
@@ -23,9 +23,10 @@ export class AlertComponent {
 
 
   private configureAlerts() {
-    this.alertConfig.dismissible = true;
-    this.alertConfig.type = 'info';
-    this.alertMessage = 'A simple alert—check it out!';
+    this.alertConfig.dismissible = false;
+    this.alertConfig.type = 'danger';
+    this.alertType = 'danger';
+    this.alertMessage = '';
   }
 
   closeAlert() {

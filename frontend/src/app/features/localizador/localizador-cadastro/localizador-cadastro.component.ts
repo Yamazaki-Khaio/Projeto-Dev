@@ -18,6 +18,7 @@ export class LocalizadorCadastroComponent {
   openedIconUrl: string = '';
   upIconUrl: string = '';
   pessoaId: number = 0;
+  exibirTelefone: boolean = false;
 
   constructor(
     private IconsService: IconsService,

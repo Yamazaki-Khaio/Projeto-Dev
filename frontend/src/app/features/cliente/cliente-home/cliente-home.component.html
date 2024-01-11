@@ -22,9 +22,10 @@
                 <div>{{ client.identificacao }}</div></td>
               <td><span class="badge badge-primary">{{ client.situacao }}</span></td>
               <td>{{ client.data_cadastro | date:'dd/MM/yyyy' }}</td>
-              <td>
-                <button class="btn btn-secondary icon" (click)="editarCliente(client)">Editar</button>
-                <button class="btn btn-danger icon" (click)="deleteClient(client)">Excluir</button>
+              <td class="icon">
+                <button class="bi bi-pencil" (click)="editarCliente(client)"><i class=""><img [src]="editIcon">
+                </i></button>
+                <button class="bi bi-trash" (click)="deleteClient(client)"><i class=""> <img [src]="delIcon"> </i></button>
               </td>
             </tr>
           </tbody>

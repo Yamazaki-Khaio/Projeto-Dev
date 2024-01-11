@@ -1,0 +1,14 @@
+<div class="telefone">
+  <div class="row">
+    <form [formGroup]="telefoneForm" style="gap: 20px !important;">
+      <input type="text" formControlName="telefone" placeholder="Telefone">
+      <button type="btn btn-secondary">Cancelar</button>
+      <button type="btn btn-primary">Adicionar telefone</button>
+    </form>
+  </div>
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="isPrincipal" formControlName="isPrincipal">
+    <label class="form-check-label" for="rememberMe">Endereço principal</label>
+  </div>
+
+</div>

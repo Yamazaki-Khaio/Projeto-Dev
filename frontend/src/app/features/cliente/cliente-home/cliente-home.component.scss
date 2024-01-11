@@ -30,7 +30,7 @@
   }
 
   img{
-    justify-content: center;
+    padding: 120px;
   }
 
 }
@@ -61,3 +61,21 @@
 
   color: var(--Grayscale-200, #E4EBF2) !important;
   }
+
+.icon
+{
+  gap: 16px !important;
+  margin: 16px !important;
+
+}
+.bi {
+  background-color: transparent !important;
+  color: var(--Grayscale-200, #E4EBF2) !important;
+  border: none !important;
+  transition: color 0.3s ease-in-out; // Add transition effect
+
+  &:hover{
+    color: var(--Grayscale-200, #E4EBF2) !important;
+    transform: scale(1.1); // Add scale effect on hover
+  }
+}
