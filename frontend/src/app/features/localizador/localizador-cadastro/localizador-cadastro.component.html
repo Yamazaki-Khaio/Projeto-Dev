@@ -1,7 +1,7 @@
 <!-- localizador-cadastro -->
 <div class="localizador">
-  <div class="container__localizador">
-    <div class="col">
+  <div class="container__localizador col-12">
+    <div class="col-10">
       <div class="row">
         <div class="col">
           <app-breadcrumb [clienteItem]="'Cliente'" [currentPage]="'Editar cliente'"></app-breadcrumb>
@@ -32,8 +32,8 @@
             <img [src]="upIconUrl" class="img-fluid">
           </div>
           <div class="accordion-item-content col-10">
-            <div class="link" (click)="exibirTelefone = true">+ Adicionar telefone </div>
-            <app-telefone-cadastro *ngIf="exibirTelefone"></app-telefone-cadastro>
+            <div class="link" (click)="abrirInputTelefone()">+ Adicionar telefone </div>
+            <app-telefone-cadastro (click)="adicionarTelefone()" *ngIf="exibirTelefone"></app-telefone-cadastro>
             <!-- <app-endereco-cadastro></app-endereco-cadastro> -->
             <!-- <app-telefone-view></app-telefone-view> -->
           </div>
@@ -45,16 +45,20 @@
             <img [src]="upIconUrl" class="img-fluid">
           </div>
           <div class="accordion-item-content col-10">
-            <div data-bs-toggle="modal" data-bs-target="" class="link">+ Adicionar e-mail </div>
+            <div (click)="abrirInputEmail()" class="link">+ Adicionar e-mail </div>
+            <app-email-cadastro *ngIf="exibirEmail"></app-email-cadastro>
             <!-- <app-email-view></app-email-view> -->
           </div>
         </div>
       </div>
+
       <div class="content__footer">
         <button class="btn btn-secondary" (click)="voltar()">Cancelar</button>
         <button class="btn btn-primary" (click)="OnSubmit()" [disabled]="true" type="submit">Salvar cliente</button>
       </div>
+
     </div>
+
 
     <div class="col-2">
       <app-list-link></app-list-link>

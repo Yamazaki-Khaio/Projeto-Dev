@@ -4,7 +4,7 @@
 .representante{
   display: flex !important;
   width: 100% !important;
-  height: 85vh  !important;
+  height: 100%  !important;
   background-color: transparent !important;
 
 }
@@ -13,8 +13,7 @@
   // background-color: green;
   display: flex  !important;
   flex-direction: row  !important;
-  width: 100% !important;
-  height: 100% !important;
+  height: 100vh !important;
   gap: 20px !important;
 
 }

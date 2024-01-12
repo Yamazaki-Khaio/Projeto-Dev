@@ -1,14 +1,17 @@
 <div class="telefone">
-  <div class="row">
-    <form [formGroup]="telefoneForm" style="gap: 20px !important;">
-      <input type="text" formControlName="telefone" placeholder="Telefone">
-      <button type="btn btn-secondary">Cancelar</button>
-      <button type="btn btn-primary">Adicionar telefone</button>
-    </form>
-  </div>
+  <form class="form-row" [formGroup]="telefoneForm" novalidate>
+    <input id="inputTelefone" class="form-control col-4" type="text" formControlName="inputTelefone" placeholder="(xx) xxxxx xxxx" required>
+    <button class="btn btn-secondary" type="button">Cancelar</button>
+    <button class="btn btn-primary" type="submit" (click)="adicionarTelefone">Adicionar telefone</button>
+  </form>
   <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="isPrincipal" formControlName="isPrincipal">
-    <label class="form-check-label" for="rememberMe">Endereço principal</label>
+    <input
+      type="checkbox"
+      class="form-check-input"
+      id="isPrincipal"
+      formControlName="isPrincipal"
+      [disabled]="telefoneForm.invalid"
+    >
+    <label style="color: #ced4da;" class="form-check-label" for="isPrincipal">Telefone principal</label>
   </div>
-
 </div>

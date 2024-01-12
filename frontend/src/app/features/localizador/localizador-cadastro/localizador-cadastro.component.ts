@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EnderecoCadastroComponent } from '../endereco-cadastro/endereco-cadastro.component';
 
+//refatorar para novo modelo usando os utilitarios
 
 
 @Component({
@@ -13,12 +14,11 @@ import { EnderecoCadastroComponent } from '../endereco-cadastro/endereco-cadastr
 })
 export class LocalizadorCadastroComponent {
   alertMessage: string | null = null;
-  exibirInputTelefone: boolean = false;
-  exibirModalEndereco: boolean = false;
   openedIconUrl: string = '';
   upIconUrl: string = '';
-  pessoaId: number = 0;
+  pessoaId!: number;
   exibirTelefone: boolean = false;
+  exibirEmail: boolean = false;
 
   constructor(
     private IconsService: IconsService,
@@ -65,18 +65,28 @@ export class LocalizadorCadastroComponent {
     console.log(`Accordion ${indice} alternado`);
   }
 
-  abrirModalEndereco(): void {
-
-    this.exibirModalEndereco = true;
-    // Implemente a lógica para abrir o modal de endereço
-    console.log('Modal de Endereço Aberto');
-  }
-
   abrirInputTelefone(): void {
-    this.exibirInputTelefone = true;
-    // Implemente a lógica para abrir o input de telefone
-    console.log('Input de Telefone Aberto');
+    if (this.exibirTelefone) {
+      // Se o input de telefone já estiver aberto, feche-o
+      this.exibirTelefone = false;
+    } else {
+      // Se não estiver aberto, abra-o e feche o input de e-mail se estiver aberto
+      this.exibirTelefone = true;
+      this.exibirEmail = false;
+    }
   }
+
+  abrirInputEmail(): void {
+    if (this.exibirEmail) {
+      // Se o input de e-mail já estiver aberto, feche-o
+      this.exibirEmail = false;
+    } else {
+      // Se não estiver aberto, abra-o e feche o input de telefone se estiver aberto
+      this.exibirEmail = true;
+      this.exibirTelefone = false;
+    }
+  }
+
 
   abrirModalBootstrap(): void {
     // Implemente a lógica para abrir o modal do Bootstrap

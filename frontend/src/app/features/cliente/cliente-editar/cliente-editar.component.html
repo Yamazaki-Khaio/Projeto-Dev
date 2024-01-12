@@ -1,6 +1,6 @@
 <!-- cliente-editar -->
-<div class="d-flex flex-column h-100">
-  <div class="row">
+<div class="clienteEditar">
+  <div class="container__editar col-12">
     <div class="col-10">
       <div class="row">
         <div class="col">
@@ -12,8 +12,7 @@
         <hr class="line">
         <img [src]="openedIconUrl">
         <a>Campos obrigatórios</a>
-        <app-situacao [situacaoFromForm]="situacao">
-        </app-situacao>
+        <app-situacao [situacaoFromForm]="situacao"></app-situacao>
       </div>
       <form [formGroup]="clienteEditForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
         <!-- First Row -->
