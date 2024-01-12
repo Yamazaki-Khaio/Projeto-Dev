@@ -22,7 +22,7 @@
           </div>
           <div class="accordion-item-content col-10">
             <div (click)="abrirModalBootstrap()" class="link">+ Adicionar endereço </div>
-            <!-- <app-endereco-view [pessoaId]="pessoaId"></app-endereco-view> -->
+            <app-endereco-view [pessoaId]="pessoaId"></app-endereco-view>
           </div>
         </div>
         <div class="accordion-item">
@@ -46,8 +46,8 @@
           </div>
           <div class="accordion-item-content col-10">
             <div (click)="abrirInputEmail()" class="link">+ Adicionar e-mail </div>
-            <app-email-cadastro *ngIf="exibirEmail"></app-email-cadastro>
-            <!-- <app-email-view></app-email-view> -->
+            <app-email-cadastro [userId]="pessoaId" (emailAdicionado)="handleEmailAdicionado($event)" *ngIf="exibirEmail"></app-email-cadastro>
+            <app-email-view></app-email-view>
           </div>
         </div>
       </div>

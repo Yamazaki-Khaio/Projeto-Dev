@@ -13,10 +13,11 @@ import { EnderecoCadastroComponent } from '../endereco-cadastro/endereco-cadastr
   styleUrls: ['./localizador-cadastro.component.scss']
 })
 export class LocalizadorCadastroComponent {
+
   alertMessage: string | null = null;
   openedIconUrl: string = '';
   upIconUrl: string = '';
-  pessoaId!: number;
+  pessoaId!: string;
   exibirTelefone: boolean = false;
   exibirEmail: boolean = false;
 
@@ -28,7 +29,7 @@ export class LocalizadorCadastroComponent {
     ) {}
 
   ngOnInit(): void {
-    this.pessoaId = this.route.snapshot.params['id_pessoa'];
+    this.pessoaId = this.route.snapshot.params['id'];
     this.openedIconUrl = this.IconsService.getIconUrl('icon-obrigatorio');
     this.upIconUrl = this.IconsService.getIconUrl("down");
 
@@ -38,10 +39,7 @@ export class LocalizadorCadastroComponent {
     this.alertMessage = null;
   }
 
-  adicionarEmail() {
-    // Implemente a lógica para adicionar um email
-    this.alertMessage = 'Email adicionado com sucesso.';
-  }
+
 
   adicionarEndereco() {
     // Implemente a lógica para adicionar um endereço
@@ -109,5 +107,9 @@ export class LocalizadorCadastroComponent {
   OnSubmit() {
     this.router.navigate(['users/profile/cliente/']);
   }
+
+  handleEmailAdicionado($event: any) {
+    throw new Error('Method not implemented.');
+    }
 
 }

@@ -13,6 +13,8 @@ import { LocalizadorConstrucaoComponent } from './localizador-construcao/localiz
 import { EnderecoCadastroComponent } from './endereco-cadastro/endereco-cadastro.component';
 import { TelefoneCadastroComponent } from './telefone-cadastro/telefone-cadastro.component';
 import { EmailCadastroComponent } from './email-cadastro/email-cadastro.component';
+
+
 @NgModule({
     declarations: [
         LocalizadorCadastroComponent,

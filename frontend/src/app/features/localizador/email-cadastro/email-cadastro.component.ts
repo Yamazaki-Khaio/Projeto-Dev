@@ -1,6 +1,8 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { EmailService } from '../email.service'; // Certifique-se de importar o serviço de e-mail correspondente
+import { EmailService } from '../email.service';
+import { ActivatedRoute } from '@angular/router';
+import { Email } from '../email';
 
 @Component({
   selector: 'app-email-cadastro',
@@ -8,41 +10,49 @@ import { EmailService } from '../email.service'; // Certifique-se de importar o 
   styleUrls: ['./email-cadastro.component.scss']
 })
 export class EmailCadastroComponent {
-cancelar() {
-throw new Error('Method not implemented.');
-}
   @Output() emailAdicionado = new EventEmitter<any>();
-  emailForm!: FormGroup;
+  @Input() userId!: string; // Declare the userId property as an Input
 
-  constructor(private formBuilder: FormBuilder, private emailService: EmailService) {
-    this.initializeForm();
+  emailForm!: FormGroup;
+  isTemplateHidden: boolean = false;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private emailService: EmailService,
+    private route: ActivatedRoute
+  ) {
+    // this.userId = '';
   }
 
-  initializeForm() {
+  ngOnInit() {
+
     this.emailForm = this.formBuilder.group({
       inputEmail: ['', [Validators.required, Validators.email]],
-      isPrincipal: [false]
+      isPrincipal: [false, Validators.required]
     });
   }
 
+  cancelar() {
+    this.isTemplateHidden = true;
+  }
+
   adicionarEmail() {
+    console.log('Adicionando e-mail:', this.emailForm.value);
     if (this.emailForm.valid) {
-      const emailData = {
-        email: this.emailForm.value.inputEmail,
-        is_principal: this.emailForm.value.isPrincipal
+      const emailData: Email = {
+        email: this.emailForm.value.inputEmail.toLowerCase(),
+        is_principal: this.emailForm.value.isPrincipal,
+        // cliente_id: parseInt(this.userId) // Convert the user ID to a number
       };
 
-      // // Envie a solicitação para adicionar e-mail usando o serviço de e-mail
-      // this.emailService.adicionarEmail(emailData).subscribe(
-      //   response => {
-      //     // Lógica para lidar com a resposta da API (opcional)
-      //     console.log('E-mail adicionado com sucesso:', response);
-      //   },
-      //   error => {
-      //     // Lógica para lidar com erros na solicitação (opcional)
-      //     console.error('Erro ao adicionar e-mail:', error);
-      //   }
-      // );
+      this.emailService.createEmail(this.userId, emailData).subscribe(
+        response => {
+          console.log('E-mail adicionado com sucesso:', response);
+        },
+        error => {
+          console.error('Erro ao adicionar e-mail:', error);
+        }
+      );
 
       this.emailForm.reset();
     }

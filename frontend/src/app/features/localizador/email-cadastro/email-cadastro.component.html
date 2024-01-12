@@ -3,7 +3,7 @@
       <input id="inputEmail" class="form-control col-6" type="email" formControlName="inputEmail"
         placeholder="example@example.com" required>
       <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
-      <button type="submit" class="btn btn-primary" [disabled]="emailForm.invalid">Adicionar</button>
+      <button type="submit" class="btn btn-primary" (click)="adicionarEmail()" [disabled]="emailForm.invalid">Adicionar</button>
   </form>
   <div *ngIf="emailForm.get('inputEmail')?.hasError('required')" class="error-message">
     Digite um email válido

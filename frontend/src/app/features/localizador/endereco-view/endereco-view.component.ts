@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Endereco } from '../endereco';
 import { EnderecoService } from '../endereco.service';
+import { IconsService } from 'src/app/shared/util/icons.service';
 
 @Component({
   selector: 'app-endereco-view',
@@ -11,22 +12,21 @@ import { EnderecoService } from '../endereco.service';
   styleUrls: ['./endereco-view.component.scss']
 })
 export class EnderecoViewComponent implements OnInit {
-removerEndereco(arg0: any) {
-throw new Error('Method not implemented.');
-}
-abrirModalBootstrap() {
-throw new Error('Method not implemented.');
-}
-  @Input() pessoaId!: number;
+
+  @Input() pessoaId!: string;
   endereco$: Observable<Endereco>;
+  delIcon: string = '';
+  editIcon: string = '';
 
 
   constructor(
     private enderecoService: EnderecoService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private iconsService: IconsService
   ) {
-    this.pessoaId = this.route.snapshot.params['id_pessoa'];
-    this.endereco$ = this.enderecoService.getEndereco(this.pessoaId.toString());
+    this.endereco$ = this.enderecoService.getEndereco(this.pessoaId);
+    this.delIcon = this.iconsService.getIconUrl('Excluir');
+    this.editIcon = this.iconsService.getIconUrl('Editar');
   }
 
   ngOnInit(): void {
@@ -34,5 +34,11 @@ throw new Error('Method not implemented.');
       this.endereco$ = this.enderecoService.getEndereco(this.pessoaId.toString());
     }
   }
+  removerEndereco(arg0: any) {
+    throw new Error('Method not implemented.');
+    }
+    abrirModalBootstrap() {
+    throw new Error('Method not implemented.');
+    }
 }
 

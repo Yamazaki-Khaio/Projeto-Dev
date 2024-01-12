@@ -8,4 +8,6 @@ export interface Endereco {
   cidade: string;
   estado: string;
   cliente_id: number;
+  is_principal: boolean;
+
 }
