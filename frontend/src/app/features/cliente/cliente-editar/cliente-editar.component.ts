@@ -5,6 +5,7 @@ import { Cliente } from '../cliente';
 import { ClienteService } from '../cliente.service';
 import { IconsService } from '../../../shared/util/icons.service';
 import { NomeRefService } from '../../../shared/util/att-nome-ref.service';
+import { AlertService } from 'src/app/shared/services/alert.service';
 
 @Component({
   selector: 'app-cliente-editar',
@@ -27,7 +28,8 @@ export class ClienteEditarComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private iconsService: IconsService,
-    public nomeRefService: NomeRefService
+    public nomeRefService: NomeRefService,
+    private alertService: AlertService,
   ) { }
 
   ngOnInit(): void {
@@ -43,6 +45,7 @@ export class ClienteEditarComponent implements OnInit {
           inscricao_municipal: [cliente.inscricao_municipal],
           inscricao_estadual: [cliente.inscricao_estadual],
           data_cadastro: [cliente.data_cadastro],
+          situacao: [cliente.situacao],
         });
         this.nomeRefService.atualizarNomeRef(cliente.identificacao!);
 
@@ -55,6 +58,7 @@ export class ClienteEditarComponent implements OnInit {
 
 
   onSubmit(): void {
+
     const cliente: Cliente = {
       id: this.clienteId,
       identificacao: this.clienteEditForm.value.identificador,
@@ -67,11 +71,14 @@ export class ClienteEditarComponent implements OnInit {
     this.clienteService.updateCliente(cliente).subscribe(
       (data: Cliente) => {
         console.log(data);
-        this.alertMessage = "alertOn";
+        console.log(cliente);
+        this.alertService.showAlert('Cliente atualizado com sucesso!', 'alert-primary');
+
       },
       (error: any) => {
         console.log(cliente);
         console.log(error);
+        this.alertService.showAlert('Erro ao adicionar cliente!', 'alert-danger');
       }
     );
   }
@@ -80,10 +87,6 @@ export class ClienteEditarComponent implements OnInit {
     this.router.navigate(['/profile/cliente']);
   }
 
-  // Adicionando a lógica para fechar o alerta
-  closeAlert(): void {
-    this.alertMessage = "alertOff";
-  }
 
 
 }

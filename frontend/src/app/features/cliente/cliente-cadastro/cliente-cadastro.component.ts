@@ -36,8 +36,6 @@ export class ClienteCadastroComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.alertService.showAlert('Isso é uma mensagem de alerta!', 'alert-danger');
-
     this.openIconUrl = this.IconsService.getIconUrl('icon-obrigatorio');
     this.clienteForm = this.fb.group({
       inputIdentificacao: ['', [Validators.required]],
@@ -72,11 +70,15 @@ export class ClienteCadastroComponent implements OnInit {
           console.log(data);
           this.clienteForm.reset();
           this.router.navigate(['/profile/cliente/editar/' + data.id]);
+          this.alertService.showAlert('Cliente adicionado com sucesso!', 'alert-primary');
 
         },
         (error: any) => {
           console.log(cliente);
           console.log(error);
+          // Em caso de erro, você pode ajustar o alerta para um formato mais detalhado
+          const errorMessage = `Erro ao adicionar cliente. Erro: ${error.message || 'Erro desconhecido'}`;
+          this.alertService.showAlert(errorMessage, 'alert-danger');
 
           // Aciona o alerta usando a API do NgBootstrap
           // this.ngbAlert.close(); // Fecha o alerta se estiver aberto
