@@ -16,6 +16,7 @@ import { SituacaoComponent } from './components/situacao/situacao.component';
 import { IconsService } from './util/icons.service';
 import { AlertComponent } from './components/alert/alert.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AlertService } from './services/alert.service';
 
 @NgModule({
   declarations: [
@@ -32,15 +33,18 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AlertComponent,
 
 
+
   ],
   providers: [
-    IconsService
+    IconsService,
+    AlertService,
+
   ],
   imports: [
     CommonModule,
     SharedRoutingModule,
     NgbModule,
-    
+
 
 
   ],

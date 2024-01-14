@@ -6,7 +6,7 @@ import { Cliente } from '../cliente';
 import { IconsService } from '../../../shared/util/icons.service';
 import { NomeRefService } from '../../../shared/util/att-nome-ref.service';
 import { NgbAlertConfig } from '@ng-bootstrap/ng-bootstrap';
-
+import { AlertService } from 'src/app/shared/services/alert.service';
 
 @Component({
   selector: 'app-cliente-cadastro',
@@ -30,12 +30,14 @@ export class ClienteCadastroComponent implements OnInit {
     private router: Router,
     private IconsService: IconsService,
     public nomeRefService: NomeRefService,
-    private alertConfig: NgbAlertConfig,
+    private alertService: AlertService,
     private activatedRoute: ActivatedRoute,
 
   ) {}
 
   ngOnInit(): void {
+    this.alertService.showAlert('Isso é uma mensagem de alerta!', 'alert-danger');
+
     this.openIconUrl = this.IconsService.getIconUrl('icon-obrigatorio');
     this.clienteForm = this.fb.group({
       inputIdentificacao: ['', [Validators.required]],
@@ -43,8 +45,10 @@ export class ClienteCadastroComponent implements OnInit {
       inputRef: ['', [Validators.required]],
     });
 
+
     this.clienteForm.get('inputIdentificacao')!.valueChanges.subscribe(value => {
       this.atualizarNomeRef(value);
+
     });
 
   }
@@ -68,17 +72,12 @@ export class ClienteCadastroComponent implements OnInit {
           console.log(data);
           this.clienteForm.reset();
           this.router.navigate(['/profile/cliente/editar/' + data.id]);
-          this.alertConfig.dismissible = true;
-          this.alertConfig.type = 'success';
-          this.alertMessage = 'Cliente adicionado com sucesso.';
-          alertMessage: 'Cliente adicionado com sucesso.';
+
         },
         (error: any) => {
           console.log(cliente);
           console.log(error);
-          this.alertConfig.dismissible = true;
-          this.alertConfig.type = 'danger';
-          this.alertMessage = 'Erro ao adicionar cliente. Erro: ' + error;
+
           // Aciona o alerta usando a API do NgBootstrap
           // this.ngbAlert.close(); // Fecha o alerta se estiver aberto
           // this.ngbAlert.type = 'danger';
