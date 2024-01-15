@@ -7,7 +7,7 @@
         <p>{{ endereco.cidade }} - {{ endereco.estado }}</p>
         <p>CEP: {{ endereco.cep }}</p>
         <!-- Exibe o badge apenas se endereco.is_principal for verdadeiro -->
-        <span *ngIf="endereco.is_principal" class="badge badge-primary">Endereço Principal</span>
+        <p><span *ngIf="endereco.is_principal" class="badge badge-primary">Endereço Principal</span></p>
       </div>
       <div class="card-footer bg-transparent icon border-success">
         <button class="bi bi-pencil"><i class=""><img [src]="editIcon"></i></button>
