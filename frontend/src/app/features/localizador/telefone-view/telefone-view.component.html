@@ -3,28 +3,17 @@
 <div>
   <h1>Telefone View</h1>
   <div class="telefone-list">
-    <div class="table" *ngIf="telefones.length > 0">
-      <div class="table-responsive overflow-auto">
-        <table class="table-dark table-hover">
-          <thead>
-            <tr>
-              <th></th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let telefone of telefones">
-              <td>{{ telefone.tel }}</td>
-              <td><span class="badge badge-primary">{{ telefone.is_principal ? 'Sim' : 'Não' }}</span></td>
-              <td class="icon">
-                <button class="bi bi-pencil" ><i class=""><img [src]="editIcon"></i></button>
-                <button class="bi bi-trash"><i class=""> <img [src]="delIcon"> </i></button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <table class="table-email w-100" *ngIf="telefones.length > 0">
+      <tbody>
+        <tr *ngFor="let telefone of telefones">
+          <td>{{ telefone.tel }}</td>
+          <td><span class="badge badge-primary" *ngIf="telefone.is_principal">Principal</span></td>
+          <td class="icon">
+            <button class="bi bi-pencil"><img [src]="editIcon"></button>
+            <button class="bi bi-trash"><img [src]="delIcon"></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

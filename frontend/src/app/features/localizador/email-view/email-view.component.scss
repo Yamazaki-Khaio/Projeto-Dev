@@ -1,37 +1,4 @@
 
-.table{
-
-  margin-top: 20px  !important;
-  width: 100% !important;
-  height: 100% !important;
-  align-items: flex-start !important;
-  align-content: flex-start !important;
-  justify-content: flex-start !important;
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
-  gap: 20px !important;
-}
-
-.table-dark{
-  // border-top: transparent !important;
-  border-left: transparent !important;
-  border-right: transparent !important;
-  // border-bottom: #6C757D !important;
-  gap: 16px !important;
-  width: 100% !important;
-  justify-content: space-between !important;
-  width: 100% !important;
-
-  color: var(--Grayscale-200, #E4EBF2) !important;
-  }
-
-.icon
-{
-
-  gap: 16px !important;
-  margin: 16px !important;
-
-}
 .bi {
   background-color: transparent !important;
   color: var(--Grayscale-200, #E4EBF2) !important;
@@ -46,13 +13,30 @@
 
 .email-list
 {
+  width: 100%;
+  height: 100%;
+  flex-direction: column !important;
+  align-items: flex-start !important;
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 16px;
-  // height: 100% !important;
-  // width: 100% !important;
-  overflow-y: auto !important;
-  align-content: center !important;
-  justify-content: space-between !important;
+  // ALIGN-SELF: STRETCH;
+  background-color: transparent !important;
+  color: var(--Grayscale-300, #CED4DA);
+
+
 }
+
+.table-email{
+  width: 50vw !important;
+  align-items: flex-start;
+  gap: 24px !important;
+  // justify-content: space-between !important;
+  align-items: center;
+  background-color: transparent !important;
+  // align-self: stretch;
+  color: var(--Grayscale-300, #CED4DA);
+  
+
+}
+

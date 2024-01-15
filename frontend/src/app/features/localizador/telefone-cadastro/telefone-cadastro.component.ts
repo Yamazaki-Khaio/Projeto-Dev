@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TelefoneService } from '../telefone.service';
 import { ActivatedRoute } from '@angular/router';
+import { Telefone } from './../telefone';
 
 @Component({
   selector: 'app-telefone-cadastro',
@@ -9,9 +10,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./telefone-cadastro.component.scss']
 })
 export class TelefoneCadastroComponent {
+  @Input() pessoaId!: string;
   @Output() telefoneAdicionado = new EventEmitter<any>();
   telefoneForm!: FormGroup;
-  userId!: number;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -22,10 +23,7 @@ export class TelefoneCadastroComponent {
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      // Obtendo o ID do usuário da rota
-      this.userId = +params['id']; // Certifique-se de converter para número, se necessário
-    });
+    this.initializeForm();
   }
 
   initializeForm() {
@@ -37,20 +35,20 @@ export class TelefoneCadastroComponent {
 
   adicionarTelefone() {
     if (this.telefoneForm.valid) {
-      const telefoneData = {
+      const telefoneData: Telefone = {
         tel: this.telefoneForm.value.inputTelefone,
-        is_principal: this.telefoneForm.value.isPrincipal
+        is_principal: this.telefoneForm.value.isPrincipal,
       };
 
-      // // Enviando a solicitação para a API com o ID do usuário
-      // this.telefoneService.atualizarTelefone(this.userId, telefoneData).subscribe(
-      //   response => {
-      //     console.log('Telefone atualizado com sucesso:', response);
-      //   },
-      //   error => {
-      //     console.error('Erro ao atualizar telefone:', error);
-      //   }
-      // );
+      // Enviando a solicitação para a API com o ID do usuário
+      this.telefoneService.createTelefone(this.pessoaId, telefoneData).subscribe(
+        response => {
+          console.log('Telefone atualizado com sucesso:', response);
+        },
+        error => {
+          console.error('Erro ao atualizar telefone:', error);
+        }
+      );
 
       this.telefoneForm.reset();
     }
