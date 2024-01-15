@@ -15,7 +15,7 @@
   display: flex  !important;
   flex-direction: row  !important;
   width: 100% !important;
-  height: 100% !important;
+  height: 100vh !important;
   gap: 20px !important;
 
 }
@@ -29,7 +29,7 @@
   overflow-y: auto !important;
   // max-height: 80vh;
   width: 100%;
-  min-height: calc(100% - 296px);
+  // min-height: calc(100% - 296px);
 
   // margin-bottom: 20px !important;
 }
@@ -117,7 +117,7 @@
   justify-content: flex-start !important;
   align-items: flex-start !important;
   align-content: flex-start !important;
-  overflow-y: hide !important;
+  overflow-y: auto !important;
   height: 100% !important;
   width: 100% !important;
   // padding-bottom: 20px !important;

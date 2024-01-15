@@ -12,7 +12,7 @@
         <tbody>
           <tr *ngFor="let email of emails">
             <td>{{ email.email }}</td>
-            <td><span class="badge badge-primary">{{ email.is_principal ? 'Sim' : 'Não' }}</span></td>
+            <td><span class="badge badge-primary" *ngIf="email.is_principal">Principal</span></td>
             <td class="icon">
               <button class="bi bi-pencil" ><i class=""><img [src]="editIcon"></i></button>
               <button class="bi bi-trash"><i class=""> <img [src]="delIcon"> </i></button>

@@ -21,6 +21,7 @@ export class ClienteHomeComponent implements OnDestroy {
     this.editIcon = this.IconsService.getIconUrl('Editar');
 
   }
+
   ngOnInit(): void {
     this.clientes$ = this.clienteService.getClientes();
     this.clientesSubscription = this.clientes$.subscribe(
@@ -77,5 +78,28 @@ export class ClienteHomeComponent implements OnDestroy {
         alert('Erro ao carregar clientes. Erro: ' + error);
       }
     );
+  }
+
+  formatarCpfCnpj(identificacao: string): string {
+    if (identificacao.length === 11) {
+      return `${identificacao.substr(0, 3)}.${identificacao.substr(3, 3)}.${identificacao.substr(6, 3)}-${identificacao.substr(9)}`;
+    } else if (identificacao.length === 14) {
+      return `${identificacao.substr(0, 2)}.${identificacao.substr(2, 3)}.${identificacao.substr(5, 3)}/${identificacao.substr(8, 4)}-${identificacao.substr(12)}`;
+    }
+    // Se não for CPF nem CNPJ, retorna sem formatação
+    return identificacao;
+  }
+
+  getBadgeClass(situacao: string): string {
+    switch (situacao) {
+      case 'Ativo':
+        return 'badge badge-success';
+      case 'Inativo':
+        return 'badge badge-warning';
+      case 'Negativado':
+        return 'badge badge-danger';
+      default:
+        return 'badge badge-primary';
+    }
   }
 }

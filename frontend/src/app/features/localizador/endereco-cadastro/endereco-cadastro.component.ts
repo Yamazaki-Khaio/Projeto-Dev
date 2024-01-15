@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IconsService } from '../../../shared/util/icons.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EnderecoService } from '../endereco.service';
+import { Endereco } from '../endereco';
 
 @Component({
   selector: 'app-endereco-cadastro',
@@ -9,7 +11,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./endereco-cadastro.component.scss']
 })
 export class EnderecoCadastroComponent {
-
+  @Input() pessoaId!: string;
   iconAdd: string = '';
   openedIconUrl: string = '';
   iconClose: string = '';
@@ -18,10 +20,13 @@ export class EnderecoCadastroComponent {
   constructor(
     private fb: FormBuilder,
     private IconsService: IconsService,
-    private modalService: NgbModal
-  ) { }
+    private modalService: NgbModal,
+    private enderecoService: EnderecoService,
+  ) {
+  }
 
   ngOnInit(): void {
+
 
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
@@ -45,7 +50,22 @@ export class EnderecoCadastroComponent {
 
 
   onSubmit() {
-    throw new Error('Method not implemented.');
+    console.log(this.enderecoAddForm.value);
+    const novoEndereco: Endereco = this.enderecoAddForm.value;
+    this.enderecoService.createEndereco(this.pessoaId , novoEndereco).subscribe(
+      (data: Endereco) => {
+        console.log('Endereço adicionado com sucesso. Dados: ' + data);
+        this.modalService.dismissAll('endereco-cadastro');
+        this.enderecoAddForm.reset();
+      },
+      (error) => {
+        console.error('Erro ao adicionar endereço. Erro: ' + error);
+        alert('Erro ao adicionar endereço. Erro: ' + error);
+      }
+    );
+
+
+
     }
 
 }

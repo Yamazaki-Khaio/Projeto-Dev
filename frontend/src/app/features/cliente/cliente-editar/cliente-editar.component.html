@@ -14,7 +14,7 @@
         <hr class="line">
         <img [src]="openedIconUrl">
         <a>Campos obrigatórios</a>
-        <app-situacao [situacaoFromForm]="situacao"></app-situacao>
+        <app-situacao [situacaoFromForm]="situacao" (situacaoChange)="onSituacaoChange($event)"></app-situacao>
       </div>
       <form [formGroup]="clienteEditForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
         <!-- First Row -->

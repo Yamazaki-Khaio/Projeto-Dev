@@ -13,6 +13,8 @@ Representante.init(
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
+      autoIncrement: true,
+      
     },
     id_pessoa: {
       type: DataTypes.INTEGER,

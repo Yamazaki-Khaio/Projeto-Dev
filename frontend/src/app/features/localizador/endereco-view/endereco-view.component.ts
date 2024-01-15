@@ -1,10 +1,9 @@
-
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Endereco } from '../endereco';
 import { EnderecoService } from '../endereco.service';
 import { IconsService } from 'src/app/shared/util/icons.service';
+import { Endereco } from '../endereco';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-endereco-view',
@@ -14,31 +13,39 @@ import { IconsService } from 'src/app/shared/util/icons.service';
 export class EnderecoViewComponent implements OnInit {
 
   @Input() pessoaId!: string;
-  endereco$: Observable<Endereco>;
+  enderecos$: Observable<Endereco[]> = new Observable<Endereco[]>(); // Atualize o tipo conforme necessário
   delIcon: string = '';
   editIcon: string = '';
-
 
   constructor(
     private enderecoService: EnderecoService,
     private route: ActivatedRoute,
     private iconsService: IconsService
   ) {
-    this.endereco$ = this.enderecoService.getEndereco(this.pessoaId);
     this.delIcon = this.iconsService.getIconUrl('Excluir');
     this.editIcon = this.iconsService.getIconUrl('Editar');
   }
 
   ngOnInit(): void {
     if (this.pessoaId) {
-      this.endereco$ = this.enderecoService.getEndereco(this.pessoaId.toString());
+      this.enderecos$ = this.enderecoService.getEnderecosPorUsuario(this.pessoaId);
     }
   }
-  removerEndereco(arg0: any) {
-    throw new Error('Method not implemented.');
-    }
-    abrirModalBootstrap() {
-    throw new Error('Method not implemented.');
-    }
-}
 
+  removerEndereco(enderecoId: string): void {
+    this.enderecoService.deleteEndereco(enderecoId).subscribe(
+      () => {
+        console.log('Endereço removido com sucesso!');
+        // Atualizar a lista de endereços após a remoção, se necessário
+        this.enderecos$ = this.enderecoService.getEnderecosPorUsuario(this.pessoaId);
+      },
+      (error: any) => {
+        console.error('Erro ao remover endereço:', error);
+      }
+    );
+  }
+
+  abrirModalBootstrap(): void {
+    // Lógica para abrir o modal, se necessário
+  }
+}

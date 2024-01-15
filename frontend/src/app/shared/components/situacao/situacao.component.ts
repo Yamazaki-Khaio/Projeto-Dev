@@ -1,5 +1,5 @@
 // situacao.component.ts
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IconsService } from '../../util/icons.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { IconsService } from '../../util/icons.service';
 })
 export class SituacaoComponent {
   @Input() situacaoFromForm: string = '';
+  @Output() situacaoChange = new EventEmitter<string>();
   isDropdownOpen: boolean = false;
   openedIconUrl: string = '';
   closedIconUrl: string = '';
@@ -20,6 +21,7 @@ export class SituacaoComponent {
 
   onOptionSelect(option: string): void {
     this.situacaoFromForm = option;
+    this.situacaoChange.emit(option);
     this.toggleDropdown();
   }
 

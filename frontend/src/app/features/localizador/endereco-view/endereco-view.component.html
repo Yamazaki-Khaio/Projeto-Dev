@@ -1,15 +1,22 @@
-<!-- Card View do Endereço -->
-<div class="endereco">
-  <div class="card border-success">
-    <div class="card-body" *ngIf="endereco$ | async as endereco">
-      <p>{{ endereco.logradouro }}, {{ endereco.numero }}, {{ endereco.bairro }} </p>
-      <p> {{ endereco.cidade }} - {{ endereco.estado }}</p>
-      <p>CEP: {{ endereco.cep }}</p>
-      <span class="badge badge-primary">{{ endereco.is_principal ? 'Sim' : 'Não' }}</span>
-    </div>
-    <div class="card-footer bg-transparent icon border-success">
-      <button class="bi bi-pencil" ><i class=""><img [src]="editIcon"></i></button>
-      <button class="bi bi-trash"><i class=""> <img [src]="delIcon"> </i></button>
+<!-- Container dos cards dos endereços -->
+<div *ngIf="enderecos$ | async as enderecos; else noEnderecos">
+  <div class="endereco" *ngFor="let endereco of enderecos">
+    <div class="card border-success">
+      <div class="card-body">
+        <p>{{ endereco.logradouro }}, {{ endereco.numero }}, {{ endereco.bairro }}</p>
+        <p>{{ endereco.cidade }} - {{ endereco.estado }}</p>
+        <p>CEP: {{ endereco.cep }}</p>
+        <!-- Exibe o badge apenas se endereco.is_principal for verdadeiro -->
+        <span *ngIf="endereco.is_principal" class="badge badge-primary">Endereço Principal</span>
+      </div>
+      <div class="card-footer bg-transparent icon border-success">
+        <button class="bi bi-pencil"><i class=""><img [src]="editIcon"></i></button>
+        <button class="bi bi-trash"><i class=""> <img [src]="delIcon"> </i></button>
+      </div>
     </div>
   </div>
 </div>
+
+<!-- Template para o caso de nenhum endereço -->
+<ng-template #noEnderecos>
+</ng-template>

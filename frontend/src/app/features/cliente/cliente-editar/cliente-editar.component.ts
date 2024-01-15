@@ -31,10 +31,16 @@ export class ClienteEditarComponent implements OnInit {
     public nomeRefService: NomeRefService,
     private alertService: AlertService,
   ) { }
+  onSituacaoChange(novaSituacao: string) {
+    this.situacao = novaSituacao;
+    this.clienteEditForm.patchValue({ situacao: novaSituacao });
+  }
+
 
   ngOnInit(): void {
     this.openedIconUrl = this.iconsService.getIconUrl("icon-obrigatorio");
     this.clienteId = this.route.snapshot.params['id'];
+
     this.clienteService.getCliente(this.clienteId.toString()).subscribe(
       (cliente: Cliente) => {
         this.situacao = cliente.situacao!;

@@ -92,9 +92,10 @@ export class LocalizadorCadastroComponent {
       centered: true,
       backdrop: 'static',
       size: 'lg'
-
-    });
+    }
+    );
     modalRef.shown.subscribe(() => {
+      modalRef.componentInstance.pessoaId = this.pessoaId;
       console.log('Modal do Bootstrap Aberto');
     });
   }

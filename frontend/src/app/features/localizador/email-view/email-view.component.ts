@@ -17,9 +17,13 @@ export class EmailViewComponent implements OnInit {
   constructor(private emailService: EmailService, private iconsService: IconsService) { }
 
   ngOnInit(): void {
-    this.carregarEmails();
     this.delIcon = this.iconsService.getIconUrl('Excluir');
     this.editIcon = this.iconsService.getIconUrl('Editar');
+  }
+  ngOnChanges(changes: any): void {
+    this.carregarEmails();
+
+
   }
 
   carregarEmails() {
