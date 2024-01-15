@@ -1,6 +1,6 @@
 <!-- Container dos cards dos endereços -->
-<div *ngIf="enderecos$ | async as enderecos; else noEnderecos">
-  <div class="endereco" *ngFor="let endereco of enderecos">
+<div class="endereco__container" *ngIf="enderecos$ | async as enderecos; else noEnderecos">
+  <div class="endereco " *ngFor="let endereco of enderecos">
     <div class="card border-success">
       <div class="card-body">
         <p>{{ endereco.logradouro }}, {{ endereco.numero }}, {{ endereco.bairro }}</p>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Email } from '../email';
 import { EmailService } from '../email.service';
 import { IconsService } from 'src/app/shared/util/icons.service';
@@ -13,6 +13,7 @@ export class EmailViewComponent implements OnInit {
   emails: Email[] = [];
   delIcon: string = '';
   editIcon: string = '';
+  @Input() pessoaId!: string;
 
   constructor(private emailService: EmailService, private iconsService: IconsService) { }
 
