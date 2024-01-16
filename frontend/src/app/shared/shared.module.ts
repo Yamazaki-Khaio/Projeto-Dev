@@ -17,7 +17,7 @@ import { IconsService } from './util/icons.service';
 import { AlertComponent } from './components/alert/alert.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AlertService } from './services/alert.service';
-
+import { EnderecoSharedService } from './services/endereco-shared.service';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -38,14 +38,13 @@ import { AlertService } from './services/alert.service';
   providers: [
     IconsService,
     AlertService,
+    EnderecoSharedService,
 
   ],
   imports: [
     CommonModule,
     SharedRoutingModule,
     NgbModule,
-
-
 
   ],
   exports: [

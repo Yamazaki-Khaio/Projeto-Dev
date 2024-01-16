@@ -4,6 +4,10 @@ import { EnderecoService } from '../endereco.service';
 import { IconsService } from 'src/app/shared/util/icons.service';
 import { Endereco } from '../endereco';
 import { Observable } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EnderecoEditarComponent } from '../endereco-edit/endereco-edit.component';
+import { EnderecoSharedService } from 'src/app/shared/services/endereco-shared.service';
+import { AlertService } from 'src/app/shared/services/alert.service';
 
 @Component({
   selector: 'app-endereco-view',
@@ -13,14 +17,17 @@ import { Observable } from 'rxjs';
 export class EnderecoViewComponent implements OnInit {
 
   @Input() pessoaId!: string;
-  enderecos$: Observable<Endereco[]> = new Observable<Endereco[]>(); // Atualize o tipo conforme necessário
+  enderecos$: Observable<Endereco[]> = new Observable<Endereco[]>();
   delIcon: string = '';
   editIcon: string = '';
 
   constructor(
     private enderecoService: EnderecoService,
     private route: ActivatedRoute,
-    private iconsService: IconsService
+    private iconsService: IconsService,
+    private modalService: NgbModal,
+    private enderecoSharedService: EnderecoSharedService,
+    private alertService: AlertService,
   ) {
     this.delIcon = this.iconsService.getIconUrl('Excluir');
     this.editIcon = this.iconsService.getIconUrl('Editar');
@@ -32,12 +39,18 @@ export class EnderecoViewComponent implements OnInit {
     }
   }
 
-  removerEndereco(enderecoId: string): void {
-    this.enderecoService.deleteEndereco(enderecoId).subscribe(
+  ngOnDestroy(): void {
+    console.log('EnderecoViewComponent destruído!');
+  }
+
+  removerEndereco(enderecoId: number): void {
+    // implementar o modal de confirmação de exclusão de endereço antes de chamar o serviço
+    
+    this.enderecoService.deleteEndereco(enderecoId.toString()).subscribe(
       () => {
         console.log('Endereço removido com sucesso!');
-        // Atualizar a lista de endereços após a remoção, se necessário
-        this.enderecos$ = this.enderecoService.getEnderecosPorUsuario(this.pessoaId);
+        this.alertService.showAlert('Endereço removido com sucesso!', 'alert-primary'); // alterar para o modal de confirmação
+        this.atualizarEnderecos();
       },
       (error: any) => {
         console.error('Erro ao remover endereço:', error);
@@ -45,7 +58,28 @@ export class EnderecoViewComponent implements OnInit {
     );
   }
 
-  abrirModalBootstrap(): void {
-    // Lógica para abrir o modal, se necessário
+  abrirModalBootstrap(endereco: Endereco): void {
+    this.enderecoSharedService.setEnderecoId(endereco.id!);
+
+    const modalRef = this.modalService.open(EnderecoEditarComponent, { size: 'lg' });
+    modalRef.componentInstance.pessoaId = this.pessoaId;
+    modalRef.componentInstance.enderecoId = endereco.id;
+    modalRef.result.then(
+      (result: any) => {
+        this.atualizarEnderecos();
+        this.alertService.showAlert('Endereço atualizado com sucesso!', 'alert-primary');
+      },
+      (reason: any) => {
+        this.alertService.showAlert('Endereço atualizado sem sucesso!', 'alert-danger' );
+
+      }
+    );
+  }
+
+
+  private atualizarEnderecos(): void {
+    if (this.pessoaId) {
+      this.enderecos$ = this.enderecoService.getEnderecosPorUsuario(this.pessoaId);
+    }
   }
 }

@@ -19,7 +19,7 @@ export class EnderecoService {
   }
 
   // Obtém um endereço pelo ID
-  getEndereco(id: string): Observable<Endereco> {
+  getEndereco(id: number): Observable<Endereco> {
     const endpoint = `${this.baseUrl}/${id}`;
     return this.apiService.get<Endereco>(endpoint);
   }

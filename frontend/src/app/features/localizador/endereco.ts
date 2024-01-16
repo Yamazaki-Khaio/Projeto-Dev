@@ -7,7 +7,7 @@ export interface Endereco {
   bairro: string;
   cidade: string;
   estado: string;
-  cliente_id: number;
+  id_pessoa: string;
   is_principal: boolean;
 
 }

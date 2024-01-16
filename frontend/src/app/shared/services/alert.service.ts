@@ -7,11 +7,11 @@ export class AlertService {
   private alertSubject = new BehaviorSubject<{ message: string; type: string }>({ message: '', type: 'alert-warning' });
   alert$: Observable<{ message: string; type: string }> = this.alertSubject.asObservable();
 
-  showAlert(message: string, alertType: string = 'alert-warning'): void {
+  showAlert(message: string, alertType: string = 'alert-info'): void {
     this.alertSubject.next({ message, type: alertType });
   }
 
   closeAlert(): void {
-    this.alertSubject.next({ message: '', type: 'alert-warning' });
+    this.alertSubject.next({ message: '', type: 'alert-info' });
   }
 }

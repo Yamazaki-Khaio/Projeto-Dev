@@ -61,6 +61,7 @@ export class EnderecoCadastroComponent {
         this.modalService.dismissAll('endereco-cadastro');
         this.enderecoAddForm.reset();
         this.router.navigate(['/localizador/', this.pessoaId]);
+        
       },
       (error) => {
         console.error('Erro ao adicionar endereço. Erro: ' + error);

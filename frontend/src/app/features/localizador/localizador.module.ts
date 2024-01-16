@@ -13,6 +13,7 @@ import { LocalizadorConstrucaoComponent } from './localizador-construcao/localiz
 import { EnderecoCadastroComponent } from './endereco-cadastro/endereco-cadastro.component';
 import { TelefoneCadastroComponent } from './telefone-cadastro/telefone-cadastro.component';
 import { EmailCadastroComponent } from './email-cadastro/email-cadastro.component';
+import { EnderecoEditarComponent } from './endereco-edit/endereco-edit.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { EmailCadastroComponent } from './email-cadastro/email-cadastro.componen
         EnderecoCadastroComponent,
         TelefoneCadastroComponent,
         EmailCadastroComponent,
+        EnderecoEditarComponent,
 
     ],
     imports: [
