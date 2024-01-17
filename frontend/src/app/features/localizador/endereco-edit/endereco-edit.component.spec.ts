@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EnderecoEditComponent } from './endereco-edit.component';
+import { EnderecoEditarComponent } from './endereco-edit.component';
 
 describe('EnderecoEditComponent', () => {
-  let component: EnderecoEditComponent;
-  let fixture: ComponentFixture<EnderecoEditComponent>;
+  let component: EnderecoEditarComponent;
+  let fixture: ComponentFixture<EnderecoEditarComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [EnderecoEditComponent]
+      declarations: [EnderecoEditarComponent]
     });
-    fixture = TestBed.createComponent(EnderecoEditComponent);
+    fixture = TestBed.createComponent(EnderecoEditarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -20,6 +20,8 @@ export class EnderecoEditarComponent implements OnInit {
   pessoaId!: string;
   iconAdd: string = '';
   enderecoId!: number;
+  enderecos: Endereco[] = [];
+
 
   constructor(
     private fb: FormBuilder,
@@ -41,22 +43,26 @@ export class EnderecoEditarComponent implements OnInit {
 
     // Use o serviço para obter o enderecoId
     this.enderecoSharedService.getEnderecoId().subscribe(enderecoId => {
-      this.enderecoId = enderecoId || 0;
+      this.enderecoId = enderecoId!;
 
       this.enderecoService.getEndereco(this.enderecoId).subscribe(
-        (endereco: Endereco) => {
-          this.enderecoEditForm = this.fb.group({
-            cep: [endereco.cep, [Validators.required]],
-            logradouro: [endereco.logradouro, [Validators.required]],
-            numero: [endereco.numero, [Validators.required]],
-            complemento: [endereco.complemento],
-            bairro: [endereco.bairro, [Validators.required]],
-            cidade: [endereco.cidade, [Validators.required]],
-            estado: [endereco.estado, [Validators.required]],
-          });
+        (enderecos: Endereco[]) => {
+          const endereco = enderecos.find(endereco => endereco.id === this.enderecoId);
+          if (endereco) {
+            this.enderecoEditForm = this.fb.group({
+              cep: [endereco.cep, [Validators.required]],
+              logradouro: [endereco.logradouro, [Validators.required]],
+              numero: [endereco.numero, [Validators.required]],
+              complemento: [endereco.complemento],
+              bairro: [endereco.bairro, [Validators.required]],
+              cidade: [endereco.cidade, [Validators.required]],
+              estado: [endereco.estado, [Validators.required]],
+              isPrincipal: [endereco.is_principal],
+            });
 
-          console.log(endereco);
-          console.log(this.enderecoEditForm.value);
+            console.log(endereco);
+            console.log(this.enderecoEditForm.value);
+          }
         },
         (error: any) => {
           console.error(error);
@@ -77,7 +83,7 @@ export class EnderecoEditarComponent implements OnInit {
       cidade: this.enderecoEditForm.value.cidade,
       estado: this.enderecoEditForm.value.estado,
       id_pessoa: this.pessoaId,
-      is_principal: false
+      is_principal: this.enderecoEditForm.value.isPrincipal,
     };
 
     // console.log(endereco);

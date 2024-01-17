@@ -18,10 +18,9 @@ export class EnderecoService {
     return this.apiService.get<Endereco[]>(endpoint);
   }
 
-  // Obtém um endereço pelo ID
-  getEndereco(id: number): Observable<Endereco> {
-    const endpoint = `${this.baseUrl}/${id}`;
-    return this.apiService.get<Endereco>(endpoint);
+  getEndereco(enderecoId: number): Observable<Endereco[]> {
+    const endpoint = `${this.baseUrl}/${enderecoId}`;
+    return this.apiService.get<Endereco[]>(endpoint);
   }
 
   // Cria um novo endereço para um usuário específico

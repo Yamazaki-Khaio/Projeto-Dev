@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EnderecoService } from '../endereco.service';
 import { Endereco } from '../endereco';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AlertService } from 'src/app/shared/services/alert.service';
 
 
 @Component({
@@ -24,7 +25,8 @@ export class EnderecoCadastroComponent {
     private IconsService: IconsService,
     private modalService: NgbModal,
     private enderecoService: EnderecoService,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService,
   ) {
   }
 
@@ -60,8 +62,10 @@ export class EnderecoCadastroComponent {
         console.log('Endereço adicionado com sucesso. Dados: ' + data);
         this.modalService.dismissAll('endereco-cadastro');
         this.enderecoAddForm.reset();
-        this.router.navigate(['/localizador/', this.pessoaId]);
-        
+        this.router.navigate(['/localizador', this.pessoaId]);
+
+
+
       },
       (error) => {
         console.error('Erro ao adicionar endereço. Erro: ' + error);

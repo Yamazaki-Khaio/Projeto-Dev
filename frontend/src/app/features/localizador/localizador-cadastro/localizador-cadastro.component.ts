@@ -3,6 +3,7 @@ import { IconsService } from '../../../shared/util/icons.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EnderecoCadastroComponent } from '../endereco-cadastro/endereco-cadastro.component';
+import { AlertService } from 'src/app/shared/services/alert.service';
 
 //refatorar para novo modelo usando os utilitarios
 
@@ -96,6 +97,8 @@ export class LocalizadorCadastroComponent {
     );
     modalRef.shown.subscribe(() => {
       modalRef.componentInstance.pessoaId = this.pessoaId;
+
+
       console.log('Modal do Bootstrap Aberto');
     });
   }

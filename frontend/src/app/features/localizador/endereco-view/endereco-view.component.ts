@@ -45,7 +45,7 @@ export class EnderecoViewComponent implements OnInit {
 
   removerEndereco(enderecoId: number): void {
     // implementar o modal de confirmação de exclusão de endereço antes de chamar o serviço
-    
+
     this.enderecoService.deleteEndereco(enderecoId.toString()).subscribe(
       () => {
         console.log('Endereço removido com sucesso!');
@@ -70,7 +70,7 @@ export class EnderecoViewComponent implements OnInit {
         this.alertService.showAlert('Endereço atualizado com sucesso!', 'alert-primary');
       },
       (reason: any) => {
-        this.alertService.showAlert('Endereço atualizado sem sucesso!', 'alert-danger' );
+        this.alertService.showAlert('Erro ao atualizado endereço!', 'alert-danger' );
 
       }
     );
@@ -80,6 +80,7 @@ export class EnderecoViewComponent implements OnInit {
   private atualizarEnderecos(): void {
     if (this.pessoaId) {
       this.enderecos$ = this.enderecoService.getEnderecosPorUsuario(this.pessoaId);
+
     }
   }
 }
