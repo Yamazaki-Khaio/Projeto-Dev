@@ -15,8 +15,13 @@ export class EmailService {
     return this.apiService.get<Email[]>(this.emailEndpoint);
   }
 
-  getEmail(id_pessoa: string): Observable<Email> {
+  getEmailsPorUsuario(id_pessoa: string): Observable<Email[]> {
     const endpoint = `${this.emailEndpoint}/${id_pessoa}`;
+    return this.apiService.get<Email[]>(endpoint);
+  }
+
+  getEmail(id: number): Observable<Email> {
+    const endpoint = `${this.emailEndpoint}/${id}`;
     return this.apiService.get<Email>(endpoint);
   }
 
@@ -25,12 +30,12 @@ export class EmailService {
     return this.apiService.post<Email>(endpoint, email);
   }
 
-  updateEmail(id: string, email: Email): Observable<Email> {
+  updateEmail(id: number, email: Email): Observable<Email> {
     const endpoint = `${this.emailEndpoint}/${id}`;
     return this.apiService.put<Email>(endpoint, email);
   }
 
-  deleteEmail(id: string): Observable<void> {
+  deleteEmail(id: number): Observable<void> {
     const endpoint = `${this.emailEndpoint}/${id}`;
     return this.apiService.delete<void>(endpoint);
   }

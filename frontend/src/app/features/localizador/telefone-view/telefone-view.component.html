@@ -1,19 +1,18 @@
-<!-- FILEPATH: /c:/Users/kaio.fonseca/Documents/projeto-dev/Projeto-Dev/frontend/src/app/features/localizador/telefone-view/telefone-view.component.html -->
-
-<div>
-  <h1>Telefone View</h1>
-  <div class="telefone-list">
-    <table class="table-email w-100" *ngIf="telefones.length > 0">
-      <tbody>
-        <tr *ngFor="let telefone of telefones">
-          <td>{{ telefone.tel }}</td>
-          <td><span class="badge badge-primary" *ngIf="telefone.is_principal">Principal</span></td>
-          <td class="icon">
-            <button class="bi bi-pencil"><img [src]="editIcon"></button>
-            <button class="bi bi-trash"><img [src]="delIcon"></button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+<div class="telefone-list">
+  <table class="table-email w-100" *ngIf="(telefones$ | async) as telefones">
+    <tbody>
+      <tr *ngFor="let telefone of telefones; let i = index">
+        <td>{{ telefone.tel }}</td>
+        <td><span class="badge badge-primary" *ngIf="telefone.is_principal">Principal</span></td>
+        <td class="icon">
+          <button class="bi bi-pencil" (click)="editarTelefone(telefone)">
+            <img [src]="editIcon">
+          </button>
+          <button class="bi bi-trash" (click)="removerTelefone(telefone.id!)">
+            <img [src]="delIcon">
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

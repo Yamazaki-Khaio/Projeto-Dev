@@ -14,6 +14,8 @@ import { EnderecoCadastroComponent } from './endereco-cadastro/endereco-cadastro
 import { TelefoneCadastroComponent } from './telefone-cadastro/telefone-cadastro.component';
 import { EmailCadastroComponent } from './email-cadastro/email-cadastro.component';
 import { EnderecoEditarComponent } from './endereco-edit/endereco-edit.component';
+import { EmailEditComponent } from './email-edit/email-edit.component';
+import { TelefoneEditComponent } from './telefone-edit/telefone-edit.component';
 
 
 @NgModule({
@@ -28,6 +30,8 @@ import { EnderecoEditarComponent } from './endereco-edit/endereco-edit.component
         TelefoneCadastroComponent,
         EmailCadastroComponent,
         EnderecoEditarComponent,
+        EmailEditComponent,
+        TelefoneEditComponent,
 
     ],
     imports: [

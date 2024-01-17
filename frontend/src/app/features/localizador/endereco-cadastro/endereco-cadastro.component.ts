@@ -62,13 +62,18 @@ export class EnderecoCadastroComponent {
         console.log('Endereço adicionado com sucesso. Dados: ' + data);
         this.modalService.dismissAll('endereco-cadastro');
         this.enderecoAddForm.reset();
+        this.alertService.showAlert('Endereço atualizado com sucesso!', 'alert-primary');
         this.router.navigate(['/localizador', this.pessoaId]);
 
 
 
       },
       (error) => {
+        
+        this.alertService.showAlert('Erro ao adicionar endereço!', 'alert-danger');
+
         console.error('Erro ao adicionar endereço. Erro: ' + error);
+
         alert('Erro ao adicionar endereço. Erro: ' + error);
       }
     );

@@ -6,7 +6,10 @@
   background: var(--Grayscale-500, #2F3337) !important;
   color: #ced4da !important;
   gap: 16px !important;
-  width: 100% !important;
+
+
+
+
 
   }
 
@@ -17,6 +20,10 @@
   align-items: flex-start;
   gap: 8px;
   align-self: stretch;
+  height: 180px;
+  width: 201px;
+  flex: 1;
+
 
 
 }
@@ -27,11 +34,14 @@
   gap: 16px;
   align-self: stretch;
   border-top: 1px solid var(--Grayscale-400, #6C757D) !important;
+
+
 }
 .endereco{
 
   gap: 20px !important;
   padding: 20px !important;
+
 
 }
 
@@ -63,4 +73,5 @@
   border-radius: 8px;
   color: #ced4da !important;
   width: 100% !important;
+  height: 100%;
 }

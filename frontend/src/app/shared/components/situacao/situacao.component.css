@@ -12,6 +12,7 @@
   display: inline;
   justify-content: center;
   padding: 8px;
+  gap: 16px;
 }
 .dropdown-toggle label {
   font-weight: 400;
@@ -21,11 +22,10 @@
 }
 
 .dropdown {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-width: 183px;
-  height: 36px;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  height: 36px !important;
 }
 
 .dropdown-menu {

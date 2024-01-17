@@ -1,32 +1,44 @@
 .localizador {
-  display: flex;
-  width: 100%;
-  height: 85vh;
+  display: flex !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: transparent !important;
+  color: #CED4DA !important;
 }
 
 .container__localizador {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 100%;
-  gap: 20px;
+  display: flex !important;
+  flex-direction: row !important;
+  width: 100% !important;
+  height: 100vh !important;
+  gap: 20px !important;
 }
 
 .accordion {
-  gap: 20px;
-  padding: 0px;
-}
-
-.accordion-item {
+  gap: 20px !important;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 0px !important;
+  overflow-y: auto !important;
   width: 100%;
-  justify-self: flex-start;
+}
+
+.accordion-item {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  justify-self: flex-start !important;
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0px !important;
 }
 
 .header {
-  padding-left: 15px;
+  display: flex !important;
+  flex-direction: row !important;
+  width: 100% !important;
   padding-top: 20px;
 }
 .header img {
@@ -38,13 +50,14 @@
 }
 
 .accordion-item-header {
-  gap: 8px;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  align-items: center;
-  cursor: pointer;
-  flex-direction: row;
+  padding-left: 4px !important;
+  gap: 8px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  flex-direction: row !important;
 }
 .accordion-item-header h5 {
   font-weight: 600;
@@ -53,9 +66,10 @@
   color: #CED4DA;
 }
 .accordion-item-header .line-md {
-  border: 2px solid #CED4DA;
-  width: 90%;
-  border-radius: 2px;
+  border: 2px solid #CED4DA !important;
+  width: 90% !important;
+  border-radius: 2px !important;
+  color: #CED4DA !important;
 }
 
 .link {
@@ -68,12 +82,20 @@
 }
 
 .accordion-item-content {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 0px;
-  overflow-y: auto;
-  width: 100%;
-  height: 100vh;
-  margin-bottom: 20px;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+  margin: 0px !important;
+  padding: 0px !important;
+  padding-left: 4px !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  align-content: flex-start !important;
+  overflow-y: auto !important;
+  height: 100% !important;
+  width: 100% !important;
+}
+
+.content__footer {
+  padding-bottom: 0px !important;
 }/*# sourceMappingURL=localizador-cadastro.component.css.map */

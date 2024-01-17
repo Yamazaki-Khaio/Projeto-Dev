@@ -35,7 +35,8 @@
           </div>
           <div class="accordion-item-content col-10">
             <div class="link" (click)="abrirInputTelefone()">+ Adicionar telefone </div>
-            <app-telefone-cadastro (click)="adicionarTelefone()" *ngIf="exibirTelefone"></app-telefone-cadastro>
+            <app-telefone-cadastro [userId]="pessoaId" (click)="adicionarTelefone()" *ngIf="exibirTelefone"></app-telefone-cadastro>
+            <app-telefone-view [pessoaId]="pessoaId"></app-telefone-view>
             <!-- <app-endereco-cadastro></app-endereco-cadastro> -->
             <!-- <app-telefone-view></app-telefone-view> -->
           </div>

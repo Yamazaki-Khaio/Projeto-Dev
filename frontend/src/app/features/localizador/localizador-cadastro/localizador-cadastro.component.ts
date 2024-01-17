@@ -26,7 +26,8 @@ export class LocalizadorCadastroComponent {
     private IconsService: IconsService,
     private router: Router,
     private modalService: NgbModal,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private alertService: AlertService,
     ) {}
 
   ngOnInit(): void {
@@ -36,9 +37,6 @@ export class LocalizadorCadastroComponent {
 
   }
 
-  fecharAlerta() {
-    this.alertMessage = null;
-  }
 
 
 
@@ -97,9 +95,12 @@ export class LocalizadorCadastroComponent {
     );
     modalRef.shown.subscribe(() => {
       modalRef.componentInstance.pessoaId = this.pessoaId;
+      modalRef.componentInstance.enderecoAdicionado.subscribe((enderecoAdicionado: any) => {
 
 
-      console.log('Modal do Bootstrap Aberto');
+        console.log('Endereço adicionado: ' + enderecoAdicionado);
+      });
+
     });
   }
 
@@ -112,8 +113,15 @@ export class LocalizadorCadastroComponent {
     this.router.navigate(['users/profile/cliente/']);
   }
 
-  handleEmailAdicionado($event: any) {
-    throw new Error('Method not implemented.');
+  handleEmailAdicionado($event: string) {
+    if ($event === 'cancelado') {
+      this.exibirEmail = false;
+    }
+
+
+
+    console.log('E-mail adicionado: ' + $event);
+
     }
 
 }

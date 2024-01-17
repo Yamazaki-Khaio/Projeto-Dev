@@ -31,6 +31,7 @@ export class ClienteEditarComponent implements OnInit {
     public nomeRefService: NomeRefService,
     private alertService: AlertService,
   ) { }
+  
   onSituacaoChange(novaSituacao: string) {
     this.situacao = novaSituacao;
     this.clienteEditForm.patchValue({ situacao: novaSituacao });

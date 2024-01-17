@@ -1,15 +1,18 @@
 <div class="email-list">
-  <table class="table-email w-100" *ngIf="emails.length > 0">
+  <table class="table-email w-100" *ngIf="(emails$ | async) as emails">
     <tbody>
-      <tr *ngFor="let email of emails">
+      <tr *ngFor="let email of emails; let i = index">
         <td>{{ email.email }}</td>
         <td><span class="badge badge-primary" *ngIf="email.is_principal">Principal</span></td>
         <td class="icon">
-          <button class="bi bi-pencil"><img [src]="editIcon"></button>
-          <button class="bi bi-trash"><img [src]="delIcon"></button>
+          <button class="bi bi-pencil" (click)="editarEmail(email)">
+            <img [src]="editIcon">
+          </button>
+          <button class="bi bi-trash" (click)="removerEmail(email.id!)">
+            <img [src]="delIcon">
+          </button>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
-

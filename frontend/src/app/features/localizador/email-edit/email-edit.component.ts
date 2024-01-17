@@ -6,17 +6,17 @@ import { Email } from '../email';
 import { AlertService } from './../../../shared/services/alert.service';
 
 @Component({
-  selector: 'app-email-cadastro',
-  templateUrl: './email-cadastro.component.html',
-  styleUrls: ['./email-cadastro.component.scss']
+  selector: 'app-email-edit',
+  templateUrl: './email-edit.component.html',
+  styleUrls: ['../email-cadastro/email-cadastro.component.scss']
 })
-export class EmailCadastroComponent {
+export class EmailEditComponent {
   @Output() emailAdicionado = new EventEmitter<any>();
-  @Input() userId!: string; // Declare the userId property as an Input
-  enderecoId!: number;
+  userId!: number; // Declare the userId property as an Input
+  emailId!: number;
 
   emailForm!: FormGroup;
-  mostrarTemplate: boolean = true; // Adicione esta linha
+  isTemplateHidden: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -24,19 +24,25 @@ export class EmailCadastroComponent {
     private route: ActivatedRoute,
     private alertService: AlertService,
 
-  ) {}
+  ) { }
 
   ngOnInit() {
-
-    this.emailForm = this.formBuilder.group({
-      inputEmail: ['', [Validators.required, Validators.email]],
-      isPrincipal: [false, Validators.required]
-    });
+    this.emailService.getEmail(this.emailId).subscribe(
+      (Email: Email) => {
+        this.emailForm = this.formBuilder.group({
+          inputEmail: [Email.email, [Validators.required, Validators.email]],
+          isPrincipal: [Email.is_principal, Validators.required]
+        });
+      },
+      (error: any) => {
+        console.error('Erro ao carregar e-mail:', error);
+      }
+    );
   }
 
   cancelar() {
-    this.mostrarTemplate = false;
-    }
+    this.isTemplateHidden = true;
+  }
 
   adicionarEmail() {
     console.log('Adicionando e-mail:', this.emailForm.value);
@@ -47,14 +53,13 @@ export class EmailCadastroComponent {
         // cliente_id: parseInt(this.userId) // Convert the user ID to a number
       };
 
-      this.emailService.createEmail(this.userId, emailData).subscribe(
+      this.emailService.updateEmail(this.userId, emailData).subscribe(
         response => {
           console.log('E-mail adicionado com sucesso:', response);
           this.alertService.showAlert('E-mail adicionado com sucesso.', 'alert-primary');
-          this.emailForm.reset();
-          this.mostrarTemplate = false;
           this.emailAdicionado.emit(response);
-
+          this.emailForm.reset();
+          this.isTemplateHidden = true;
 
         },
         error => {
@@ -63,8 +68,6 @@ export class EmailCadastroComponent {
           console.error('Erro ao adicionar e-mail:', error);
         }
       );
-
-
     }
   }
 }
