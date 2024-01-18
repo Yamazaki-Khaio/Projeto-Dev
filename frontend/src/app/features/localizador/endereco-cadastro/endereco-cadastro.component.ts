@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IconsService } from '../../../shared/util/icons.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -15,6 +15,7 @@ import { AlertService } from 'src/app/shared/services/alert.service';
 })
 export class EnderecoCadastroComponent {
   @Input() pessoaId!: string;
+  @Output() enderecoAdicionado = new EventEmitter<any>();
   iconAdd: string = '';
   openedIconUrl: string = '';
   iconClose: string = '';
@@ -62,14 +63,12 @@ export class EnderecoCadastroComponent {
         console.log('Endereço adicionado com sucesso. Dados: ' + data);
         this.modalService.dismissAll('endereco-cadastro');
         this.enderecoAddForm.reset();
-        this.alertService.showAlert('Endereço atualizado com sucesso!', 'alert-primary');
-        this.router.navigate(['/localizador', this.pessoaId]);
-
-
-
+        this.alertService.showAlert('Endereço adicionado com sucesso!', 'alert-primary');
+        this.modalService.dismissAll('endereco-cadastro');
+        this.enderecoAdicionado.emit(data);
       },
       (error) => {
-        
+
         this.alertService.showAlert('Erro ao adicionar endereço!', 'alert-danger');
 
         console.error('Erro ao adicionar endereço. Erro: ' + error);

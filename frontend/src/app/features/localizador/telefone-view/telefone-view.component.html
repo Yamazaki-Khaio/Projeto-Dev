@@ -1,5 +1,5 @@
 <div class="telefone-list">
-  <table class="table-email w-100" *ngIf="(telefones$ | async) as telefones">
+  <table class="table-telefone w-100" *ngIf="(telefones$ | async) as telefones">
     <tbody>
       <tr *ngFor="let telefone of telefones; let i = index">
         <td>{{ telefone.tel }}</td>

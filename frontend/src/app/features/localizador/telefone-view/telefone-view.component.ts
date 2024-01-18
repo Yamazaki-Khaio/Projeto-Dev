@@ -25,7 +25,7 @@ export class TelefoneViewComponent implements OnInit {
     this.editIcon = this.iconsService.getIconUrl('Editar');
     this.carregarTelefones();
   }
-
+  //criar utils para isso aqui
   carregarTelefones(): void {
     if (this.pessoaId) {
       this.telefones$ = this.telefoneService.getTelefonesPorUsuario(this.pessoaId);

@@ -1,0 +1,42 @@
+
+.bi {
+  background-color: transparent !important;
+  color: var(--Grayscale-200, #E4EBF2) !important;
+  border: none !important;
+  transition: color 0.3s ease-in-out; // Add transition effect
+
+  &:hover{
+    color: var(--Grayscale-200, #E4EBF2) !important;
+    transform: scale(1.1); // Add scale effect on hover
+  }
+}
+
+.telefone-list
+{
+  width: 100%;
+  height: 100%;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  // ALIGN-SELF: STRETCH;
+  background-color: transparent !important;
+  color: var(--Grayscale-300, #CED4DA);
+
+
+}
+
+.table-telefone{
+  width: 50vw !important;
+  align-items: flex-start;
+  gap: 24px !important;
+  // justify-content: space-between !important;
+  align-items: center;
+  background-color: transparent !important;
+  // align-self: stretch;
+  color: var(--Grayscale-300, #CED4DA);
+
+
+}
+

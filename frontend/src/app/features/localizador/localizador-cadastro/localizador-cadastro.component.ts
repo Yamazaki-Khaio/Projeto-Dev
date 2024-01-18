@@ -1,12 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, SimpleChanges } from '@angular/core';
 import { IconsService } from '../../../shared/util/icons.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EnderecoCadastroComponent } from '../endereco-cadastro/endereco-cadastro.component';
 import { AlertService } from 'src/app/shared/services/alert.service';
+import { EmailService } from '../email.service';
+import { TelefoneService } from '../telefone.service';
+import { EnderecoService } from '../endereco.service';
+import { Observable, Subscription } from 'rxjs';
 
-//refatorar para novo modelo usando os utilitarios
+//refatorar para novo modelo usando os utilitarios e services
 
+// implementar o cancelar para dar rollback nos dados adicionados e não salvar nada
+// implementar o submit para commitar os dados adicionados e salvar tudo
+// o voltar para voltar para a tela de perfil do cliente
 
 @Component({
   selector: 'app-localizador-cadastro',
@@ -14,76 +21,45 @@ import { AlertService } from 'src/app/shared/services/alert.service';
   styleUrls: ['./localizador-cadastro.component.scss']
 })
 export class LocalizadorCadastroComponent {
-
   alertMessage: string | null = null;
   openedIconUrl: string = '';
   upIconUrl: string = '';
   pessoaId!: string;
   exibirTelefone: boolean = false;
   exibirEmail: boolean = false;
+  enderecoData$!: Observable<any[]>;
+  telefoneData$!: Observable<any[]>;
+  emailData$!: Observable<any[]>;
+  private dataSubscription: Subscription = new Subscription();
 
-  constructor(
-    private IconsService: IconsService,
-    private router: Router,
-    private modalService: NgbModal,
+  constructor( private IconsService: IconsService, private router: Router, private modalService: NgbModal,
     private route: ActivatedRoute,
     private alertService: AlertService,
-    ) {}
+    private enderecoService: EnderecoService,
+    private telefoneService: TelefoneService,
+    private emailService: EmailService,
+    ) { }
 
   ngOnInit(): void {
     this.pessoaId = this.route.snapshot.params['id'];
     this.openedIconUrl = this.IconsService.getIconUrl('icon-obrigatorio');
     this.upIconUrl = this.IconsService.getIconUrl("down");
-
+    this.atualizarDados();
   }
 
-
-
-
-  adicionarEndereco() {
-    // Implemente a lógica para adicionar um endereço
-    this.alertMessage = 'Endereço adicionado com sucesso.';
+  ngOnDestroy(): void {
+    this.dataSubscription.unsubscribe();
   }
 
-  adicionarTelefone() {
-    // Implemente a lógica para adicionar um número de telefone
-    this.alertMessage = 'Número de telefone adicionado com sucesso.';
-  }
-
-  estaAccordionAberto(indice: number): boolean {
-    // Implemente a lógica para verificar se o accordion no índice fornecido está aberto
-    // Substitua pela sua implementação real
-    return true;
-  }
-
-  alternarAccordion(indice: number) {
-    // Implemente a lógica para alternar o estado do accordion no índice fornecido
-    // Este é apenas um marcador de posição, você precisa lidar com o estado dos seus accordions
-    console.log(`Accordion ${indice} alternado`);
-  }
-
-  abrirInputTelefone(): void {
-    if (this.exibirTelefone) {
-      // Se o input de telefone já estiver aberto, feche-o
-      this.exibirTelefone = false;
-    } else {
-      // Se não estiver aberto, abra-o e feche o input de e-mail se estiver aberto
-      this.exibirTelefone = true;
+  abrirInput(tipo: 'telefone' | 'email'): void {
+    if (tipo === 'telefone') {
+      this.exibirTelefone = !this.exibirTelefone;
       this.exibirEmail = false;
-    }
-  }
-
-  abrirInputEmail(): void {
-    if (this.exibirEmail) {
-      // Se o input de e-mail já estiver aberto, feche-o
-      this.exibirEmail = false;
-    } else {
-      // Se não estiver aberto, abra-o e feche o input de telefone se estiver aberto
-      this.exibirEmail = true;
+    } else if (tipo === 'email') {
+      this.exibirEmail = !this.exibirEmail;
       this.exibirTelefone = false;
     }
   }
-
 
   abrirModalBootstrap(): void {
     // Implemente a lógica para abrir o modal do Bootstrap
@@ -96,14 +72,18 @@ export class LocalizadorCadastroComponent {
     modalRef.shown.subscribe(() => {
       modalRef.componentInstance.pessoaId = this.pessoaId;
       modalRef.componentInstance.enderecoAdicionado.subscribe((enderecoAdicionado: any) => {
-
-
+        this.atualizarDados();
+        this.alertService.showAlert('Endereço adicionado com sucesso.', 'alert-primary');
         console.log('Endereço adicionado: ' + enderecoAdicionado);
       });
-
     });
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['pessoaId']) {
+      this.atualizarDados();
+    }
+  }
 
   voltar() {
     this.router.navigate(['users/profile/cliente/']);
@@ -112,16 +92,29 @@ export class LocalizadorCadastroComponent {
   OnSubmit() {
     this.router.navigate(['users/profile/cliente/']);
   }
+  //refatorar para novo modelo usando os utilitarios e services
+  private atualizarDados(): void {
+    this.telefoneData$ = this.telefoneService.getTelefonesPorUsuario(this.pessoaId);
+    this.enderecoData$ = this.enderecoService.getEnderecosPorUsuario(this.pessoaId);
+    this.emailData$ = this.emailService.getEmailsPorUsuario(this.pessoaId);
+  }
 
-  handleEmailAdicionado($event: string) {
+  handleEmailAdicionado($event: any) {
+    this.atualizarDados();
     if ($event === 'cancelado') {
       this.exibirEmail = false;
     }
-
-
-
     console.log('E-mail adicionado: ' + $event);
-
     }
+
+
+  handleTelefoneAdicionado($event: any) {
+    this.atualizarDados();
+    if ($event === 'cancelado') {
+      this.exibirTelefone = false;
+    }
+
+    console.log('Telefone adicionado: ' + $event);
+  }
 
 }
