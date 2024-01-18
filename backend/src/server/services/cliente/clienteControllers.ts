@@ -3,13 +3,6 @@ import Cliente from './clienteModels';
 import Pessoa from '../pessoa/pessoaModels';
 import Representante from '../representante/representanteModels';
 
-
-
-
-
-
-
-
 // Defina o controlador para o modelo 'Cliente'
 class ClienteController {
     public async create(req: Request, res: Response): Promise<Response> {

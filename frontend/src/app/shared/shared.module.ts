@@ -18,6 +18,7 @@ import { AlertComponent } from './components/alert/alert.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AlertService } from './services/alert.service';
 import { EnderecoSharedService } from './services/endereco-shared.service';
+import { CpfCnpjPipe } from './util/cpf-cnpj.pipe';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -31,6 +32,7 @@ import { EnderecoSharedService } from './services/endereco-shared.service';
     BreadcrumbComponent,
     SituacaoComponent,
     AlertComponent,
+    CpfCnpjPipe,
 
 
 
@@ -59,9 +61,7 @@ import { EnderecoSharedService } from './services/endereco-shared.service';
     BreadcrumbComponent,
     SituacaoComponent,
     AlertComponent,
-
-
-
+    CpfCnpjPipe,
   ]
 
 })

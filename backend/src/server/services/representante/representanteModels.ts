@@ -6,6 +6,7 @@ class Representante extends Model {
   public id!: number;
   public id_pessoa!: number;
   public id_cliente!: number;
+
 }
 
 Representante.init(

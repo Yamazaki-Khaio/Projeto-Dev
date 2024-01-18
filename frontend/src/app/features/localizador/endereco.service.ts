@@ -14,7 +14,7 @@ export class EnderecoService {
 
   // Obtém todos os endereços para um usuário específico
   getEnderecosPorUsuario(userId: string): Observable<Endereco[]> {
-    const endpoint = `endereco/${userId}`;
+    const endpoint = `${this.baseUrl}/${userId}`;
     return this.apiService.get<Endereco[]>(endpoint);
   }
 
@@ -25,7 +25,7 @@ export class EnderecoService {
 
   // Cria um novo endereço para um usuário específico
   createEndereco(userId: string, endereco: Endereco): Observable<Endereco> {
-    const endpoint = `endereco/${userId}`;
+    const endpoint = `${this.baseUrl}/${userId}`;
     return this.apiService.post<Endereco>(endpoint, endereco);
   }
 

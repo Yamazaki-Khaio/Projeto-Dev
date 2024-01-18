@@ -15,22 +15,28 @@ export class RepresentanteService {
     return this.apiService.get<Representante[]>(this.representanteEndpoint);
   }
 
-  getRepresentante(id: string): Observable<Representante> {
-    const endpoint = `${this.representanteEndpoint}/${id}`;
+  getRepresentante(representateId: number): Observable<Representante> {
+    const endpoint = `${this.representanteEndpoint}/${representateId}`;
     return this.apiService.get<Representante>(endpoint);
   }
 
-  createRepresentante(representante: Representante): Observable<Representante> {
-    return this.apiService.post<Representante>(this.representanteEndpoint, representante);
+  getRepresentantesPorUsuario(userId: string): Observable<Representante[]> {
+    const endpoint = `${this.representanteEndpoint}/${userId}`;
+    return this.apiService.get<Representante[]>(endpoint);
   }
 
-  updateRepresentante(id: string, representante: Representante): Observable<Representante> {
-    const endpoint = `${this.representanteEndpoint}/${id}`;
+  createRepresentante(representante: Representante, userId: string): Observable<Representante> {
+    const endpoint = `${this.representanteEndpoint}/${userId}`;
+    return this.apiService.post<Representante>(endpoint, representante);
+  }
+
+  updateRepresentante(representateId: number, representante: Representante): Observable<Representante> {
+    const endpoint = `${this.representanteEndpoint}/${representateId}`;
     return this.apiService.put<Representante>(endpoint, representante);
   }
 
-  deleteRepresentante(id: string): Observable<void> {
-    const endpoint = `${this.representanteEndpoint}/${id}`;
+  deleteRepresentante(representateId: number): Observable<void> {
+    const endpoint = `${this.representanteEndpoint}/${representateId}`;
     return this.apiService.delete<void>(endpoint);
   }
 }
