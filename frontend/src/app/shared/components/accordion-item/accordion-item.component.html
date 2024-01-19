@@ -1,0 +1,10 @@
+<div class="accordion-item">
+  <div class="accordion-item-header" (click)="toggle.emit()">
+    <h5>{{ title }}</h5>
+    <hr class="line-md">
+    <img [src]="isOpen ? upIconUrl : downIconUrl" class="img-fluid">
+  </div>
+  <div class="accordion-item-content col-10" *ngIf="isOpen">
+    <ng-content></ng-content>
+  </div>
+</div>

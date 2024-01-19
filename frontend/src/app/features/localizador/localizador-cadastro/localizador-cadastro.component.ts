@@ -31,6 +31,25 @@ export class LocalizadorCadastroComponent {
   telefoneData$!: Observable<any[]>;
   emailData$!: Observable<any[]>;
   private dataSubscription: Subscription = new Subscription();
+  accordionItems: boolean[] = [false, false, false]; // Inicialmente todos os itens estão fechados
+  isOpenEndereco: boolean = true;
+  isOpenTelefone: boolean = true;
+  isOpenEmail: boolean = true;
+
+  toggleAccordion(section: string) {
+    switch (section) {
+      case 'endereco':
+        this.isOpenEndereco = !this.isOpenEndereco;
+        break;
+      case 'telefone':
+        this.isOpenTelefone = !this.isOpenTelefone;
+        break;
+      case 'email':
+        this.isOpenEmail = !this.isOpenEmail;
+        break;
+      // Adicione mais casos conforme necessário
+    }
+  }
 
   constructor( private IconsService: IconsService, private router: Router, private modalService: NgbModal,
     private route: ActivatedRoute,
@@ -49,6 +68,10 @@ export class LocalizadorCadastroComponent {
 
   ngOnDestroy(): void {
     this.dataSubscription.unsubscribe();
+  }
+
+  toggleAccordionItem(index: number): void {
+    this.accordionItems[index] = !this.accordionItems[index];
   }
 
   abrirInput(tipo: 'telefone' | 'email'): void {
