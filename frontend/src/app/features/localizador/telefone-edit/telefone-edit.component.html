@@ -1,1 +1,16 @@
-<p>telefone-edit works!</p>
+<div class="telefone">
+  <form class="needs-validation form-row" [formGroup]="telefoneForm" novalidate>
+      <input id="inputTelefone" class="form-control col-6" type="text" formControlName="inputTelefone"
+        placeholder="(XX) XXXXX-XXXX" required>
+      <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+      <button type="submit" class="btn btn-primary" (click)="adicionarTelefone()" [disabled]="telefoneForm.invalid">Salvar edição</button>
+  <div *ngIf="telefoneForm.get('inputTelefone')?.hasError('required')" class="error-message">
+    Digite um telefone válido
+  </div>
+  <div class="form-check form-group">
+    <input type="checkbox" class="form-check-input" id="isPrincipal" formControlName="isPrincipal"
+      [disabled]="telefoneForm.invalid">
+    <label style="color: #ced4da;" class="form-check-label" for="isPrincipal">Telefone principal</label>
+  </div>
+</form>
+</div>
