@@ -1,0 +1,28 @@
+<div class="telefone-list" *ngIf="!modoEdicao; else modoEdicaoTemplate">
+  <!-- Lista de telefones -->
+  <table class="table-telefone w-100" *ngIf="(telefones$ | async) as telefones">
+    <tbody>
+      <tr *ngFor="let telefone of telefones; let i = index">
+        <td>{{ telefone.tel }}</td>
+        <td><span class="badge badge-primary" *ngIf="telefone.is_principal">Principal</span></td>
+        <td class="icon">
+          <button class="bi bi-pencil" (click)="editarTelefone(telefone)">
+            <img alt="edit_icon" [src]="editIcon">
+          </button>
+          <button class="bi bi-trash" (click)="removerTelefone(telefone.id!)">
+            <img alt="del_icon" [src]="delIcon">
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Template de edição -->
+<ng-template #modoEdicaoTemplate>
+  <app-telefone-edit
+    [userId]="pessoaId"
+    [telefoneId]="telefoneIdParaEdicao"
+    (telefoneEditado)="sairModoEdicao($event)"
+  ></app-telefone-edit>
+</ng-template>

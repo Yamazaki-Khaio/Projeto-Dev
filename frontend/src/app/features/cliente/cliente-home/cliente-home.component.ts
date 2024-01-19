@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ClienteService } from '../cliente.service';
 import { Cliente } from '../cliente';
 import { Observable, Subscription } from 'rxjs';
+import { IconsService } from 'src/app/shared/util/icons.service';
 
 @Component({
   selector: 'app-cliente-home',
@@ -12,10 +13,28 @@ import { Observable, Subscription } from 'rxjs';
 export class ClienteHomeComponent implements OnDestroy {
   clientes$: Observable<Cliente[]>;
   private clientesSubscription: Subscription = new Subscription();
-
-  constructor(private clienteService: ClienteService, private router: Router) {
+  delIcon: string = '';
+  editIcon: string = '';
+  constructor(private clienteService: ClienteService, private router: Router, private IconsService: IconsService) {
     this.clientes$ = this.clienteService.getClientes();
+    this.delIcon = this.IconsService.getIconUrl('Excluir');
+    this.editIcon = this.IconsService.getIconUrl('Editar');
+
   }
+
+  ngOnInit(): void {
+    this.clientes$ = this.clienteService.getClientes();
+    this.clientesSubscription = this.clientes$.subscribe(
+      (data) => {
+        console.log('Clientes carregados com sucesso. Dados: ', data);
+      },
+      (error) => {
+        console.error('Erro ao carregar clientes. Erro: ' + error);
+        alert('Erro ao carregar clientes. Erro: ' + error);
+      }
+    );
+  }
+
 
   ngOnDestroy(): void {
     this.clientesSubscription.unsubscribe();
@@ -27,8 +46,8 @@ export class ClienteHomeComponent implements OnDestroy {
   }
 
   editarCliente(cliente: Cliente) {
-    this.router.navigate([`/profile/cliente/editar/${cliente.id}`]);
-  }
+      this.router.navigate([`/profile/cliente/editar/${cliente.id}`]);
+    }
 
   deleteClient(cliente: Cliente) {
     const clienteId = cliente.id?.toString();
@@ -59,5 +78,28 @@ export class ClienteHomeComponent implements OnDestroy {
         alert('Erro ao carregar clientes. Erro: ' + error);
       }
     );
+  }
+
+  formatarCpfCnpj(identificacao: string): string {
+    if (identificacao.length === 11) {
+      return `${identificacao.substr(0, 3)}.${identificacao.substr(3, 3)}.${identificacao.substr(6, 3)}-${identificacao.substr(9)}`;
+    } else if (identificacao.length === 14) {
+      return `${identificacao.substr(0, 2)}.${identificacao.substr(2, 3)}.${identificacao.substr(5, 3)}/${identificacao.substr(8, 4)}-${identificacao.substr(12)}`;
+    }
+    // Se não for CPF nem CNPJ, retorna sem formatação
+    return identificacao;
+  }
+
+  getBadgeClass(situacao: string): string {
+    switch (situacao) {
+      case 'Ativo':
+        return 'badge badge-success';
+      case 'Inativo':
+        return 'badge badge-warning';
+      case 'Negativado':
+        return 'badge badge-danger';
+      default:
+        return 'badge badge-primary';
+    }
   }
 }

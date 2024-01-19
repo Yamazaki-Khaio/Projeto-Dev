@@ -1,5 +1,6 @@
 export interface Telefone {
   id?: number; // O ID é opcional, pois será atribuído pelo backend
-  telefone: string;
-  cliente_id: number;
+  tel: string;
+  is_principal: boolean;
+  id_pessoa?: string;
 }

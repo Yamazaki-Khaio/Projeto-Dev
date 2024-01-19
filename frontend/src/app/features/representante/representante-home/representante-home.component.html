@@ -1,0 +1,71 @@
+<!-- representante-cadastro -->
+<app-alert></app-alert>
+<div class="representante">
+  <div class="container__representante">
+    <div class="col">
+      <!-- Breadcrumb -->
+      <div class="row">
+        <div class="col">
+          <app-breadcrumb [clienteItem]="'Cliente'" [currentPage]="'Adicionar cliente'"></app-breadcrumb>
+        </div>
+      </div>
+
+      <!-- Cabeçalho -->
+      <div class="header">
+        <h3>Representante</h3>
+        <hr class="line">
+        <img [src]="openedIconUrl" alt="Obrigatorio Icon">
+        <a>Campos obrigatórios</a>
+      </div>
+
+      <!-- Botão para adicionar representante -->
+      <button class="btn btn-primary px-4" (click)="addRepresentante()">Adicionar representante</button>
+
+      <!-- Lista de representantes -->
+      <div>
+        <div class="representante-list">
+          <div class="table" *ngIf="(representantes$ | async) && (representantes$ | async)!.length > 0; else emptyList">
+            <div class="table-resposive overflow-auto">
+              <table class="table-dark table-hover">
+                <thead>
+                  <tr>
+                    <th>Nome - CPF/CNPJ</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Iteração sobre representantes -->
+                  <tr *ngFor="let representante of representantes$ | async">
+                    <td class="col-8">
+                      <div>{{ representante.nome }}</div>
+                      <div>{{ representante.identificador | cpfCnpj }}</div>
+                    </td>
+                    <td class="icon">
+                      <button class="bi bi-pencil" (click)="editarRepresentante(representante)">
+                        <i><img [src]="editIcon" title="Edit Icon"></i></button>
+                      <button class="bi bi-trash" (click)="deleteRepresentante(representante)" title="Delete Representante">
+                        <i><img [src]="delIcon" title="Delete Icon"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Template para lista vazia -->
+          <ng-template #emptyList>
+            <div class="list-empty">
+              <img src="./assets/projeto-representante-1.png" alt="Lista vazia">
+              <h4>Nenhum representante cadastrado!</h4>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+    <!-- Links de navegação -->
+    <div class="col-2">
+      <app-list-link></app-list-link>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="telefone w-100">
+  <form [formGroup]="telefoneForm" novalidate>
+    <div class="needs-validation form-row">
+      <input id="inputTelefone" class="form-control col-6" type="text" formControlName="inputTelefone"
+        placeholder="(xx) xxxxx-xxxx" required>
+      <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+      <button type="submit" class="btn btn-primary" (click)="atualizarTelefone()" [disabled]="telefoneForm.invalid">Salvar
+        edição</button>
+    </div>
+    <div class="form-check form-group">
+      <input type="checkbox" class="form-check-input" id="isPrincipal" formControlName="isPrincipal">
+      <label class="form-check-label" for="isPrincipal">Telefone principal</label>
+    </div>
+  </form>
+</div>

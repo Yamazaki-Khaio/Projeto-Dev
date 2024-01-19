@@ -1,1 +1,25 @@
-/*# sourceMappingURL=footer.component.css.map */
+footer {
+  bottom: 0;
+  right: 0px;
+  width: calc(100% - 52px);
+  border-top: 1px solid var(--Grayscale-500, #2F3337);
+  background: var(--Grayscale-600, #212529);
+  position: fixed;
+  display: flex;
+  justify-content: end;
+  color: #6C757D;
+  font-size: 14px;
+  text-align: center;
+  letter-spacing: 0.5;
+  padding-right: 43px;
+}
+
+a {
+  color: #6C757D;
+  padding: 0 5px;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #6C757D;
+}/*# sourceMappingURL=footer.component.css.map */

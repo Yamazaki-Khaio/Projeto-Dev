@@ -1,0 +1,61 @@
+@import '../../../../../src/styles.scss';
+
+
+.representante{
+  display: flex !important;
+  width: 100% !important;
+  height: 100%  !important;
+  background-color: transparent !important;
+
+}
+
+.container__representante {
+  // background-color: green;
+  display: flex  !important;
+  flex-direction: row  !important;
+  height: 100%!important;
+  gap: 20px !important;
+
+}
+.header {
+  display: flex !important;
+  flex-direction: row !important;
+  width: 100% !important;
+  padding-top: 20px;
+
+  img {
+    // margin: 9px;
+    // padding: 9px;
+    padding-bottom: 9px;
+    padding-right: 9px;
+  }
+
+  .line {
+    margin-top: 15px;
+  }
+}
+
+
+.header {
+  display: flex !important;
+  flex-direction: row !important;
+  width: 100% !important;
+  padding-top: 20px;
+
+
+  img {
+    // margin: 9px;
+    // padding: 9px;
+    padding-bottom: 9px;
+    padding-right: 9px;
+
+  }
+
+  .line {
+    margin-top: 15px;
+  }
+
+}
+.content__footer{
+  width: 83%;
+}

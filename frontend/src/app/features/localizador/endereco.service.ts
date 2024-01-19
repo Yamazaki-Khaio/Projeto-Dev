@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { ApiService } from '../../core/services/api.service';
 import { Endereco } from './endereco';
 
@@ -11,21 +12,20 @@ export class EnderecoService {
 
   constructor(private apiService: ApiService) { }
 
-  // Obtém todos os endereços
-  getEnderecos(): Observable<Endereco[]> {
-    const endpoint = this.baseUrl;
+  // Obtém todos os endereços para um usuário específico
+  getEnderecosPorUsuario(userId: string): Observable<Endereco[]> {
+    const endpoint = `${this.baseUrl}/${userId}`;
     return this.apiService.get<Endereco[]>(endpoint);
   }
 
-  // Obtém um endereço pelo ID
-  getEndereco(id: string): Observable<Endereco> {
-    const endpoint = `${this.baseUrl}/${id}`;
-    return this.apiService.get<Endereco>(endpoint);
+  getEndereco(enderecoId: number): Observable<Endereco[]> {
+    const endpoint = `${this.baseUrl}/${enderecoId}`;
+    return this.apiService.get<Endereco[]>(endpoint);
   }
 
-  // Cria um novo endereço
-  createEndereco(endereco: Endereco): Observable<Endereco> {
-    const endpoint = this.baseUrl;
+  // Cria um novo endereço para um usuário específico
+  createEndereco(userId: string, endereco: Endereco): Observable<Endereco> {
+    const endpoint = `${this.baseUrl}/${userId}`;
     return this.apiService.post<Endereco>(endpoint, endereco);
   }
 
@@ -39,5 +39,13 @@ export class EnderecoService {
   deleteEndereco(id: string): Observable<void> {
     const endpoint = `${this.baseUrl}/${id}`;
     return this.apiService.delete<void>(endpoint);
+  }
+
+  // Adiciona uma propriedade is_principal para todos os endereços
+  // Aqui você pode ajustar a lógica conforme necessário
+  getEnderecosComIsPrincipal(userId: string): Observable<Endereco[]> {
+    return this.getEnderecosPorUsuario(userId).pipe(
+      map(enderecos => enderecos.map(endereco => ({ ...endereco, is_principal: false })))
+    );
   }
 }

@@ -7,29 +7,35 @@ import { Email } from './email';
   providedIn: 'root'
 })
 export class EmailService {
-  private readonly emailEndpoint = 'emails';
-  
+  private readonly emailEndpoint = 'email';
+
   constructor(private apiService: ApiService) {}
 
   getEmails(): Observable<Email[]> {
     return this.apiService.get<Email[]>(this.emailEndpoint);
   }
 
-  getEmail(id: string): Observable<Email> {
+  getEmailsPorUsuario(id_pessoa: string): Observable<Email[]> {
+    const endpoint = `${this.emailEndpoint}/${id_pessoa}`;
+    return this.apiService.get<Email[]>(endpoint);
+  }
+
+  getEmail(id: number): Observable<Email> {
     const endpoint = `${this.emailEndpoint}/${id}`;
     return this.apiService.get<Email>(endpoint);
   }
 
-  createEmail(email: Email): Observable<Email> {
-    return this.apiService.post<Email>(this.emailEndpoint, email);
+  createEmail(id_pessoa: string, email: Email): Observable<Email> {
+    const endpoint = `${this.emailEndpoint}/${id_pessoa}`;
+    return this.apiService.post<Email>(endpoint, email);
   }
 
-  updateEmail(email: Email): Observable<Email> {
-    const endpoint = `${this.emailEndpoint}/${email.id}`;
+  updateEmail(id: number, email: Email): Observable<Email> {
+    const endpoint = `${this.emailEndpoint}/${id}`;
     return this.apiService.put<Email>(endpoint, email);
   }
 
-  deleteEmail(id: string): Observable<void> {
+  deleteEmail(id: number): Observable<void> {
     const endpoint = `${this.emailEndpoint}/${id}`;
     return this.apiService.delete<void>(endpoint);
   }

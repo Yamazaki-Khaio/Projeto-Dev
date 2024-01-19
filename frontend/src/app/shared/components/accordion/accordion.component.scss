@@ -1,0 +1,13 @@
+.accordion {
+  gap: 20px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0px !important;
+  overflow-y: auto !important;
+  // max-height: 80vh;
+  width: 100%;
+  // min-height: calc(100% - 296px);
+
+  // margin-bottom: 20px !important;
+}

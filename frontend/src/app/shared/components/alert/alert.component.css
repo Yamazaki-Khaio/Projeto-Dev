@@ -1,0 +1,12 @@
+.alert {
+  border-radius: 4px;
+  height: 52px !important;
+  width: 400px !important;
+  border: 1px solid var(--Primary-50, rgba(8, 65, 145, 0.25)) !important;
+  justify-content: flex-start;
+  align-items: center;
+  top: 20px;
+  overflow: hidden;
+  gap: 20px !important;
+  left: 700px;
+}/*# sourceMappingURL=alert.component.css.map */

@@ -1,1 +1,47 @@
-/*# sourceMappingURL=user-login.component.css.map */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: #CED4DA;
+}
+.login-container .logo-icon {
+  margin-bottom: 20px;
+}
+.login-container h2 {
+  font-size: 28px;
+  color: #D8E8FD;
+  font-weight: 900;
+  line-height: 36px;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+.login-container p.text-muted {
+  color: #6C757D;
+  margin-bottom: 20px;
+}
+.login-container .input-group {
+  position: relative;
+}
+.login-container .form-check {
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+.login-container .btn-primary {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 10px;
+  border-radius: 8px;
+}
+.login-container .registration-link {
+  margin-top: 20px;
+}
+.login-container .registration-link a {
+  color: #0D6CF2;
+  text-decoration: underline;
+}
+.login-container p.mt-3 {
+  color: #6C757D;
+}/*# sourceMappingURL=user-login.component.css.map */

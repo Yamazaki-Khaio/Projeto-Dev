@@ -1,10 +1,9 @@
-// FILEPATH: /c:/Users/kaio.fonseca/Documents/projeto-dev/Projeto-Dev/frontend/src/app/features/users/user-registration/user-registration.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PasswordMatchDirective } from 'src/app/shared/directives/password-match.directive';
 import { UserService } from '../users.service';
 import { Router } from '@angular/router';
+import { IconsService } from 'src/app/shared/util/icons.service';
 
 
 @Component({
@@ -19,10 +18,12 @@ export class UserRegistrationComponent implements OnInit {
   registrationForm: FormGroup = new FormGroup({});
   isPasswordVisible: boolean = false;
   isConfirmPasswordVisible: boolean = false;
+  openedIconUrl: string = '';
 
 
-
-  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) { }
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router, private iconsService: IconsService) {
+    this.openedIconUrl = this.iconsService.getIconUrl('icon-obrigatorio');
+   }
 
   ngOnInit(): void {
     // Inicializa o FormGroup aqui, não no construtor

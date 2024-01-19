@@ -1,0 +1,15 @@
+<div class="email w-100">
+  <form [formGroup]="emailForm" novalidate>
+    <div class="needs-validation form-row">
+      <input id="inputEmail" class="form-control col-6" type="email" formControlName="inputEmail"
+        placeholder="example@example.com" required>
+        <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+        <button type="submit" class="btn btn-primary" (click)="adicionarEmail()" [disabled]="emailForm.invalid">Salvar
+          edição</button>
+    </div>
+    <div class="form-check form-group">
+      <input type="checkbox" class="form-check-input" id="isPrincipal" formControlName="isPrincipal">
+      <label class="form-check-label" for="isPrincipal">E-mail principal</label>
+    </div>
+  </form>
+</div>

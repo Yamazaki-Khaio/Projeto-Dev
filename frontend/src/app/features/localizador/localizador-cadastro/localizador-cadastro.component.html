@@ -1,46 +1,48 @@
-<div class="container">
-  <h1 class="text-center mt-5">Dados Cadastrais</h1>
+<div class="alert"><app-alert></app-alert></div>
 
-  <!-- Alerta Bootstrap para exibir mensagens -->
-  <div *ngIf="alertMessage" class="alert alert-success alert-dismissible fade show" role="alert">
-    {{ alertMessage }}
-    <button type="button" class="btn-close" (click)="fecharAlerta()" aria-label="Fechar"></button>
-  </div>
-
-  <div class="row mx-auto">
-    <app-breadcrumb></app-breadcrumb>
-    <app-list-link></app-list-link>
-  </div>
-
-  <div class="accordion">
-    <div class="accordion-item">
-      <div class="accordion-header" (click)="alternarAccordion(1)">
-        Endereço
+<!-- localizador-cadastro -->
+<div class="localizador">
+  <div class="container__localizador col-12">
+    <div class="col-10 h-100">
+      <div class="row">
+        <div class="col">
+          <app-breadcrumb [clienteItem]="'Cliente'" [currentPage]="'Editar cliente'"></app-breadcrumb>
+        </div>
       </div>
-      <div class="accordion-content" *ngIf="estaAccordionAberto(1)">
-        <app-endereco-view></app-endereco-view>
-        <button (click)="adicionarEndereco()">Adicionar Endereço</button>
+      <div class="header">
+        <h3>Localização</h3>
+        <hr class="line">
+        <img alt="obrigatorio_icon" [src]="openedIconUrl">
+        <a>Campos obrigatórios</a>
       </div>
+      <app-accordion>
+        <app-accordion-item title="Endereço" [isOpen]="isOpenEndereco" (toggle)="toggleAccordion('endereco')">
+          <div (click)="abrirModalBootstrap()" class="link">+ Adicionar endereço </div>
+          <app-endereco-view [pessoaId]="pessoaId" *ngIf="(enderecoData$ | async)"></app-endereco-view>
+        </app-accordion-item>
+        <app-accordion-item title="Telefone" [isOpen]="isOpenTelefone" (toggle)="toggleAccordion('telefone')">
+          <div class="link" (click)="abrirInput('telefone')">+ Adicionar telefone </div>
+          <app-telefone-cadastro (telefoneAdicionado)="handleTelefoneAdicionado($event)" [userId]="pessoaId" *ngIf="exibirTelefone"></app-telefone-cadastro>
+          <app-telefone-view [pessoaId]="pessoaId" *ngIf="(telefoneData$ | async)"></app-telefone-view>
+        </app-accordion-item>
+        <app-accordion-item title="E-mail" [isOpen]="isOpenEmail" (toggle)="toggleAccordion('email')">
+          <div (click)="abrirInput('email')" class="link">+ Adicionar e-mail </div>
+          <app-email-cadastro [userId]="pessoaId" (emailAdicionado)="handleEmailAdicionado($event)" *ngIf="exibirEmail"></app-email-cadastro>
+          <app-email-view [pessoaId]="pessoaId" *ngIf="(emailData$ | async)"></app-email-view>
+        </app-accordion-item>
+      </app-accordion>
     </div>
 
-    <div class="accordion-item">
-      <div class="accordion-header" (click)="alternarAccordion(2)">
-        Telefone
-      </div>
-      <div class="accordion-content" *ngIf="estaAccordionAberto(2)">
-        <app-telefone-view></app-telefone-view>
-        <button (click)="adicionarTelefone()">Adicionar Telefone</button>
-      </div>
+    <div class="col-2">
+      <app-list-link></app-list-link>
     </div>
 
-    <div class="accordion-item">
-      <div class="accordion-header" (click)="alternarAccordion(3)">
-        Email
-      </div>
-      <div class="accordion-content" *ngIf="estaAccordionAberto(3)">
-        <app-email-view></app-email-view>
-        <button (click)="adicionarEmail()">Adicionar Email</button>
-      </div>
-    </div>
   </div>
+
 </div>
+<div class="content__footer w-8">
+  <button class="btn btn-secondary" (click)="voltar()">Cancelar</button>
+  <button class="btn btn-primary" (click)="OnSubmit()" [disabled]="true" type="submit">Salvar cliente</button>
+</div>
+
+

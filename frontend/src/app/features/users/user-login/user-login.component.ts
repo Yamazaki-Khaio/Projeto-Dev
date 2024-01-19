@@ -1,9 +1,8 @@
-// user-login.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../users.service';
 import { Router } from '@angular/router';
+import { IconsService } from 'src/app/shared/util/icons.service';
 
 @Component({
   selector: 'app-user-login',
@@ -11,16 +10,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-login.component.scss'],
 })
 export class UserLoginComponent implements OnInit {
-changeTextColor(arg0: string) {
-throw new Error('Method not implemented.');
-}
+
   isPasswordVisible: boolean = false;
   loginForm: FormGroup = new FormGroup({});
   apiErrorMessage: string = '';
   emailError: boolean = false;
   passwordError: boolean = false;
-
-  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {}
+  openedIconUrl: string = '';
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router, private iconsService: IconsService) {
+    this.openedIconUrl = this.iconsService.getIconUrl('icon-obrigatorio');
+   }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({

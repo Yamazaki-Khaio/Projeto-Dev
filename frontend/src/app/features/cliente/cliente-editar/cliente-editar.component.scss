@@ -1,0 +1,52 @@
+// @import '../../../../styles.scss';
+.form-row{
+  margin-top: 20px;
+  gap:20px !important;
+}
+
+.header {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 8px !important;
+  align-items: center;
+  align-content: center;
+
+  img {
+    // margin: 9px;
+    // padding: 9px;
+    padding-bottom: 9px;
+    padding-right: 9px;
+
+  }
+
+  .line {
+    margin-top: 15px;
+  }
+
+}
+
+
+.content__footer{
+  gap: 8px !important;
+  padding-top: 12px;
+  padding-bottom: 20px; // 20px - gap=8px
+  width: 85%;
+  flex: 0 0 auto
+}
+
+.clienteEditar{
+  display: flex !important;
+
+  background-color: transparent !important;
+
+}
+
+
+.container__editar {
+  // background-color: green;
+  display: flex  !important;
+  flex-direction: row  !important;
+  gap: 20px !important;
+
+
+}

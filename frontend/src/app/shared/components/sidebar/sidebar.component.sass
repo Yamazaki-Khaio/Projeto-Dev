@@ -1,16 +1,15 @@
+// @import 'frontend\src\styles.scss'
+@import '../../../../../src/styles.scss'
+
 .sidebar
-  box-shadow: 0px 8px 4px #1E1E1E
   flex-direction: column
   justify-content: flex-start
   align-items: center
   display: flex
   width: 52px
   height: 100%
-  position: fixed
-  z-index: 1
-  border-right: 1px solid #2F3337
-  background-color: #212529
-
+  border-right: 1px solid var(--Grayscale-500, #2F3337)
+  background: var(--Grayscale-600, #212529)
 
   .logo
     display: flex
@@ -25,7 +24,6 @@
       width: 30.24px
       height: 36px
 
-
   .nav-icons
     display: flex
     flex-direction: column
@@ -34,7 +32,6 @@
     align-content: center
     width: 100%
     padding-left: 5px
-
 
     li
       display: flex
@@ -49,9 +46,20 @@
         // justify-content: center
         // align-items: center
 
-
     li.selected
       border-right: 2px solid #0D6CF2
       path
         stroke: #0D6CF2
+
+  .sidebar__content
+    width: 52px !important
+    height: 100% !important
+    min-height: 768px !important
+    // width: 52px
+    // height: 620px
+    background: var(--Grayscale-600, #212529)
+    border-right: 1px solid var(--Grayscale-500, #2F3337)
+
+
+
 

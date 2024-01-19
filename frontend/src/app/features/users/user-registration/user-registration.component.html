@@ -1,3 +1,4 @@
+<div class="Main">
 <div class="content">
   <div class="content__header">
     <svg width="40" height="49" viewBox="0 0 40 49" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -11,23 +12,23 @@
 
   <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="name">Nome *</label>
+      <label for="name">Nome</label> <img alt="obrigatorio_icon" [src]="openedIconUrl">
       <input type="text" id="name" name="name" class="form-control" required formControlName="name"
-        placeholder="Digite seu nome;">
+        placeholder="Insira seu nome">
     </div>
 
     <div class="form-group">
-      <label for="email">E-mail *</label>
+      <label for="email">E-mail</label> <img alt="obrigatorio_icon" [src]="openedIconUrl">
       <input type="email" id="email" name="email" class="form-control" required formControlName="email"
-            placeholder="Digite seu e-mail">
+            placeholder="Insira seu e-mail">
     </div>
 
     <div class="form-group">
-      <label for="password">Senha *</label>
+      <label for="password">Senha</label><img alt="obrigatorio_icon" [src]="openedIconUrl">
       <div class="input-group">
         <input type="{{ isPasswordVisible ? 'text' : 'password' }}" id="senha" name="senha"
         class="form-control" required formControlName="password"
-        placeholder="Digite sua senha" appShowHidePassword style="color: white; border-right: none;">
+        placeholder="Insira a nova senha" appShowHidePassword style="color: white; border-right: none;">
         <div class="input-group-append">
           <span class="input-group-text" (click)="togglePasswordVisibility()">
             <svg (click)="togglePasswordVisibility" width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,30 +42,22 @@
     </div>
 
     <div class="form-group">
-      <label for="confirm-password">Confirmar senha *</label>
+      <label for="confirm-password">Confirmar senha </label><img alt="obrigatorio_icon" [src]="openedIconUrl">
       <div class="input-group">
         <input type="{{ isConfirmPasswordVisible ? 'text' : 'password' }}"
                id="confirm-password" name="confirm-password" class="form-control" required
                formControlName="confirmPassword" appPasswordMatch="password"
-               placeholder="Confirme sua senha" passwordMismatch="onPasswordMismatch($event)"
+               placeholder="Repita a senha inserida" passwordMismatch="onPasswordMismatch($event)"
                appShowHidePassword style="color: white; border-right: none;">
-        <div class="input-group-append" style="border-left: transparent;">
-          <i class="input-group-text" (click)="toggleConfirmPasswordVisibility()">
+        <div class="input-group-append" style="border-left: transparent;" (click)="toggleConfirmPasswordVisibility()">
+          <i class="input-group-text">
             <svg (click)="toggleConfirmPasswordVisibility" width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M8 4.5C3.33333 4.5 2 8.5 2 8.5C2 8.5 3.33333 12.5 8 12.5C12.6667 12.5 14 8.5 14 8.5C14 8.5 12.6667 4.5 8 4.5Z" stroke="#6C757D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M10 8.5C10 7.39543 9.10457 6.5 8 6.5C6.89543 6.5 6 7.39543 6 8.5C6 9.60457 6.89543 10.5 8 10.5C9.10457 10.5 10 9.60457 10 8.5Z" stroke="#6C757D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <i class="bi" [ngClass]="{'bi-eye': !isPasswordVisible, 'bi-eye-slash': isPasswordVisible}"></i>
           </i>
         </div>
       </div>
-
-      <ng-container  *ngIf="registrationForm.get('confirmPassword')?.touched &&
-                           registrationForm.get('confirmPassword')?.invalid">
-        <div class="alert alert-danger" role="alert">
-          As senhas não coincidem.
-        </div>
-      </ng-container>
 
       <!-- Verificação para garantir que registrationForm.get('confirmPassword') não seja null -->
       <ng-container  *ngIf="registrationForm.get('confirmPassword')?.touched
@@ -74,9 +67,10 @@
     </div>
 
     <button type="submit" class="form-group btn btn-primary" [disabled]="!registrationForm.valid" (click)="onSubmit()">Criar Conta</button>
-    <p> * campos obrigatórios</p>
-    <div class="login-link">
-      <a>Já possui cadastro? </a><a [routerLink]="['/users/login']">Faça log in</a>
-    </div>
+   <p class="mt-3">  <img alt="obrigatorio_icon" [src]="openedIconUrl"> campos obrigatórios</p>
   </form>
+  <div class="login-link">
+    <a>Já possui cadastro? </a><a [routerLink]="['/users/login']">Faça log in</a>
+  </div>
+</div>
 </div>

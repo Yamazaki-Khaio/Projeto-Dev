@@ -1,0 +1,59 @@
+.accordion-item {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  justify-self: flex-start !important;
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0px !important;
+
+
+}
+
+.accordion-item-header {
+  padding-left: 4px !important;
+  gap: 8px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  flex-direction: row !important;
+
+  h5 {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #CED4DA;
+
+  }
+
+  .line-md {
+    border: 2px solid #CED4DA !important;
+    width: 90% !important;
+    border-radius: 2px !important;
+    color: #CED4DA !important;
+
+  }
+
+}
+
+.accordion-item-content {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+  margin: 0px !important;
+  padding: 0px !important;
+  padding-left: 4px !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  align-content: flex-start !important;
+  overflow-y: auto !important;
+  height: 100% !important;
+  width: 100% !important;
+  padding-bottom: 20px !important;
+
+
+
+}

@@ -1,0 +1,22 @@
+.breadcrumb {
+  background-color: transparent !important;
+  padding: 0px;
+  margin: 0px;
+}
+.breadcrumb .breadcrumb-item {
+  cursor: pointer;
+}
+.breadcrumb a {
+  font-size: 12px;
+  color: #D8E8FD !important;
+  font-weight: 400;
+  line-height: 20px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.breadcrumb .breadcrumb-item.active {
+  font-size: 14px;
+  color: #6c757d !important;
+  font-weight: 600;
+  text-decoration: none;
+}/*# sourceMappingURL=breadcrumb.component.css.map */

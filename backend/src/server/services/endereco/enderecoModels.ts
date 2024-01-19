@@ -84,7 +84,7 @@ Endereco.init(
     is_principal: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: true,
+      defaultValue: false,
 
     },
     id_pessoa: {

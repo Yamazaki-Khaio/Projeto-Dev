@@ -11,14 +11,12 @@ import { Router } from '@angular/router';
 })
 export class UserProfileComponent implements OnInit {
 
-
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     // Obtenha os dados do perfil do usuário quando o componente for inicializado
     this.fetchUserProfileData();
   }
-
 
   fetchUserProfileData(): void {
     // Chame o serviço para obter os dados do perfil do usuário

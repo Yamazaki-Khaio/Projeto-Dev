@@ -1,48 +1,47 @@
-<div class="main">
-  <div class="container">
-    <app-breadcrumb [clienteItem]="'Cliente'" [currentPage]="'Adicionar cliente'"></app-breadcrumb>
-    <div class="container__header">
-      <h3>Dados cadastrais</h3>
-      <hr class="line">
-      <a>* Campos obrigatórios</a>
+<div class="d-flex flex-column h-100">
+  <div class="row">
+    <div class="col-12">
+      <app-breadcrumb [clienteItem]="'Cliente'" [currentPage]="'Adicionar cliente'"></app-breadcrumb>
     </div>
   </div>
-
-  <div class="content_main">
-    <form [formGroup]="clienteForm" (ngSubmit)="OnSubmit()">
+  <div class="container__header">
+    <h3>Dados cadastrais</h3>
+    <hr class="line">
+    <img [src]="openIconUrl" alt="Obrigatorio Icon">
+    <a>Campos obrigatórios</a>
+  </div>
+  <div>
+    <form [formGroup]="clienteForm" (ngSubmit)="OnSubmit()"  novalidate>
       <div class="form-group">
-        <label for="inputIdentificacao">CPF/CNPJ *</label>
+        <label for="inputIdentificacao">CPF/CNPJ</label><img [src]="openIconUrl"  alt="Obrigatorio Icon">
         <input type="text" class="form-control" id="inputIdentificacao" name="inputIdentificacao"
-          formControlName="inputIdentificacao" required appIdentificadorValidator placeholder="00.000.000/0000-00">
-        <div *ngIf="clienteForm.get('inputIdentificacao')?.hasError('required')" class="error-message">
-          Digite um CNPJ/CPF válido
+          formControlName="inputIdentificacao" required appIdentificadorValidator placeholder="00.000.000/0000-00"
+          [ngClass]="{ 'is-invalid': clienteForm.get('inputIdentificacao')?.hasError('required') }">
+        <div *ngIf="clienteForm.get('inputIdentificacao')?.hasError('required')" class="error-message" >
+          {{emailError}}
         </div>
       </div>
-      <div class="row">
-        <div class="form-group">
-          <label for="inputNome">Nome *</label>
-          <input type="text" class="form-control" id="inputNome" name="inputNome" formControlName="inputNome" required>
-        </div>
-        <div class="form-group"
-          *ngIf="clienteForm.get('inputIdentificacao')?.valid && clienteForm.get('inputNome')?.valid">
-          <label for="inputRef">
-            {{
-            clienteForm.get('inputIdentificacao')?.value.length === 14
-            ? 'Nome fantasia'
-            : 'Nome completo'
-            }} *
-          </label>
-          <input type="text" class="form-control" id="inputRef" name="inputRef" formControlName="inputRef" required
-            style="margin-top: 20px;">
-          <div *ngIf="clienteForm.get('inputRef')?.hasError('required')" class="error-message">
-            Insira um nome para seu cliente
+      <div class="form-row g-3">
+        <div class="form-group" >
+          <label for="inputNome">Nome</label> <img [src]="openIconUrl"  alt="Obrigatorio Icon">
+          <input type="text" class="form-control" id="inputNome" name="inputNome" formControlName="inputNome" placeholder="Insira o nome do cliente" required
+          [ngClass]="{ 'is-invalid': clienteForm.get('inputNome')?.hasError('required') }">
+          <div *ngIf="clienteForm.get('inputNome')?.hasError('required')" class="error-message">
+            {{nomeError}}
           </div>
+        </div>
+
+        <div class="form-group" *ngIf="nomeRefService.mostrarDivInputRef" >
+          <label for="inputRef">{{nomeRefService.nome_ref}} </label> <img [src]="openIconUrl"  alt="Obrigatorio Icon">
+          <input type="text" class="form-control" id="inputRef" name="inputRef"
+            formControlName="inputRef" [placeholder]="nomeRefService.placeholder" required
+            [ngClass]="{ 'is-invalid': clienteForm.get('inputRef')?.hasError('required') }">
         </div>
       </div>
     </form>
   </div>
-  <div class="content__footer">
-    <button class="btn btn-secondary" (click)="voltar()">Cancelar</button>
-    <button class="btn btn-primary" [disabled]="!clienteForm.valid" type="submit">Salvar cliente</button>
-  </div>
+</div>
+<div class="content__footer">
+  <button class="btn btn-secondary" (click)="voltar()">Cancelar</button>
+  <button class="btn btn-primary" (click)="OnSubmit()" [disabled]="!clienteForm.valid" type="submit">Salvar cliente</button>
 </div>
