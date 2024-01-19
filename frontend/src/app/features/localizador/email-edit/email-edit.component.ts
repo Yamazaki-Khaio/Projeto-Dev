@@ -11,7 +11,7 @@ import { AlertService } from './../../../shared/services/alert.service';
   styleUrls: ['../email-cadastro/email-cadastro.component.scss']
 })
 export class EmailEditComponent {
-  @Output() emailAdicionado = new EventEmitter<any>();
+  @Output() emailEditado = new EventEmitter<any>();
   @Input() userId!: string; // Declare the userId property as an Input
   @Input() emailId!: number;
 
@@ -42,6 +42,7 @@ export class EmailEditComponent {
 
   cancelar() {
     this.isTemplateHidden = true;
+    this.emailEditado.emit("cancelado");
   }
 
   adicionarEmail() {
@@ -57,14 +58,14 @@ export class EmailEditComponent {
         response => {
           console.log('E-mail adicionado com sucesso:', response);
           this.alertService.showAlert('E-mail adicionado com sucesso.', 'alert-primary');
-          this.emailAdicionado.emit(response);
+          this.emailEditado.emit(response);
           this.emailForm.reset();
           this.isTemplateHidden = true;
 
         },
         error => {
           this.alertService.showAlert('Erro ao adicionar e-mail.', 'alert-danger');
-          this.emailAdicionado.emit(error);
+          this.emailEditado.emit(error);
           console.error('Erro ao adicionar e-mail:', error);
         }
       );

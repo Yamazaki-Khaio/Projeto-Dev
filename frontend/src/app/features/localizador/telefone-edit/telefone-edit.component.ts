@@ -41,6 +41,7 @@ export class TelefoneEditComponent {
 
   cancelar() {
     this.isTemplateHidden = true;
+    this.telefoneEditado.emit("cancelado");
   }
 
   editarTelefone() {
