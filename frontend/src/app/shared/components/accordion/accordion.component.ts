@@ -4,7 +4,7 @@ import { AccordionItemComponent } from '../accordion-item/accordion-item.compone
 @Component({
   selector: 'app-accordion',
   templateUrl: './accordion.component.html',
-  styleUrls: ['./accordion.component.css']
+  styleUrls: ['./accordion.component.scss']
 })
 export class AccordionComponent implements AfterContentInit {
   @ContentChildren(AccordionItemComponent) accordionItems!: QueryList<AccordionItemComponent>;

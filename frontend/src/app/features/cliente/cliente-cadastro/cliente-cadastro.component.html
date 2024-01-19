@@ -7,13 +7,13 @@
   <div class="container__header">
     <h3>Dados cadastrais</h3>
     <hr class="line">
-    <img [src]="openIconUrl">
+    <img [src]="openIconUrl" alt="Obrigatorio Icon">
     <a>Campos obrigatórios</a>
   </div>
   <div>
     <form [formGroup]="clienteForm" (ngSubmit)="OnSubmit()"  novalidate>
       <div class="form-group">
-        <label for="inputIdentificacao">CPF/CNPJ</label><img [src]="openIconUrl">
+        <label for="inputIdentificacao">CPF/CNPJ</label><img [src]="openIconUrl"  alt="Obrigatorio Icon">
         <input type="text" class="form-control" id="inputIdentificacao" name="inputIdentificacao"
           formControlName="inputIdentificacao" required appIdentificadorValidator placeholder="00.000.000/0000-00"
           [ngClass]="{ 'is-invalid': clienteForm.get('inputIdentificacao')?.hasError('required') }">
@@ -23,7 +23,7 @@
       </div>
       <div class="form-row g-3">
         <div class="form-group" >
-          <label for="inputNome">Nome</label> <img [src]="openIconUrl">
+          <label for="inputNome">Nome</label> <img [src]="openIconUrl"  alt="Obrigatorio Icon">
           <input type="text" class="form-control" id="inputNome" name="inputNome" formControlName="inputNome" placeholder="Insira o nome do cliente" required
           [ngClass]="{ 'is-invalid': clienteForm.get('inputNome')?.hasError('required') }">
           <div *ngIf="clienteForm.get('inputNome')?.hasError('required')" class="error-message">
@@ -31,8 +31,8 @@
           </div>
         </div>
 
-        <div class="form-group" *ngIf="nomeRefService.mostrarDivInputRef">
-          <label for="inputRef">{{nomeRefService.nome_ref}} </label> <img [src]="openIconUrl">
+        <div class="form-group" *ngIf="nomeRefService.mostrarDivInputRef" >
+          <label for="inputRef">{{nomeRefService.nome_ref}} </label> <img [src]="openIconUrl"  alt="Obrigatorio Icon">
           <input type="text" class="form-control" id="inputRef" name="inputRef"
             formControlName="inputRef" [placeholder]="nomeRefService.placeholder" required
             [ngClass]="{ 'is-invalid': clienteForm.get('inputRef')?.hasError('required') }">
