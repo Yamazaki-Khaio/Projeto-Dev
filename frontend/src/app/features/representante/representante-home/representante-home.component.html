@@ -1,4 +1,5 @@
 <!-- representante-cadastro -->
+
 <div class="representante">
   <div class="container__representante">
     <div class="col">
@@ -13,7 +14,7 @@
       <div class="header">
         <h3>Representante</h3>
         <hr class="line">
-        <img [src]="openedIconUrl">
+        <img [src]="openedIconUrl" alt="Obrigatorio Icon">
         <a>Campos obrigatórios</a>
       </div>
 
@@ -40,13 +41,10 @@
                       <div>{{ representante.identificador | cpfCnpj }}</div>
                     </td>
                     <td class="icon">
-                      <!-- Botões de ação -->
                       <button class="bi bi-pencil" (click)="editarRepresentante(representante)">
-                        <i><img [src]="editIcon"></i>
-                      </button>
-                      <button class="bi bi-trash" (click)="deleteRepresentante(representante)">
-                        <i><img [src]="delIcon"></i>
-                      </button>
+                        <i><img [src]="editIcon" title="Edit Icon"></i></button>
+                      <button class="bi bi-trash" (click)="deleteRepresentante(representante)" title="Delete Representante">
+                        <i><img [src]="delIcon" title="Delete Icon"></i></button>
                     </td>
                   </tr>
                 </tbody>

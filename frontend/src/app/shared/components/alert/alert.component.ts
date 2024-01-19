@@ -9,7 +9,7 @@ import { AlertService } from '../../services/alert.service';
 })
 export class AlertComponent {
   alertMessage = '';
-  alertType = 'alert-warning';
+  alertType = 'alert-info';
 
 
   constructor(private alertService: AlertService) {}

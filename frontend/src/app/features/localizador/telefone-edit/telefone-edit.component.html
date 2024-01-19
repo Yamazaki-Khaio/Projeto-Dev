@@ -1,16 +1,15 @@
-<div class="telefone">
-  <form class="needs-validation form-row" [formGroup]="telefoneForm" novalidate>
-    <input id="inputTelefone" class="form-control col-6" type="text" formControlName="inputTelefone"
-      placeholder="(XX) XXXXX-XXXX" required>
-    <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
-    <button type="submit" class="btn btn-primary" (click)="editarTelefone()" [disabled]="telefoneForm.invalid">Salvar edição</button>
-    <div *ngIf="telefoneForm.get('inputTelefone')?.hasError('required')" class="error-message">
-      Digite um telefone válido
+<div class="telefone w-100">
+  <form [formGroup]="telefoneForm" novalidate>
+    <div class="needs-validation form-row">
+      <input id="inputTelefone" class="form-control col-6" type="text" formControlName="inputTelefone"
+        placeholder="(xx) xxxxx-xxxx" required>
+      <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+      <button type="submit" class="btn btn-primary" (click)="atualizarTelefone()" [disabled]="telefoneForm.invalid">Salvar
+        edição</button>
     </div>
     <div class="form-check form-group">
-      <input type="checkbox" class="form-check-input" id="isPrincipal" formControlName="isPrincipal"
-        [disabled]="telefoneForm.invalid">
-      <label class="form-check-label" for="isPrincipal">Telefone principal</label>
+      <input type="checkbox" class="form-check-input" id="isPrincipalTelefone" formControlName="isPrincipalTelefone">
+      <label class="form-check-label" for="isPrincipalTelefone">Telefone principal</label>
     </div>
   </form>
 </div>

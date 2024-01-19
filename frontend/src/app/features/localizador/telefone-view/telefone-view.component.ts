@@ -5,7 +5,7 @@ import { IconsService } from '../../../shared/util/icons.service';
 import { AlertService } from 'src/app/shared/services/alert.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
-
+/// lembrar de ajustar esse componente para o novo modelo de cadastro de telefone e o component email tmb
 @Component({
   selector: 'app-telefone-view',
   templateUrl: './telefone-view.component.html',
@@ -55,12 +55,15 @@ export class TelefoneViewComponent implements OnInit {
       }
     );
   }
-
+    //refatorar para novo modelo usando os utilitarios e services
   sairModoEdicao($event: any) {
     if ($event === 'cancelado') {
       this.modoEdicao = false;
     }
-    this.carregarTelefones();
-
+    else if ($event === 'response') {
+      this.modoEdicao = false;
+      this.carregarTelefones();
+    }
+      
   }
 }

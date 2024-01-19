@@ -8,7 +8,7 @@ import { AlertService } from './../../../shared/services/alert.service';
 @Component({
   selector: 'app-email-edit',
   templateUrl: './email-edit.component.html',
-  styleUrls: ['../email-cadastro/email-cadastro.component.scss']
+  styleUrls: ['./email-edit.component.scss']
 })
 export class EmailEditComponent {
   @Output() emailEditado = new EventEmitter<any>();
@@ -31,7 +31,7 @@ export class EmailEditComponent {
       (Email: Email) => {
         this.emailForm = this.formBuilder.group({
           inputEmail: [Email.email, [Validators.required, Validators.email]],
-          isPrincipal: [Email.is_principal, Validators.required]
+          isPrincipal: [Email.is_principal ? Email.is_principal : false]
         });
       },
       (error: any) => {
@@ -51,22 +51,21 @@ export class EmailEditComponent {
       const emailData: Email = {
         email: this.emailForm.value.inputEmail.toLowerCase(),
         is_principal: this.emailForm.value.isPrincipal,
-        // cliente_id: parseInt(this.userId) // Convert the user ID to a number
       };
 
       this.emailService.updateEmail(this.emailId, emailData).subscribe(
         response => {
-          console.log('E-mail adicionado com sucesso:', response);
-          this.alertService.showAlert('E-mail adicionado com sucesso.', 'alert-primary');
-          this.emailEditado.emit(response);
+          this.alertService.showAlert('E-mail editado com sucesso.', 'alert-primary');
+          this.emailEditado.emit('response');
+          console.log('E-mail editado com sucesso!', response);
           this.emailForm.reset();
           this.isTemplateHidden = true;
 
         },
         error => {
-          this.alertService.showAlert('Erro ao adicionar e-mail.', 'alert-danger');
-          this.emailEditado.emit(error);
-          console.error('Erro ao adicionar e-mail:', error);
+          this.alertService.showAlert('Erro ao editar e-mail.', 'alert-danger');
+          this.emailEditado.emit('error');
+          console.error('Erro ao editar e-mail:', error);
         }
       );
     }

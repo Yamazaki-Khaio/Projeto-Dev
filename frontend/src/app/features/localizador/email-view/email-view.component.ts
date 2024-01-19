@@ -56,7 +56,9 @@ export class EmailViewComponent implements OnInit {
   sairModoEdicao($event: any): void {
     if ($event === 'cancelado') {
       this.modoEdicao = false;
+    } else if ($event === 'response'){
+      this.modoEdicao = false;
+      this.carregarEmails();
     }
-    this.carregarEmails();
   }
 }
