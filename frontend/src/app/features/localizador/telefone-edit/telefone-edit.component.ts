@@ -11,10 +11,9 @@ import { AlertService } from './../../../shared/services/alert.service';
   styleUrls: ['../telefone-cadastro/telefone-cadastro.component.scss'] // Certifique-se de ajustar o caminho do estilo conforme necessário
 })
 export class TelefoneEditComponent {
-  @Output() telefoneAdicionado = new EventEmitter<any>();
-  userId!: number;
-  telefoneId!: number;
-
+  @Output() telefoneEditado = new EventEmitter<any>();
+  @Input() userId!: string;
+  @Input() telefoneId!: number;
   telefoneForm!: FormGroup;
   isTemplateHidden: boolean = false;
 
@@ -39,6 +38,7 @@ export class TelefoneEditComponent {
     );
   }
 
+
   cancelar() {
     this.isTemplateHidden = true;
   }
@@ -50,17 +50,16 @@ export class TelefoneEditComponent {
         is_principal: this.telefoneForm.value.isPrincipal,
       };
 
-      this.telefoneService.updateTelefone(this.userId, telefoneData).subscribe(
+      this.telefoneService.updateTelefone(this.telefoneId, telefoneData).subscribe(
         response => {
-          console.log('Telefone adicionado com sucesso:', response);
-          this.alertService.showAlert('Telefone adicionado com sucesso.', 'alert-primary');
-          this.telefoneAdicionado.emit(response);
+          this.alertService.showAlert('Telefone editado com sucesso.', 'alert-primary');
+          this.telefoneEditado.emit(response);
           this.telefoneForm.reset();
           this.isTemplateHidden = true;
         },
         error => {
           this.alertService.showAlert('Erro ao adicionar telefone.', 'alert-danger');
-          this.telefoneAdicionado.emit(error);
+          this.telefoneEditado.emit(error);
           console.error('Erro ao adicionar telefone:', error);
         }
       );

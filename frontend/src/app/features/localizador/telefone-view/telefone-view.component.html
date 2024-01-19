@@ -1,4 +1,5 @@
-<div class="telefone-list">
+<div class="telefone-list" *ngIf="!modoEdicao; else modoEdicaoTemplate">
+  <!-- Lista de telefones -->
   <table class="table-telefone w-100" *ngIf="(telefones$ | async) as telefones">
     <tbody>
       <tr *ngFor="let telefone of telefones; let i = index">
@@ -16,3 +17,12 @@
     </tbody>
   </table>
 </div>
+
+<!-- Template de edição -->
+<ng-template #modoEdicaoTemplate>
+  <app-telefone-edit
+    [userId]="pessoaId"
+    [telefoneId]="telefoneIdParaEdicao"
+    (telefoneEditado)="sairModoEdicao($event)"
+  ></app-telefone-edit>
+</ng-template>

@@ -17,6 +17,9 @@ export class TelefoneViewComponent implements OnInit {
   delIcon: string = '';
   editIcon: string = '';
   @Input() pessoaId!: string;
+  modoEdicao: boolean = false;
+  telefoneIdParaEdicao!: number
+
 
   constructor(private telefoneService: TelefoneService, private iconsService: IconsService, private alertService: AlertService, private modalService: NgbModal) { }
 
@@ -33,16 +36,13 @@ export class TelefoneViewComponent implements OnInit {
     }
   }
 
-  editarTelefone(telefone: Telefone): void {
-    const telefoneId = telefone.id;
-    const modalRef = this.modalService.open(TelefoneEditComponent, { size: 'sm' });
-    modalRef.componentInstance.telefoneId = telefoneId;
-    modalRef.componentInstance.userId = this.pessoaId;
-    modalRef.componentInstance.telefoneAdicionado.subscribe(() => {
-      modalRef.close();
-      this.carregarTelefones();
-    });
+  editarTelefone(telefone: Telefone) {
+    if (telefone.id !== undefined) {
+      this.telefoneIdParaEdicao = telefone.id;
+      this.modoEdicao = true;
+    }
   }
+
 
   removerTelefone(telefoneId: number): void {
     this.telefoneService.deleteTelefone(telefoneId).subscribe(
@@ -55,5 +55,10 @@ export class TelefoneViewComponent implements OnInit {
         console.error('Erro ao remover telefone:', error);
       }
     );
+  }
+
+  sairModoEdicao(event: any) {
+    this.modoEdicao = false;
+
   }
 }
