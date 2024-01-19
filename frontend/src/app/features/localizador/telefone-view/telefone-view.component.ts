@@ -4,7 +4,6 @@ import { TelefoneService } from '../telefone.service';
 import { IconsService } from '../../../shared/util/icons.service';
 import { AlertService } from 'src/app/shared/services/alert.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { TelefoneEditComponent } from '../telefone-edit/telefone-edit.component';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -57,8 +56,10 @@ export class TelefoneViewComponent implements OnInit {
     );
   }
 
-  sairModoEdicao(event: any) {
-    this.modoEdicao = false;
+  sairModoEdicao($event: any) {
+    if ($event === 'cancelado') {
+      this.modoEdicao = false;
+    }
     this.carregarTelefones();
 
   }

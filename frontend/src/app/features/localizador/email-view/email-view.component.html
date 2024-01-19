@@ -1,4 +1,5 @@
-<div class="email-list">
+<div class="email-list" *ngIf="!modoEdicao; else modoEdicaoTemplate">
+  <!-- Lista de emails -->
   <table class="table-email w-100" *ngIf="(emails$ | async) as emails">
     <tbody>
       <tr *ngFor="let email of emails; let i = index">
@@ -6,13 +7,22 @@
         <td><span class="badge badge-primary" *ngIf="email.is_principal">Principal</span></td>
         <td class="icon">
           <button class="bi bi-pencil" (click)="editarEmail(email)">
-            <img [src]="editIcon">
+            <img alt="edit_icon" [src]="editIcon">
           </button>
           <button class="bi bi-trash" (click)="removerEmail(email.id!)">
-            <img [src]="delIcon">
+            <img alt="del_icon" [src]="delIcon">
           </button>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
+
+<!-- Template de edição -->
+<ng-template #modoEdicaoTemplate>
+  <app-email-edit
+    [userId]="pessoaId"
+    [emailId]="emailIdParaEdicao"
+    (emailEditado)="sairModoEdicao($event)"
+  ></app-email-edit>
+</ng-template>

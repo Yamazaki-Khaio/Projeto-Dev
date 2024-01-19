@@ -44,8 +44,6 @@ export class EnderecoViewComponent implements OnInit {
   }
 
   removerEndereco(enderecoId: number): void {
-    // implementar o modal de confirmação de exclusão de endereço antes de chamar o serviço
-
     this.enderecoService.deleteEndereco(enderecoId.toString()).subscribe(
       () => {
         console.log('Endereço removido com sucesso!');

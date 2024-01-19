@@ -4,7 +4,6 @@ import { EmailService } from '../email.service';
 import { IconsService } from '../../../shared/util/icons.service';
 import { AlertService } from 'src/app/shared/services/alert.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { EmailEditComponent } from '../email-edit/email-edit.component';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -17,6 +16,8 @@ export class EmailViewComponent implements OnInit {
   delIcon: string = '';
   editIcon: string = '';
   @Input() pessoaId!: string;
+  modoEdicao: boolean = false;
+  emailIdParaEdicao!: number;
 
   constructor(private emailService: EmailService, private iconsService: IconsService, private alertService: AlertService, private modalService: NgbModal) { }
 
@@ -33,26 +34,29 @@ export class EmailViewComponent implements OnInit {
   }
 
   editarEmail(email: Email): void {
-    const emailId = email.id;
-    const modalRef = this.modalService.open(EmailEditComponent, { size: 'sm' });
-    modalRef.componentInstance.emailId = emailId;
-    modalRef.componentInstance.userId = this.pessoaId;
-    modalRef.componentInstance.emailAdicionado.subscribe(() => {
-      modalRef.close();
-      this.carregarEmails();
-    });
+    if (email.id !== undefined) {
+      this.emailIdParaEdicao = email.id;
+      this.modoEdicao = true;
+    }
   }
 
   removerEmail(emailId: number): void {
     this.emailService.deleteEmail(emailId).subscribe(
       () => {
         this.alertService.showAlert('E-mail removido com sucesso.', 'alert-primary');
-        console.log('Email removido com sucesso!');
+        console.log('E-mail removido com sucesso!');
         this.carregarEmails();
       },
       (error: any) => {
         console.error('Erro ao remover e-mail:', error);
       }
     );
+  }
+
+  sairModoEdicao($event: any): void {
+    if ($event === 'cancelado') {
+      this.modoEdicao = false;
+    }
+    this.carregarEmails();
   }
 }

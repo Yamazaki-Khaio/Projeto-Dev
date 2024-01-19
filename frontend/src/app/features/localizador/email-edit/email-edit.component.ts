@@ -12,8 +12,8 @@ import { AlertService } from './../../../shared/services/alert.service';
 })
 export class EmailEditComponent {
   @Output() emailAdicionado = new EventEmitter<any>();
-  userId!: number; // Declare the userId property as an Input
-  emailId!: number;
+  @Input() userId!: string; // Declare the userId property as an Input
+  @Input() emailId!: number;
 
   emailForm!: FormGroup;
   isTemplateHidden: boolean = false;
@@ -53,7 +53,7 @@ export class EmailEditComponent {
         // cliente_id: parseInt(this.userId) // Convert the user ID to a number
       };
 
-      this.emailService.updateEmail(this.userId, emailData).subscribe(
+      this.emailService.updateEmail(this.emailId, emailData).subscribe(
         response => {
           console.log('E-mail adicionado com sucesso:', response);
           this.alertService.showAlert('E-mail adicionado com sucesso.', 'alert-primary');
