@@ -44,6 +44,7 @@ export class EmailCadastroComponent {
       const emailData: Email = {
         email: this.emailForm.value.inputEmail.toLowerCase(),
         is_principal: this.emailForm.value.isPrincipal,
+        id_pessoa: this.userId
         // cliente_id: parseInt(this.userId) // Convert the user ID to a number
       };
 

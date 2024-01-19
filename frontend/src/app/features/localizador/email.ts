@@ -3,6 +3,6 @@ export interface Email {
   email: string;
   // cliente_id: number;
   is_principal: boolean;
-  id_pessoa: string;
+  id_pessoa?: string;
 
 }
