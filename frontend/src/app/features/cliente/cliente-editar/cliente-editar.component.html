@@ -1,8 +1,8 @@
 <!-- cliente-editar -->
 <app-alert></app-alert>
 
-<div class="clienteEditar flex-column h-100">
-  <div class="container__editar col-12">
+<div class="clienteEditar  h-100">
+  <div class="container__editar flex-column col-12">
     <div class="col-10">
       <div class="row">
         <div class="col">
@@ -16,67 +16,63 @@
         <a>Campos obrigatórios</a>
         <app-situacao [situacaoFromForm]="situacao" (situacaoChange)="onSituacaoChange($event)"></app-situacao>
       </div>
-      <form [formGroup]="clienteEditForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
-        <!-- First Row -->
-        <div class="form-row">
-          <div class="form-group-md col-4">
-            <label for="identificador" [ngClass]="{'required-field': clienteEditForm.get('identificador')?.invalid && clienteEditForm.get('identificador')?.touched}">
-              CNPJ/CPF
-            </label>
-            <img [src]="openedIconUrl">
-            <input type="text" class="form-control" placeholder="00.000.000/0000-00" id="identificador" appIdentificadorValidator formControlName="identificador" isdisabled readonly [ngClass]="{ 'is-invalid': clienteEditForm.get('identificador')?.hasError('required') }">
-          </div>
+      <div>
+        <form [formGroup]="clienteEditForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+          <!-- First Row -->
+          <div class="form-row">
+            <div class="form-group-md col-4">
+              <label for="identificador" [ngClass]="{'required-field': clienteEditForm.get('identificador')?.invalid && clienteEditForm.get('identificador')?.touched}">
+                CNPJ/CPF
+              </label>
+              <img [src]="openedIconUrl">
+              <input type="text" class="form-control" placeholder="00.000.000/0000-00" id="identificador" appIdentificadorValidator formControlName="identificador" isdisabled readonly [ngClass]="{ 'is-invalid': clienteEditForm.get('identificador')?.hasError('required') }">
+            </div>
 
-          <div class="form-group-sm">
-            <label for="data_cadastro" [ngClass]="{'required-field': clienteEditForm.get('data_cadastro')?.invalid && clienteEditForm.get('data_cadastro')?.touched}">
-              Data de cadastro
-            </label>
-            <input type="text" class="form-control" id="data_cadastro" formControlName="data_cadastro" [value]="clienteEditForm.get('data_cadastro')!.value | date:'dd/MM/yyyy'" readonly>
+            <div class="form-group-sm">
+              <label for="data_cadastro" [ngClass]="{'required-field': clienteEditForm.get('data_cadastro')?.invalid && clienteEditForm.get('data_cadastro')?.touched}">
+                Data de cadastro
+              </label>
+              <input type="text" class="form-control" id="data_cadastro" formControlName="data_cadastro" [value]="clienteEditForm.get('data_cadastro')!.value | date:'dd/MM/yyyy'" readonly>
+            </div>
           </div>
-        </div>
-        <!-- Second Row -->
-        <div class="form-row">
-          <div class="form-group-lg col-5">
-            <label for="nome" [ngClass]="{'required-field': clienteEditForm.get('nome')?.invalid && clienteEditForm.get('nome')?.touched}">
-              Nome
-            </label>
-            <img [src]="openedIconUrl">
-            <input type="text" class="form-control" id="nome" formControlName="nome" required [ngClass]="{ 'is-invalid': clienteEditForm.get('nome')?.hasError('required') }">
-            <div *ngIf="clienteEditForm.get('nome')?.hasError('required')" class="error-message">
-              Nome é obrigatório.
+          <!-- Second Row -->
+          <div class="form-row">
+            <div class="form-group-lg col-5">
+              <label for="nome" [ngClass]="{'required-field': clienteEditForm.get('nome')?.invalid && clienteEditForm.get('nome')?.touched}">
+                Nome
+              </label>
+              <img [src]="openedIconUrl">
+              <input type="text" class="form-control" id="nome" formControlName="nome" required [ngClass]="{ 'is-invalid': clienteEditForm.get('nome')?.hasError('required') }">
+              <div *ngIf="clienteEditForm.get('nome')?.hasError('required')" class="error-message">
+                Nome é obrigatório.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="nome_ref" [ngClass]="{'required-field': clienteEditForm.get('nome_ref')?.invalid && clienteEditForm.get('nome_ref')?.touched}">
+                {{nomeRefService.nome_ref}}
+              </label>
+              <img [src]="openedIconUrl">
+              <input type="text" class="form-control" id="nome_ref" formControlName="nome_ref" [placeholder]="nomeRefService.placeholder" required [ngClass]="{ 'is-invalid': clienteEditForm.get('nome_ref')?.hasError('required') }">
+              <div *ngIf="clienteEditForm.get('nome_ref')?.hasError('required')" class="error-message">
+                Nome de referência é obrigatório.
+              </div>
             </div>
           </div>
 
-          <div class="form-group">
-            <label for="nome_ref" [ngClass]="{'required-field': clienteEditForm.get('nome_ref')?.invalid && clienteEditForm.get('nome_ref')?.touched}">
-              {{nomeRefService.nome_ref}}
-            </label>
-            <img [src]="openedIconUrl">
-            <input type="text" class="form-control" id="nome_ref" formControlName="nome_ref" [placeholder]="nomeRefService.placeholder" required [ngClass]="{ 'is-invalid': clienteEditForm.get('nome_ref')?.hasError('required') }">
-            <div *ngIf="clienteEditForm.get('nome_ref')?.hasError('required')" class="error-message">
-              Nome de referência é obrigatório.
+          <!-- Additional Fields -->
+          <div class="form-row">
+            <div class="form-group-lg col-5">
+              <label for="inscricao_municipal">Inscrição Municipal</label>
+              <input type="text" class="form-control" id="inscricao_municipal" formControlName="inscricao_municipal">
+            </div>
+            <div class="form-group">
+              <label for="inscricao_estadual">Inscrição Estadual</label>
+              <input type="text" class="form-control" id="inscricao_estadual" formControlName="inscricao_estadual">
             </div>
           </div>
-        </div>
-
-        <!-- Additional Fields -->
-        <div class="form-row">
-          <div class="form-group-lg col-5">
-            <label for="inscricao_municipal">Inscrição Municipal</label>
-            <input type="text" class="form-control" id="inscricao_municipal" formControlName="inscricao_municipal">
-          </div>
-          <div class="form-group">
-            <label for="inscricao_estadual">Inscrição Estadual</label>
-            <input type="text" class="form-control" id="inscricao_estadual" formControlName="inscricao_estadual">
-          </div>
-
-        </div>
-              <!-- Buttons -->
-        <div class="content__footer">
-          <button type="button" class="btn btn-secondary" (click)="voltar()">Cancelar</button>
-          <button type="submit" class="btn btn-primary">Salvar alterações</button>
-        </div>
-      </form>
+        </form>
+      </div>
 
     </div>
     <div class="col-2">
@@ -84,3 +80,10 @@
     </div>
   </div>
 </div>
+<div class="content__footer">
+  <button type="button" class="btn btn-secondary" (click)="voltar()">Cancelar</button>
+  <button type="submit" class="btn btn-primary">Salvar alterações</button>
+</div>
+
+
+
