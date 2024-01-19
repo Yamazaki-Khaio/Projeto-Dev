@@ -59,6 +59,7 @@ export class TelefoneViewComponent implements OnInit {
 
   sairModoEdicao(event: any) {
     this.modoEdicao = false;
+    this.carregarTelefones();
 
   }
 }
