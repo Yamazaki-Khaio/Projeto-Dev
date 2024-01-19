@@ -12,7 +12,7 @@ import { AlertService } from './../../../shared/services/alert.service';
 })
 export class TelefoneEditComponent {
   @Output() telefoneAdicionado = new EventEmitter<any>();
-  userId!: number; // Declare a propriedade userId como um Input
+  userId!: number;
   telefoneId!: number;
 
   telefoneForm!: FormGroup;
@@ -30,7 +30,7 @@ export class TelefoneEditComponent {
       (telefone: Telefone) => {
         this.telefoneForm = this.formBuilder.group({
           inputTelefone: [telefone.tel, [Validators.required, Validators.pattern('[0-9]+')]],
-          isPrincipal: [telefone.is_principal, Validators.required]
+          isPrincipal: [telefone.is_principal]
         });
       },
       (error: any) => {
@@ -43,8 +43,7 @@ export class TelefoneEditComponent {
     this.isTemplateHidden = true;
   }
 
-  adicionarTelefone() {
-    console.log('Adicionando telefone:', this.telefoneForm.value);
+  editarTelefone() {
     if (this.telefoneForm.valid) {
       const telefoneData: Telefone = {
         tel: this.telefoneForm.value.inputNumero,

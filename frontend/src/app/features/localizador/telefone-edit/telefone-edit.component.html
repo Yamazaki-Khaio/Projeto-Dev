@@ -3,7 +3,7 @@
       <input id="inputTelefone" class="form-control col-6" type="text" formControlName="inputTelefone"
         placeholder="(XX) XXXXX-XXXX" required>
       <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
-      <button type="submit" class="btn btn-primary" (click)="adicionarTelefone()" [disabled]="telefoneForm.invalid">Salvar edição</button>
+      <button type="submit" class="btn btn-primary" (click)="editarTelefone()" [disabled]="telefoneForm.invalid">Salvar edição</button>
   <div *ngIf="telefoneForm.get('inputTelefone')?.hasError('required')" class="error-message">
     Digite um telefone válido
   </div>
