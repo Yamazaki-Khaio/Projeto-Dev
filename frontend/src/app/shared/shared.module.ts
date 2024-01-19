@@ -18,7 +18,7 @@ import { AlertComponent } from './components/alert/alert.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AlertService } from './services/alert.service';
 import { EnderecoSharedService } from './services/endereco-shared.service';
-import { CpfCnpjPipe } from './util/cpf-cnpj.pipe';
+import { CpfCnpjPipe } from './pipes/cpf-cnpj.pipe';
 import { AccordionComponent } from './components/accordion/accordion.component';
 import { AccordionItemComponent } from './components/accordion-item/accordion-item.component';
 @NgModule({
