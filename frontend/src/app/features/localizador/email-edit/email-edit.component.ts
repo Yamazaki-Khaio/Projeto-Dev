@@ -51,13 +51,15 @@ export class EmailEditComponent {
       const emailData: Email = {
         email: this.emailForm.value.inputEmail.toLowerCase(),
         is_principal: this.emailForm.value.isPrincipal,
+        id_pessoa: this.userId
+
       };
 
       this.emailService.updateEmail(this.emailId, emailData).subscribe(
         response => {
-          this.alertService.showAlert('E-mail editado com sucesso.', 'alert-primary');
+          this.alertService.showAlert('E-mail atualizado com sucesso.', 'alert-primary');
           this.emailEditado.emit('response');
-          console.log('E-mail editado com sucesso!', response);
+          console.log('E-mail atualizado com sucesso!', response);
           this.emailForm.reset();
           this.isTemplateHidden = true;
 

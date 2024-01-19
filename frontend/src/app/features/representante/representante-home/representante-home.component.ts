@@ -57,7 +57,7 @@ export class RepresentanteHomeComponent implements OnInit {
   deleteRepresentante(representante: Representante) {
     this.representanteService.deleteRepresentante(representante.id!).subscribe(
       () => {
-        this.alertService.showAlert('Representante removido com sucesso.', 'alert-primary');
+        this.alertService.showAlert('Representante removido com sucesso.', 'alert-danger');
         console.log('Representante removido com sucesso!');
         this.carregarRepresentantes();
       },

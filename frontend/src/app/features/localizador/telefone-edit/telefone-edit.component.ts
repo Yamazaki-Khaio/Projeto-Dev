@@ -50,17 +50,18 @@ export class TelefoneEditComponent {
       const telefoneData: Telefone = {
         tel: this.telefoneForm.value.inputNumero,
         is_principal: this.telefoneForm.value.isPrincipal,
+        id_pessoa: this.userId
       };
 
       this.telefoneService.updateTelefone(this.telefoneId, telefoneData).subscribe(
         response => {
-          this.alertService.showAlert('Telefone editado com sucesso.', 'alert-primary');
+          this.alertService.showAlert('Telefone atualizado com sucesso.', 'alert-warnig');
           this.telefoneEditado.emit('response');
           console.log('Telefone editado com sucesso!', response);
           // this.isTemplateHidden = true;
         },
         error => {
-          this.alertService.showAlert('Erro ao editar telefone.', 'alert-danger');
+          this.alertService.showAlert('Erro ao atualizado telefone.', 'alert-danger');
           this.telefoneEditado.emit('error');
           console.error('Erro ao editar telefone:', error);
         }
