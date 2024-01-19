@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="form-row g-3">
-        <div class="form-group lg-input" >
+        <div class="form-group" >
           <label for="inputNome">Nome</label> <img [src]="openIconUrl">
           <input type="text" class="form-control" id="inputNome" name="inputNome" formControlName="inputNome" placeholder="Insira o nome do cliente" required
           [ngClass]="{ 'is-invalid': clienteForm.get('inputNome')?.hasError('required') }">
