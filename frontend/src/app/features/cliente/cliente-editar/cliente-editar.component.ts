@@ -30,8 +30,11 @@ export class ClienteEditarComponent implements OnInit {
     private iconsService: IconsService,
     public nomeRefService: NomeRefService,
     private alertService: AlertService,
-  ) { }
-  
+  ) {
+    this.openedIconUrl = this.iconsService.getIconUrl("icon-obrigatorio");
+
+  }
+
   onSituacaoChange(novaSituacao: string) {
     this.situacao = novaSituacao;
     this.clienteEditForm.patchValue({ situacao: novaSituacao });
@@ -39,7 +42,6 @@ export class ClienteEditarComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.openedIconUrl = this.iconsService.getIconUrl("icon-obrigatorio");
     this.clienteId = this.route.snapshot.params['id'];
 
     this.clienteService.getCliente(this.clienteId.toString()).subscribe(
@@ -85,7 +87,7 @@ export class ClienteEditarComponent implements OnInit {
       (error: any) => {
         console.log(cliente);
         console.log(error);
-        this.alertService.showAlert('Erro ao adicionar cliente!', 'alert-danger');
+        this.alertService.showAlert('Erro ao atualizar cliente!', 'alert-danger');
       }
     );
   }

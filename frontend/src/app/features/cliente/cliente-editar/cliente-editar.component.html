@@ -32,7 +32,7 @@
               <label for="data_cadastro" [ngClass]="{'required-field': clienteEditForm.get('data_cadastro')?.invalid && clienteEditForm.get('data_cadastro')?.touched}">
                 Data de cadastro
               </label>
-              <input type="text" class="form-control" id="data_cadastro" formControlName="data_cadastro" [value]="clienteEditForm.get('data_cadastro')!.value | date:'dd/MM/yyyy'" readonly>
+              <input type="text" class="form-control" id="data_cadastro" formControlName="data_cadastro" readonly>
             </div>
           </div>
           <!-- Second Row -->
@@ -75,7 +75,7 @@
       </div>
       <div class="content__footer">
         <button type="button" class="btn btn-secondary" (click)="voltar()">Cancelar</button>
-        <button type="submit" class="btn btn-primary">Salvar alterações</button>
+        <button type="submit" (click)="onSubmit()" class="btn btn-primary">Salvar alterações</button>
       </div>
 
     </div>
