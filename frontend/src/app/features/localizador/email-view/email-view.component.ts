@@ -5,6 +5,7 @@ import { IconsService } from '../../../shared/util/icons.service';
 import { AlertService } from 'src/app/shared/services/alert.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
+import { DialogConfirmedComponent } from 'src/app/shared/components/dialog-confirmed/dialog-confirmed.component';
 
 @Component({
   selector: 'app-email-view',
@@ -41,17 +42,30 @@ export class EmailViewComponent implements OnInit {
   }
 
   removerEmail(emailId: number): void {
-    this.emailService.deleteEmail(emailId).subscribe(
-      () => {
-        this.alertService.showAlert('E-mail removido com sucesso.', 'alert-primary');
-        console.log('E-mail removido com sucesso!');
-        this.carregarEmails();
-      },
-      (error: any) => {
-        console.error('Erro ao remover e-mail:', error);
-      }
-    );
+    const modalRef = this.modalService.open(DialogConfirmedComponent);
+    modalRef.componentInstance.modalTitle = 'Excluir e-mail?';
+    modalRef.componentInstance.modalButtonText = 'Confirmar';
+    modalRef.componentInstance.modalButtonClass = 'btn-danger';
+
+    modalRef.componentInstance.onClose.subscribe(() => {
+      // Lógica ao fechar o modal (pode ser vazia)
+    });
+
+    modalRef.componentInstance.onSaveChanges.subscribe(() => {
+      // Se confirmado, então remove o e-mail
+      this.emailService.deleteEmail(emailId).subscribe(
+        () => {
+          this.alertService.showAlert('E-mail removido com sucesso.', 'alert-primary');
+          console.log('E-mail removido com sucesso!');
+          this.carregarEmails();
+        },
+        (error: any) => {
+          console.error('Erro ao remover e-mail:', error);
+        }
+      );
+    });
   }
+
 
   sairModoEdicao($event: any): void {
     if ($event === 'cancelado') {

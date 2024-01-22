@@ -46,7 +46,7 @@ export class EnderecoViewComponent implements OnInit {
 
   removerEndereco(enderecoId: number): void {
     const modalRef = this.modalService.open(DialogConfirmedComponent);
-    modalRef.componentInstance.modalTitle = 'Confirmação';
+    modalRef.componentInstance.modalTitle = 'Excluir endereço?';
     modalRef.componentInstance.modalBodyText = 'Tem certeza que deseja remover este endereço?';
     modalRef.componentInstance.modalButtonText = 'Confirmar';
     modalRef.componentInstance.modalButtonClass = 'btn-danger';

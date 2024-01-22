@@ -14,7 +14,10 @@ export class DialogConfirmedComponent {
   @Output() onClose = new EventEmitter<void>();
   @Output() onSaveChanges = new EventEmitter<void>();
 
-  constructor(public activeModal: NgbActiveModal) {}
+  constructor(public activeModal: NgbActiveModal) {
+  this.modalBodyText = ' Você tem certeza que deseja excluir? Os registros excluídos não poderão ser restaurados.'
+
+  }
 
   closeModal(): void {
     this.onClose.emit();

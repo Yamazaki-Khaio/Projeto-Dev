@@ -5,6 +5,8 @@ import { IconsService } from '../../../shared/util/icons.service';
 import { AlertService } from 'src/app/shared/services/alert.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
+import { DialogConfirmedComponent } from 'src/app/shared/components/dialog-confirmed/dialog-confirmed.component';
+
 /// lembrar de ajustar esse componente para o novo modelo de cadastro de telefone e o component email tmb
 @Component({
   selector: 'app-telefone-view',
@@ -44,17 +46,30 @@ export class TelefoneViewComponent implements OnInit {
 
 
   removerTelefone(telefoneId: number): void {
-    this.telefoneService.deleteTelefone(telefoneId).subscribe(
-      () => {
-        this.alertService.showAlert('Telefone removido com sucesso.', 'alert-primary');
-        console.log('Telefone removido com sucesso!');
-        this.carregarTelefones();
-      },
-      (error: any) => {
-        console.error('Erro ao remover telefone:', error);
-      }
-    );
+    const modalRef = this.modalService.open(DialogConfirmedComponent);
+    modalRef.componentInstance.modalTitle = 'Excluir telefone?';
+    modalRef.componentInstance.modalButtonText = 'Confirmar';
+    modalRef.componentInstance.modalButtonClass = 'btn-danger';
+
+    modalRef.componentInstance.onClose.subscribe(() => {
+      // Lógica ao fechar o modal (pode ser vazia)
+    });
+
+    modalRef.componentInstance.onSaveChanges.subscribe(() => {
+      // Se confirmado, então remove o telefone
+      this.telefoneService.deleteTelefone(telefoneId).subscribe(
+        () => {
+          this.alertService.showAlert('Telefone removido com sucesso.', 'alert-primary');
+          console.log('Telefone removido com sucesso!');
+          this.carregarTelefones();
+        },
+        (error: any) => {
+          console.error('Erro ao remover telefone:', error);
+        }
+      );
+    });
   }
+
     //refatorar para novo modelo usando os utilitarios e services
   sairModoEdicao($event: any) {
     if ($event === 'cancelado') {
@@ -64,6 +79,6 @@ export class TelefoneViewComponent implements OnInit {
       this.modoEdicao = false;
       this.carregarTelefones();
     }
-      
+
   }
 }
