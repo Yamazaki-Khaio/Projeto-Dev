@@ -22,10 +22,10 @@ class ClienteController {
 
                 switch (identificacao.length) {
                     case 11:
-                        pessoa = await Pessoa.create({ nome: nome, identificacao: identificacao, nome_mae: nome_ref });
+                        pessoa = await Pessoa.create({ nome: nome, identificacao: identificacao, nome_mae: nome_ref, conta_id: (req as AuthenticatedRequest).user.id });
                         break;
                     case 14:
-                        pessoa = await Pessoa.create({ nome, identificacao: identificacao, nome_fantasia: nome_ref, inscricao_municipal: incricao_municipal, inscricao_estadual: incricao_estadual });
+                        pessoa = await Pessoa.create({ nome, identificacao: identificacao, nome_fantasia: nome_ref, inscricao_municipal: incricao_municipal, inscricao_estadual: incricao_estadual, conta_id: (req as AuthenticatedRequest).user.id });
                         break;
                     default:
                         return res.status(400).json({ error: 'Identificação inválida' });
@@ -66,10 +66,10 @@ class ClienteController {
 
                     switch (identificacao.length) {
                         case 11:
-                            await Pessoa.update({ nome: nome, identificacao: identificacao, nome_mae: nome_ref }, { where: { id: pessoa.id } });
+                            await Pessoa.update({ nome: nome, nome_mae: nome_ref }, { where: { id: pessoa.id } });
                             break;
                         case 14:
-                            await Pessoa.update({ nome, identificacao: identificacao, nome_fantasia: nome_ref, inscricao_municipal: incricao_municipal, inscricao_estadual: incricao_estadual }, { where: { id: pessoa.id } });
+                            await Pessoa.update({ nome: nome, nome_fantasia: nome_ref, inscricao_municipal: incricao_municipal, inscricao_estadual: incricao_estadual }, { where: { id: pessoa.id } });
                             break;
                         default:
                             return res.status(400).json({ error: 'Identificação inválida' });
@@ -89,10 +89,10 @@ class ClienteController {
     public async getAll(req: Request, res: Response): Promise<Response> {
         try {
             const clientes = await Cliente.findAll({ where: { conta_id: (req as AuthenticatedRequest).user.id } });
-            const clientesPessoa = await Pessoa.findAll();
+            const clientesPessoa = await Pessoa.findAll({ where: { conta_id: (req as AuthenticatedRequest).user.id } });
             clientes.forEach(cliente => {
                 clientesPessoa.forEach(pessoa => {
-                    if (cliente.id_pessoa == pessoa.id) {
+                    if (cliente.id_pessoa === pessoa.id) {
                         cliente.dataValues.identificacao = pessoa.identificacao;
                         cliente.dataValues.nome = pessoa.nome;
                         cliente.dataValues.nomeFantasia = pessoa.nome_fantasia;
@@ -107,6 +107,7 @@ class ClienteController {
             return res.status(500).json({ error: 'Erro interno do servidor' });
         }
     }
+
 
     public async getById(req: Request, res: Response): Promise<Response> {
         const { id } = req.params;

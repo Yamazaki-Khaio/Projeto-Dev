@@ -11,6 +11,7 @@ class Pessoa extends Model {
   public nome_mae!: string | null;
   public inscricao_municipal!: string | null;
   public inscricao_estadual!: string | null;
+  public conta_id!: number;
 }
 
 Pessoa.init(
@@ -19,6 +20,10 @@ Pessoa.init(
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
+    },
+    conta_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     nome: {
       type: DataTypes.STRING,
