@@ -1,13 +1,14 @@
 import { Request, Response } from 'express';
 import Representante from './representanteModels';
 import Pessoa from '../pessoa/pessoaModels';  // Importe o modelo Pessoa
+import { AuthenticatedRequest } from '../../middleware/authMiddleware';
 
 class RepresentanteController {
   public async create(req: Request, res: Response): Promise<Response> {
     try {
         const { identificador, nome } = req.body;
         // Create a new Pessoa for the Representante
-        const pessoa = await Pessoa.create({ identificacao: identificador, nome: nome, nome_fantasia: nome, nome_mae: nome, inscricao_municipal: '0', inscricao_estadual: '0' });
+        const pessoa = await Pessoa.create({ identificacao: identificador, nome: nome, nome_fantasia: nome, nome_mae: nome, inscricao_municipal: '0', inscricao_estadual: '0', conta_id: (req as AuthenticatedRequest).user.id });
 
         // Create a new Representante with the Pessoa and Cliente IDs
         const representante = await Representante.create({

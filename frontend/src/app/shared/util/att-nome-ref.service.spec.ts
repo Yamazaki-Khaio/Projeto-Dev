@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AttNomeRefService } from './att-nome-ref.service';
+import { NomeRefService } from './att-nome-ref.service';
 
 describe('AttNomeRefService', () => {
-  let service: AttNomeRefService;
+  let service: NomeRefService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(AttNomeRefService);
+    service = TestBed.inject(NomeRefService);
   });
 
   it('should be created', () => {
