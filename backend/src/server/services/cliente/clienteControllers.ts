@@ -2,10 +2,10 @@ import { Request, Response } from 'express';
 import Cliente from './clienteModels';
 import Pessoa from '../pessoa/pessoaModels';
 import Representante from '../representante/representanteModels';
-
+import { AuthenticatedRequest } from '../../middleware/authMiddleware';
 // Defina o controlador para o modelo 'Cliente'
 class ClienteController {
-    public async create(req: Request, res: Response): Promise<Response> {
+    public async create(req: Request , res: Response): Promise<Response> {
         try {
             // Verifica se a Pessoa já existe pelo identificador (identificacao)
             const identificacao = req.body.identificacao.replace(/\D/g, '');
@@ -32,7 +32,8 @@ class ClienteController {
                 }
             }   
 
-            const cliente = await Cliente.create({ id_pessoa: pessoa!.id });
+            // atribuir o ID da conta ao cliente
+            const cliente = await Cliente.create({ id_pessoa: pessoa!.id, conta_id: (req as AuthenticatedRequest).user.id});
             return res.status(200).json(cliente);
         } catch (error: any) {
             return res.status(400).json({ error: error.message });
@@ -87,7 +88,7 @@ class ClienteController {
 
     public async getAll(req: Request, res: Response): Promise<Response> {
         try {
-            const clientes = await Cliente.findAll();
+            const clientes = await Cliente.findAll({ where: { conta_id: (req as AuthenticatedRequest).user.id } });
             const clientesPessoa = await Pessoa.findAll();
             clientes.forEach(cliente => {
                 clientesPessoa.forEach(pessoa => {

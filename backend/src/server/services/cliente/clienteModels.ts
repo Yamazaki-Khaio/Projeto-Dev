@@ -7,6 +7,7 @@ class Cliente extends Model {
   public id_pessoa!: number;
   public data_cadastro!: Date;
   public situacao!: string;
+  public conta_id!: number;
 
 }
 
@@ -22,6 +23,11 @@ Cliente.init(
       allowNull: false,
       unique: true,
 
+    },
+    conta_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      
     },
     data_cadastro: {
       type: DataTypes.DATE,
