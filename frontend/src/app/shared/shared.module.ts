@@ -21,6 +21,7 @@ import { EnderecoSharedService } from './services/endereco-shared.service';
 import { CpfCnpjPipe } from './pipes/cpf-cnpj.pipe';
 import { AccordionComponent } from './components/accordion/accordion.component';
 import { AccordionItemComponent } from './components/accordion-item/accordion-item.component';
+import { DialogConfirmedComponent } from './components/dialog-confirmed/dialog-confirmed.component';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -37,6 +38,7 @@ import { AccordionItemComponent } from './components/accordion-item/accordion-it
     CpfCnpjPipe,
     AccordionComponent,
     AccordionItemComponent,
+    DialogConfirmedComponent,
 
 
 
@@ -68,6 +70,7 @@ import { AccordionItemComponent } from './components/accordion-item/accordion-it
     CpfCnpjPipe,
     AccordionComponent,
     AccordionItemComponent,
+    DialogConfirmedComponent,
   ]
 
 })

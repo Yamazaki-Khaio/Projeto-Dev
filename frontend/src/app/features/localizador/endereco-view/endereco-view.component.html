@@ -10,8 +10,8 @@
         <p><span *ngIf="endereco.is_principal" class="badge badge-primary">Endereço Principal</span></p>
       </div>
       <div class="card-footer bg-transparent icon border-success">
-        <button (click)="abrirModalBootstrap(endereco)" class="bi bi-pencil"><i class=""><img [src]="editIcon"></i></button>
-        <button (click)="removerEndereco(endereco.id!)" class="bi bi-trash"><i class=""> <img [src]="delIcon"> </i></button>
+        <button (click)="abrirModalBootstrap(endereco)" class="bi bi-pencil"><i class=""><img alt="editar icone" [src]="editIcon"></i></button>
+        <button (click)="removerEndereco(endereco.id!)" class="bi bi-trash"><i class=""> <img alt="deletar Icone" [src]="delIcon"></i></button>
       </div>
     </div>
   </div>

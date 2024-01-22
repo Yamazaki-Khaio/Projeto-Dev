@@ -8,6 +8,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EnderecoEditarComponent } from '../endereco-edit/endereco-edit.component';
 import { EnderecoSharedService } from 'src/app/shared/services/endereco-shared.service';
 import { AlertService } from 'src/app/shared/services/alert.service';
+import { DialogConfirmedComponent } from 'src/app/shared/components/dialog-confirmed/dialog-confirmed.component';
 
 @Component({
   selector: 'app-endereco-view',
@@ -44,17 +45,31 @@ export class EnderecoViewComponent implements OnInit {
   }
 
   removerEndereco(enderecoId: number): void {
-    this.enderecoService.deleteEndereco(enderecoId.toString()).subscribe(
-      () => {
-        console.log('Endereço removido com sucesso!');
-        this.alertService.showAlert('Endereço removido com sucesso!', 'alert-primary'); // alterar para o modal de confirmação
-        this.atualizarEnderecos();
-      },
-      (error: any) => {
-        console.error('Erro ao remover endereço:', error);
-      }
-    );
+    const modalRef = this.modalService.open(DialogConfirmedComponent);
+    modalRef.componentInstance.modalTitle = 'Confirmação';
+    modalRef.componentInstance.modalBodyText = 'Tem certeza que deseja remover este endereço?';
+    modalRef.componentInstance.modalButtonText = 'Confirmar';
+    modalRef.componentInstance.modalButtonClass = 'btn-danger';
+
+    modalRef.componentInstance.onClose.subscribe(() => {
+      // Lógica ao fechar o modal (pode ser vazia)
+    });
+
+    modalRef.componentInstance.onSaveChanges.subscribe(() => {
+      // Se confirmado, então remove o endereço
+      this.enderecoService.deleteEndereco(enderecoId.toString()).subscribe(
+        () => {
+          console.log('Endereço removido com sucesso!');
+          this.alertService.showAlert('Endereço removido com sucesso!', 'alert-primary');
+          this.atualizarEnderecos();
+        },
+        (error: any) => {
+          console.error('Erro ao remover endereço:', error);
+        }
+      );
+    });
   }
+
 
   abrirModalBootstrap(endereco: Endereco): void {
     this.enderecoSharedService.setEnderecoId(endereco.id!);

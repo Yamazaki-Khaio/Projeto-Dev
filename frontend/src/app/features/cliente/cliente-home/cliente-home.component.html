@@ -23,9 +23,9 @@
               <td><span [ngClass]="getBadgeClass(client.situacao!)">{{ client.situacao }}</span></td>
               <td>{{ client.data_cadastro | date:'dd/MM/yyyy' }}</td>
               <td class="icon">
-                <button class="bi bi-pencil" (click)="editarCliente(client)"><i class=""><img [src]="editIcon">
+                <button class="bi bi-pencil" (click)="editarCliente(client)"><i><img alt="" [src]="editIcon">
                 </i></button>
-                <button class="bi bi-trash" (click)="deleteClient(client)"><i class=""> <img [src]="delIcon"> </i></button>
+                <button type="submit" class="bi bi-trash" (click)="deleteClient(client)"><i ><img alt="" [src]="delIcon"> </i></button>
               </td>
             </tr>
           </tbody>

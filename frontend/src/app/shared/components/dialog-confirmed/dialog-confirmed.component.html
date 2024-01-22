@@ -1,0 +1,15 @@
+<!-- FILEPATH: /c:/Users/kaio.fonseca/Desktop/Projeto-Dev/frontend/src/app/shared/components/dialog-confirmed/dialog-confirmed.component.html -->
+
+<div class="modal modal-content modal-dialog-centered modal-md">
+  <div class="modal-header">
+    <h5 class="modal-title">{{ modalTitle }}</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+  <div class="modal-body">
+    <p>{{ modalBodyText }}</p>
+  </div>
+  <div class="modal-footer">
+    <label type="link" class="text-decoration" (click)="closeModal()">Cancelar</label>
+    <button type="button" class="btn btn-primary" (click)="saveChanges()">Confirmar</button>
+  </div>
+</div>
