@@ -1,15 +1,15 @@
 <!-- Container dos cards dos endereços -->
 <div class="endereco__container" *ngIf="enderecos$ | async as enderecos; else noEnderecos">
   <div class="endereco " *ngFor="let endereco of enderecos">
-    <div class="card border-success">
+    <div class="card">
       <div class="card-body">
         <p>{{ endereco.logradouro }}, {{ endereco.numero }}, {{ endereco.bairro }}</p>
         <p>{{ endereco.cidade }} - {{ endereco.estado }}</p>
         <p>CEP: {{ endereco.cep }}</p>
-        <!-- Exibe o badge apenas se endereco.is_principal for verdadeiro -->
         <p><span *ngIf="endereco.is_principal" class="badge badge-primary">Endereço Principal</span></p>
       </div>
-      <div class="card-footer bg-transparent icon border-success">
+      <!-- Exibe o badge apenas se endereco.is_principal for verdadeiro -->
+      <div class="card-footer">
         <button (click)="abrirModalBootstrap(endereco)" class="bi bi-pencil"><i class=""><img alt="editar icone" [src]="editIcon"></i></button>
         <button (click)="removerEndereco(endereco.id!)" class="bi bi-trash"><i class=""> <img alt="deletar Icone" [src]="delIcon"></i></button>
       </div>
@@ -18,5 +18,5 @@
 </div>
 
 <!-- Template para o caso de nenhum endereço -->
-<ng-template #noEnderecos>
+<ng-template  #noEnderecos>
 </ng-template>

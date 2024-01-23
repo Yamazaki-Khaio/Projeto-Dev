@@ -1,9 +1,9 @@
-<div class="alert"><app-alert></app-alert></div>
+<!-- localizador-cadastro-->
+<app-alert></app-alert>
 
-<!-- localizador-cadastro -->
-<div class="localizador">
-  <div class="container__localizador col-12">
-    <div class="col-10 h-100">
+<div class="localizador h-100">
+  <div class="container__localizador flex-column col-12">
+    <div class="col-10">
       <div class="row">
         <div class="col">
           <app-breadcrumb [clienteItem]="'Cliente'" [currentPage]="'Editar cliente'"></app-breadcrumb>
@@ -15,34 +15,37 @@
         <img alt="obrigatorio_icon" [src]="openedIconUrl">
         <a>Campos obrigatórios</a>
       </div>
-      <app-accordion>
-        <app-accordion-item title="Endereço" [isOpen]="isOpenEndereco" (toggle)="toggleAccordion('endereco')">
-          <div (click)="abrirModalBootstrap()" class="link">+ Adicionar endereço </div>
-          <app-endereco-view [pessoaId]="pessoaId" *ngIf="(enderecoData$ | async)"></app-endereco-view>
-        </app-accordion-item>
-        <app-accordion-item title="Telefone" [isOpen]="isOpenTelefone" (toggle)="toggleAccordion('telefone')">
-          <div class="link" (click)="abrirInput('telefone')">+ Adicionar telefone </div>
-          <app-telefone-cadastro (telefoneAdicionado)="handleTelefoneAdicionado($event)" [userId]="pessoaId" *ngIf="exibirTelefone"></app-telefone-cadastro>
-          <app-telefone-view [pessoaId]="pessoaId" *ngIf="(telefoneData$ | async)"></app-telefone-view>
-        </app-accordion-item>
-        <app-accordion-item title="E-mail" [isOpen]="isOpenEmail" (toggle)="toggleAccordion('email')">
-          <div (click)="abrirInput('email')" class="link">+ Adicionar e-mail </div>
-          <app-email-cadastro [userId]="pessoaId" (emailAdicionado)="handleEmailAdicionado($event)" *ngIf="exibirEmail"></app-email-cadastro>
-          <app-email-view [pessoaId]="pessoaId" *ngIf="(emailData$ | async)"></app-email-view>
-        </app-accordion-item>
-      </app-accordion>
-    </div>
+      <div class="mb-2">
+        <app-accordion>
+          <app-accordion-item title="Endereço" [isOpen]="isOpenEndereco" (toggle)="toggleAccordion('endereco')">
+            <div (click)="abrirModalBootstrap()" class="link">+ Adicionar endereço </div>
+            <app-endereco-view [pessoaId]="pessoaId" *ngIf="(enderecoData$ | async)"></app-endereco-view>
+          </app-accordion-item>
+          <app-accordion-item title="Telefone" [isOpen]="isOpenTelefone" (toggle)="toggleAccordion('telefone')">
+            <div class="link" (click)="abrirInput('telefone')">+ Adicionar telefone </div>
+            <app-telefone-cadastro (telefoneAdicionado)="handleTelefoneAdicionado($event)" [userId]="pessoaId"
+              *ngIf="exibirTelefone"></app-telefone-cadastro>
+            <app-telefone-view [pessoaId]="pessoaId" *ngIf="(telefoneData$ | async)"></app-telefone-view>
+          </app-accordion-item>
+          <app-accordion-item title="E-mail" [isOpen]="isOpenEmail" (toggle)="toggleAccordion('email')">
+            <div (click)="abrirInput('email')" class="link">+ Adicionar e-mail </div>
+            <app-email-cadastro [userId]="pessoaId" (emailAdicionado)="handleEmailAdicionado($event)"
+              *ngIf="exibirEmail"></app-email-cadastro>
+            <app-email-view [pessoaId]="pessoaId" *ngIf="(emailData$ | async)"></app-email-view>
+          </app-accordion-item>
+        </app-accordion>
+      </div>
 
+    </div>
     <div class="col-2">
       <app-list-link></app-list-link>
     </div>
 
   </div>
+  <!-- Condição para exibir ou não o content__footer com base na abertura dos accordions -->
 
 </div>
-<div class="content__footer w-8">
+<div class="content__footer" *ngIf="!isOpenEndereco && !isOpenTelefone && !isOpenEmail">
   <button class="btn btn-secondary" (click)="voltar()">Cancelar</button>
   <button class="btn btn-primary" (click)="OnSubmit()" [disabled]="true" type="submit">Salvar cliente</button>
 </div>
-
-
