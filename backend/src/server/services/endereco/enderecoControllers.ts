@@ -12,7 +12,7 @@ export async function getEnderecos(req: Request, res: Response): Promise<void> {
     }
 }
 
-export async function getEnderecoById(req: Request, res: Response): Promise<void> {
+export async function getEnderecoAllByPessoa(req: Request, res: Response): Promise<void> {
     const { id_pessoa } = req.params;
     try {
         const enderecos = await Endereco.findAll({ where: { id_pessoa } });
@@ -51,18 +51,14 @@ export async function createEndereco(req: Request, res: Response): Promise<void>
 
         // Verifica se já existe um endereço principal para esta pessoa
         if (is_principal) {
-            const enderecoPrincipal = await Endereco.findOne({ where: { id_pessoa, is_principal: true } });
+            const enderecoPrincipal = await Endereco.findOne({ where: { id_pessoa: id_pessoa, is_principal: true } });
             if (enderecoPrincipal) {
-                //implemente o requisito Se ao cadastrar o endereço e ele estiver marcado como "Principal", deve-se remover o indicador de "Principal" do outro endereço "Principal" do cliente.
                 enderecoPrincipal.is_principal = false;
                 await enderecoPrincipal.save();
-                res.status(201).json({ message: 'Já existe um endereço principal para esta pessoa.' });
                 return;
             }
+
         }
-
-
-        // Se não houver outros endereços cadastrados, marca este como "Principal"
         const countEnderecos = await Endereco.count({ where: { id_pessoa } });
         const novoEndereco = await Endereco.create({
             cep,
@@ -82,6 +78,22 @@ export async function createEndereco(req: Request, res: Response): Promise<void>
         res.status(500).json({ message: 'Erro ao criar endereço.' });
     }
 }
+
+export async function getEndereco(req: Request, res: Response): Promise<void> {
+    const { id } = req.params;
+    try {
+        const endereco = await Endereco.findByPk(id);
+        if (!endereco) {
+            res.status(404).json({ message: 'Endereço não encontrado.' });
+            return;
+        }
+        res.status(200).json(endereco);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Erro ao buscar endereço.' });
+    }
+}
+
 
 export async function updateEndereco(req: Request, res: Response): Promise<void> {
     const { id } = req.params;
@@ -143,6 +155,27 @@ export async function deleteEndereco(req: Request, res: Response): Promise<void>
             res.status(404).json({ message: 'Endereço não encontrado.' });
             return;
         }
+
+        const id_pessoa = endereco.id_pessoa;
+
+        // Verifica se o endereço que está sendo excluído é o principal
+        if (endereco.is_principal) {
+            // Encontra o endereço mais antigo da mesma pessoa
+            const enderecoAntigo = await Endereco.findOne({
+                where: {
+                    id_pessoa,
+                    is_principal: false,
+                },
+                order: [['createdAt', 'ASC']], // Ordena por ordem de criação (o mais antigo primeiro)
+            });
+
+            // Se encontrou um endereço mais antigo, atualiza para ser o principal
+            if (enderecoAntigo) {
+                enderecoAntigo.is_principal = true;
+                await enderecoAntigo.save();
+            }
+        }
+
         await endereco.destroy();
         res.status(204).send();
     } catch (error) {
@@ -153,7 +186,8 @@ export async function deleteEndereco(req: Request, res: Response): Promise<void>
 
 const enderecoControllers = {
     getEnderecos,
-    getEnderecoById,
+    getEnderecoAllByPessoa,
+    getEndereco,
     createEndereco,
     updateEndereco,
     deleteEndereco,

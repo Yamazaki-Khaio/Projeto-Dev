@@ -13,11 +13,29 @@ class EmailController {
     }
   }
 
-  public async getById(req: Request, res: Response): Promise<Response> {
+  public async getAllByPessoa(req: Request, res: Response): Promise<Response> {
     const { id_pessoa } = req.params;
 
     try {
-      const email = await Email.findAll({ where: { id_pessoa } });
+      const pessoa = await Pessoa.findByPk(id_pessoa);
+
+      if (!pessoa) {
+        return res.status(404).json({ error: 'Pessoa não encontrada' });
+      }
+
+      const emails = await Email.findAll({ where: { id_pessoa } });
+
+      return res.status(200).json(emails);
+    } catch (error: any) {
+      return res.status(500).json({ error: 'Erro interno do servidor' });
+    }
+  }
+
+  public async getById(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+
+    try {
+      const email = await Email.findByPk(id);
 
       if (!email) {
         return res.status(404).json({ error: 'E-mail não encontrado' });

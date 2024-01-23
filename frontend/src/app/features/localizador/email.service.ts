@@ -16,7 +16,7 @@ export class EmailService {
   }
 
   getEmailsPorUsuario(id_pessoa: string): Observable<Email[]> {
-    const endpoint = `${this.emailEndpoint}/${id_pessoa}`;
+    const endpoint = `${this.emailEndpoint}/pessoa/${id_pessoa}`;
     return this.apiService.get<Email[]>(endpoint);
   }
 
@@ -26,7 +26,7 @@ export class EmailService {
   }
 
   createEmail(id_pessoa: string, email: Email): Observable<Email> {
-    const endpoint = `${this.emailEndpoint}/${id_pessoa}`;
+    const endpoint = `${this.emailEndpoint}/pessoa/${id_pessoa}`;
     return this.apiService.post<Email>(endpoint, email);
   }
 

@@ -21,12 +21,12 @@ export class RepresentanteService {
   }
 
   getRepresentantesPorUsuario(userId: string): Observable<Representante[]> {
-    const endpoint = `${this.representanteEndpoint}/${userId}`;
+    const endpoint = `${this.representanteEndpoint}/cliente/${userId}`;
     return this.apiService.get<Representante[]>(endpoint);
   }
 
   createRepresentante(representante: Representante, userId: string): Observable<Representante> {
-    const endpoint = `${this.representanteEndpoint}/${userId}`;
+    const endpoint = `${this.representanteEndpoint}/cliente/${userId}`;
     return this.apiService.post<Representante>(endpoint, representante);
   }
 

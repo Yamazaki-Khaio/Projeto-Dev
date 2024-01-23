@@ -14,7 +14,6 @@ export class EmailEditComponent {
   @Output() emailEditado = new EventEmitter<any>();
   @Input() userId!: string; // Declare the userId property as an Input
   @Input() emailId!: number;
-
   emailForm!: FormGroup;
   isTemplateHidden: boolean = false;
 
@@ -28,10 +27,10 @@ export class EmailEditComponent {
 
   ngOnInit() {
     this.emailService.getEmail(this.emailId).subscribe(
-      (Email: Email) => {
+      (email: Email) => {
         this.emailForm = this.formBuilder.group({
-          inputEmail: [Email.email, [Validators.required, Validators.email]],
-          isPrincipal: [Email.is_principal ? Email.is_principal : false]
+          inputEmail: [email.email, [Validators.required, Validators.email]],
+          isPrincipal: [email.is_principal]
         });
       },
       (error: any) => {
@@ -45,7 +44,7 @@ export class EmailEditComponent {
     this.emailEditado.emit("cancelado");
   }
 
-  adicionarEmail() {
+  editarEmail() {
     console.log('Adicionando e-mail:', this.emailForm.value);
     if (this.emailForm.valid) {
       const emailData: Email = {

@@ -30,7 +30,7 @@ export class EmailCadastroComponent {
 
     this.emailForm = this.formBuilder.group({
       inputEmail: ['', [Validators.required, Validators.email]],
-      isPrincipal: [false, Validators.required]
+      isPrincipal: [false]
     });
   }
 

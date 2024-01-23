@@ -18,7 +18,7 @@ export const ContaController = {
   }],
 
   login: async (req: Request, res: Response) => {
-    const { email, senha } = req.body;
+    const { email, senha, rememberMe } = req.body;
 
     try {
       const conta = await Conta.findOne({ where: { email: email.toLowerCase() } });
@@ -33,9 +33,12 @@ export const ContaController = {
         return res.status(401).json({ message: 'Senha inserida incorreta. Tente novamente' });
       }
 
-      const token = jwt.sign({ id: conta.id }, 'secret', {
-        expiresIn: '1h',
-      });
+     // Define a expiração do token com base na opção "rememberMe"
+     const expiresIn = rememberMe ? '62d' : '1h';
+
+     const token = jwt.sign({ id: conta.id }, 'secret', {
+       expiresIn,
+     });
 
       return res.json({ token });
     } catch (error) {

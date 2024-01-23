@@ -14,18 +14,18 @@ export class EnderecoService {
 
   // Obtém todos os endereços para um usuário específico
   getEnderecosPorUsuario(userId: string): Observable<Endereco[]> {
-    const endpoint = `${this.baseUrl}/${userId}`;
+    const endpoint = `${this.baseUrl}/pessoa/${userId}`;
     return this.apiService.get<Endereco[]>(endpoint);
   }
 
-  getEndereco(enderecoId: number): Observable<Endereco[]> {
+  getEndereco(enderecoId: number): Observable<Endereco> {
     const endpoint = `${this.baseUrl}/${enderecoId}`;
-    return this.apiService.get<Endereco[]>(endpoint);
+    return this.apiService.get<Endereco>(endpoint);
   }
 
   // Cria um novo endereço para um usuário específico
   createEndereco(userId: string, endereco: Endereco): Observable<Endereco> {
-    const endpoint = `${this.baseUrl}/${userId}`;
+    const endpoint = `${this.baseUrl}/pessoa/${userId}`;
     return this.apiService.post<Endereco>(endpoint, endereco);
   }
 
@@ -42,7 +42,8 @@ export class EnderecoService {
   }
 
   // Adiciona uma propriedade is_principal para todos os endereços
-  // Aqui você pode ajustar a lógica conforme necessário
+
+  //serviço para obter todos os endereços de um usuário e adicionar a propriedade is_principal
   getEnderecosComIsPrincipal(userId: string): Observable<Endereco[]> {
     return this.getEnderecosPorUsuario(userId).pipe(
       map(enderecos => enderecos.map(endereco => ({ ...endereco, is_principal: false })))

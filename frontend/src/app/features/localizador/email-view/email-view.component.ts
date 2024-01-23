@@ -20,7 +20,9 @@ export class EmailViewComponent implements OnInit {
   modoEdicao: boolean = false;
   emailIdParaEdicao!: number;
 
-  constructor(private emailService: EmailService, private iconsService: IconsService, private alertService: AlertService, private modalService: NgbModal) { }
+  constructor(private emailService: EmailService, private iconsService: IconsService, private alertService: AlertService, private modalService: NgbModal) {
+
+   }
 
   ngOnInit(): void {
     this.delIcon = this.iconsService.getIconUrl('Excluir');

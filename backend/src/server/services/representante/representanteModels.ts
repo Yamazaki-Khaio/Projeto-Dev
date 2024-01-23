@@ -20,13 +20,12 @@ Representante.init(
     id_pessoa: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      unique: true,
-      primaryKey: true,
     },
     id_cliente: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
+      
     },
   },
   {

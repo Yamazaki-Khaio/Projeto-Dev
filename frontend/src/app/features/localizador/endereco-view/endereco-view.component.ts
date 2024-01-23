@@ -75,8 +75,8 @@ export class EnderecoViewComponent implements OnInit {
     this.enderecoSharedService.setEnderecoId(endereco.id!);
 
     const modalRef = this.modalService.open(EnderecoEditarComponent, { size: 'lg' });
-    modalRef.componentInstance.pessoaId = this.pessoaId;
-    modalRef.componentInstance.enderecoId = endereco.id;
+    modalRef.componentInstance.pessoaId = this.pessoaId!;
+    modalRef.componentInstance.enderecoId = endereco.id!;
     modalRef.result.then(
       (result: any) => {
         this.atualizarEnderecos();

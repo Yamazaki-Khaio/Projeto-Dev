@@ -20,19 +20,14 @@ export class EnderecoEditarComponent implements OnInit {
   pessoaId!: string;
   iconAdd: string = '';
   enderecoId!: number;
-  enderecos: Endereco[] = [];
 
 
   constructor(
     private fb: FormBuilder,
     private enderecoService: EnderecoService,
-    private router: Router,
-    private route: ActivatedRoute,
     private iconsService: IconsService,
     private alertService: AlertService,
-    private modalService: NgbModal,
-    private enderecoSharedService: EnderecoSharedService,
-    private activeModal: NgbActiveModal, // Injete NgbActiveModal
+    private activeModal: NgbActiveModal,
 
 
   ) { }
@@ -40,36 +35,27 @@ export class EnderecoEditarComponent implements OnInit {
   ngOnInit(): void {
     this.openedIconUrl = this.iconsService.getIconUrl("icon-obrigatorio");
     this.iconAdd = this.iconsService.getIconUrl("add");
+    this.enderecoService.getEndereco(this.enderecoId).subscribe(
+      (endereco: Endereco) => {
+        this.enderecoEditForm = this.fb.group({
+          cep: [endereco.cep, [Validators.required]],
+          logradouro: [endereco.logradouro, [Validators.required]],
+          numero: [endereco.numero, [Validators.required]],
+          complemento: [endereco.complemento],
+          bairro: [endereco.bairro, [Validators.required]],
+          cidade: [endereco.cidade, [Validators.required]],
+          estado: [endereco.estado, [Validators.required]],
+          isPrincipal: [endereco.is_principal, [Validators.required]],
+        });
+      },
+      (error: any) => {
+        console.error('Erro ao carregar endereço:', error);
+      }
+    );
 
-    // Use o serviço para obter o enderecoId
-    this.enderecoSharedService.getEnderecoId().subscribe(enderecoId => {
-      this.enderecoId = enderecoId!;
-
-      this.enderecoService.getEndereco(this.enderecoId).subscribe(
-        (enderecos: Endereco[]) => {
-          const endereco = enderecos.find(endereco => endereco.id === this.enderecoId);
-          if (endereco) {
-            this.enderecoEditForm = this.fb.group({
-              cep: [endereco.cep, [Validators.required]],
-              logradouro: [endereco.logradouro, [Validators.required]],
-              numero: [endereco.numero, [Validators.required]],
-              complemento: [endereco.complemento],
-              bairro: [endereco.bairro, [Validators.required]],
-              cidade: [endereco.cidade, [Validators.required]],
-              estado: [endereco.estado, [Validators.required]],
-              isPrincipal: [endereco.is_principal],
-            });
-
-            console.log(endereco);
-            console.log(this.enderecoEditForm.value);
-          }
-        },
-        (error: any) => {
-          console.error(error);
-        }
-      );
-    });
   }
+
+
 
 
   onSubmit(): void {

@@ -23,13 +23,13 @@ export class TelefoneEditComponent {
     private telefoneService: TelefoneService,
     private route: ActivatedRoute,
     private alertService: AlertService,
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.telefoneService.getTelefone(this.telefoneId).subscribe(
       (telefone: Telefone) => {
         this.telefoneForm = this.formBuilder.group({
-          inputTelefone: [telefone.tel, [Validators.required, Validators.pattern('[0-9]+')]],
+          inputTelefone: [telefone.tel, [Validators.required]],
           isPrincipal: [telefone.is_principal]
         });
       },
@@ -39,26 +39,28 @@ export class TelefoneEditComponent {
     );
   }
 
-
   cancelar() {
     this.isTemplateHidden = true;
-    this.telefoneEditado.emit("cancelado");
+    this.telefoneEditado.emit('cancelado');
   }
 
   atualizarTelefone() {
+    console.log('Atualizando telefone:', this.telefoneForm.value);
     if (this.telefoneForm.valid) {
       const telefoneData: Telefone = {
-        tel: this.telefoneForm.value.inputNumero,
+        tel: this.telefoneForm.value.inputTelefone, // Remove todos os caracteres não numéricos
         is_principal: this.telefoneForm.value.isPrincipal,
         id_pessoa: this.userId
       };
 
       this.telefoneService.updateTelefone(this.telefoneId, telefoneData).subscribe(
         response => {
-          this.alertService.showAlert('Telefone atualizado com sucesso.', 'alert-warnig');
+          this.alertService.showAlert('Telefone atualizado com sucesso.', 'alert-primary');
           this.telefoneEditado.emit('response');
-          console.log('Telefone editado com sucesso!', response);
-          // this.isTemplateHidden = true;
+          console.log('Telefone atualizado com sucesso!', response);
+          this.telefoneForm.reset();
+          this.isTemplateHidden = true;
+
         },
         error => {
           this.alertService.showAlert('Erro ao atualizado telefone.', 'alert-danger');

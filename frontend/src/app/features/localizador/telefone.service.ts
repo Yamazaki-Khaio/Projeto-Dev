@@ -14,8 +14,9 @@ export class TelefoneService {
   getTelefones(): Observable<Telefone[]> {
     return this.apiService.get<Telefone[]>(this.telefoneEndpoint);
   }
+
   getTelefonesPorUsuario(id_pessoa: string): Observable<Telefone[]> {
-    const endpoint = `${this.telefoneEndpoint}/${id_pessoa}`;
+    const endpoint = `${this.telefoneEndpoint}/pessoa/${id_pessoa}`;
     return this.apiService.get<Telefone[]>(endpoint);
   }
 
@@ -25,7 +26,7 @@ export class TelefoneService {
   }
 
   createTelefone(id_pessoa: string, telefone: Telefone): Observable<Telefone> {
-    const endpoint = `${this.telefoneEndpoint}/${id_pessoa}`;
+    const endpoint = `${this.telefoneEndpoint}/pessoa/${id_pessoa}`;
     return this.apiService.post<Telefone>(endpoint, telefone);
   }
 

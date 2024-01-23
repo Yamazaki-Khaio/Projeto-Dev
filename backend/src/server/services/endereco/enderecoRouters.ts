@@ -4,19 +4,22 @@ import enderecoControllers from './enderecoControllers';
 
 const router = express.Router();
 
-// Rota para criar um novo cliente
-router.post('/:id_pessoa', enderecoControllers.createEndereco);
+// Rota para criar um novo endereço
+router.post('/pessoa/:id_pessoa', enderecoControllers.createEndereco);
 
 // Rota para buscar todos os clientes
 router.get('/', enderecoControllers.getEnderecos);
 
-// Rota para buscar um cliente pelo ID
-router.get('/:id_pessoa', enderecoControllers.getEnderecoById);
+//rota para buscar um endereço pelo ID
+router.get('/:id', enderecoControllers.getEndereco);
 
-// Rota para atualizar um cliente pelo ID
+// Rota para buscar todos endereço pelo ID da pessoa
+router.get('/pessoa/:id_pessoa', enderecoControllers.getEnderecoAllByPessoa);
+
+// Rota para atualizar um endereço pelo ID
 router.put('/:id', enderecoControllers.updateEndereco);
 
-// Rota para excluir um cliente pelo ID
+// Rota para excluir um endereço pelo ID
 router.delete('/:id', enderecoControllers.deleteEndereco);
 
 export default router;

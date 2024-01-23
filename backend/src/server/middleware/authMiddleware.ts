@@ -25,9 +25,7 @@ export const authMiddleware = async (req: AuthenticatedRequest, res: Response, n
             return res.status(401).json({ message: 'Usuário não encontrado' });
         }
 
-        req.user = conta;
-        console.log('Usuário autenticado:', conta.nome);
-   
+        req.user = conta;   
         next();
     } catch (error: any) {
         console.error('Erro no middleware de autenticação:', error.message);

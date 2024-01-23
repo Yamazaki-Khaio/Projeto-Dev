@@ -44,9 +44,9 @@ export class  UserService {
   }
 
   // Efetua login do usuário
-  login(email: string, password: string): Observable<any> {
+  login(email: string, password: string, rememberMe: boolean): Observable<any> {
     const endpoint = `${this.baseUrl}/login`;
-    const body = { email, senha: password };
+    const body = { email, senha: password, rememberMe };
     return this.apiService.post<any>(endpoint, body);
 
   }

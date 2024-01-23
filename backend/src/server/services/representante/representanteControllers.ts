@@ -2,18 +2,36 @@ import { Request, Response } from 'express';
 import Representante from './representanteModels';
 import Pessoa from '../pessoa/pessoaModels';  // Importe o modelo Pessoa
 import { AuthenticatedRequest } from '../../middleware/authMiddleware';
+import Cliente from '../cliente/clienteModels';
+
 
 class RepresentanteController {
   public async create(req: Request, res: Response): Promise<Response> {
     try {
         const { identificador, nome } = req.body;
+
+        // Check if required fields are provided
+        if (!identificador || !nome) {
+          return res.status(400).json({ error: 'Identificador e nome são campos obrigatórios.' });
+        }
+
+        // Check if the Cliente exists
+        const cliente = await Cliente.findByPk(req.params.id_cliente);
+        let pessoaID = await Pessoa.findOne({ where: { identificacao: identificador } });
+
+        if (!cliente) {
+          return res.status(404).json({ error: 'Cliente não encontrado.' });
+        }
+
+        // Check if the Pessoa already exists
+        if (pessoaID) {
+          return res.status(400).json({ error: 'Já existe uma pessoa com este identificador.' });
+        }
         // Create a new Pessoa for the Representante
-        const pessoa = await Pessoa.create({ identificacao: identificador, nome: nome, nome_fantasia: nome, nome_mae: nome, inscricao_municipal: '0', inscricao_estadual: '0', conta_id: (req as AuthenticatedRequest).user.id });
+        const pessoa = await Pessoa.create({ identificacao: identificador, nome: nome, conta_id: (req as AuthenticatedRequest).user.id, nome_mae: 'none', nome_fantasia:'none', });
 
         // Create a new Representante with the Pessoa and Cliente IDs
         const representante = await Representante.create({
-            identificador,
-            nome,
             id_pessoa: pessoa.id,
             id_cliente: req.params.id_cliente,
         });
@@ -72,6 +90,67 @@ class RepresentanteController {
       return res.status(500).json({ error: error.message });
     }
   }
+
+  public async getRepresentante(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+
+    try {
+      const representante = await Representante.findByPk(id);
+
+      if (!representante) {
+        return res.status(404).json({ error: 'Representante não encontrado' });
+      }
+
+      const pessoa = await Pessoa.findByPk(representante.id_pessoa);
+
+      if (!pessoa) {
+        return res.status(404).json({ error: 'Pessoa não encontrada' });
+      }
+
+      return res.status(200).json({
+        id: representante.id,
+        identificador: pessoa.identificacao,
+        nome: pessoa.nome,
+      });
+    } catch (error: any) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
+
+
+  public async updateRepresentante(req: Request, res: Response): Promise<Response> {
+    try {
+      const { id } = req.params;
+      const { identificador, nome } = req.body;
+      const representante = await Representante.findByPk(id);
+
+      if (!representante) {
+        return res.status(404).json({ error: 'Representante não encontrado.' });
+      }
+
+      const pessoa = await Pessoa.findByPk(representante.id_pessoa);
+
+      if (!pessoa) {
+        return res.status(404).json({ error: 'Pessoa não encontrada.' });
+      }
+
+      pessoa.identificacao = identificador;
+      pessoa.nome = nome;
+      await pessoa.save();
+
+      return res.status(200).json({
+        id: representante.id,
+        identificador: pessoa.identificacao,
+        nome: pessoa.nome,
+      });
+    } catch (error) {
+      console.error('Erro ao atualizar o representante:', error);
+      return res.status(500).json({ error: 'Erro ao atualizar o representante.' });
+    }
+  }
+
+  //get all representantes 
+
 }
 
 export default new RepresentanteController();

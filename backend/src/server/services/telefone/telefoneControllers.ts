@@ -69,7 +69,14 @@ class TelefoneController {
 
             // Verificar se o telefone sendo excluído é o principal
             if (telefone.is_principal) {
-                const otherTelefone = await Telefone.findOne({ where: { id_pessoa: telefone.id_pessoa, is_principal: false } });
+                const otherTelefone = await Telefone.findOne({
+                    where: {
+                        id_pessoa: telefone.id_pessoa,
+                        is_principal: false
+                    },
+                    order: [['createdAt', 'ASC']] // Ordena por ordem de criação (o mais antigo primeiro)
+                });
+
                 if (otherTelefone) {
                     otherTelefone.is_principal = true;
                     await otherTelefone.save();
@@ -85,6 +92,8 @@ class TelefoneController {
 
 
 
+
+
     //read
     async getAll(req: Request, res: Response): Promise<Response> {
 
@@ -97,11 +106,26 @@ class TelefoneController {
 
     }
 
-    async getById(req: Request, res: Response): Promise<Response> {
+    async getTelefoneAllByIdPessoa(req: Request, res: Response): Promise<Response> {
         const { id_pessoa } = req.params;
+        try {
+            const telefone = await Telefone.findAll({ where: { id_pessoa: id_pessoa} });
+
+            if (!telefone) {
+                return res.status(404).json({ error: 'Telefone não encontrado' });
+            }
+
+            return res.status(200).json(telefone);
+        } catch (error: any) {
+            return res.status(500).json({ error: 'Erro interno do servidor' });
+        }
+    }
+
+    async getTelefoneById(req: Request, res: Response): Promise<Response> {
+        const { id } = req.params;
 
         try {
-            const telefone = await Telefone.findAll({ where: { id_pessoa} });
+            const telefone = await Telefone.findByPk(id);
 
             if (!telefone) {
                 return res.status(404).json({ error: 'Telefone não encontrado' });

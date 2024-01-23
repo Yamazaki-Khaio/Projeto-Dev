@@ -25,6 +25,8 @@ export class UserLoginComponent implements OnInit {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
+      rememberMe: [false],
+
     });
   }
 
@@ -34,15 +36,18 @@ export class UserLoginComponent implements OnInit {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      const { email, password } = this.loginForm.value;
+      const { email, password, rememberMe } = this.loginForm.value;
 
-      this.userService.login(email, password).subscribe(
+      this.userService.login(email, password, rememberMe).subscribe(
         (response) => {
           // Login bem-sucedido
           console.log('Usuário autenticado:', response);
           if (response.token) {
             // Armazene o token de autenticação no armazenamento local
             localStorage.setItem('token', response.token);
+            localStorage.setItem('rememberMe', rememberMe.toString());
+
+
           }
           // Redirecione para a página desejada após o login
           this.router.navigate(['users/profile/home']);

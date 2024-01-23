@@ -33,11 +33,10 @@ export class TelefoneViewComponent implements OnInit {
   carregarTelefones(): void {
     if (this.pessoaId) {
       this.telefones$ = this.telefoneService.getTelefonesPorUsuario(this.pessoaId);
-      console.log(this.telefones$);
     }
   }
 
-  editarTelefone(telefone: Telefone) {
+  editarTelefone(telefone: Telefone): void {
     if (telefone.id !== undefined) {
       this.telefoneIdParaEdicao = telefone.id;
       this.modoEdicao = true;
@@ -71,12 +70,13 @@ export class TelefoneViewComponent implements OnInit {
   }
 
     //refatorar para novo modelo usando os utilitarios e services
-  sairModoEdicao($event: any) {
+  sairModoEdicao($event: any): void {
     if ($event === 'cancelado') {
       this.modoEdicao = false;
-    }
-    else if ($event === 'response') {
+
+    } else if ($event === 'response') {
       this.modoEdicao = false;
+      this.alertService.showAlert('Telefone atualizado com sucesso.', 'alert-primary');
       this.carregarTelefones();
     }
 

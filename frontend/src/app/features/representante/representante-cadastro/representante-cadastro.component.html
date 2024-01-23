@@ -11,7 +11,7 @@
       <div class="header">
         <h3>Dados representante</h3>
         <hr class="line">
-        <img [src]="openIconUrl">
+        <img alt="Icone Obrigatorio" [src]="openIconUrl">
         <a>Campos obrigatórios</a>
       </div>
       <form [formGroup]="RepresentanteForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
@@ -21,7 +21,7 @@
             <label for="identificador" [ngClass]="{'required-field': RepresentanteForm.get('identificador')?.invalid && RepresentanteForm.get('identificador')?.touched}">
               CNPJ/CPF
             </label>
-            <img [src]="openIconUrl">
+            <img alt="Icone Obrigatorio" [src]="openIconUrl">
             <input type="text" class="form-control" placeholder="00.000.000/0000-00" id="identificador" appIdentificadorValidator formControlName="identificador"
             [ngClass]="{ 'is-invalid': RepresentanteForm.get('identificador')?.hasError('required') }" required>
             <div *ngIf="RepresentanteForm.get('identificador')?.hasError('required')" class="error-message">
@@ -33,7 +33,7 @@
             <label for="nome" [ngClass]="{'required-field': RepresentanteForm.get('nome')?.invalid && RepresentanteForm.get('nome')?.touched}">
               Nome
             </label>
-            <img [src]="openIconUrl">
+            <img alt="Icone Obrigatorio" [src]="openIconUrl">
             <input type="text" class="form-control" id="nome" formControlName="nome" required placeholder="Insira o nome do representante"
             [ngClass]="{ 'is-invalid': RepresentanteForm.get('nome')?.hasError('required') }" required>
             <div *ngIf="RepresentanteForm.get('nome')?.hasError('required')" class="error-message">

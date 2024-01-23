@@ -4,6 +4,8 @@ import { ClienteService } from '../cliente.service';
 import { Cliente } from '../cliente';
 import { Observable, Subscription } from 'rxjs';
 import { IconsService } from 'src/app/shared/util/icons.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DialogConfirmedComponent } from 'src/app/shared/components/dialog-confirmed/dialog-confirmed.component';
 
 @Component({
   selector: 'app-cliente-home',
@@ -15,7 +17,7 @@ export class ClienteHomeComponent implements OnDestroy {
   private clientesSubscription: Subscription = new Subscription();
   delIcon: string = '';
   editIcon: string = '';
-  constructor(private clienteService: ClienteService, private router: Router, private IconsService: IconsService) {
+  constructor(private clienteService: ClienteService, private router: Router, private IconsService: IconsService, private modalService: NgbModal) {
     this.clientes$ = this.clienteService.getClientes();
     this.delIcon = this.IconsService.getIconUrl('Excluir');
     this.editIcon = this.IconsService.getIconUrl('Editar');
@@ -49,20 +51,34 @@ export class ClienteHomeComponent implements OnDestroy {
       this.router.navigate([`/profile/cliente/editar/${cliente.id}`]);
     }
 
+  // ...
+
   deleteClient(cliente: Cliente) {
     const clienteId = cliente.id?.toString();
     if (clienteId) {
-      this.clienteService.deleteCliente(clienteId).subscribe(
-        () => {
-          console.log('Cliente excluído com sucesso.');
-          // Recarrega a lista de clientes após a exclusão
-          this.reloadClientes();
-        },
-        (error) => {
-          console.error('Erro ao excluir cliente. Erro: ', error);
-          // Adicione tratamento de erro aqui, se necessário
-        }
-      );
+      const modalRef = this.modalService.open(DialogConfirmedComponent);
+      modalRef.componentInstance.modalTitle = 'Excluir cliente?';
+      modalRef.componentInstance.modalButtonText = 'Confirmar';
+      modalRef.componentInstance.modalButtonClass = 'btn-danger';
+
+      modalRef.componentInstance.onClose.subscribe(() => {
+        // Logic when the modal is closed (can be empty)
+      });
+
+      modalRef.componentInstance.onSaveChanges.subscribe(() => {
+        // If confirmed, then delete the client
+        this.clienteService.deleteCliente(clienteId).subscribe(
+          () => {
+            console.log('Cliente excluído com sucesso.');
+            // Reload the list of clients after deletion
+            this.reloadClientes();
+          },
+          (error) => {
+            console.error('Erro ao excluir cliente. Erro: ', error);
+            // Add error handling here, if necessary
+          }
+        );
+      });
     }
   }
 
