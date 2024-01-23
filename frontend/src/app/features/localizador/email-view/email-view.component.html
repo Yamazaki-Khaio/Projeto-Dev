@@ -3,7 +3,7 @@
   <table class="table-email w-100" *ngIf="(emails$ | async) as emails">
     <tbody>
       <tr *ngFor="let email of emails; let i = index">
-        <td>{{ email.email }}</td>
+        <td class="col-mx">{{ email.email }}</td>
         <td><span class="badge badge-primary" *ngIf="email.is_principal">Principal</span></td>
         <td class="icon">
           <button class="bi bi-pencil" (click)="editarEmail(email)">

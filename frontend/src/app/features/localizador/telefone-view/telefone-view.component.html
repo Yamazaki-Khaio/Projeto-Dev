@@ -3,7 +3,7 @@
   <table class="table-telefone w-100" *ngIf="(telefones$ | async) as telefones">
     <tbody>
       <tr *ngFor="let telefone of telefones; let i = index">
-        <td>{{ telefone.tel }}</td>
+        <td class="col-mx">{{ telefone.tel }}</td>
         <td><span class="badge badge-primary" *ngIf="telefone.is_principal">Principal</span></td>
         <td class="icon">
           <button class="bi bi-pencil" (click)="editarTelefone(telefone)">
