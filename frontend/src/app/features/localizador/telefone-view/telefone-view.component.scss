@@ -1,3 +1,30 @@
+.telefone-list
+{
+  width: 59vw;
+  height: 100%;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  display: flex;
+  gap: 16px;
+  background-color: transparent !important;
+  color: var(--Grayscale-300, #CED4DA);
+  margin-bottom: 20px;
+
+}
+
+.table-telefone{
+  width: 100% !important;
+  align-items: flex-start;
+  gap: 24px !important;
+  align-items: center;
+  background-color: transparent !important;
+  color: var(--Grayscale-300, #CED4DA);
+  justify-content: space-between !important;
+
+
+
+}
+
 
 .bi {
   background-color: transparent !important;
@@ -5,35 +32,19 @@
   border: none !important;
   transition: color 0.3s ease-in-out; // Add transition effect
 
+
   &:hover{
     color: var(--Grayscale-200, #E4EBF2) !important;
     transform: scale(1.1); // Add scale effect on hover
   }
 }
 
-.telefone-list
-{
-  width: 100%;
-  height: 100%;
-  flex-direction: column !important;
-  align-items: flex-start !important;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  background-color: transparent !important;
-  color: var(--Grayscale-300, #CED4DA);
-
-
+.icon{
+  padding: 0px !important;
+  margin: 0px !important;
 }
 
-.table-telefone{
-  width: 50vw !important;
-  align-items: flex-start;
-  gap: 24px !important;
-  align-items: center;
-  background-color: transparent !important;
-  color: var(--Grayscale-300, #CED4DA);
 
 
-}
+
 
