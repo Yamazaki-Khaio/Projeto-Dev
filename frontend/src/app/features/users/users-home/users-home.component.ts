@@ -7,9 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./users-home.component.scss']
 })
 export class UsersHomeComponent {
-clients: any;
-deleteClient(arg0: any) {
-throw new Error('Method not implemented.');
-}
+
+    constructor() { }
 
 }

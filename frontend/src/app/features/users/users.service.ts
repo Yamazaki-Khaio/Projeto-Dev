@@ -32,8 +32,8 @@ export class  UserService {
   }
 
   // Atualiza um usuário existente
-  updateUser(id: string, user: Users): Observable<Users> {
-    const endpoint = `${this.baseUrl}/${id}`;
+  updateUser(user: Users): Observable<Users> {
+    const endpoint = `${this.baseUrl}/${user.id}`;
     return this.apiService.put<Users>(endpoint, user);
   }
 
