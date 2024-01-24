@@ -1,10 +1,10 @@
 .email-list
 {
-  width: 59vw;
-  height: 100%;
+  width: 100% !important;
+  height: 100% !important;
   flex-direction: column !important;
   align-items: flex-start !important;
-  display: flex;
+  display: flex !important;
   gap: 16px;
   background-color: transparent !important;
   color: var(--Grayscale-300, #CED4DA);
@@ -20,10 +20,12 @@
   color: var(--Grayscale-300, #CED4DA);
   justify-content: space-between !important;
 
-
-
 }
 
+.icon{
+  display: flex !important;
+  justify-content: flex-end !important;
+}
 
 .bi {
   background-color: transparent !important;

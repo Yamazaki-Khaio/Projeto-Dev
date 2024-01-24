@@ -4,7 +4,7 @@
     <hr class="line-md">
     <img alt="seta_accordion" [src]="isOpen ? upIconUrl : downIconUrl" class="img-fluid">
   </div>
-  <div class="accordion-item-content col-10" *ngIf="isOpen">
+  <div class="accordion-item-content col-12" *ngIf="isOpen">
     <ng-content></ng-content>
   </div>
 </div>

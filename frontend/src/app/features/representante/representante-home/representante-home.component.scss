@@ -110,12 +110,11 @@
 
 }
 
-.icon
-{
-  gap: 16px !important;
-  margin: 16px !important;
-
+.icon{
+  display: flex !important;
+  justify-content: flex-end !important;
 }
+
 .bi {
   background-color: transparent !important;
   color: var(--Grayscale-200, #E4EBF2) !important;

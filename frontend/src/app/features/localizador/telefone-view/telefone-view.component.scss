@@ -1,6 +1,6 @@
 .telefone-list
 {
-  width: 59vw;
+  width: 100% !important;
   height: 100%;
   flex-direction: column !important;
   align-items: flex-start !important;
@@ -21,8 +21,6 @@
   color: var(--Grayscale-300, #CED4DA);
   justify-content: space-between !important;
 
-
-
 }
 
 
@@ -39,9 +37,10 @@
   }
 }
 
+
 .icon{
-  padding: 0px !important;
-  margin: 0px !important;
+  display: flex !important;
+  justify-content: flex-end !important;
 }
 
 

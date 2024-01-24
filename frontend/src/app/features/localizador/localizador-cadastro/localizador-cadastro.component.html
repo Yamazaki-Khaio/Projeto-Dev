@@ -25,13 +25,13 @@
             <div class="link" (click)="abrirInput('telefone')">+ Adicionar telefone </div>
             <app-telefone-cadastro (telefoneAdicionado)="handleTelefoneAdicionado($event)" [userId]="pessoaId"
               *ngIf="exibirTelefone"></app-telefone-cadastro>
-            <app-telefone-view [pessoaId]="pessoaId" *ngIf="(telefoneData$ | async)"></app-telefone-view>
+            <app-telefone-view class="w-100" [pessoaId]="pessoaId" *ngIf="(telefoneData$ | async)"></app-telefone-view>
           </app-accordion-item>
           <app-accordion-item title="E-mail" [isOpen]="isOpenEmail" (toggle)="toggleAccordion('email')">
             <div (click)="abrirInput('email')" class="link">+ Adicionar e-mail </div>
             <app-email-cadastro [userId]="pessoaId" (emailAdicionado)="handleEmailAdicionado($event)"
               *ngIf="exibirEmail"></app-email-cadastro>
-            <app-email-view [pessoaId]="pessoaId" *ngIf="(emailData$ | async)"></app-email-view>
+            <app-email-view class="w-100" [pessoaId]="pessoaId" *ngIf="(emailData$ | async)"></app-email-view>
           </app-accordion-item>
         </app-accordion>
       </div>
