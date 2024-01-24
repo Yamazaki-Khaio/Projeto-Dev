@@ -18,6 +18,7 @@ export class UserEditComponent implements OnInit {
   isConfirmPasswordVisible: boolean = false;
   openedIconUrl: string = '';
   iconEdit: string = '';
+  currentUser: Users | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -31,7 +32,6 @@ export class UserEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Inicializa o FormGroup aqui, não no construtor
     this.usuarioEditForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -39,8 +39,22 @@ export class UserEditComponent implements OnInit {
       senhaAtual: [''],
       novaSenha: [''],
       confirmarNovaSenha: [''],
-      // Adicione outros campos conforme necessário
     });
+
+    // Carrega os dados do usuário atual ao inicializar o componente
+    this.userService.getUser().subscribe(
+      (user) => {
+        this.currentUser = user;
+        // Preencha o formulário com os dados do usuário
+        this.usuarioEditForm.patchValue({
+          name: user.nome,
+          email: user.email,
+        });
+      },
+      (error) => {
+        console.error('Erro ao carregar dados do usuário:', error);
+      }
+    );
   }
 
   togglePasswordVisibility(): void {
@@ -55,25 +69,28 @@ export class UserEditComponent implements OnInit {
     this.modalService.dismissAll();
   }
 
-
-
   onSubmit(): void {
-    // // Criar um objeto usuário com os dados do formulário
-    // const user = {
-    //   nome: this.usuarioEditForm.value.name,
-    //   email: this.usuarioEditForm.value.email,
-    //   senha: this.usuarioEditForm.value.novaSenha,};
+    if (!this.currentUser) {
+      console.error('Usuário não encontrado.');
+      return;
+    }
 
-    // // Chama o método updateUser() do serviço de usuários
-    // this.userService.updateUser(user).subscribe(
-    //   (data) => {
-    //     console.log('Usuário atualizado com sucesso. Dados: ', data);
-    //     // Redireciona para a página desejada após a atualização
-    //     this.router.navigate(['/dashboard']);
-    //   },
-    //   (error) => {
-    //     alert('Erro ao atualizar usuário. Erro: ' + error);
-    //   }
-    // );
+    const user: Users = {
+      id: this.currentUser.id,
+      nome: this.usuarioEditForm.value.name,
+      email: this.usuarioEditForm.value.email,
+      senha: this.usuarioEditForm.value.novaSenha,
+      senha_atual: this.usuarioEditForm.value.senhaAtual, // Adicione o campo senha_atual
+    };
+
+    this.userService.updateUser(user).subscribe(
+      (data) => {
+        console.log('Usuário atualizado com sucesso. Dados: ', data);
+        this.router.navigate(['/dashboard']);
+      },
+      (error) => {
+        alert('Erro ao atualizar usuário. Erro: ' + error);
+      }
+    );
   }
 }

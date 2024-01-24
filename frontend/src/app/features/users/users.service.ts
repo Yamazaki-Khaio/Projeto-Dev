@@ -8,7 +8,7 @@ import { Users } from './users';
 @Injectable({
   providedIn: 'root'
 })
-export class  UserService {
+export class UserService {
   private readonly baseUrl = 'conta'; // Rota base correspondente no backend
 
   constructor(private apiService: ApiService) { }
@@ -20,8 +20,8 @@ export class  UserService {
   }
 
   // Obtém um usuário pelo ID
-  getUser(id: string): Observable<Users> {
-    const endpoint = `${this.baseUrl}/${id}`;
+  getUser(): Observable<Users> {
+    const endpoint = `${this.baseUrl}/profile`; // Corrigido o caminho para o endpoint de getProfile}`;
     return this.apiService.get<Users>(endpoint);
   }
 
@@ -33,7 +33,7 @@ export class  UserService {
 
   // Atualiza um usuário existente
   updateUser(user: Users): Observable<Users> {
-    const endpoint = `${this.baseUrl}/${user.id}`;
+    const endpoint = `${this.baseUrl}/profile`; // Corrigido o caminho para o endpoint de updateProfile
     return this.apiService.put<Users>(endpoint, user);
   }
 
@@ -48,27 +48,22 @@ export class  UserService {
     const endpoint = `${this.baseUrl}/login`;
     const body = { email, senha: password, rememberMe };
     return this.apiService.post<any>(endpoint, body);
-
   }
 
   // Adicione outros métodos relacionados à autenticação, como logout, verificação de autenticação, etc.
 
   // Efetua logout do usuário
   logout() {
-    localStorage.removeItem('token')
+    localStorage.removeItem('token');
   }
 
   // Obtém o token do usuário
   getToken() {
-    return localStorage.getItem('token')
+    return localStorage.getItem('token');
   }
 
   // Verifica se o usuário está autenticado
   isAuth(): boolean {
     return this.getToken() !== null;
   }
-
 }
-
-
-

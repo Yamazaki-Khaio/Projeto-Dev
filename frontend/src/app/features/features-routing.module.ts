@@ -16,7 +16,10 @@ const routes: Routes = [{
   path: 'representante',
   canActivate: [AuthGuard],
   loadChildren: () => import('../features/representante/representante.module').then(m => m.RepresentanteModule)
-}];
+},
+{path: '**', redirectTo: 'login', pathMatch: 'full'}
+
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
