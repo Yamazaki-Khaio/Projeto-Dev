@@ -33,4 +33,4 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 
 ## Testes
 
-Todos os testes para o backend foram feitos via postman.s
+Todos os services testes para o backend foram feitos via postman
