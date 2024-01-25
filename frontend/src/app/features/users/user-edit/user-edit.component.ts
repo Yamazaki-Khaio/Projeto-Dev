@@ -14,10 +14,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class UserEditComponent implements OnInit {
 
   usuarioEditForm!: FormGroup;
-  isPasswordVisible: boolean = false;
-  isConfirmPasswordVisible: boolean = false;
-  openedIconUrl: string = '';
-  iconEdit: string = '';
+  isPasswordVisible = false;
+  isConfirmPasswordVisible = false;
+  openedIconUrl: string;
+  iconEdit: string;
   currentUser: Users | null = null;
 
   constructor(
@@ -41,20 +41,7 @@ export class UserEditComponent implements OnInit {
       confirmarNovaSenha: [''],
     });
 
-    // Carrega os dados do usuário atual ao inicializar o componente
-    this.userService.getUser().subscribe(
-      (user) => {
-        this.currentUser = user;
-        // Preencha o formulário com os dados do usuário
-        this.usuarioEditForm.patchValue({
-          name: user.nome,
-          email: user.email,
-        });
-      },
-      (error) => {
-        console.error('Erro ao carregar dados do usuário:', error);
-      }
-    );
+    this.loadUserData();
   }
 
   togglePasswordVisibility(): void {
@@ -80,16 +67,31 @@ export class UserEditComponent implements OnInit {
       nome: this.usuarioEditForm.value.name,
       email: this.usuarioEditForm.value.email,
       senha: this.usuarioEditForm.value.novaSenha,
-      senha_atual: this.usuarioEditForm.value.senhaAtual, // Adicione o campo senha_atual
+      senha_atual: this.usuarioEditForm.value.senhaAtual,
     };
 
     this.userService.updateUser(user).subscribe(
       (data) => {
         console.log('Usuário atualizado com sucesso. Dados: ', data);
-        this.router.navigate(['/dashboard']);
+        this.modalService.dismissAll();
       },
       (error) => {
         alert('Erro ao atualizar usuário. Erro: ' + error);
+      }
+    );
+  }
+
+  private loadUserData(): void {
+    this.userService.getUser().subscribe(
+      (user) => {
+        this.currentUser = user;
+        this.usuarioEditForm.patchValue({
+          name: user.nome,
+          email: user.email,
+        });
+      },
+      (error) => {
+        console.error('Erro ao carregar dados do usuário:', error);
       }
     );
   }

@@ -12,7 +12,7 @@ import { IconsService } from 'src/app/shared/util/icons.service';
 export class UserLoginComponent implements OnInit {
 
   isPasswordVisible: boolean = false;
-  loginForm: FormGroup = new FormGroup({});
+  loginForm!: FormGroup;
   apiErrorMessage: string = '';
   emailError: boolean = false;
   passwordError: boolean = false;
@@ -46,7 +46,6 @@ export class UserLoginComponent implements OnInit {
             // Armazene o token de autenticação no armazenamento local
             localStorage.setItem('token', response.token);
             localStorage.setItem('rememberMe', rememberMe.toString());
-
 
           }
           // Redirecione para a página desejada após o login

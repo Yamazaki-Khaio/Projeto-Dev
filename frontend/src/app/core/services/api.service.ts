@@ -43,12 +43,22 @@ export class ApiService {
   private handleError(error: HttpErrorResponse): Observable<never> {
     console.error('Erro na requisição:', error);
 
+    if (error.status === 401) {
+      // Lidar com erro de autenticação (token expirado, etc.)
+      this.authService.logout();
+      // Redirecionar para a página de login ou exibir uma mensagem ao usuário
+      // ...
+
+      return throwError(() => 'Sua sessão expirou. Faça login novamente.');
+    }
+
     if (error.error && error.error.message) {
       return throwError(() => error.error.message);
     }
 
     return throwError(() => 'Ocorreu um erro na requisição. Tente novamente mais tarde.');
   }
+
 
   private addTokenToHeaders(): HttpHeaders {
     const token = this.authService.getToken();
@@ -61,4 +71,5 @@ export class ApiService {
 
     return new HttpHeaders();
   }
+
 }

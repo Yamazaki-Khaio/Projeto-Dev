@@ -5,22 +5,31 @@ import { verificarCamposObrigatorios, verificarEmailExistente, hashSenha } from 
 import * as bcrypt from 'bcrypt';
 import { Op } from 'sequelize';
 import { AuthenticatedRequest } from '../../middleware/authMiddleware';
+import { authMiddleware } from "../../middleware/authMiddleware";
 
-export const ContaController = {
-  create: [verificarCamposObrigatorios, verificarEmailExistente, hashSenha, async (req: Request, res: Response) => {
+class ContaController {
+  async create(req: Request, res: Response): Promise<void> {
     try {
       const { email, nome, senha } = req.body;
 
-      const novaConta = await Conta.create({ email: email.toLowerCase(), nome, senha });
-      return res.status(201).json(novaConta);
+      if (!email || !nome || !senha) {
+        res.status(400).json({ message: 'Campos obrigatórios faltando' });
+        return;
+      }
+
+      const hashedSenha = await bcrypt.hash(senha, 10);
+
+      const novaConta = await Conta.create({ email: email.toLowerCase(), nome, senha: hashedSenha });
+      res.status(201).json(novaConta);
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ message: error });
+      res.status(500).json({ message: 'Erro interno do servidor' });
     }
-  }],
+  }
 
-  login: async (req: Request, res: Response) => {
+  async login(req: Request, res: Response): Promise<Response> {
     const { email, senha, rememberMe } = req.body;
+
 
     try {
       const conta = await Conta.findOne({ where: { email: email.toLowerCase() } });
@@ -35,21 +44,23 @@ export const ContaController = {
         return res.status(401).json({ message: 'Senha inserida incorreta. Tente novamente' });
       }
 
-     // Define a expiração do token com base na opção "rememberMe"
-     const expiresIn = rememberMe ? '62d' : '1h';
+      // Define a expiração do token com base na opção "rememberMe"
+      const expiresIn = rememberMe ? '62d' : '1h';
 
-     const token = jwt.sign({ id: conta.id }, 'secret', {
-       expiresIn,
-     });
+      const token = jwt.sign({ id: conta.id }, 'secret', {
+        expiresIn,
+      });
+
+      
 
       return res.json({ token });
     } catch (error) {
       console.error(error);
       return res.status(500).json({ message: 'Erro interno do servidor' });
     }
-  },
+  }
 
-  updateProfile: async (req: Request, res: Response) => {
+  async updateProfile(req: Request, res: Response): Promise<Response> {
     try {
       const user = (req as AuthenticatedRequest).user;
 
@@ -99,9 +110,9 @@ export const ContaController = {
       console.error(error);
       return res.status(500).json({ message: 'Erro interno do servidor' });
     }
-  },
+  }
 
-  delete: async (req: Request, res: Response) => {
+  async delete(req: Request, res: Response): Promise<Response> {
     try {
       const user = (req as AuthenticatedRequest).user;
 
@@ -120,11 +131,12 @@ export const ContaController = {
       console.error(error);
       return res.status(500).json({ message: 'Erro interno do servidor' });
     }
-  },
+  }
 
-  getProfile: async (req: Request, res: Response) => {
+  async getProfile(req: Request, res: Response): Promise<Response> {
     try {
       const user = (req as AuthenticatedRequest).user;
+
 
       if (!user) {
         return res.status(401).json({ message: 'Usuário não autenticado.' });
@@ -142,7 +154,6 @@ export const ContaController = {
       return res.status(500).json({ message: 'Erro interno do servidor' });
     }
   }
-};
+}
 
-
-export default ContaController;
+export default new ContaController() ;

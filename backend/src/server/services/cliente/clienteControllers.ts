@@ -88,8 +88,9 @@ class ClienteController {
 
     public async getAll(req: Request, res: Response): Promise<Response> {
         try {
-            const clientes = await Cliente.findAll({ where: { conta_id: (req as AuthenticatedRequest).user.id } });
-            const clientesPessoa = await Pessoa.findAll({ where: { conta_id: (req as AuthenticatedRequest).user.id } });
+            const userId = (req as AuthenticatedRequest).user.id;
+            const clientes = await Cliente.findAll({ where: { conta_id: userId } });
+            const clientesPessoa = await Pessoa.findAll({ where: { conta_id: userId } });
             clientes.forEach(cliente => {
                 clientesPessoa.forEach(pessoa => {
                     if (cliente.id_pessoa === pessoa.id) {

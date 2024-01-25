@@ -3,6 +3,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '../../core/services/api.service';
+import { AuthService } from '../../core/services/auth.service';
 import { Users } from './users';
 
 @Injectable({
@@ -11,59 +12,46 @@ import { Users } from './users';
 export class UserService {
   private readonly baseUrl = 'conta'; // Rota base correspondente no backend
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private authService: AuthService) { }
 
-  // Obtém todos os usuários
   getUsers(): Observable<Users[]> {
     const endpoint = this.baseUrl;
     return this.apiService.get<Users[]>(endpoint);
   }
 
-  // Obtém um usuário pelo ID
   getUser(): Observable<Users> {
-    const endpoint = `${this.baseUrl}/profile`; // Corrigido o caminho para o endpoint de getProfile}`;
+    const endpoint = `${this.baseUrl}/profile`;
     return this.apiService.get<Users>(endpoint);
   }
 
-  // Cria um novo usuário
   createUser(user: Users): Observable<Users> {
     const endpoint = this.baseUrl;
     return this.apiService.post<Users>(endpoint, user);
   }
 
-  // Atualiza um usuário existente
   updateUser(user: Users): Observable<Users> {
-    const endpoint = `${this.baseUrl}/profile`; // Corrigido o caminho para o endpoint de updateProfile
+    const endpoint = `${this.baseUrl}/profile`;
     return this.apiService.put<Users>(endpoint, user);
   }
 
-  // Remove um usuário pelo ID
   deleteUser(id: string): Observable<void> {
     const endpoint = `${this.baseUrl}/${id}`;
     return this.apiService.delete<void>(endpoint);
   }
 
-  // Efetua login do usuário
   login(email: string, password: string, rememberMe: boolean): Observable<any> {
-    const endpoint = `${this.baseUrl}/login`;
-    const body = { email, senha: password, rememberMe };
-    return this.apiService.post<any>(endpoint, body);
+    return this.authService.login(email, password, rememberMe);
   }
 
-  // Adicione outros métodos relacionados à autenticação, como logout, verificação de autenticação, etc.
-
-  // Efetua logout do usuário
-  logout() {
-    localStorage.removeItem('token');
+  logout(): Observable<void> {
+    return this.authService.logout();
   }
 
-  // Obtém o token do usuário
-  getToken() {
-    return localStorage.getItem('token');
+  getToken(): string | null {
+    return this.authService.getToken();
   }
 
-  // Verifica se o usuário está autenticado
   isAuth(): boolean {
-    return this.getToken() !== null;
+    return this.authService.isAuth();
   }
 }
