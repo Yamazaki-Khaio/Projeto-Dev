@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ApiService } from '../../core/services/api.service';
+import { ApiService } from 'src/app/shared/services/api.service';
 import { Endereco } from './endereco';
 
 @Injectable({

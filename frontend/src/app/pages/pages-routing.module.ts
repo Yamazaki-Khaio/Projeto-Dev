@@ -10,12 +10,12 @@ const routes: Routes = [{
 {
   path: 'localizador',
   canActivate: [AuthGuard],
-  loadChildren: () => import('../features/localizador/localizador.module').then(m => m.LocalizadorModule)
+  loadChildren: () => import('../pages/localizador/localizador.module').then(m => m.LocalizadorModule)
 },
 {
   path: 'representante',
   canActivate: [AuthGuard],
-  loadChildren: () => import('../features/representante/representante.module').then(m => m.RepresentanteModule)
+  loadChildren: () => import('../pages/representante/representante.module').then(m => m.RepresentanteModule)
 },
 {path: '**', redirectTo: 'login', pathMatch: 'full'}
 
@@ -25,4 +25,4 @@ const routes: Routes = [{
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class FeaturesRoutingModule { }
+export class PagesRoutingModule { }

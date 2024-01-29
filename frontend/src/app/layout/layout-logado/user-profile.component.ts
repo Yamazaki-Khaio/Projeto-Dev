@@ -1,9 +1,9 @@
 // user-profile.component.ts
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../users.service';
+import { UserService } from '../../pages/users/users.service';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { UserEditComponent } from '../user-edit/user-edit.component';
+import { UserEditComponent } from '../../pages/users/user-edit/user-edit.component';
 
 @Component({
   selector: 'app-user-profile',
@@ -28,17 +28,13 @@ export class UserProfileComponent implements OnInit {
 
   onEditProfileClicked(): void {
     // Lógica para lidar com o evento de editar perfil
-    console.log('Evento: Editar Perfil');
     this.modal.hasOpenModals() ? this.modal.dismissAll() : null;
     this.modal.open(UserEditComponent, { size: 'md', centered: true });
 
     // Redirecionar para a página de edição de perfil (exemplo)
-    this.router.navigate(['/edit-profile']);
   }
 
   onLogoutClicked(): void {
-    // Lógica para lidar com o evento de logout
-    console.log('Evento: Logout');
 
     // Chamar o serviço para efetuar o logout (exemplo)
     this.userService.logout();

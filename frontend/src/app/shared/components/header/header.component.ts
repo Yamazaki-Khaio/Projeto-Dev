@@ -1,7 +1,6 @@
 // FILEPATH: /c:/Users/kaio.fonseca/Documents/projeto-dev/Projeto-Dev/frontend/src/app/shared/components/header/header.component.ts
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../../../features/users/users.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -14,7 +13,7 @@ export class HeaderComponent {
   @Output() editProfileClicked: EventEmitter<void> = new EventEmitter<void>();
   @Output() logoutClicked: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private router: Router, private userService: UserService, private modal: NgbModal) {}
+  constructor(private router: Router, private modal: NgbModal) {}
 
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
@@ -32,13 +31,9 @@ export class HeaderComponent {
   }
 
   logout() {
-    // Redirecionar para a página de login
-    this.userService.logout();
 
     // Emitir evento para indicar que o logout está sendo executado
     this.logoutClicked.emit();
-
-    this.router.navigate(['/users/login']);
 
     // Feche o dropdown após a ação
     this.isDropdownOpen = false;

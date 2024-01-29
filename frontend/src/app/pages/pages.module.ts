@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms'; // Importe o ReactiveFormsModule
 
-import { FeaturesRoutingModule } from './features-routing.module';
+import { PagesRoutingModule } from './pages-routing.module';
 import { IconsService } from '../shared/util/icons.service';
 
 @NgModule({
@@ -12,10 +12,10 @@ import { IconsService } from '../shared/util/icons.service';
   providers: [ IconsService ],
   imports: [
     CommonModule,
-    FeaturesRoutingModule,
+    PagesRoutingModule,
     ReactiveFormsModule // Adicione o ReactiveFormsModule aos imports
   ]
 
 
 })
-export class FeaturesModule { }
+export class PagesModule { }
