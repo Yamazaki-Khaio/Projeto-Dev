@@ -21,4 +21,8 @@
   margin: 0 !important;
   padding: 0 !important;
   margin-bottom: 8px !important;
+}
+
+label {
+  color: #ced4da;
 }/*# sourceMappingURL=email-cadastro.component.css.map */

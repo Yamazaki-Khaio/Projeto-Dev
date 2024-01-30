@@ -1,4 +1,8 @@
-.telefoneCadastro {
+label {
+  color: #ced4da !important;
+}
+
+.email {
   display: flex;
   flex-direction: column;
   margin: 0 !important;
@@ -14,15 +18,7 @@
 }
 
 .form-row {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  gap: 20px;
+  gap: 8px;
   margin: 0 !important;
   padding: 0 !important;
-  margin-bottom: 8px !important;
-}
-
-label {
-  color: #ced4da;
-}/*# sourceMappingURL=telefone-cadastro.component.css.map */
+}/*# sourceMappingURL=email-edit.component.css.map */

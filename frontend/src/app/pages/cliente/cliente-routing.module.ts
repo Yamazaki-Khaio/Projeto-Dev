@@ -6,7 +6,6 @@ import { ClienteEditarComponent } from './cliente-editar/cliente-editar.componen
 
 
 const routes: Routes = [
-  { path: '', component: ClienteHomeComponent },
   { path: 'home', component: ClienteHomeComponent },
   {
     path: 'cadastro', component: ClienteCadastroComponent
@@ -21,7 +20,7 @@ const routes: Routes = [
   {
     path: 'representante/:id',
     loadChildren: () => import('../representante/representante.module').then(m => m.RepresentanteModule)
-  }
+  },
 ];
 
 @NgModule({

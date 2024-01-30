@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PagesModule } from './pages/pages.module';
+
+
 const routes: Routes = [
-  { path: '', redirectTo: 'users/register', pathMatch: 'full' },
-  { path: '', loadChildren: () => PagesModule },
+  { path: '', loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule) },
+  { path: 'clientes', loadChildren: () => import('./pages/cliente/cliente.module').then(m => m.ClienteModule) },
 ];
 
 @NgModule({

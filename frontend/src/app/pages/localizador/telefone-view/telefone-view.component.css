@@ -1,1 +1,37 @@
-/*# sourceMappingURL=telefone-view.component.css.map */
+.telefone-list {
+  width: 100% !important;
+  height: 100%;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  display: flex;
+  gap: 16px;
+  background-color: transparent !important;
+  color: var(--Grayscale-300, #CED4DA);
+  margin-bottom: 20px;
+}
+
+.table-telefone {
+  width: 100% !important;
+  align-items: flex-start;
+  gap: 24px !important;
+  align-items: center;
+  background-color: transparent !important;
+  color: var(--Grayscale-300, #CED4DA);
+  justify-content: space-between !important;
+}
+
+.bi {
+  background-color: transparent !important;
+  color: var(--Grayscale-200, #E4EBF2) !important;
+  border: none !important;
+  transition: color 0.3s ease-in-out;
+}
+.bi:hover {
+  color: var(--Grayscale-200, #E4EBF2) !important;
+  transform: scale(1.1);
+}
+
+.icon {
+  display: flex !important;
+  justify-content: flex-end !important;
+}/*# sourceMappingURL=telefone-view.component.css.map */

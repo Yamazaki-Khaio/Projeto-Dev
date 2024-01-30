@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './users/auth.guard';
+import { AuthGuard } from '../shared/guards/auth.guard';
 
 
 const routes: Routes = [{
@@ -8,17 +8,10 @@ const routes: Routes = [{
   loadChildren: () => import('./users/users.module').then(m => m.UsersModule)
 },
 {
-  path: 'localizador',
+  path: 'clientes',
   canActivate: [AuthGuard],
-  loadChildren: () => import('../pages/localizador/localizador.module').then(m => m.LocalizadorModule)
+  loadChildren: () => import('./cliente/cliente.module').then(m => m.ClienteModule)
 },
-{
-  path: 'representante',
-  canActivate: [AuthGuard],
-  loadChildren: () => import('../pages/representante/representante.module').then(m => m.RepresentanteModule)
-},
-{path: '**', redirectTo: 'login', pathMatch: 'full'}
-
 ];
 
 @NgModule({

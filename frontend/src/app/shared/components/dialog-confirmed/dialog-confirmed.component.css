@@ -1,0 +1,53 @@
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  border-radius: 8px;
+  border: 1px solid var(--Grayscale-500, #2F3337);
+  background: var(--Grayscale-600, #212529);
+}
+
+.modal-body {
+  display: flex;
+  padding: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
+  background: var(--Grayscale-600, #212529);
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--Grayscale-500, #2F3337);
+  background: var(--Grayscale-600, #212529);
+  display: flex;
+  padding: 16px;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+}
+
+.modal-footer {
+  display: flex;
+  padding: 16px;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  align-self: stretch;
+  border-top: 1px solid var(--Grayscale-500, #2F3337);
+  background: var(--Grayscale-600, #212529);
+}
+
+.text-decoration {
+  color: var(--Grayscale-0, #FFF);
+  text-align: center;
+  cursor: pointer;
+  /* Body/Underline */
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+  text-decoration-line: underline !important;
+}/*# sourceMappingURL=dialog-confirmed.component.css.map */

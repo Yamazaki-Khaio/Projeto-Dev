@@ -6,9 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { UsersModule } from "./pages/users/users.module";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { LayoutModule } from './layout/layout.module';
 
 @NgModule({
     declarations: [
@@ -21,9 +20,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         AppRoutingModule,
         SharedModule,
         HttpClientModule,
-        BrowserAnimationsModule // Adicione o HttpClientModule aqui
-        ,
-        UsersModule,
+        BrowserAnimationsModule,
+        LayoutModule,
         NgbModule
     ]
 })

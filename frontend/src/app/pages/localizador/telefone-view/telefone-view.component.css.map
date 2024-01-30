@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"telefone-view.component.css"}
+{"version":3,"sources":["telefone-view.component.scss","telefone-view.component.css"],"names":[],"mappings":"AAAA;EAEE,sBAAA;EACA,YAAA;EACA,iCAAA;EACA,kCAAA;EACA,aAAA;EACA,SAAA;EACA,wCAAA;EACA,oCAAA;EACA,mBAAA;ACAF;;ADIA;EACE,sBAAA;EACA,uBAAA;EACA,oBAAA;EACA,mBAAA;EACA,wCAAA;EACA,oCAAA;EACA,yCAAA;ACDF;;ADMA;EACE,wCAAA;EACA,+CAAA;EACA,uBAAA;EACA,kCAAA;ACHF;ADME;EACE,+CAAA;EACA,qBAAA;ACJJ;;ADSA;EACE,wBAAA;EACA,oCAAA;ACNF","file":"telefone-view.component.css"}

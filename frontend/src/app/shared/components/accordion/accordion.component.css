@@ -1,0 +1,9 @@
+.accordion {
+  gap: 20px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0px !important;
+  overflow-y: auto !important;
+  width: 100%;
+}/*# sourceMappingURL=accordion.component.css.map */
