@@ -1,6 +1,5 @@
 // user-profile.component.ts
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../pages/users/users.service';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserEditComponent } from '../../pages/users/user-edit/user-edit.component';
@@ -12,7 +11,7 @@ import { UserEditComponent } from '../../pages/users/user-edit/user-edit.compone
 })
 export class UserProfileComponent implements OnInit {
 
-  constructor(private userService: UserService, private router: Router, private modal: NgbModal) { }
+  constructor(private router: Router, private modal: NgbModal) { }
 
   ngOnInit(): void {
     // Obtenha os dados do perfil do usuário quando o componente for inicializado
@@ -35,9 +34,8 @@ export class UserProfileComponent implements OnInit {
   }
 
   onLogoutClicked(): void {
+    // Lógica para lidar com o evento de logout
 
-    // Chamar o serviço para efetuar o logout (exemplo)
-    this.userService.logout();
 
     // Redirecionar para a página de login (exemplo)
     this.router.navigate(['/users/login']);

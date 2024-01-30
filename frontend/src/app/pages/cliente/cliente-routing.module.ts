@@ -21,6 +21,9 @@ const routes: Routes = [
     path: 'representante/:id',
     loadChildren: () => import('../representante/representante.module').then(m => m.RepresentanteModule)
   },
+  {
+    path: '**', redirectTo: 'home', pathMatch: 'full'
+  }
 ];
 
 @NgModule({
