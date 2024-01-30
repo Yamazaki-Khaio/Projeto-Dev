@@ -16,13 +16,18 @@ const routes: Routes = [
       },
     ]
   },
-
   {
     path: '',
     component: LayoutLogoutComponent,
-    loadChildren: () => import('../pages/users/users.module').then(m => m.UsersModule)
+    children: [
+      {
+        path: 'users',
+        loadChildren: () => import('../pages/users/users.module').then(m => m.UsersModule)
+      },
+    ]
+  }
 
-  },
+
 
   ];
 

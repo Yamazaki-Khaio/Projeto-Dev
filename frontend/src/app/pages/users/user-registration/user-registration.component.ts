@@ -61,7 +61,7 @@ export class UserRegistrationComponent implements OnInit {
       (data) => {
         console.log('Usuário criado com sucesso. Dados: ', data);
         // Redireciona para a página de login
-        this.router.navigate(['/login']);
+        this.router.navigate(['users/login']);
       },
       (error) => {
         alert('Erro ao criar usuário. Erro: ' + error);
