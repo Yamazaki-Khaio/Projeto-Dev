@@ -41,7 +41,6 @@ export class UserLoginComponent implements OnInit {
       this.userService.login(email, password, rememberMe).subscribe(
         (response) => {
           // Login bem-sucedido
-          console.log('Usuário autenticado:', response);
           if (response.token) {
             // Armazene o token de autenticação no armazenamento local
             localStorage.setItem('token', response.token);
@@ -65,12 +64,11 @@ export class UserLoginComponent implements OnInit {
           }
           this.apiErrorMessage = error;
 
-          console.log('Erro ao fazer login:', error);
         }
       );
     } else {
-      console.log('Formulário inválido. Por favor, verifique os campos.');
-
+      this.loginForm.markAllAsTouched();
+      
     }
   }
 }

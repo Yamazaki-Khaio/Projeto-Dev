@@ -58,7 +58,6 @@ export class UserEditComponent implements OnInit {
 
   onSubmit(): void {
     if (!this.currentUser) {
-      console.error('Usuário não encontrado.');
       return;
     }
 
@@ -72,11 +71,11 @@ export class UserEditComponent implements OnInit {
 
     this.userService.updateUser(user).subscribe(
       (data) => {
-        console.log('Usuário atualizado com sucesso. Dados: ', data);
+
         this.modalService.dismissAll();
       },
       (error) => {
-        alert('Erro ao atualizar usuário. Erro: ' + error);
+
       }
     );
   }

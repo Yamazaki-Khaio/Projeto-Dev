@@ -44,11 +44,11 @@ export class ClienteHomeComponent implements OnDestroy {
 
   adicionarCliente() {
     // Navegar para a rota de criação de cliente
-    this.router.navigate(['/profile/cliente/cadastro']);
+    this.router.navigate(['/profile/clientes/cadastro']);
   }
 
   editarCliente(cliente: Cliente) {
-      this.router.navigate([`/profile/cliente/editar/${cliente.id}`]);
+      this.router.navigate([`/profile/clientes/editar/${cliente.id}`]);
     }
 
   // ...
@@ -87,10 +87,10 @@ export class ClienteHomeComponent implements OnDestroy {
     this.clientes$ = this.clienteService.getClientes();
     this.clientesSubscription = this.clientes$.subscribe(
       (data) => {
-        console.log('Clientes carregados com sucesso. Dados: ', data);
+        
+
       },
       (error) => {
-        console.error('Erro ao carregar clientes. Erro: ' + error);
         alert('Erro ao carregar clientes. Erro: ' + error);
       }
     );

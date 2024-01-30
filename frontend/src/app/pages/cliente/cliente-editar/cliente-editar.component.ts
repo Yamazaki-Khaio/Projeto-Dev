@@ -60,7 +60,8 @@ export class ClienteEditarComponent implements OnInit {
 
       },
       (error: any) => {
-        console.error(error);
+        return this.alertService.showAlert('Erro ao carregar cliente!', 'alert-danger');
+
       }
     );
   }
@@ -93,7 +94,7 @@ export class ClienteEditarComponent implements OnInit {
   }
 
   voltar() {
-    this.router.navigate(['/profile/cliente']);
+    this.router.navigate(['/profile/clientes']);
   }
 
 

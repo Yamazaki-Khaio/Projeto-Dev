@@ -69,7 +69,7 @@ export class ClienteCadastroComponent implements OnInit {
         (data: Cliente) => {
           console.log(data);
           this.clienteForm.reset();
-          this.router.navigate(['/profile/cliente/editar/' + data.id]);
+          this.router.navigate(['/profile/clientes/editar/' + data.id]);
           this.alertService.showAlert('Cliente adicionado com sucesso!', 'alert-primary');
 
         },
@@ -94,7 +94,7 @@ export class ClienteCadastroComponent implements OnInit {
   }
 
   voltar() {
-    this.router.navigate(['users/profile/cliente/']);
+    this.router.navigate(['users/profile/clientes/']);
   }
 
 
