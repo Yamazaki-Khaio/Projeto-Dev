@@ -49,7 +49,7 @@ export class UserLoginComponent implements OnInit {
 
           }
           // Redirecione para a página desejada após o login
-          this.router.navigate(['users/profile/home']);
+          this.router.navigate(['/profile/clientes/home']);
 
         },
         (error) => {
