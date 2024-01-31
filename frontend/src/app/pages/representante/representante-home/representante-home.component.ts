@@ -49,11 +49,11 @@ export class RepresentanteHomeComponent implements OnInit {
 
 
   addRepresentante() {
-    this.router.navigate([`/profile/cliente/representante/${this.pessoaId}/cadastro`]);
+    this.router.navigate([`/profile/clientes/representante/${this.pessoaId}/cadastro`]);
   }
 
   editarRepresentante(representante: Representante) {
-    this.router.navigate([`/profile/cliente/representante/${this.pessoaId}/editar/${representante.id}`]);
+    this.router.navigate([`/profile/clientes/representante/${this.pessoaId}/editar/${representante.id}`]);
     // Implemente a lógica para editar um representante
   }
 

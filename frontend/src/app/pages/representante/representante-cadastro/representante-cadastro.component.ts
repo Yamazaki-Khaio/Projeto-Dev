@@ -41,14 +41,12 @@ export class RepresentanteCadastroComponent {
 
   onSubmit(): void {
     const novoRepresentante: Representante = this.RepresentanteForm.value;
-    console.log(novoRepresentante);
     if(this.RepresentanteForm.valid){
       this.representanteService.createRepresentante(novoRepresentante, this.pessoaId).subscribe(
         response => {
-          console.log('Representante adicionado com sucesso:', response);
           this.alertService.showAlert('Representante adicionado com sucesso.', 'alert-primary');
           this.RepresentanteForm.reset();
-          this.router.navigate([`/profile/cliente/representante/${this.pessoaId}`]);
+          this.router.navigate([`/profile/clientes/representante/${this.pessoaId}`]);
 
           },
         error => {
@@ -62,7 +60,7 @@ export class RepresentanteCadastroComponent {
   }
 
   voltar() {
-    this.router.navigate(['/profile/cliente/representante/', this.pessoaId]);
+    this.router.navigate(['/profile/clientes/representante/', this.pessoaId]);
     }
 
 }

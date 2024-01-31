@@ -68,7 +68,7 @@ export class UserLoginComponent implements OnInit {
       );
     } else {
       this.loginForm.markAllAsTouched();
-      
+
     }
   }
 }

@@ -59,7 +59,8 @@ export class UserRegistrationComponent implements OnInit {
     // Chama o método createUser() do serviço de usuários
     this.userService.createUser(user).subscribe(
       (data) => {
-        console.log('Usuário criado com sucesso. Dados: ', data);
+        this.registrationForm.reset();
+        
         // Redireciona para a página de login
         this.router.navigate(['users/login']);
       },
