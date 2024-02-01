@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmailService } from '../email.service';
 import { ActivatedRoute } from '@angular/router';
 import { Email } from '../email';
-import { AlertService } from './../../../shared/services/alert.service';
+import { AlertService } from 'src/app/shared/services/alert.service';
 
 @Component({
   selector: 'app-email-edit',

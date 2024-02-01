@@ -1,12 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Telefone } from '../telefone';
 import { TelefoneService } from '../telefone.service';
-import { IconsService } from '../../../shared/util/icons.service';
+import { IconsService } from 'src/app/shared/util/icons.service';
 import { AlertService } from 'src/app/shared/services/alert.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { DialogConfirmedComponent } from 'src/app/shared/components/dialog-confirmed/dialog-confirmed.component';
-
 /// lembrar de ajustar esse componente para o novo modelo de cadastro de telefone e o component email tmb
 @Component({
   selector: 'app-telefone-view',

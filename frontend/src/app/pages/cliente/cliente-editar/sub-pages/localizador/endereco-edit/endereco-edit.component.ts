@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Endereco } from '../endereco';
 import { EnderecoService } from '../endereco.service';
-import { IconsService } from '../../../shared/util/icons.service';
+import { IconsService } from 'src/app/shared/util/icons.service';
 import { AlertService } from 'src/app/shared/services/alert.service';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { EnderecoSharedService } from '../../../shared/services/endereco-shared.service';
 
 @Component({
   selector: 'app-endereco-editar',

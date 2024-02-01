@@ -1,5 +1,5 @@
 import { Component, EventEmitter, SimpleChanges } from '@angular/core';
-import { IconsService } from '../../../shared/util/icons.service';
+import { IconsService } from 'src/app/shared/util/icons.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EnderecoCadastroComponent } from '../endereco-cadastro/endereco-cadastro.component';

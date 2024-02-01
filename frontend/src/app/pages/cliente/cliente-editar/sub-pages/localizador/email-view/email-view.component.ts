@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Email } from '../email';
 import { EmailService } from '../email.service';
-import { IconsService } from '../../../shared/util/icons.service';
+import { IconsService } from 'src/app/shared/util/icons.service'
 import { AlertService } from 'src/app/shared/services/alert.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';

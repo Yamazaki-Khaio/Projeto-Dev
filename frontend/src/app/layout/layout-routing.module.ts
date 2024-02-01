@@ -3,42 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserProfileComponent } from './layout-logado/user-profile.component';
 import { AuthGuard } from '../shared/guards/auth.guard';
 import { LayoutLogoutComponent } from './layout-logout/layout-logout.component';
-import { UsersHomeComponent } from '../pages/users/users-home/users-home.component';
 
 
 const routes: Routes = [
-  {
-    path: 'profile',
-    component: UserProfileComponent,
-    canActivate: [AuthGuard],
-    children: [
-      {
-        path: 'clientes',
-        loadChildren: () => import('../pages/cliente/cliente.module').then(m => m.ClienteModule)
-      },
-      {
-        path: 'home',
-        component: UsersHomeComponent
-
-      }
-
-
-    ]
-  },
-
-  {
-    path: '',
-    component: LayoutLogoutComponent,
-    children: [
-      {
-        path: 'users',
-        loadChildren: () => import('../pages/users/users.module').then(m => m.UsersModule)
-      },
-    ]
-  },
-
-
-  ];
+  { path: '', component: UserProfileComponent, canActivate: [AuthGuard] },
+  { path: '', component: LayoutLogoutComponent, children: [
+    { path: '', loadChildren: () => import('../pages/pages.module').then(m => m.PagesModule) }
+  ] },
+  { path: '**', redirectTo: 'logado', pathMatch: 'full' }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

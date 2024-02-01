@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { IconsService } from '../../../shared/util/icons.service';
+import { IconsService } from 'src/app/shared/util/icons.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RepresentanteService } from '../representante.service';
 import { Representante } from '../representante';

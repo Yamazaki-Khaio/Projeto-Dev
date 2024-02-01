@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { LocalizadorRoutingModule } from './localizador-routing.module';
 import { LocalizadorCadastroComponent } from './localizador-cadastro/localizador-cadastro.component';
-import { SharedModule } from "../../shared/shared.module";
+import { SharedModule } from "src/app/shared/shared.module";
 import { EnderecoViewComponent } from './endereco-view/endereco-view.component';
 import { TelefoneViewComponent } from './telefone-view/telefone-view.component';
 import { EmailViewComponent } from './email-view/email-view.component';

@@ -11,7 +11,6 @@ import { AlertService } from 'src/app/shared/services/alert.service';
   selector: 'app-cliente-editar',
   templateUrl: './cliente-editar.component.html',
   styleUrls: ['./cliente-editar.component.scss'],
-  // providers: [IconsService]
 
 })
 export class ClienteEditarComponent implements OnInit {

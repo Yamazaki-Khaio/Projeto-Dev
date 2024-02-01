@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TelefoneService } from '../telefone.service'; // Certifique-se de importar o serviço correto
 import { ActivatedRoute } from '@angular/router';
 import { Telefone } from '../telefone';
-import { AlertService } from './../../../shared/services/alert.service';
+import { AlertService } from 'src/app/shared/services/alert.service';
 
 @Component({
   selector: 'app-telefone-edit',
