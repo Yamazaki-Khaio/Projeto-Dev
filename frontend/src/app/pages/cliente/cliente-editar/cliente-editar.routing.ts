@@ -1,18 +1,16 @@
 import { Routes, RouterModule } from '@angular/router';
 import { ClienteEditarComponent } from '../cliente-editar/cliente-editar.component';
+import { LocalizadorCadastroComponent } from './sub-pages/localizador/localizador-cadastro/localizador-cadastro.component';
 
 const routes: Routes = [
   {
-    path: ':id',
+    path: ':idClienteEditar',
     component: ClienteEditarComponent,
     children: [
-      {
-        path: '',
-        loadChildren: () => import('./sub-pages/sub-pages.module').then(m => m.SubPagesModule)
-      }
+      { path: 'localizacao', component: LocalizadorCadastroComponent },
+      { path: 'representante', component: LocalizadorCadastroComponent },
+
     ]
-
-
   }
 ];
 

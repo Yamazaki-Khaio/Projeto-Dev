@@ -2,9 +2,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { ClienteHomeComponent } from './cliente-home.component';
 const routes: Routes = [
   {
-    path: ':id',
+    path: '',
     component: ClienteHomeComponent,
-    redirectTo: 'clientes',
   }
 ];
 

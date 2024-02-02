@@ -5,20 +5,20 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserEditComponent } from '../../pages/users/user-edit/user-edit.component';
 
 @Component({
-  selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.sass'],
+  selector: 'app-layout-logado',
+  templateUrl: './layout-logado.component.html',
+  styleUrls: ['./layout-logado.component.sass'],
 })
-export class UserProfileComponent implements OnInit {
+export class LayoutLogadoComponent implements OnInit {
 
   constructor(private router: Router, private modal: NgbModal) { }
 
   ngOnInit(): void {
     // Obtenha os dados do perfil do usuário quando o componente for inicializado
-    this.fetchUserProfileData();
+    this.fetchLayoutLogadoData();
   }
 
-  fetchUserProfileData(): void {
+  fetchLayoutLogadoData(): void {
 
     // Chame o serviço para obter os dados do perfil do usuário
 
@@ -38,7 +38,7 @@ export class UserProfileComponent implements OnInit {
 
 
     // Redirecionar para a página de login (exemplo)
-    this.router.navigate(['/users/login']);
+    this.router.navigate(['/login']);
   }
 
 }

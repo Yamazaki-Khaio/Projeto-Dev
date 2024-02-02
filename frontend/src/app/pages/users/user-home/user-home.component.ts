@@ -3,10 +3,10 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-users-home',
-  templateUrl: './users-home.component.html',
-  styleUrls: ['./users-home.component.scss']
+  templateUrl: './user-home.component.html',
+  styleUrls: ['./user-home.component.scss']
 })
-export class UsersHomeComponent {
+export class UserHomeComponent {
 
     constructor() { }
 

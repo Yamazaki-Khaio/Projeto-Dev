@@ -60,9 +60,9 @@ export class UserRegistrationComponent implements OnInit {
     this.userService.createUser(user).subscribe(
       (data) => {
         this.registrationForm.reset();
-        
+
         // Redireciona para a página de login
-        this.router.navigate(['users/login']);
+        this.router.navigate(['login']);
       },
       (error) => {
         alert('Erro ao criar usuário. Erro: ' + error);

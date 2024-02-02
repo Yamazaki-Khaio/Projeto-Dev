@@ -41,7 +41,7 @@ export class ClienteEditarComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.clienteId = this.route.snapshot.params['id'];
+    this.clienteId = this.route.snapshot.params['idClienteEditar'];
 
     this.clienteService.getCliente(this.clienteId.toString()).subscribe(
       (cliente: Cliente) => {
@@ -93,7 +93,7 @@ export class ClienteEditarComponent implements OnInit {
   }
 
   voltar() {
-    this.router.navigate(['/profile/clientes']);
+    this.router.navigate(['/profile/cliente']);
   }
 
 

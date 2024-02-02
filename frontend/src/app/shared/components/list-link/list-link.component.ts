@@ -12,8 +12,8 @@ export class ListLinkComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
-    this.clienteId = this.route.snapshot.params['id'];
+    this.clienteId = this.route.snapshot.params['idClienteEditar'];
   }
 
-  
+
 }

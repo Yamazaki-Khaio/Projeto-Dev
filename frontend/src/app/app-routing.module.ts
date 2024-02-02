@@ -3,7 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 const routes: Routes = [
-  { path: '', loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule) },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', loadChildren: () => import('./layout/layout-login/layout-login.module').then(m => m.LayoutLogoutModule) },
+  { path: 'profile', loadChildren: () => import('./layout/layout-logado/layout-logado.module').then(m => m.LayoutLogodoModule) },
 ];
 
 @NgModule({
