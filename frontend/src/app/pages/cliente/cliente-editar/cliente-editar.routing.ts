@@ -3,12 +3,11 @@ import { ClienteEditarComponent } from '../cliente-editar/cliente-editar.compone
 
 const routes: Routes = [
   {
-    path: 'editar',
+    path: ':id',
     component: ClienteEditarComponent,
-    redirectTo: 'editar',
     children: [
       {
-        path: ':id',
+        path: '',
         loadChildren: () => import('./sub-pages/sub-pages.module').then(m => m.SubPagesModule)
       }
     ]

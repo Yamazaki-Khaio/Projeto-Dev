@@ -5,21 +5,25 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: ':id', loadChildren: () => import('./cliente.module').then(m => m.ClienteModule),
+    path: 'clientes', loadChildren: () => import('./cliente.module').then(m => m.ClienteModule),
     children: [
       {
         path: 'editar',
         loadChildren: () => import('./cliente-editar/cliente-editar.module').then(m => m.ClienteEditarModule)
       },
       {
-        path: 'novo',
+        path: 'cadastrar',
         loadChildren: () => import('./cliente-cadastro/cliente-cadastro.module').then(m => m.ClienteCadastroModule)
+      },
+      {
+        path: 'home',
+        loadChildren: () => import('./cliente-home/cliente-home.module').then(m => m.ClienteHomeModule)
       },
     ]
   },
 
   {
-    path: '**', redirectTo: 'clientes', pathMatch: 'full'
+    path: '**', redirectTo: 'home', pathMatch: 'full',
   }
 ];
 
