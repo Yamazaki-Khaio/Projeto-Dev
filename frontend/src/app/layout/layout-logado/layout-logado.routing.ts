@@ -4,14 +4,14 @@ import { AuthGuard } from 'src/app/shared/guards/auth.guard';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'profile',
     component: UserProfileComponent,
     canActivate: [AuthGuard],
     children: [
-      {path: 'clientes', loadChildren: () => import('../../pages/cliente/cliente.module').then(m => m.ClienteModule)},
+      { path: '', loadChildren: () => import('../../pages/pages.module').then(m => m.PagesModule)}
     ]
 
-   },
+  },
 ];
 
 export const LayoutLogadoRoutes = RouterModule.forChild(routes);

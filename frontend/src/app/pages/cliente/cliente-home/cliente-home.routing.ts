@@ -4,7 +4,7 @@ const routes: Routes = [
   {
     path: ':id',
     component: ClienteHomeComponent,
-    redirectTo: 'home',
+    redirectTo: 'clientes',
   }
 ];
 

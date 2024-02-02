@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RepresentanteRoutingModule } from './representante-routing.module';
 import { RepresentanteCadastroComponent } from './representante-cadastro/representante-cadastro.component';
-import { SharedModule } from "../../shared/shared.module";
+import { SharedModule } from 'src/app/shared/shared.module';
 import { RepresentanteHomeComponent } from './representante-home/representante-home.component';
 
 

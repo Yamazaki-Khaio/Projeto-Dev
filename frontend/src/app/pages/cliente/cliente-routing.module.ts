@@ -5,7 +5,17 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'clientes', loadChildren: () => import('./cliente.module').then(m => m.ClienteModule),
+    path: ':id', loadChildren: () => import('./cliente.module').then(m => m.ClienteModule),
+    children: [
+      {
+        path: 'editar',
+        loadChildren: () => import('./cliente-editar/cliente-editar.module').then(m => m.ClienteEditarModule)
+      },
+      {
+        path: 'novo',
+        loadChildren: () => import('./cliente-cadastro/cliente-cadastro.module').then(m => m.ClienteCadastroModule)
+      },
+    ]
   },
 
   {
