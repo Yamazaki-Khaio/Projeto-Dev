@@ -60,7 +60,7 @@ export class LocalizadorCadastroComponent {
     ) { }
 
   ngOnInit(): void {
-    this.pessoaId = this.route.snapshot.params['id'];
+    this.pessoaId = this.route.snapshot.params['idClienteEditar'];
     this.openedIconUrl = this.IconsService.getIconUrl('icon-obrigatorio');
     this.upIconUrl = this.IconsService.getIconUrl("down");
     this.atualizarDados();
@@ -109,11 +109,11 @@ export class LocalizadorCadastroComponent {
   }
 
   voltar() {
-    this.router.navigate(['users/profile/cliente/']);
+    this.router.navigate(['profile/cliente/']);
   }
 
   OnSubmit() {
-    this.router.navigate(['users/profile/cliente/']);
+    this.router.navigate(['/profile/cliente/editar/', this.pessoaId, 'localizacao']);
   }
   //refatorar para novo modelo usando os utilitarios e services
   private atualizarDados(): void {

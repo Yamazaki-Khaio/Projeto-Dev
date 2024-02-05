@@ -31,7 +31,7 @@ export class RepresentanteCadastroComponent {
 
   ngOnInit(): void {
     this.openIconUrl = this.IconsService.getIconUrl('icon-obrigatorio');
-    this.pessoaId = this.route.snapshot.params['id'];
+    this.pessoaId = this.route.snapshot.params['idClienteEditar'];
     this.RepresentanteForm = this.fb.group({
       identificador: ['', [Validators.required]],
       nome: ['', [Validators.required]],
@@ -46,12 +46,12 @@ export class RepresentanteCadastroComponent {
         response => {
           this.alertService.showAlert('Representante adicionado com sucesso.', 'alert-primary');
           this.RepresentanteForm.reset();
-          this.router.navigate([`/profile/clientes/representante/${this.pessoaId}`]);
-
+          this.router.navigate([`/profile/cliente/editar/${this.pessoaId}/representante`]);
+          response.nome = novoRepresentante.nome;
           },
         error => {
           this.alertService.showAlert('Erro ao adicionar representante.', 'alert-danger');
-          console.error('Erro ao adicionar representante:', error);
+          error.nome = novoRepresentante.nome;
 
         }
       );

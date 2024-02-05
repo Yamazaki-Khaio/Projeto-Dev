@@ -32,7 +32,7 @@ export class RepresentanteHomeComponent implements OnInit {
     this.editIcon = this.iconsService.getIconUrl('Editar');
     this.delIcon = this.iconsService.getIconUrl('Excluir');
     this.openedIconUrl = this.iconsService.getIconUrl('icon-obrigatorio');
-    this.pessoaId = this.route.snapshot.params['id'];
+    this.pessoaId = this.route.snapshot.params['idClienteEditar'];
     this.representantes$ = this.representanteService.getRepresentantesPorUsuario(this.pessoaId);
   }
 
@@ -49,11 +49,11 @@ export class RepresentanteHomeComponent implements OnInit {
 
 
   addRepresentante() {
-    this.router.navigate([`/profile/clientes/representante/${this.pessoaId}/cadastro`]);
+    this.router.navigate([`/profile/cliente/editar/representante/${this.pessoaId}/cadastro/`]);
   }
 
   editarRepresentante(representante: Representante) {
-    this.router.navigate([`/profile/clientes/representante/${this.pessoaId}/editar/${representante.id}`]);
+    this.router.navigate([`/profile/cliente/editar/representante/${this.pessoaId}/editar/${representante.id}`]);
     // Implemente a lógica para editar um representante
   }
 
